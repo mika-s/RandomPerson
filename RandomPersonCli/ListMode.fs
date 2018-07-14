@@ -18,4 +18,4 @@ let listMode (settingsFilePath: string) (amount: int) (nationality: Nationality)
     | OutputType.File    -> lib.CreatePersonList(amount, nationality, options)
                             |> List.toArray
                             |> printToFile fileFormat outputFilePath i.settings.ListMode
-    | _ -> failwith "Illegal output type."
+    | _ -> invalidArg "outputType" "Illegal output type."

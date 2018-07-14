@@ -12,20 +12,20 @@ let assertDates (bdo: birthDateOptionsSettings) =
     | (true, true) ->
         match bdo.Low.Value, bdo.High.Value with
         | (l, _) when l <= 1
-            -> failwith "The variable 'Low' is too low. 1 is minimum."
+            -> invalidArg "Low" "The variable 'Low' is too low. 1 is minimum."
         | (l, h) when h <= l
-            -> failwith "The variable 'Low' cannot be equal or higher than 'High'"
+            -> invalidArg "Low" "The variable 'Low' cannot be equal or higher than 'High'"
         | (_, h) when 150 < h
-            -> failwith "The variable 'High' is too high. 150 is maximum."
+            -> invalidArg "High" "The variable 'High' is too high. 150 is maximum."
         | _ -> 1 |> ignore
     | (true, false) ->
         match bdo.Low.Value, bdo.High.Value with
         | (l, _) when l <= 1800
-            -> failwith "The variable 'Low' is too low. 1800 is minimum."
+            -> invalidArg "Low" "The variable 'Low' is too low. 1800 is minimum."
         | (l, h) when h <= l
-            -> failwith "The variable 'Low' cannot be equal or higher than 'High'"
+            -> invalidArg "Low" "The variable 'Low' cannot be equal or higher than 'High'"
         | (_, h) when 2050 < h
-            -> failwith "The variable 'High' is too high. 2050 is maximum."
+            -> invalidArg "High" "The variable 'High' is too high. 2050 is maximum."
         | _ -> 1 |> ignore
     | (false, _) -> 1 |> ignore
 

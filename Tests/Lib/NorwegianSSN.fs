@@ -29,7 +29,7 @@ type ``norwegianGetIndividualNumber should`` () =
         Assert.IsTrue(500 <= individualNumber && individualNumber < 999)
 
     [<TestMethod>]
-    [<ExpectedException(typedefof<Exception>)>]
+    [<ExpectedException(typedefof<ArgumentException>)>]
     member this.``fail when outside range`` () =
         getIndividualNumber random 20000 |> ignore
 

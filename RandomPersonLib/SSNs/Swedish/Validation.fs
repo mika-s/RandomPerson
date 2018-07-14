@@ -38,7 +38,7 @@ let isCorrectChecksum (csFromSSN: string) (ssn: string) (p: ssnParams)  =
     let birthDate = match p.SsnLength with
                     | Equals oldSsnParams.SsnLength -> ssn.Substring(p.DateStart, p.DateLength)
                     | Equals newSsnParams.SsnLength -> ssn.Substring(p.DateStart + 2, p.DateLength - 2)    // omit two first digits in the date
-                    | _  -> failwith "Wrong SSN length in parameters."
+                    | _  -> invalidOp "Wrong SSN length in parameters."
 
     let individualNumber = ssn.Substring(p.IndividualNumberStart, p.IndividualNumberLength)
 

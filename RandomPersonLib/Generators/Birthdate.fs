@@ -25,6 +25,6 @@ let generateBirthDate (random: Random) (isAllowingUnder18: bool) (birthDateOptio
               | () when month = 4 || month = 6 || month = 9 || month = 11 -> random.Next(1, 30)
               | () when month = 2 && year % 4 = 0 && year <> 1900 -> 29
               | () when month = 2 -> random.Next(1, 28)
-              | _ -> failwith "Illegal month."
+              | _ -> invalidArg "month" "Illegal month."
 
     sprintf "%i-%0i-%0i" year month day |> DateTime.Parse

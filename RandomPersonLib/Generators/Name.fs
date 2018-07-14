@@ -11,7 +11,7 @@ let makeFirstName (random: Random) (gender: Gender) (data: PersonData) =
     match gender with
     | Gender.Male   -> data.MaleFirstNames.[randomNoMaleFirstName]
     | Gender.Female -> data.FemaleFirstNames.[randomNoFemaleFirstName]
-    | _ -> failwith "Illegal gender."
+    | _ -> invalidArg "gender" "Illegal gender."
 
 let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
     let firstName = makeFirstName random gender data

@@ -27,7 +27,7 @@ let generateCenturySign (year: int) =
     | () when 1800 <= year && year <= 1899 -> "+"
     | () when 1900 <= year && year <= 1999 -> "-"
     | () when 2000 <= year && year <= 2099 -> "A"
-    | _ -> failwith "Illegal year."
+    | _ -> invalidArg "year" "Illegal year."
 
 let getIndividualNumber (random: Random) =
     let min = 002
@@ -59,7 +59,7 @@ let generateFinnishIndividualNumber (random: Random) (gender: Gender) =
     match gender with
     | Gender.Male   -> (getIndividualNumberMale   random).ToString("D3")
     | Gender.Female -> (getIndividualNumberFemale random).ToString("D3")
-    | _ -> failwith "Illegal gender."
+    | _ -> invalidArg "gender" "Illegal gender."
 
 let generateFinnishChecksum (birthdate: DateTime) (individualNumber: string) =
     let d = birthdate.Day.ToString("D2")

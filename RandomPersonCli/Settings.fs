@@ -2,8 +2,8 @@
 
 open System
 open System.Runtime.Serialization
-open RandomPersonLib
 open CliUtil
+open RandomPersonLib
 
 [<DataContract>]
 type genericPrintSettings = {

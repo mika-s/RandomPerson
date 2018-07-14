@@ -79,14 +79,14 @@ let rec parseArgs (args: list<string>) (options: options) =
             let newOptions = { options with nationality = Nationality.Finnish }
             parseArgs xss newOptions
         | _ ->
-            eprintf "-n flag needs either Danish, Norwegian, Finnish or Swedish after it\n"
+            invalidArg "-n flag" "needs either Danish, Finnish, Norwegian or Swedish after it\n"
             parseArgs xs options
     | "-a"::xs ->
         match xs with
         | (Int i)::xss ->
             let newOptions = { options with numberOfElements = i }
             parseArgs xss newOptions
-        | _ -> failwith "-a flag needs a number after it\n"
+        | _ -> invalidArg "-a flag" "needs a number after it\n"
     | "-f"::xs ->
         match xs with
         | "CSV"::xss ->
@@ -98,19 +98,19 @@ let rec parseArgs (args: list<string>) (options: options) =
         | "XML"::xss ->
             let newOptions = { options with outputType = OutputType.File; fileFormat = FileFormat.XML }
             parseArgs xss newOptions
-        | _ -> failwith "-f flag needs either CSV, JSON or XML after it\n"
+        | _ -> invalidArg "-f flag" "needs either CSV, JSON or XML after it\n"
     | "-o"::xs ->
         match xs with
         | (Filename fn)::xss ->
             let newOptions = { options with outputFilePath = fn }
             parseArgs xss newOptions
-        | _ -> failwith "-o flag needs a file path after it\n"
+        | _ -> invalidArg "-o flag" "needs a file path after it\n"
     | "-s"::xs ->
         match xs with
         | (Filename fn)::xss ->
             let newOptions = { options with settingsFilePath = fn }
             parseArgs xss newOptions
-        | _ -> failwith "-s flag needs a file path after it\n"
+        | _ -> invalidArg "-s flag" "needs a file path after it\n"
     | x::xs ->
         eprintf "Illegal argument: %s\n" x
         parseArgs xs options 

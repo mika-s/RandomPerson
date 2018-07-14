@@ -12,7 +12,7 @@ let stringToPostalCodeAndCity (nationality: Nationality) (line: string)   =
     | Nationality.Finnish   -> PostalCodeAndCity(split.[0], split.[1])
     | Nationality.Norwegian -> PostalCodeAndCity(split.[0], split.[1])
     | Nationality.Swedish   -> PostalCodeAndCity(split.[1], split.[2])
-    | _ -> failwith "Illegal nationality."
+    | _ -> invalidArg "nationality" "Illegal nationality."
 
 let generatePostalCodeAndCity (random: Random) (postalCodeAndCities: PostalCodeAndCity[]) = 
     let randomNumber = random.Next(postalCodeAndCities.Length)

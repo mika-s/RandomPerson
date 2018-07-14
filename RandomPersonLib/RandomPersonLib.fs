@@ -32,7 +32,7 @@ type RandomPerson() =
         | Nationality.Finnish   -> Person(nationality, i.finnish,   options, random)
         | Nationality.Norwegian -> Person(nationality, i.norwegian, options, random)
         | Nationality.Swedish   -> Person(nationality, i.swedish,   options, random)
-        | _ -> failwith "Illegal nationality."
+        | _ -> invalidArg "nationality" "Illegal nationality."
 
     /// Create a Person object given a nationality.
     member this.CreatePerson (nationality: Nationality) = this.CreatePerson (nationality, defaultOptions)
@@ -66,7 +66,7 @@ type RandomPerson() =
         | Nationality.Finnish   -> validateFI ssn
         | Nationality.Norwegian -> validateNO ssn
         | Nationality.Swedish   -> validateSE ssn
-        | _ -> failwith "Illegal nationality."
+        | _ -> invalidArg "nationality" "Illegal nationality."
 
     interface IRandomPerson with
         

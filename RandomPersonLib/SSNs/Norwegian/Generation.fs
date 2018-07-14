@@ -23,7 +23,7 @@ let getIndividualNumber (random: Random) (year: int) =
     | () when 1854 <= year && year <= 1899 -> random.Next(500, 749)
     | () when 1900 <= year && year <= 1999 -> random.Next(000, 499)
     | () when 2000 <= year && year <= 2039 -> random.Next(500, 999)
-    | _ -> failwith "Illegal date."
+    | _ -> invalidArg "year" "Illegal year."
 
 let getIndividualNumberMale (random: Random) (year: int) =
     let rec loop () = 
@@ -49,7 +49,7 @@ let generateNorwegianIndividualNumber (random: Random) (year: int) (gender: Gend
     match gender with
     | Gender.Male   -> (getIndividualNumberMale   random year).ToString("D3")
     | Gender.Female -> (getIndividualNumberFemale random year).ToString("D3")
-    | _ -> failwith "Illegal gender."
+    | _ -> invalidArg "gender" "Illegal gender."
     
 let generateNorwegianChecksum (birthdate: DateTime) (individualNumber: string) =
     let d1 = Convert.ToInt32(birthdate.Day   .ToString("D2").Substring(0, 1))

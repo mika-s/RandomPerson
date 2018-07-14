@@ -35,8 +35,8 @@ let main argv =
                                   options.numberOfElements
                                   options.nationality
         | Mode.Validation  -> validateMode ()
-        | _ -> failwith "Illegal mode."
-
+        | _ -> invalidArg "options.mode" "That mode doesn't exist."
+    
         0
     with
     | _ as ex -> handleException ex; 1

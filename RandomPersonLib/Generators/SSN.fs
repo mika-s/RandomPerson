@@ -13,7 +13,7 @@ let generateSSN (random: Random) (nationality: Nationality) (birthdate : DateTim
               | Nationality.Finnish   -> generateFinnishSSN   random birthdate gender isAnonymizingSSN
               | Nationality.Norwegian -> generateNorwegianSSN random birthdate gender isAnonymizingSSN
               | Nationality.Swedish   -> generateSwedishSSN   random birthdate gender isAnonymizingSSN
-              | _ -> failwith "Illegal nationality."
+              | _ -> invalidArg "nationality" "Illegal nationality."
 
     match isRemovingHypensFromSSN with
     | true  -> ssn.Replace("-", "")

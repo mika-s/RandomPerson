@@ -28,7 +28,7 @@ let numberFor1937to1999 (random: Random) =
     | () when 0  <= number && number <= 66  -> random.Next(0, 3)
     | () when 67 <= number && number <= 84  -> 4
     | () when 84 <= number && number <= 100 -> 9
-    | _ -> failwith "Illegal random number."
+    | _ -> invalidOp "Illegal random number."
 
 let numberFor2000to2036 (random: Random) = 
     let number = random.Next(0, 100)
@@ -36,7 +36,7 @@ let numberFor2000to2036 (random: Random) =
     match () with
     | () when 0  <= number && number <= 49  -> 4
     | () when 50 <= number && number <= 99  -> 9
-    | _ -> failwith "Illegal random number."
+    | _ -> invalidOp "Illegal random number."
 
 let getCenturyNumber (random: Random) (year: int) =
     match () with
@@ -45,7 +45,7 @@ let getCenturyNumber (random: Random) (year: int) =
     | () when 1937 <= year && year <= 1999 -> numberFor1937to1999 random
     | () when 2000 <= year && year <  2036 -> numberFor2000to2036 random
     | () when 2037 <= year && year <  2057 -> random.Next(5, 8)
-    | _ -> failwith "Illegal year."
+    | _ -> invalidArg "year" "Illegal year."
 
 let generateDanishIndividualNumber (random: Random) (century: int) =
     sprintf "%d%s" century (random.Next(0, 100).ToString("D2"))

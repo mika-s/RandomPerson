@@ -20,7 +20,7 @@ let generateEmailAddress (random: Random) (emailAddresses: string[]) (firstName:
                     | r when 65 < r && r <= 70  -> firstName + birthDate.Year.ToString().Substring(2, 2)
                     | r when 70 < r && r <= 75  -> lastName + birthDate.Year.ToString().Substring(2, 2)
                     | r when 75 < r && r <= 100 -> firstName + random.Next(0, 20).ToString()
-                    | _ -> failwith "Outside legal random range"
+                    | _ -> invalidOp "Outside legal random range"
 
     let cleanLocalpart = localpart.ToLower()
                                   .Replace(" ", "")

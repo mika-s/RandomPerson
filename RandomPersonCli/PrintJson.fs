@@ -3,9 +3,9 @@
 open System
 open Newtonsoft.Json
 open Newtonsoft.Json.Converters
+open CliUtil
 open RandomPersonLib
 open Settings
-open CliUtil
 
 type PersonSerializable = {
     [<JsonProperty("FirstName")>]
@@ -79,7 +79,7 @@ let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
                                DateFormatHandling = DateFormatHandling.IsoDateFormat)
     | "ISO", false       ->
        JsonSerializerSettings (DateFormatHandling = DateFormatHandling.IsoDateFormat)
-    | _                  -> failwith "Illegal JSON print type."
+    | _                  -> invalidArg "JSON print type" "Illegal JSON print type."
 
 let printToJson (people: Person[]) (outputFilePath: string) (settings: listModeSettings)  =
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "json")

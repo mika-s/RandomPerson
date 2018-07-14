@@ -35,13 +35,13 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 The data is based on real values from the mentioned countries. I.e. the SSN, telephone numbers, etc.
 will be valid. SSN can be chosen to be fake.
 
-![List mode for Norwegian](/Assets/Images/list mode - norwegian.png)
+![List mode for Norwegian](./Assets/Images/list mode - norwegian.png)
 
 ### Output to file
 
 In addition to outputting to the console, RandomPersonCli can output the data to file in JSON, XML and CSV format.
 
-![List mode to file for Swedish](/Assets/Images/list mode to JSON - swedish.png)
+![List mode to file for Swedish](./Assets/Images/list mode to JSON - swedish.png)
 
 ### Generate templated strings
 

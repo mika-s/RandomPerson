@@ -57,7 +57,7 @@ let generateSwedishIndividualNumber (random: Random) (gender: Gender) =
     match gender with
     | Gender.Male   -> (getIndividualNumberMale   random).ToString("D3")
     | Gender.Female -> (getIndividualNumberFemale random).ToString("D3")
-    | _ -> failwith "Illegal gender."
+    | _ -> invalidArg "gender" "Illegal gender."
 
 let sumTheDigits (product: int) =
     let productAsString = sprintf "%d" product
