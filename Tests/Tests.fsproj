@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="TestData.fs" />
+    <Compile Include="Lib\Email.fs" />
+    <Compile Include="Lib\PostalCodeAndCity.fs" />
+    <Compile Include="Lib\Util.fs" />
+    <Compile Include="Lib\SSN.fs" />
+    <Compile Include="Lib\DanishSSN.fs" />
+    <Compile Include="Lib\FinnishSSN.fs" />
+    <Compile Include="Lib\NorwegianSSN.fs" />
+    <Compile Include="Lib\SwedishSSN.fs" />
+    <Compile Include="Lib\ValidateDanishSSN.fs" />
+    <Compile Include="Lib\ValidateFinnishSSN.fs" />
+    <Compile Include="Lib\ValidateNorwegianSSN.fs" />
+    <Compile Include="Lib\ValidateSwedishSSN.fs" />
+    <Compile Include="Lib\Gender.fs" />
+    <Compile Include="Lib\Birthdate.fs" />
+    <Compile Include="Cli\CliUtil.fs" />
+    <Compile Include="Lib\TemplatePrint.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RandomPersonCli\RandomPersonCli.fsproj" />
+    <ProjectReference Include="..\RandomPersonLib\RandomPersonLib.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

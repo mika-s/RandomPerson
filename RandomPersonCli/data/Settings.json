@@ -1,0 +1,118 @@
+﻿{
+    "InteractiveMode": {
+        "Options": {
+            "AnonymizeSSN": true,
+            "Under18": false,
+            "AddCountryCodeToPhoneNumber": true,
+            "RemoveHyphenFromPhoneNumber": false,
+            "RemoveSpaceFromPhoneNumber": false,
+            "RemoveHyphenFromSSN": false,
+            "BirthDate": {
+                "SetYearManually": false,
+                "SetUsingAge": false,
+                "Low": 1900,
+                "High": 2000
+            },
+            "Randomness": {
+                "ManualSeed": false,
+                "Seed":  1234
+            }
+        },
+        "ConsolePrint": {
+            "Label": true,
+            "FirstName": true,
+            "LastName": true,
+            "SSN": true,
+            "Nationality": true,
+            "Address1": true,
+            "Address2": false,
+            "PostalCode": true,
+            "City": true,
+            "BirthDate": true,
+            "Gender": true,
+            "Email": true,
+            "MobilePhone": true,
+            "HomePhone": true
+        }
+    },
+    "ListMode": {
+        "Options": {
+            "AnonymizeSSN": false,
+            "Under18": false,
+            "AddCountryCodeToPhoneNumber": false,
+            "RemoveHyphenFromPhoneNumber": false,
+            "RemoveSpaceFromPhoneNumber": true,
+            "RemoveHyphenFromSSN": false,
+            "BirthDate": {
+                "SetYearManually": false,
+                "SetUsingAge": false,
+                "Low": 1900,
+                "High": 2000
+            },
+            "Randomness": {
+                "ManualSeed": false,
+                "Seed": 1234
+            }
+        },
+        "PrintOptions": {
+            "JsonPrintType": "ISO",
+            "JsonPrettyPrint": true,
+            "XmlPrettyPrint": false
+        },
+        "ConsolePrint": {
+            "Label": true,
+            "FirstName": true,
+            "LastName": true,
+            "SSN": true,
+            "Nationality": false,
+            "Address1": true,
+            "Address2": false,
+            "PostalCode": true,
+            "City": true,
+            "BirthDate": false,
+            "Gender": false,
+            "Email": true,
+            "MobilePhone": true,
+            "HomePhone": true
+        },
+        "FilePrint": {
+            "Label": true,
+            "FirstName": true,
+            "LastName": true,
+            "SSN": true,
+            "Nationality": true,
+            "Address1": true,
+            "Address2": false,
+            "PostalCode": true,
+            "City": true,
+            "BirthDate": false,
+            "Gender": false,
+            "Email": false,
+            "MobilePhone": true,
+            "HomePhone": true
+        }
+    },
+    "TemplateMode": {
+        "Options": {
+            "AnonymizeSSN": true,
+            "Under18": false,
+            "AddCountryCodeToPhoneNumber": true,
+            "RemoveHyphenFromPhoneNumber": false,
+            "RemoveSpaceFromPhoneNumber": false,
+            "RemoveHyphenFromSSN": true,
+            "BirthDate": {
+                "SetYearManually": false,
+                "SetUsingAge": false,
+                "Low": 1900,
+                "High": 2000
+            },
+            "Randomness": {
+                "ManualSeed": false,
+                "Seed": 1234
+            }
+        },
+        "Print": {
+            "Output": "INSERT INTO Account (SSN, FirstNames, LastName, Age, IsEmployed, XFactor) VALUES ('#{SSN}', '#{FirstName}', '#{LastName}', #{Random(float:2, 18.0, 60.0)}, #{Random(int, 0, 2)}, #{Random(switch, yes, no, maybe)})"
+        }
+    }
+}

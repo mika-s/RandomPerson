@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PreserveCompilationContext>false</PreserveCompilationContext>
+    <Authors>Mika Sundland</Authors>
+    <AssemblyName>RandomPersonCli</AssemblyName>
+    <RunPostBuildEvent>1</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="data\Settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="CliEnums.fs" />
+    <Compile Include="CliUtil.fs" />
+    <Compile Include="Settings.fs" />
+    <Compile Include="ReadInputFiles.fs" />
+    <Compile Include="PrintCsv.fs" />
+    <Compile Include="PrintJson.fs" />
+    <Compile Include="PrintXml.fs" />
+    <Compile Include="PrintToFile.fs" />
+    <Compile Include="PrintToConsole.fs" />
+    <Compile Include="CmdLineArgumentParsing.fs" />
+    <Compile Include="ListMode.fs" />
+    <Compile Include="InteractiveMode.fs" />
+    <Compile Include="TemplateMode.fs" />
+    <Compile Include="ValidateMode.fs" />
+    <Compile Include="Program.fs" />
+    <None Include="ReadmeCli.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RandomPersonLib\RandomPersonLib.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>
