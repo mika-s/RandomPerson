@@ -12,4 +12,4 @@ let printToFile (fileFormat: FileFormat) (outputFilePath: string) (settings: lis
     | FileFormat.CSV  -> printToCsv  people outputFilePath settings.FilePrint |> ignore
     | FileFormat.JSON -> printToJson people outputFilePath settings           |> ignore
     | FileFormat.XML  -> printToXml  people outputFilePath settings           |> ignore
-    | _ -> invalidArg "File format" "Illegal file format."
+    | _ -> invalidArg "fileFormat" "Illegal file format."

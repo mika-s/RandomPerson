@@ -36,6 +36,9 @@ The library can also validate SSNs for the countries listed above.
 
 ### In C#
 
+Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.0 to the references
+using NuGet.
+
 #### Example 1
 
 Generate an IEnumerable of people and print to the console.
@@ -82,7 +85,31 @@ Console.WriteLine(isLegalSSN);
 
 ### In F#
 
-To be done.
+#### Example 1
+
+Generate one Danish person and print his/hers name.
+
+```fs
+let randomPerson = RandomPerson()
+
+let printPersonsName (person: Person) = printfn "Name: %s %s" person.FirstName personLastName
+
+randomPerson.CreatePerson(Nationality.Danish)
+|> printPersonsName
+```
+
+#### Example 2
+
+Generate a list of 15 Swedish people.
+
+```fs
+let randomPerson = RandomPerson()
+
+let amount = 15
+let nationality = Nationality.Swedish
+
+let people = randomPerson.CreatePersonList(amount, nationality)
+```
 
 ## API
 

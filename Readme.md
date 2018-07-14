@@ -35,13 +35,13 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 The data is based on real values from the mentioned countries. I.e. the SSN, telephone numbers, etc.
 will be valid. SSN can be chosen to be fake.
 
-![List mode for Norwegian](./Assets/Images/list mode - norwegian.png)
+![List mode for Norwegian](./Assets/Images/list%20mode%20-%20norwegian.png)
 
 ### Output to file
 
 In addition to outputting to the console, RandomPersonCli can output the data to file in JSON, XML and CSV format.
 
-![List mode to file for Swedish](./Assets/Images/list mode to JSON - swedish.png)
+![List mode to file for Swedish](./Assets/Images/list%20mode%20to%20JSON%20-%20swedish.png)
 
 ### Generate templated strings
 
@@ -51,13 +51,13 @@ with the randomly generated values.
 This can, for example, be used for creating SQL insert statements that create test data for use in development
 or testing:
 
-*"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
-(\"#{FirstName}\", \"#{LastName}\", \"#{Address1}\", \"#{Address2}\", \"#{PostalCode}\", \"#{City}\", \"#{MobilePhone}\")"*
+`"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
+(\"#{FirstName}\", \"#{LastName}\", \"#{Address1}\", \"#{Address2}\", \"#{PostalCode}\", \"#{City}\", \"#{MobilePhone}\")"`
 
 will generate
 
-*"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
-("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678")*
+`"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
+("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678")`
 
 ### Options
 

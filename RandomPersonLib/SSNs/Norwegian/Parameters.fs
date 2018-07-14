@@ -16,7 +16,7 @@ let IndividualNumberStart = 6
 let IndividualNumberLength = 3
 
 [<Literal>]
-let ChecksumStart = 6   // FIX: this seems wrong.
+let ChecksumStart = 9
 
 [<Literal>]
 let ChecksumLength = 2

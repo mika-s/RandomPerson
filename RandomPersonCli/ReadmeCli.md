@@ -5,10 +5,14 @@
 RandomPersonCli is a CLI tool that uses RandomPersonLib.
 It generates random persons for a given nationality.
 
+It can also validate SSNs.
+
 ## Usage
 
-```dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Norwegian/Swedish>] [-a <n>] [-f <CSV/JSON/XML>]
-                              [-o <path>]  [-s <path>]```
+```
+dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Norwegian/Swedish>] [-a <n>] [-f <CSV/JSON/XML>]
+                              [-o <path>]  [-s <path>]
+```
 
 -m: Mode. Either I (interactive), L (list), T (templated list) or V (validation).
 -n: Nationality. Either Danish, Finnish, Norwegian or Swedish. Used in List or Template mode.
@@ -122,8 +126,8 @@ seed. I.e. RandomPerson will always generate the same values every time it's cal
 List mode, when format is set to JSON. This mainly affects the birthdate, as this can be
 in several different formats. Legal values are: "Microsoft" and "ISO".
 
-Microsoft format: Date(267573600000+0200) 
-ISO       format: 2018-05-01T10:02:57
+Microsoft format: `Date(267573600000+0200)` <br />
+ISO       format: `2018-05-01T10:02:57`
 
 `JsonPrettyPrint` is used to set whether the JSON output should be pretty printed or not
 when printing to a file in List mode. Set to true for pretty print, false otherwise.

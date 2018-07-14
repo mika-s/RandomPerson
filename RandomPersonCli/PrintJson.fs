@@ -79,7 +79,7 @@ let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
                                DateFormatHandling = DateFormatHandling.IsoDateFormat)
     | "ISO", false       ->
        JsonSerializerSettings (DateFormatHandling = DateFormatHandling.IsoDateFormat)
-    | _                  -> invalidArg "JSON print type" "Illegal JSON print type."
+    | _                  -> invalidArg "jsonPrintType, isFormatted" "Illegal JSON print type, isFormatted pair."
 
 let printToJson (people: Person[]) (outputFilePath: string) (settings: listModeSettings)  =
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "json")
