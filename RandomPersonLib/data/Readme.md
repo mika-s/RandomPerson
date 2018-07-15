@@ -8,18 +8,18 @@ The following sources are used for the data that is used to generate random pers
 
 ## Norway:
 
-Norwegian names:                    https://www.ssb.no/navn
-Streets in Oslo:                    http://www.norskegater.com/Oslo/
-Postal codes and cities in Norway:  https://data.norge.no/data/posten-norge/postnummer-i-norge
-Telephone numbers in Norway:        https://en.wikipedia.org/wiki/Telephone_numbers_in_Norway
-Syntax for SSNs:                    https://ehelse.no/standarder-kodeverk-og-referansekatalog/standarder-og-referansekatalog/identifikatorer-for-personer-syntaks-for-fodselsnummer-hjelpenummer-mv-his-10012010
+- [Norwegian names](https://www.ssb.no/navn)
+- [Streets in Oslo](http://www.norskegater.com/Oslo/)
+- [Postal codes and cities in Norway](https://data.norge.no/data/posten-norge/postnummer-i-norge)
+- [Telephone numbers in Norway](https://en.wikipedia.org/wiki/Telephone_numbers_in_Norway)
+- [Syntax for SSNs](https://ehelse.no/standarder-kodeverk-og-referansekatalog/standarder-og-referansekatalog/identifikatorer-for-personer-syntaks-for-fodselsnummer-hjelpenummer-mv-his-10012010)
 
 ## Sweden:
 
-Swedish names:                      http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/
-Streets in Stockholm:               https://www.svenskaplatser.se/Stockholm/
-Postal codes and cities in Sweden:  http://download.geonames.org/export/zip/SE.zip
-Telephone numbers in Sweden:        https://en.wikipedia.org/wiki/Telephone_numbers_in_Sweden
+- [Swedish names](http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/)
+- [Streets in Stockholm](https://www.svenskaplatser.se/Stockholm/)
+- [Postal codes and cities in Sweden](http://download.geonames.org/export/zip/SE.zip)
+- [Telephone numbers in Sweden](https://en.wikipedia.org/wiki/Telephone_numbers_in_Sweden)
 
 The list of Swedish postal codes and cities is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
 
@@ -27,11 +27,11 @@ www.geonames.org
 
 ## Denmark:
 
-[Danish firstnames](https://www.dst.dk/da/Statistik/emner/befolkning-og-valg/navne/navne-til-nyfoedte)
-[Danish lastnames](https://ast.dk/born-familie/navne/navnelister/frie-efternavne)
-[Postal codes and cities in Denmark](https://www.postnord.dk/kundeservice/postnummerkort)
-[Danish SSN rules](https://www.cpr.dk/media/17534/personnummeret-i-cpr.pdf)
-[Telephone numbers in Denmark](https://en.wikipedia.org/wiki/Telephone_numbers_in_Denmark)
+- [Danish firstnames](https://www.dst.dk/da/Statistik/emner/befolkning-og-valg/navne/navne-til-nyfoedte)
+- [Danish lastnames](https://ast.dk/born-familie/navne/navnelister/frie-efternavne)
+- [Postal codes and cities in Denmark](https://www.postnord.dk/kundeservice/postnummerkort)
+- [Danish SSN rules](https://www.cpr.dk/media/17534/personnummeret-i-cpr.pdf)
+- [Telephone numbers in Denmark](https://en.wikipedia.org/wiki/Telephone_numbers_in_Denmark)
 
 ## Finland:
 
