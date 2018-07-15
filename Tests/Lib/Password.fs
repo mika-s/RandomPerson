@@ -20,4 +20,4 @@ type ``generatePassword should`` () =
 
         let generatedPassword = generatePassword random passwords firstName lastName birthDate
 
-        Assert.IsTrue(4 < generatedPassword.Length && generatedPassword.Length < 50)
+        Assert.IsTrue(1 <= generatedPassword.Length && generatedPassword.Length <= 50)
