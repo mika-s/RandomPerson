@@ -201,16 +201,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: genericOptionsSettings)
             finalRemoveHyphenFromSSN
         )
 
-    randomPersonOptions.BirthDateOptions <- {
-        SetYearManually = finalSetYearManually
-        SetUsingAge = finalSetUsingAge
-        Low = finalBirthDateLow
-        High = finalBirthDateHigh
-    }
-
-    randomPersonOptions.RandomnessOptions <- {
-        ManualSeed = finalManualSeed
-        Seed = finalSeed
-    }
+    randomPersonOptions.BirthDate  <- BirthDateOptions(finalSetYearManually, finalSetUsingAge, finalBirthDateLow, finalBirthDateHigh)
+    randomPersonOptions.Randomness <- RandomnessOptions(finalManualSeed, finalSeed)
 
     randomPersonOptions

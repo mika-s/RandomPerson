@@ -26,7 +26,7 @@ type Person(nationality: Nationality, files: filesForLanguage, options: RandomPe
     let address2 = generateAddress2 ()
     let postalCode = postalCodeAndCity.PostalCode
     let city = postalCodeAndCity.City
-    let birthDate = generateBirthDate random isAllowingUnder18 options.BirthDateOptions
+    let birthDate = generateBirthDate random isAllowingUnder18 options.BirthDate
     let ssn = generateSSN random nationality birthDate gender isAnonymizingSSN isRemovingHypensFromSSN
     let email = generateEmailAddress random files.generalData.EmailEndings firstName lastName birthDate
     let mobilePhone = generatePhone

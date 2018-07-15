@@ -39,7 +39,7 @@ type RandomPerson() =
 
     /// Create a Person object given a nationality and an options object.
     member this.CreatePerson (nationality: Nationality, options: RandomPersonOptions) =
-        let random = getRandom options.RandomnessOptions.ManualSeed options.RandomnessOptions.Seed
+        let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         createPerson(nationality, options, random)
 
     /// Create a list of Person objects given a nationality.
@@ -47,7 +47,7 @@ type RandomPerson() =
 
     /// Create a list of Person objects given a nationality and an options object.
     member this.CreatePersonList (amount: int, nationality: Nationality, options: RandomPersonOptions)  =
-        let random = getRandom options.RandomnessOptions.ManualSeed options.RandomnessOptions.Seed
+        let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         [ 1 .. amount ] |> List.map (fun _ -> createPerson(nationality, options, random))
 
     /// Create a list of strings given a template string where certain values will be replaced.
@@ -56,7 +56,7 @@ type RandomPerson() =
 
     /// Create a list of strings given a template string where certain values will be replaced.
     member this.CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) =
-        let random = getRandom options.RandomnessOptions.ManualSeed options.RandomnessOptions.Seed
+        let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         [ 1 .. amount ] |> List.map (fun _ -> createPerson(nationality, options, random)) |> List.map (printForTemplateMode outputString)
         
     /// Validate an SSN for a given nationality.

@@ -7,9 +7,9 @@ open SwedishSSNGeneration
 open SwedishSSNParameters
 open Util
 
-let (|SwedishSSNOld|SwedishSSNNew|NotSSN|) (input: string) =
-    let regexMatchOld = Regex.Match(input, "^\d{6}-\d{4}$")
-    let regexMatchNew = Regex.Match(input, "^\d{8}-\d{4}$")
+let (|SwedishSSNOld|SwedishSSNNew|NotSSN|) (potentialSSN: string) =
+    let regexMatchOld = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
+    let regexMatchNew = Regex.Match(potentialSSN, "^\d{8}-\d{4}$")
 
     match (regexMatchOld.Success, regexMatchNew.Success) with
     | (_, true) -> SwedishSSNNew

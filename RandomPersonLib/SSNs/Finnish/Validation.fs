@@ -7,11 +7,11 @@ open FinnishSSNGeneration
 open FinnishSSNParameters
 open Util
 
-let (|FinnishSSN|_|) (input: string) =
-    let regexMatch = Regex.Match(input, "^\d{6}(-|\+|A)\d{3}[A-Y]$")
+let (|FinnishSSN|_|) (potentialSSN: string) =
+    let regexMatch = Regex.Match(potentialSSN, "^\d{6}(-|\+|A)\d{3}[\dA-Y]$")
 
     match regexMatch.Success with
-    | true  -> Some(input)
+    | true  -> Some(potentialSSN)
     | false -> None
 
 let (|HasDate|_|) (_: string) (s: string) =

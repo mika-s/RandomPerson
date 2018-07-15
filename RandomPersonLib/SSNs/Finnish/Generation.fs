@@ -76,7 +76,7 @@ let generateFinnishChecksum (birthdate: DateTime) (individualNumber: string) =
     | x when x < 10 -> sprintf "%d" mod31
     | _             -> forAbove10.[mod31].ToString()
 
-let anonymizeSSN (ssn: string) = incrementNumberInString ssn 7
+let anonymizeSSN (ssn: string) = incrementNumberInString ssn 8
 
 let generateFinnishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (isAnonymizingSSN: bool) =
     let rec loop () = 

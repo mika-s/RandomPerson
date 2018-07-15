@@ -1,10 +1,11 @@
-﻿module FinnishSSN
+﻿namespace Tests
 
 open System
 open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
+open FinnishSSNParameters
 open FinnishSSNGeneration
 
 [<TestClass>]
@@ -114,25 +115,25 @@ type ``generateFinnishChecksum should`` () =
 type ``anonymizeSSN for Finnish SSNs should`` () =
 
     [<TestMethod>]
-    member this.``return 311280-988T when given 311280-888T`` () =
+    member this.``return 311280-898T when given 311280-888T`` () =
         let ssn = "311280-888T"
         let fake = anonymizeSSN ssn
 
-        Assert.AreEqual("311280-988T", fake)
+        Assert.AreEqual("311280-898T", fake)
 
     [<TestMethod>]
-    member this.``return 131052-408T when given 131052-308T`` () =
+    member this.``return 131052-318T when given 131052-308T`` () =
         let ssn = "131052-308T"
         let fake = anonymizeSSN ssn
 
-        Assert.AreEqual("131052-408T", fake)
+        Assert.AreEqual("131052-318T", fake)
 
     [<TestMethod>]
-    member this.``return 311280-088T when given 311280-988T`` () =
-        let ssn = "311280-988T"
+    member this.``return 311280-908T when given 311280-998T`` () =
+        let ssn = "311280-998T"
         let fake = anonymizeSSN ssn
 
-        Assert.AreEqual("311280-088T", fake)
+        Assert.AreEqual("311280-908T", fake)
 
 [<TestClass>]
 type ``generateFinnishSSN should`` () =
@@ -153,9 +154,9 @@ type ``generateFinnishSSN should`` () =
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[6]
         let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = ssn.Substring(10, 1)
+        let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("04", d)
         Assert.AreEqual("12", m)
         Assert.AreEqual("85", y)
@@ -173,11 +174,11 @@ type ``generateFinnishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let centurySign = ssn.[6]
+        let centurySign = ssn.[CenturySignStart]
         let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = ssn.Substring(10, 1)
+        let checksum = ssn.Substring(ChecksumStart, 1)
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("06", d)
         Assert.AreEqual("02", m)
         Assert.AreEqual("52", y)
@@ -195,11 +196,11 @@ type ``generateFinnishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let centurySign = ssn.[6]
+        let centurySign = ssn.[CenturySignStart]
         let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = ssn.Substring(10, 1)
+        let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("15", d)
         Assert.AreEqual("09", m)
         Assert.AreEqual("00", y)
@@ -217,11 +218,11 @@ type ``generateFinnishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let centurySign = ssn.[6]
+        let centurySign = ssn.[CenturySignStart]
         let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = ssn.Substring(10, 1)
+        let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("01", d)
         Assert.AreEqual("01", m)
         Assert.AreEqual("50", y)
@@ -237,26 +238,23 @@ type ``generateFinnishSSN should`` () =
         let ssnReal = generateFinnishSSN random birthdate gender false
         let ssnFake = generateFinnishSSN random birthdate gender true
 
-        try
-            let randomPerson = RandomPerson()
-            let isRealValidating = randomPerson.ValidateSSN(Nationality.Finnish, ssnReal)
-            let isFakeValidating = randomPerson.ValidateSSN(Nationality.Finnish, ssnFake)
+        let randomPerson = RandomPerson()
+        let isRealValidating = randomPerson.ValidateSSN(Nationality.Finnish, ssnReal)
+        let isFakeValidating = randomPerson.ValidateSSN(Nationality.Finnish, ssnFake)
 
-            let d = ssnFake.Substring(0, 2)
-            let m = ssnFake.Substring(2, 2)
-            let y = ssnFake.Substring(4, 2)
-            let individualNumber = Convert.ToInt32(ssnFake.Substring(7, 3))
-            let checksum = ssnFake.Substring(10, 1)
+        let d = ssnFake.Substring(0, 2)
+        let m = ssnFake.Substring(2, 2)
+        let y = ssnFake.Substring(4, 2)
+        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = ssnFake.Substring(ChecksumStart, ChecksumLength)
 
-            Assert.AreEqual(true,  isRealValidating)
-            Assert.AreEqual(false, isFakeValidating)
-            Assert.AreNotEqual(ssnReal, ssnFake)
-            Assert.AreEqual(11, ssnFake.Length)
-            Assert.AreEqual("01", d)
-            Assert.AreEqual("01", m)
-            Assert.AreEqual("99", y)
-            Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
-            Assert.IsTrue((checksumRegex.Match checksum).Success)
-            Assert.IsTrue(isEven individualNumber)
-        with
-        | _ as ex -> failwith ex.Message
+        Assert.AreEqual(true,  isRealValidating)
+        Assert.AreEqual(false, isFakeValidating)
+        Assert.AreNotEqual(ssnReal, ssnFake)
+        Assert.AreEqual(SsnLength, ssnFake.Length)
+        Assert.AreEqual("01", d)
+        Assert.AreEqual("01", m)
+        Assert.AreEqual("99", y)
+        Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
+        Assert.IsTrue((checksumRegex.Match checksum).Success)
+        Assert.IsTrue(isEven individualNumber)

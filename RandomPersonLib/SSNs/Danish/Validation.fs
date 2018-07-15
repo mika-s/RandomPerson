@@ -7,11 +7,11 @@ open DanishSSNGeneration
 open DanishSSNParameters
 open Util
 
-let (|DanishSSN|_|) (input: string) =
-    let regexMatch = Regex.Match(input, "^\d{6}-\d{4}$")
+let (|DanishSSN|_|) (potentialSSN: string) =
+    let regexMatch = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
 
     match regexMatch.Success with
-    | true  -> Some(input)
+    | true  -> Some(potentialSSN)
     | false -> None
 
 let (|HasDate|_|) (_: string) (s: string) =

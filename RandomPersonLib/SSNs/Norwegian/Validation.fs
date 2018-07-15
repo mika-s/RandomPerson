@@ -7,11 +7,11 @@ open NorwegianSSNGeneration
 open NorwegianSSNParameters
 open Util
 
-let (|NorwegianSSN|_|) (input: string) =
-    let regexMatch = Regex.Match(input, "^\d{11}$")
+let (|NorwegianSSN|_|) (potentialSSN: string) =
+    let regexMatch = Regex.Match(potentialSSN, "^\d{11}$")
 
     match regexMatch.Success with
-    | true  -> Some(input)
+    | true  -> Some(potentialSSN)
     | false -> None
 
 let (|HasDate|_|) (_: string) (s: string) =

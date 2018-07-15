@@ -14,12 +14,12 @@ dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Norwegian/Swedish>
                               [-o <path>]  [-s <path>]
 ```
 
--m: Mode. Either I (interactive), L (list), T (templated list) or V (validation).
--n: Nationality. Either Danish, Finnish, Norwegian or Swedish. Used in List or Template mode.
--a: Amount. Number of people to generate in List or Template mode.
--f: Format to print file in for use with List mode. CSV, JSON or XML.
--o: Path to output file, for use with List mode.
--s: Settings file path. Path to the settings file if non-default file is used.
+-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation).<br />
+-n: Nationality. Either Danish, Finnish, Norwegian or Swedish. Used in List or Template mode.<br />
+-a: Amount. Number of people to generate in List or Template mode.<br />
+-f: Format to print file in for use with List mode. CSV, JSON or XML.<br />
+-o: Path to output file, for use with List mode.<br />
+-s: Settings file path. Path to the settings file if non-default file is used.<br />
 
 Default: Interactive mode. If List or Template mode: 10 people, Norwegian nationality.
 
@@ -59,10 +59,10 @@ Generate 200 Norwegian persons in Template mode (template string read from Setti
         "Low": 1900,
         "High": 2000
     },
-	"Randomness": {
-		"ManualSeed": false,
-		"Seed": 1234
-     }
+    "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
+    }
 }
 ```
 

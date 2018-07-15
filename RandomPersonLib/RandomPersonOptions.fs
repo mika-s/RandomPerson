@@ -1,16 +1,20 @@
 ﻿namespace RandomPersonLib
 
-type BirthDateOptions = {
-        SetYearManually: bool;
-        SetUsingAge: bool;
-        Low: int;
-        High: int;
-}
+type BirthDateOptions (setYearManually: bool, setUsingAge: bool, low: int, high: int) = 
+    new () = BirthDateOptions(false, false, 1920, 2000)
 
-type RandomnessOptions = {
-        ManualSeed: bool;
-        Seed: int;
-}
+    member val SetYearManually = setYearManually with get, set
+    member val SetUsingAge = setUsingAge with get, set
+    member val Low = low with get, set
+    member val High = high with get, set
+
+
+type RandomnessOptions (manualSeed: bool, seed: int) = 
+    new () = RandomnessOptions(false, 1)
+
+    member val ManualSeed = manualSeed with get, set
+    member val Seed = seed with get, set
+
 
 type RandomPersonOptions (
                           anonymizeSSN: bool,
@@ -21,20 +25,10 @@ type RandomPersonOptions (
                           removeHyphenFromSSN: bool
                          ) =
 
-    let birthDateOptions = {
-        SetYearManually = false
-        SetUsingAge = false
-        Low = 1900
-        High = 2000
-    }
+    let birthDate  = BirthDateOptions()
+    let randomness = RandomnessOptions()
 
-    let randomnessOptions = {
-        ManualSeed = false
-        Seed = 1
-    }
-
-    new ()
-        = RandomPersonOptions(false, false, false, false, false, false)
+    new () = RandomPersonOptions(false, false, false, false, false, false)
 
     new (anonymizeSSN: bool)
         = RandomPersonOptions(anonymizeSSN, false, false, false, false, false)
@@ -48,5 +42,5 @@ type RandomPersonOptions (
     member val RemoveHyphenFromPhoneNumber = removeHyphenFromPhoneNumber with get, set
     member val RemoveSpaceFromPhoneNumber = removeSpaceFromPhoneNumber with get, set
     member val RemoveHyphenFromSSN = removeHyphenFromSSN with get, set
-    member val BirthDateOptions = birthDateOptions with get, set
-    member val RandomnessOptions = randomnessOptions with get, set
+    member val BirthDate = birthDate with get, set
+    member val Randomness = randomness with get, set
