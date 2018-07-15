@@ -43,6 +43,9 @@ type genericPrintSettings = {
     [<field : DataMember(Name="Email")>]
     Email : bool
 
+    [<field : DataMember(Name="Password")>]
+    Password : bool
+
     [<field : DataMember(Name="MobilePhone")>]
     MobilePhone : bool
 

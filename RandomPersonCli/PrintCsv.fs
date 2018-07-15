@@ -18,6 +18,8 @@ let printToCsv (people: Person[]) (outputFilePath: string) (printSettings: gener
         if printSettings.Gender      then sb.Append(person.Gender.ToString() + ",")             |> ignore
         if printSettings.SSN         then sb.Append(person.SSN + ",")                           |> ignore
         if printSettings.Nationality then sb.Append(person.Nationality.ToString() + ",")        |> ignore
+        if printSettings.Email       then sb.Append(person.Email + ",")                         |> ignore
+        if printSettings.Password    then sb.Append(person.Password + ",")                      |> ignore
         if printSettings.MobilePhone then sb.Append(person.MobilePhone + ",")                   |> ignore
         if printSettings.HomePhone   then sb.Append(person.HomePhone + ",")                     |> ignore
 
@@ -37,6 +39,8 @@ let printToCsv (people: Person[]) (outputFilePath: string) (printSettings: gener
         if printSettings.Gender      then sb.Append("Gender,")      |> ignore
         if printSettings.SSN         then sb.Append("SSN,")         |> ignore
         if printSettings.Nationality then sb.Append("Nationality,") |> ignore
+        if printSettings.Email       then sb.Append("Email,")       |> ignore
+        if printSettings.Password    then sb.Append("Password,")    |> ignore
         if printSettings.MobilePhone then sb.Append("MobilePhone,") |> ignore
         if printSettings.HomePhone   then sb.Append("HomePhone,")   |> ignore
 

@@ -43,6 +43,9 @@ type PersonSerializable = {
     [<JsonProperty("Email")>]
     Email : string
 
+    [<JsonProperty("Password")>]
+    Password : string
+
     [<JsonProperty("MobilePhone")>]
     MobilePhone : string
 
@@ -63,6 +66,7 @@ let createPersonSerializable (person: Person) =
         BirthDate = person.BirthDate;
         Gender = person.Gender;
         Email = person.Email;
+        Password = person.Password;
         MobilePhone = person.MobilePhone;
         HomePhone = person.HomePhone;
     }

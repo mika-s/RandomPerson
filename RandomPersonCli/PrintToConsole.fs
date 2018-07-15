@@ -17,6 +17,7 @@ let isPrintingMoreThanOneLine (print: genericPrintSettings) =
     + b2i print.PostalCode
     + b2i print.City
     + b2i print.Email
+    + b2i print.Password
     + b2i print.MobilePhone
     + b2i print.HomePhone
         > 1
@@ -39,6 +40,7 @@ let printPerson (print: genericPrintSettings) (person: Person) =
     printToScreen print.PostalCode  print.Label "Postal code"  person.PostalCode
     printToScreen print.City        print.Label "City"         person.City
     printToScreen print.Email       print.Label "Email"        person.Email
+    printToScreen print.Password    print.Label "Password"     person.Password
     printToScreen print.MobilePhone print.Label "Mobile phone" person.MobilePhone
     printToScreen print.HomePhone   print.Label "Home phone"   person.HomePhone
 

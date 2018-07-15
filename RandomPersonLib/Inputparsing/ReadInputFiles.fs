@@ -4,11 +4,13 @@ open System.IO
 open System.Text
 open RandomPersonLib
 open FilesForLanguage
+open GenericFiles
 open PostalCodeAndCityGen
 open PersonData
 open Util
 
 type inputFiles = {
+    generic:   genericFiles
     danish:    filesForLanguage
     finnish:   filesForLanguage
     norwegian: filesForLanguage
@@ -16,6 +18,10 @@ type inputFiles = {
 }
 
 let readInputFiles () =
+    let generic = {
+        passwords           = File.ReadAllLines("data/Generic/passwords.txt", Encoding.UTF8);
+    }
+
     let danish = {
         generalData          = readDataFromJsonFile<PersonData> "data/Danish/danish.json";
         addresses1           = File.ReadAllLines("data/Danish/Gader i København.txt", Encoding.UTF8);
@@ -45,6 +51,7 @@ let readInputFiles () =
     }
 
     {
+        generic = generic;
         danish = danish;
         finnish = finnish;
         norwegian = norwegian;

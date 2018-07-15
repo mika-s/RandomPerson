@@ -12,7 +12,7 @@ type ``generateEmailAddress should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return a random email address`` () =
+    member __.``return a random email address`` () =
         let firstName = "Test"
         let lastName  = "Tester"
         let birthDate = DateTime(1999, 05, 12)

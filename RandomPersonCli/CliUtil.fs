@@ -26,9 +26,7 @@ let writeDataToXmlFile<'T> (filename: string) (objToWrite: obj) (xmlSerializerSe
     use xw = XmlWriter.Create(filename, xmlSerializerSettings)
     serializer.WriteObject(xw, objToWrite)
 
-let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) =
-    if value.HasValue then value.Value
-    else otherValue
+let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 
 let (|Int|_|) str =
     match Int32.TryParse(str) with

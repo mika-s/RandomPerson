@@ -17,6 +17,7 @@ It can create people with the following generated data:
 - Birth date
 - SSN
 - Email
+- Password
 - Mobile phone
 - Home phone
 
@@ -151,6 +152,7 @@ the format of *outputString* and replace the following variables with generated 
 
 - `#{SSN}`
 - `#{Email}`
+- `#{Password}`
 - `#{FirstName}`
 - `#{LastName}`
 - `#{Address1}`

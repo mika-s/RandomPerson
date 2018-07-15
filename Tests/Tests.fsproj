@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="TestData.fs" />
+    <Compile Include="Lib\Password.fs" />
     <Compile Include="Lib\Email.fs" />
     <Compile Include="Lib\PostalCodeAndCity.fs" />
     <Compile Include="Lib\Util.fs" />

@@ -28,10 +28,10 @@ type RandomPerson() =
 
     let createPerson (nationality: Nationality, options: RandomPersonOptions, random: Random) =
         match nationality with
-        | Nationality.Danish    -> Person(nationality, i.danish,    options, random)
-        | Nationality.Finnish   -> Person(nationality, i.finnish,   options, random)
-        | Nationality.Norwegian -> Person(nationality, i.norwegian, options, random)
-        | Nationality.Swedish   -> Person(nationality, i.swedish,   options, random)
+        | Nationality.Danish    -> Person(nationality, i.generic, i.danish,    options, random)
+        | Nationality.Finnish   -> Person(nationality, i.generic, i.finnish,   options, random)
+        | Nationality.Norwegian -> Person(nationality, i.generic, i.norwegian, options, random)
+        | Nationality.Swedish   -> Person(nationality, i.generic, i.swedish,   options, random)
         | _ -> invalidArg "nationality" "Illegal nationality."
 
     /// Create a Person object given a nationality.

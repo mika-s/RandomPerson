@@ -31,6 +31,7 @@
             "BirthDate": true,
             "Gender": true,
             "Email": true,
+            "Password":  true,
             "MobilePhone": true,
             "HomePhone": true
         }
@@ -72,6 +73,7 @@
             "BirthDate": false,
             "Gender": false,
             "Email": true,
+            "Password":  true,
             "MobilePhone": true,
             "HomePhone": true
         },
@@ -88,6 +90,7 @@
             "BirthDate": false,
             "Gender": false,
             "Email": false,
+            "Password":  true,
             "MobilePhone": true,
             "HomePhone": true
         }

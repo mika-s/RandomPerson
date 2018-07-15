@@ -16,7 +16,7 @@
   <ItemGroup>
     <Compile Include="Util\Enums.fs" />
     <Compile Include="Util\Util.fs" />
-    <Content Include="data\Sources.txt">
+    <Content Include="data\Generic\passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Finnish\Streets in Finland.txt">
@@ -55,6 +55,9 @@
     <Content Include="data\Swedish\Gator i Stockholm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\Readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Datacontracts\PersonData.fs" />
     <Compile Include="SSNs\Danish\Parameters.fs" />
     <Compile Include="SSNs\Danish\Generation.fs" />
@@ -70,6 +73,7 @@
     <Compile Include="SSNs\Swedish\Validation.fs" />
     <Compile Include="PostalCodeAndCity.fs" />
     <Compile Include="RandomPersonOptions.fs" />
+    <Compile Include="Generators\Password.fs" />
     <Compile Include="Generators\Phone.fs" />
     <Compile Include="Generators\PostalCodeAndCity.fs" />
     <Compile Include="Generators\Address.fs" />
@@ -79,6 +83,7 @@
     <Compile Include="Generators\Name.fs" />
     <Compile Include="Generators\SSN.fs" />
     <Compile Include="Inputparsing\FilesForLanguage.fs" />
+    <Compile Include="Inputparsing\GenericFiles.fs" />
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />
     <Compile Include="Validate.fs" />
