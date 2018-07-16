@@ -20,19 +20,17 @@ let (|HasDate|_|) (_: string) (p: ssnParams) (ssn: string)  =
     let datePart = ssn.Substring(p.DateStart, p.DateLength)
     let isDate, _ = DateTime.TryParseExact(datePart, p.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None)
 
-    if isDate then
-        Some(ssn.Substring(p.IndividualNumberStart, ssn.Length - p.IndividualNumberStart))
-    else
-        None
+    match isDate with
+    | true  -> Some(ssn.Substring(p.IndividualNumberStart, ssn.Length - p.IndividualNumberStart))
+    | false -> None
 
 let (|HasIndividualNumber|_|) (_: string) (p: ssnParams) (s: string) =
     let individualNumberPart = s.Substring(0, p.IndividualNumberLength)
     let isInt, _ = Int32.TryParse(individualNumberPart)
 
-    if isInt then
-        Some(s.Substring(p.IndividualNumberLength, s.Length - p.IndividualNumberLength))
-    else
-        None
+    match isInt with
+    | true  -> Some(s.Substring(p.IndividualNumberLength, s.Length - p.IndividualNumberLength))
+    | false -> None
 
 let isCorrectChecksum (csFromSSN: string) (ssn: string) (p: ssnParams)  =
     let birthDate = match p.SsnLength with

@@ -14,6 +14,11 @@ let (|IcelandicSSN|_|) (potentialSSN: string) =
     | true  -> Some(potentialSSN)
     | false -> None
 
+let (|HasCorrectLength|_|) (ssn: string) (_: string) =
+    match ssn.Length with
+    | SsnLength -> Some(ssn)
+    | _         -> None
+
 let (|HasDate|_|) (ssn: string) (_: string) =
     let datePart = ssn.Substring(DateStart, DateLength)
     let isDate, _ = DateTime.TryParseExact(datePart, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
@@ -48,10 +53,10 @@ let (|HasProperCenturyNumber|_|) (centuryNumber: string) =
     | _               -> None
 
 let validateIcelandicSSN (ssn: string) = 
-    match ssn.Length with
-    | SsnLength ->
-        match ssn with
-        | HasDate ssn rest ->
+    match ssn with
+    | HasCorrectLength ssn potentialSSN ->
+        match potentialSSN with
+        | HasDate potentialSSN rest ->
             match rest with
             | HasIndividualNumber rest newRest -> 
                 match newRest with

@@ -4,6 +4,18 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <Version>1.1.0</Version>
+
+    <Authors>Mika Sundland</Authors>
+
+    <PackageLicenseUrl>https://github.com/mika-s/RandomPerson/blob/master/LICENSE.txt</PackageLicenseUrl>
+
+    <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
+
+    <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
+
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

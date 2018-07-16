@@ -14,23 +14,26 @@ let (|DanishSSN|_|) (potentialSSN: string) =
     | true  -> Some(potentialSSN)
     | false -> None
 
+let (|HasCorrectLength|_|) (ssn: string) (_: string) =
+    match ssn.Length with
+    | SsnLength -> Some(ssn)
+    | _         -> None
+
 let (|HasDate|_|) (_: string) (s: string) =
     let datePart = s.Substring(DateStart, DateLength)
     let isDate, _ = DateTime.TryParseExact(datePart, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
 
-    if isDate then
-        Some(s.Substring(IndividualNumberStart, s.Length - IndividualNumberStart))
-    else
-        None
+    match isDate with
+    | true  -> Some(s.Substring(IndividualNumberStart, s.Length - IndividualNumberStart))
+    | false -> None
 
 let (|HasIndividualNumber|_|) (_: string) (s: string) =
     let individualNumberPart = s.Substring(0, IndividualNumberLength)
     let isInt, _ = Int32.TryParse(individualNumberPart)
 
-    if isInt then
-        Some(s.Substring(IndividualNumberLength, s.Length - IndividualNumberLength))
-    else
-        None
+    match isInt with
+    | true  -> Some(s.Substring(IndividualNumberLength, s.Length - IndividualNumberLength))
+    | false -> None
 
 let isCorrectChecksum (random: Random) (csFromSSN: string) (ssn: string) =
     let birthDateString = ssn.Substring(DateStart, DateLength)
@@ -46,9 +49,9 @@ let isCorrectChecksum (random: Random) (csFromSSN: string) (ssn: string) =
 let validateDanishSSN (ssn: string) =
     let random = getRandom false 100
 
-    match ssn.Length with
-    | SsnLength ->
-        match ssn with
+    match ssn with
+    | HasCorrectLength ssn potentialSSN ->
+        match potentialSSN with
         | HasDate ssn rest ->
             match rest with
             | HasIndividualNumber rest newRest -> isCorrectChecksum random newRest ssn
