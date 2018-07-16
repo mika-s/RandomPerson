@@ -14,7 +14,7 @@ type ``finnishGetIndividualNumber should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return between 002 and 899`` () =
+    member __.``return between 002 and 899`` () =
         let individualNumber = getIndividualNumber random
         Assert.IsTrue(002 <= individualNumber && individualNumber < 899)
         Assert.IsFalse(individualNumber > 1000) // negative test
@@ -25,17 +25,17 @@ type ``finnishGetIndividualNumberMale should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return an odd number`` () =
+    member __.``return an odd number`` () =
         let individualNumber = getIndividualNumberMale random
         Assert.IsTrue(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``not return an even number`` () =
+    member __.``not return an even number`` () =
         let individualNumber = getIndividualNumberMale random
         Assert.IsFalse(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``return a number between 002 and 899`` () =
+    member __.``return a number between 002 and 899`` () =
         let individualNumber = getIndividualNumberMale random
         Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
 
@@ -45,17 +45,17 @@ type ``finnishGetIndividualNumberFemale should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return an even number`` () =
+    member __.``return an even number`` () =
         let individualNumber = getIndividualNumberFemale random
         Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``not return an odd number`` () =
+    member __.``not return an odd number`` () =
         let individualNumber = getIndividualNumberFemale random
         Assert.IsFalse(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``return a number between 002 and 899`` () =
+    member __.``return a number between 002 and 899`` () =
         let individualNumber = getIndividualNumberFemale random
         Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
 
@@ -66,7 +66,7 @@ type ``generateFinnishIndividualNumber should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return an odd number when male`` () =
+    member __.``return an odd number when male`` () =
         let individualNumber = generateFinnishIndividualNumber random Gender.Male
         let individualNumberAsInt = Convert.ToInt32(individualNumber)
         Assert.IsTrue(isOdd individualNumberAsInt)
@@ -74,38 +74,36 @@ type ``generateFinnishIndividualNumber should`` () =
 [<TestClass>]
 type ``generateFinnishChecksum should`` () =
 
-    let random = getRandom false 100
-
     [<TestMethod>]
-    member this.``return a correct checksum for 311280-888Y`` () =
+    member __.``return a correct checksum for 311280-888Y`` () =
         let birthdate = DateTime(1980, 12, 31)
         let individualNumber = "888"
         let checksum = generateFinnishChecksum birthdate individualNumber
         Assert.AreEqual("Y", checksum)
 
     [<TestMethod>]
-    member this.``return a correct checksum for 241134-008C`` () =
+    member __.``return a correct checksum for 241134-008C`` () =
         let birthdate = DateTime(1934, 11, 24)
         let individualNumber = "008"
         let checksum = generateFinnishChecksum birthdate individualNumber
         Assert.AreEqual("C", checksum)
 
     [<TestMethod>]
-    member this.``return a correct checksum for 311280-999J`` () =
+    member __.``return a correct checksum for 311280-999J`` () =
         let birthdate = DateTime(1980, 12, 31)
         let individualNumber = "999"
         let checksum = generateFinnishChecksum birthdate individualNumber
         Assert.AreEqual("J", checksum)
 
     [<TestMethod>]
-    member this.``return a correct checksum for 131052-308T`` () =
+    member __.``return a correct checksum for 131052-308T`` () =
         let birthdate = DateTime(1952, 10, 13)
         let individualNumber = "308"
         let checksum = generateFinnishChecksum birthdate individualNumber
         Assert.AreEqual("T", checksum)
 
     [<TestMethod>]
-    member this.``return a correct checksum for 290296-7808`` () =
+    member __.``return a correct checksum for 290296-7808`` () =
         let birthdate = DateTime(1996, 02, 29)
         let individualNumber = "780"
         let checksum = generateFinnishChecksum birthdate individualNumber
@@ -115,21 +113,21 @@ type ``generateFinnishChecksum should`` () =
 type ``anonymizeSSN for Finnish SSNs should`` () =
 
     [<TestMethod>]
-    member this.``return 311280-898T when given 311280-888T`` () =
+    member __.``return 311280-898T when given 311280-888T`` () =
         let ssn = "311280-888T"
         let fake = anonymizeSSN ssn
 
         Assert.AreEqual("311280-898T", fake)
 
     [<TestMethod>]
-    member this.``return 131052-318T when given 131052-308T`` () =
+    member __.``return 131052-318T when given 131052-308T`` () =
         let ssn = "131052-308T"
         let fake = anonymizeSSN ssn
 
         Assert.AreEqual("131052-318T", fake)
 
     [<TestMethod>]
-    member this.``return 311280-908T when given 311280-998T`` () =
+    member __.``return 311280-908T when given 311280-998T`` () =
         let ssn = "311280-998T"
         let fake = anonymizeSSN ssn
 
@@ -144,7 +142,7 @@ type ``generateFinnishSSN should`` () =
     let checksumRegex = Regex checksumPattern
 
     [<TestMethod>]
-    member this.``return a correct SSN for male 1`` () =
+    member __.``return a correct SSN for male 1`` () =
         let birthdate = DateTime(1985, 12, 04)
         let gender = Gender.Male
         let ssn = generateFinnishSSN random birthdate gender false
@@ -153,7 +151,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[6]
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -166,7 +164,7 @@ type ``generateFinnishSSN should`` () =
         Assert.IsTrue(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``return a correct SSN for male 2`` () =
+    member __.``return a correct SSN for male 2`` () =
         let birthdate = DateTime(1952, 2, 6)
         let gender = Gender.Male
         let ssn = generateFinnishSSN random birthdate gender false
@@ -175,7 +173,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, 1)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -188,7 +186,7 @@ type ``generateFinnishSSN should`` () =
         Assert.IsTrue(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``return a correct SSN for female 1`` () =
+    member __.``return a correct SSN for female 1`` () =
         let birthdate = DateTime(2000, 9, 15)
         let gender = Gender.Female
         let ssn = generateFinnishSSN random birthdate gender false
@@ -197,7 +195,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -210,7 +208,7 @@ type ``generateFinnishSSN should`` () =
         Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``return a correct SSN for female 2`` () =
+    member __.``return a correct SSN for female 2`` () =
         let birthdate = DateTime(1850, 1, 1)
         let gender = Gender.Female
         let ssn = generateFinnishSSN random birthdate gender false
@@ -219,7 +217,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -232,7 +230,7 @@ type ``generateFinnishSSN should`` () =
         Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``return an incorrect SSN for female when asking for fake SSN`` () =
+    member __.``return an incorrect SSN for female when asking for fake SSN`` () =
         let birthdate = DateTime(1999, 1, 1)
         let gender = Gender.Female
         let ssnReal = generateFinnishSSN random birthdate gender false

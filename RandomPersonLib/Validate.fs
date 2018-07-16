@@ -2,6 +2,7 @@
 
 open DanishSSNValidation
 open FinnishSSNValidation
+open IcelandicSSNValidation
 open NorwegianSSNValidation
 open SwedishSSNValidation
 
@@ -13,6 +14,11 @@ let validateDK (ssn: string) =
 let validateFI (ssn: string) =
     match ssn with
     | FinnishSSN readSSN -> validateFinnishSSN readSSN
+    | _ -> false
+
+let validateIC (ssn: string) =
+    match ssn with
+    | IcelandicSSN readSSN -> validateIcelandicSSN readSSN
     | _ -> false
 
 let validateNO (ssn: string) =

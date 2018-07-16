@@ -10,6 +10,7 @@ let interactiveMode (settingsFilePath: string) =
     printfn "Usage:"
     printfn "Danish: d"
     printfn "Finnish: f"
+    printfn "Iceland: i"
     printfn "Norwegian: n"
     printfn "Swedish: s"
     printfn "Quit: q\n\n"

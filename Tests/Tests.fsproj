@@ -14,11 +14,13 @@
     <Compile Include="Lib\Util.fs" />
     <Compile Include="Lib\SSN.fs" />
     <Compile Include="Lib\DanishSSN.fs" />
+    <Compile Include="Lib\IcelandicSSN.fs" />
     <Compile Include="Lib\FinnishSSN.fs" />
     <Compile Include="Lib\NorwegianSSN.fs" />
     <Compile Include="Lib\SwedishSSN.fs" />
     <Compile Include="Lib\ValidateDanishSSN.fs" />
     <Compile Include="Lib\ValidateFinnishSSN.fs" />
+    <Compile Include="Lib\ValidateIcelandicSSN.fs" />
     <Compile Include="Lib\ValidateNorwegianSSN.fs" />
     <Compile Include="Lib\ValidateSwedishSSN.fs" />
     <Compile Include="Lib\Gender.fs" />

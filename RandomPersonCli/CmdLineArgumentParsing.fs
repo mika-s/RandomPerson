@@ -27,11 +27,11 @@ let defaultOptions = {
 
 let printUsage () =
     printfn "Usage:"
-    printfn "dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Norwegian/Swedish>] [-a <n>] [-f <CSV/JSON/XML>]"
+    printfn "dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Iceland/Norwegian/Swedish>] [-a <n>] [-f <CSV/JSON/XML>]"
     printfn "                           [-o <path>] [-s <path>]"
     printfn ""
     printfn "-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation)."
-    printfn "-n: Nationality. Either Danish, Finnish, Norwegian or Swedish. Used in List or Template mode."
+    printfn "-n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode."
     printfn "-a: Amount. Number of people to generate in List or Template mode."
     printfn "-f: File format. File format to use when printing to file in List mode. Will print to the console if not specified."
     printfn "-o: Output file path. Path to output file when printing to file in List mode."
@@ -66,20 +66,23 @@ let rec parseArgs (args: list<string>) (options: options) =
             parseArgs xs options
     | "-n"::xs ->
         match xs with
-        | "Norwegian"::xss ->
-            let newOptions = { options with nationality = Nationality.Norwegian }
-            parseArgs xss newOptions
-        | "Swedish"::xss ->
-            let newOptions = { options with nationality = Nationality.Swedish }
-            parseArgs xss newOptions
         | "Danish"::xss ->
             let newOptions = { options with nationality = Nationality.Danish }
             parseArgs xss newOptions
         | "Finnish"::xss ->
             let newOptions = { options with nationality = Nationality.Finnish }
             parseArgs xss newOptions
+        | "Icelandic"::xss ->
+            let newOptions = { options with nationality = Nationality.Icelandic }
+            parseArgs xss newOptions
+        | "Norwegian"::xss ->
+            let newOptions = { options with nationality = Nationality.Norwegian }
+            parseArgs xss newOptions
+        | "Swedish"::xss ->
+            let newOptions = { options with nationality = Nationality.Swedish }
+            parseArgs xss newOptions
         | _ ->
-            invalidArg "-n flag" "needs either Danish, Finnish, Norwegian or Swedish after it\n"
+            invalidArg "-n flag" "needs either Danish, Finnish, Icelandic, Norwegian or Swedish after it\n"
             parseArgs xs options
     | "-a"::xs ->
         match xs with

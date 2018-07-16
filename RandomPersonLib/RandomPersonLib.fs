@@ -64,6 +64,7 @@ type RandomPerson() =
         match nationality with
         | Nationality.Danish    -> validateDK ssn
         | Nationality.Finnish   -> validateFI ssn
+        | Nationality.Icelandic -> validateIC ssn
         | Nationality.Norwegian -> validateNO ssn
         | Nationality.Swedish   -> validateSE ssn
         | _ -> invalidArg "nationality" "Illegal nationality."

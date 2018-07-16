@@ -1,20 +1,36 @@
-﻿# Sources:
+﻿# Sources
 
 The following sources are used for the data that is used to generate random persons.
 
-## Generic:
+## Generic
 
 [Password list](https://github.com/danielmiessler/SecLists/blob/master/Passwords/darkweb2017-top1000.txt)
 
-## Norway:
+## Denmark
+
+- [Danish firstnames](https://www.dst.dk/da/Statistik/emner/befolkning-og-valg/navne/navne-til-nyfoedte)
+- [Danish lastnames](https://ast.dk/born-familie/navne/navnelister/frie-efternavne)
+- [Danish SSN rules](https://www.cpr.dk/media/17534/personnummeret-i-cpr.pdf)
+- [Postal codes and cities in Denmark](https://www.postnord.dk/kundeservice/postnummerkort)
+- [Telephone numbers in Denmark](https://en.wikipedia.org/wiki/Telephone_numbers_in_Denmark)
+
+## Finland
+
+- [Finnish firstnames](https://www.avoindata.fi/data/en_GB/dataset/none)
+- [Finnish lastnames](https://www.avoindata.fi/data/en_GB/dataset/none)
+- [Finnish SSN rules](https://en.wikipedia.org/wiki/National_identification_number#Finland)
+- [Postal codes and cities in Finland](https://www.posti.fi/business/help-and-support/postal-code-services/postal-code-files.html) ([also this](http://www.posti.fi/webpcode/))
+- [Telephone numbers in Finland](https://en.wikipedia.org/wiki/Telephone_numbers_in_Finland)
+
+## Norway
 
 - [Norwegian names](https://www.ssb.no/navn)
+- [Syntax for SSNs](https://ehelse.no/standarder-kodeverk-og-referansekatalog/standarder-og-referansekatalog/identifikatorer-for-personer-syntaks-for-fodselsnummer-hjelpenummer-mv-his-10012010)
 - [Streets in Oslo](http://www.norskegater.com/Oslo/)
 - [Postal codes and cities in Norway](https://data.norge.no/data/posten-norge/postnummer-i-norge)
 - [Telephone numbers in Norway](https://en.wikipedia.org/wiki/Telephone_numbers_in_Norway)
-- [Syntax for SSNs](https://ehelse.no/standarder-kodeverk-og-referansekatalog/standarder-og-referansekatalog/identifikatorer-for-personer-syntaks-for-fodselsnummer-hjelpenummer-mv-his-10012010)
 
-## Sweden:
+## Sweden
 
 - [Swedish names](http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/amnesovergripande-statistik/namnstatistik/)
 - [Streets in Stockholm](https://www.svenskaplatser.se/Stockholm/)
@@ -25,23 +41,12 @@ The list of Swedish postal codes and cities is under the [Creative Commons Attri
 
 www.geonames.org
 
-## Denmark:
 
-- [Danish firstnames](https://www.dst.dk/da/Statistik/emner/befolkning-og-valg/navne/navne-til-nyfoedte)
-- [Danish lastnames](https://ast.dk/born-familie/navne/navnelister/frie-efternavne)
-- [Postal codes and cities in Denmark](https://www.postnord.dk/kundeservice/postnummerkort)
-- [Danish SSN rules](https://www.cpr.dk/media/17534/personnummeret-i-cpr.pdf)
-- [Telephone numbers in Denmark](https://en.wikipedia.org/wiki/Telephone_numbers_in_Denmark)
+## Iceland
 
-## Finland:
+- [Icelandic SSN rules](https://www.skra.is/english/individuals/me-and-my-family/my-registration/id-numbers/)
 
-- [Finnish firstnames](https://www.avoindata.fi/data/en_GB/dataset/none)
-- [Finnish lastnames](https://www.avoindata.fi/data/en_GB/dataset/none)
-- [Finnish SSN rules](https://en.wikipedia.org/wiki/National_identification_number#Finland)
-- [Telephone numbers in Finland](https://en.wikipedia.org/wiki/Telephone_numbers_in_Finland)
-- [Postal codes and cities in Finland](https://www.posti.fi/business/help-and-support/postal-code-services/postal-code-files.html) ([also this](http://www.posti.fi/webpcode/))
-
-# Misc:
+# Misc
 
 ## Tools
 

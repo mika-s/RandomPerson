@@ -11,6 +11,7 @@ It supports creating personal data for the following countries:
 
 - Denmark
 - Finland
+- Iceland
 - Norway
 - Sweden
 
