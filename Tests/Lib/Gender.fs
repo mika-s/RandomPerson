@@ -9,7 +9,7 @@ open Util
 type ``generateGender should`` () =
 
     [<TestMethod>]
-    member this.``return either male or female`` () =
+    member __.``return either male or female`` () =
         let random = getRandom false 100
         let result = generateGender random
         Assert.IsTrue(result = Gender.Male || result = Gender.Female)

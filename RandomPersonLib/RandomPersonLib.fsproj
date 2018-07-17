@@ -38,6 +38,12 @@
     <Content Include="data\Finnish\finnish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\Icelandic\Streets in Iceland.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Icelandic\Icelandic.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\Norwegian\norwegian.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -47,7 +53,6 @@
     <Content Include="data\Norwegian\Gater i Oslo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Folder Include="data\Icelandic\" />
     <Content Include="data\Swedish\swedish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

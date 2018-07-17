@@ -11,7 +11,7 @@ open TestData
 type ``generateSSN should`` () =
 
     [<TestMethod>]
-    member this.``return a correct SSN for Norwegian female 1`` () =
+    member __.``return a correct SSN for Norwegian female 1`` () =
         let nationality = Nationality.Norwegian
         let birthdate = DateTime(1990, 5, 14)
         let gender = Gender.Female

@@ -27,6 +27,18 @@ let validateFI (lib: RandomPerson) =
 
     loop ()
 
+let validateIC (lib: RandomPerson) =
+    let rec loop () = 
+        printf "SSN: "
+        let readSSN = Console.ReadLine ()
+
+        match readSSN with
+        | "q" | "Q" -> Environment.Exit 1
+        | "b" | "B" -> false |> ignore
+        | _ -> lib.ValidateSSN(Nationality.Icelandic, readSSN) |> printfn "%b" |> loop
+
+    loop ()
+
 let validateNO (lib: RandomPerson) =
     let rec loop () = 
         printf "SSN: "
@@ -55,6 +67,7 @@ let printHelp () =
     printfn "\nUsage:"
     printfn "Danish: d"
     printfn "Finnish: f"
+    printfn "Icelandic: i"
     printfn "Norwegian: n"
     printfn "Swedish: s"
     printfn "Go back: b"
@@ -71,6 +84,7 @@ let validateMode () =
             | ConsoleKey.Q -> ()
             | ConsoleKey.D -> validateDK lib |> printHelp |> mainloop
             | ConsoleKey.F -> validateFI lib |> printHelp |> mainloop
+            | ConsoleKey.I -> validateIC lib |> printHelp |> mainloop
             | ConsoleKey.N -> validateNO lib |> printHelp |> mainloop
             | ConsoleKey.S -> validateSE lib |> printHelp |> mainloop
             | _ -> mainloop()

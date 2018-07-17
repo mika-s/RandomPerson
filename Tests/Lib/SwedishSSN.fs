@@ -5,7 +5,6 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
 open SwedishSSNGeneration
-open TestData
 
 [<TestClass>]
 type ``swedishGetIndividualNumber should`` () =
@@ -13,18 +12,18 @@ type ``swedishGetIndividualNumber should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return between 0 and 999, 1`` () =
+    member __.``return between 0 and 999, 1`` () =
         let individualNumber = getIndividualNumber random
         Assert.IsTrue(0 <= individualNumber && individualNumber < 999)
         Assert.IsFalse(individualNumber > 1000) // negative test
 
     [<TestMethod>]
-    member this.``return between 0 and 999, 2`` () =
+    member __.``return between 0 and 999, 2`` () =
         let individualNumber = getIndividualNumber random
         Assert.IsTrue(0 <= individualNumber && individualNumber < 999)
 
     [<TestMethod>]
-    member this.``return between 0 and 999, 3`` () =
+    member __.``return between 0 and 999, 3`` () =
         let individualNumber = getIndividualNumber random
         Assert.IsTrue(0 <= individualNumber && individualNumber < 999)
 
@@ -34,17 +33,17 @@ type ``swedishGetIndividualNumberMale should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return an odd number`` () =
+    member __.``return an odd number`` () =
         let individualNumber = getIndividualNumberMale random
         Assert.IsTrue(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``not return an even number`` () =
+    member __.``not return an even number`` () =
         let individualNumber = getIndividualNumberMale random
         Assert.IsFalse(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``not return a number between 000 and 999`` () =
+    member __.``not return a number between 000 and 999`` () =
         let individualNumber = getIndividualNumberMale random
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 999)
 
@@ -54,17 +53,17 @@ type ``swedishGetIndividualNumberFemale should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return an even number`` () =
+    member __.``return an even number`` () =
         let individualNumber = getIndividualNumberFemale random
         Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``not return an odd number`` () =
+    member __.``not return an odd number`` () =
         let individualNumber = getIndividualNumberFemale random
         Assert.IsFalse(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``not return a number between 000 and 999`` () =
+    member __.``not return a number between 000 and 999`` () =
         let individualNumber = getIndividualNumberFemale random
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 999)
 
@@ -75,7 +74,7 @@ type ``generateSwedishIndividualNumber should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return an odd number when male`` () =
+    member __.``return an odd number when male`` () =
         let individualNumber = generateSwedishIndividualNumber random Gender.Male
         let individualNumberAsInt = Convert.ToInt32(individualNumber)
         Assert.IsTrue(isOdd individualNumberAsInt)
@@ -83,16 +82,14 @@ type ``generateSwedishIndividualNumber should`` () =
 [<TestClass>]
 type ``generateSwedishChecksum should`` () =
 
-    let random = getRandom false 100
-
     [<TestMethod>]
-    member this.``return a correct checksum for 811228`` () =
+    member __.``return a correct checksum for 811228`` () =
         let numbersStr = "811228987"
         let checksum = generateSwedishChecksum numbersStr
         Assert.AreEqual("4", checksum)
 
     [<TestMethod>]
-    member this.``Should return a correct checksum for 670919`` () =
+    member __.``Should return a correct checksum for 670919`` () =
         let numbersStr = "670919953"
         let checksum = generateSwedishChecksum numbersStr
         Assert.AreEqual("0", checksum)
@@ -100,24 +97,22 @@ type ``generateSwedishChecksum should`` () =
 [<TestClass>]
 type ``anonymizeSSN for Swedish SSNs should`` () =
 
-    let random = getRandom false 100
-
     [<TestMethod>]
-    member this.``return 980217-1234 when given 980217-1134`` () =
+    member __.``return 980217-1234 when given 980217-1134`` () =
         let ssn = "980217-1134"
         let fake = anonymizeSSN ssn
 
         Assert.AreEqual("980217-1234", fake)
 
     [<TestMethod>]
-    member this.``return 980217-1134 when given 980217-1034`` () =
+    member __.``return 980217-1134 when given 980217-1034`` () =
         let ssn = "980217-1034"
         let fake = anonymizeSSN ssn
 
         Assert.AreEqual("980217-1134", fake)
 
     [<TestMethod>]
-    member this.``return 980217-1134 when given 980217-1934`` () =
+    member __.``return 980217-1134 when given 980217-1934`` () =
         let ssn = "980217-1934"
         let fake = anonymizeSSN ssn
 
@@ -129,7 +124,7 @@ type ``generateSwedishSSN should`` () =
     let random = getRandom false 100
 
     [<TestMethod>]
-    member this.``return a correct SSN for male 1`` () =
+    member __.``return a correct SSN for male 1`` () =
         let birthdate = DateTime(1985, 12, 04)
         let gender = Gender.Male
         let ssn = generateSwedishSSN random birthdate gender false
@@ -149,7 +144,7 @@ type ``generateSwedishSSN should`` () =
         Assert.IsTrue(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``return a correct SSN for male 2`` () =
+    member __.``return a correct SSN for male 2`` () =
         let birthdate = DateTime(1952, 2, 6)
         let gender = Gender.Male
         let ssn = generateSwedishSSN random birthdate gender false
@@ -169,7 +164,7 @@ type ``generateSwedishSSN should`` () =
         Assert.IsTrue(isOdd individualNumber)
 
     [<TestMethod>]
-    member this.``return a correct SSN for female 1`` () =
+    member __.``return a correct SSN for female 1`` () =
         let birthdate = DateTime(2000, 9, 15)
         let gender = Gender.Female
         let ssn = generateSwedishSSN random birthdate gender false
@@ -189,7 +184,7 @@ type ``generateSwedishSSN should`` () =
         Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``return a correct SSN for female 2`` () =
+    member __.``return a correct SSN for female 2`` () =
         let birthdate = DateTime(1999, 1, 1)
         let gender = Gender.Female
         let ssn = generateSwedishSSN random birthdate gender false
@@ -209,7 +204,7 @@ type ``generateSwedishSSN should`` () =
         Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
-    member this.``return an incorrect SSN for female when asking for fake SSN`` () =
+    member __.``return an incorrect SSN for female when asking for fake SSN`` () =
         let birthdate = DateTime(1999, 1, 1)
         let gender = Gender.Female
         let ssnReal = generateSwedishSSN random birthdate gender false

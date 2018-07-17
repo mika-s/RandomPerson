@@ -23,10 +23,11 @@ let interactiveMode (settingsFilePath: string) =
         if Console.KeyAvailable then
             match Console.ReadKey(true).Key with
             | ConsoleKey.Q -> ()
-            | ConsoleKey.D -> lib.CreatePerson(Nationality.Danish, options)    |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | ConsoleKey.F -> lib.CreatePerson(Nationality.Finnish, options)   |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | ConsoleKey.D -> lib.CreatePerson(Nationality.Danish,    options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | ConsoleKey.F -> lib.CreatePerson(Nationality.Finnish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | ConsoleKey.I -> lib.CreatePerson(Nationality.Icelandic, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | ConsoleKey.N -> lib.CreatePerson(Nationality.Norwegian, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | ConsoleKey.S -> lib.CreatePerson(Nationality.Swedish, options)   |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | ConsoleKey.S -> lib.CreatePerson(Nationality.Swedish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | _ -> mainloop()
         else
             mainloop()

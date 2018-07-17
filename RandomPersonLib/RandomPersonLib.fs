@@ -30,6 +30,7 @@ type RandomPerson() =
         match nationality with
         | Nationality.Danish    -> Person(nationality, i.generic, i.danish,    options, random)
         | Nationality.Finnish   -> Person(nationality, i.generic, i.finnish,   options, random)
+        | Nationality.Icelandic -> Person(nationality, i.generic, i.icelandic, options, random)
         | Nationality.Norwegian -> Person(nationality, i.generic, i.norwegian, options, random)
         | Nationality.Swedish   -> Person(nationality, i.generic, i.swedish,   options, random)
         | _ -> invalidArg "nationality" "Illegal nationality."

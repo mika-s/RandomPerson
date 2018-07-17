@@ -4,7 +4,7 @@ The following sources are used for the data that is used to generate random pers
 
 ## Generic
 
-[Password list](https://github.com/danielmiessler/SecLists/blob/master/Passwords/darkweb2017-top1000.txt)
+- [Password list](https://github.com/danielmiessler/SecLists/blob/master/Passwords/darkweb2017-top1000.txt)
 
 ## Denmark
 
@@ -45,6 +45,7 @@ www.geonames.org
 ## Iceland
 
 - [Icelandic SSN rules](https://www.skra.is/english/individuals/me-and-my-family/my-registration/id-numbers/)
+- [Icelandic names](https://www.island.is/mannanofn/leit-ad-nafni/)
 
 # Misc
 
