@@ -37,6 +37,7 @@
     <Compile Include="Lib\ValidateSwedishSSN.fs" />
     <Compile Include="Lib\Gender.fs" />
     <Compile Include="Lib\Birthdate.fs" />
+    <Compile Include="Cli\PrintCsv.fs" />
     <Compile Include="Cli\PrintToConsole.fs" />
     <Compile Include="Cli\ReadInputFiles.fs" />
     <Compile Include="Cli\CliUtil.fs" />

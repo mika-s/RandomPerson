@@ -32,7 +32,7 @@ let (|HasIndividualNumber|_|) (_: string) (p: ssnParams) (s: string) =
     | true  -> Some(s.Substring(p.IndividualNumberLength, s.Length - p.IndividualNumberLength))
     | false -> None
 
-let isCorrectChecksum (csFromSSN: string) (ssn: string) (p: ssnParams)  =
+let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (p: ssnParams) (_: string)  =
     let birthDate = match p.SsnLength with
                     | Equals oldSsnParams.SsnLength -> ssn.Substring(p.DateStart, p.DateLength)
                     | Equals newSsnParams.SsnLength -> ssn.Substring(p.DateStart + 2, p.DateLength - 2)    // omit two first digits in the date
@@ -43,8 +43,8 @@ let isCorrectChecksum (csFromSSN: string) (ssn: string) (p: ssnParams)  =
     let cs = generateSwedishChecksum (birthDate + individualNumber)
 
     match csFromSSN with
-    | Equals cs -> true
-    | _         -> false
+    | Equals cs -> Some(cs)
+    | _         -> None
 
 let validateSwedishSSN2 (ssn: string) (p: ssnParams) =
     match ssn.Length with
@@ -52,7 +52,10 @@ let validateSwedishSSN2 (ssn: string) (p: ssnParams) =
         match ssn with
         | HasDate ssn p rest ->
             match rest with
-            | HasIndividualNumber rest p newRest -> isCorrectChecksum newRest ssn p
+            | HasIndividualNumber rest p newRest ->
+                match newRest with
+                | HasCorrectChecksum newRest ssn p _ -> true
+                | _ -> false
             | _ -> false
         | _ -> false
     | _  -> false

@@ -35,7 +35,7 @@ let (|HasIndividualNumber|_|) (_: string) (s: string) =
     | true  -> Some(s.Substring(IndividualNumberLength, s.Length - IndividualNumberLength))
     | false -> None
 
-let isCorrectChecksum (csFromSSN: string) (ssn: string) =
+let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
     let birthDateString = ssn.Substring(DateStart, DateLength)
     let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
     let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
@@ -43,8 +43,8 @@ let isCorrectChecksum (csFromSSN: string) (ssn: string) =
     let cs = generateFinnishChecksum birthDate individualNumber
 
     match csFromSSN with
-    | Equals cs -> true
-    | _         -> false
+    | Equals cs -> Some(cs)
+    | _         -> None
 
 let validateFinnishSSN (ssn: string) = 
     match ssn with
@@ -52,7 +52,10 @@ let validateFinnishSSN (ssn: string) =
         match potentialSSN with
         | HasDate ssn rest ->
             match rest with
-            | HasIndividualNumber rest newRest -> isCorrectChecksum newRest ssn
+            | HasIndividualNumber rest newRest ->
+                match newRest with 
+                | HasCorrectChecksum newRest ssn _ -> true
+                | _ -> false
             | _ -> false
         | _ -> false
     | _  -> false
