@@ -22,6 +22,24 @@ let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
     | x when 1 <= x && x <= percentChanceForMiddleName -> firstName + " " + makeFirstName random gender data
     | _                                                -> firstName
 
-let generateLastName (random: Random) (data: PersonData) =
-    let randomNoLastName = random.Next(data.LastNames.Length)
-    data.LastNames.[randomNoLastName]
+let generateLastName (random: Random) (gender: Gender) (data: PersonData) =
+    match data.LastNames <> null && 0 < data.LastNames.Length with
+    | true ->
+        let randomNoLastName = random.Next(data.LastNames.Length)
+        data.LastNames.[randomNoLastName]
+    | false ->
+        match data.MaleLastNames   <> null && 0 < data.MaleLastNames  .Length,
+              data.FemaleLastNames <> null && 0 < data.FemaleLastNames.Length with
+        | (true, true) ->
+            match gender with
+            | Gender.Male ->
+                let randomNoMaleLastName = random.Next(data.MaleLastNames.Length)
+                data.MaleLastNames.[randomNoMaleLastName]
+            | Gender.Female ->
+                let randomNoFemaleLastName = random.Next(data.FemaleLastNames.Length)
+                data.FemaleLastNames.[randomNoFemaleLastName]
+            | _ -> invalidArg "gender" "Illegal gender."
+        | _ -> invalidArg "LastNames, MaleLastNames, FemaleLastNames" "Either populate LastNames or MaleLastNames/FemaleLastNames."
+
+
+

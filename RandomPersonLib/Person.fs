@@ -23,7 +23,7 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
 
     let gender = generateGender random
     let firstName = generateFirstName random gender languageFiles.generalData
-    let lastName = generateLastName random languageFiles.generalData
+    let lastName  = generateLastName  random gender languageFiles.generalData 
     let address1 = generateAddress1 random languageFiles.addresses1
     let address2 = generateAddress2 ()
     let postalCode = postalCodeAndCity.PostalCode

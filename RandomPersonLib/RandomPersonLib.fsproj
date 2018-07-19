@@ -38,6 +38,9 @@
     <Content Include="data\Finnish\finnish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\Icelandic\postnumer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\Icelandic\Streets in Iceland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

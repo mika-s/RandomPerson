@@ -40,7 +40,7 @@ let readInputFiles () =
     let icelandic = {
         generalData          = readDataFromJsonFile<PersonData> "data/Icelandic/icelandic.json";
         addresses1           = File.ReadAllLines("data/Icelandic/Streets in Iceland.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Icelandic/IC.txt", Encoding.UTF8)
+        postalCodesAndCities = File.ReadAllLines("data/Icelandic/postnumer.txt", Encoding.UTF8)
                                |> Array.map(stringToPostalCodeAndCity Nationality.Icelandic);
     }
 

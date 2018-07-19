@@ -39,4 +39,10 @@ type PersonData = {
 
     [<field : DataMember(Name="LastNames")>]
     LastNames: string[]
+
+    [<field : DataMember(Name="MaleLastNames")>]
+    MaleLastNames: string[]
+
+    [<field : DataMember(Name="FemaleLastNames")>]
+    FemaleLastNames: string[]
 }

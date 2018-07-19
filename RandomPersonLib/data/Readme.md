@@ -46,6 +46,12 @@ www.geonames.org
 
 - [Icelandic SSN rules](https://www.skra.is/english/individuals/me-and-my-family/my-registration/id-numbers/)
 - [Icelandic names](https://www.island.is/mannanofn/leit-ad-nafni/)
+- [Icelandic patronyms](https://en.ja.is/)
+- [Streets in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
+- [Postal codes and cities in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
+
+Regex for extracting patronyms from yellow pages: `^.*?(\w+dóttir).*$` and  `^.*?(\w+son).*$`
+Replace with (with Notepad++): `\1`
 
 # Misc
 

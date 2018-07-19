@@ -10,6 +10,7 @@ let stringToPostalCodeAndCity (nationality: Nationality) (line: string)   =
     match nationality with
     | Nationality.Danish    -> PostalCodeAndCity(split.[0], split.[1])
     | Nationality.Finnish   -> PostalCodeAndCity(split.[0], split.[1])
+    | Nationality.Icelandic -> PostalCodeAndCity(split.[0], split.[1])
     | Nationality.Norwegian -> PostalCodeAndCity(split.[0], split.[1])
     | Nationality.Swedish   -> PostalCodeAndCity(split.[1], split.[2])
     | _ -> invalidArg "nationality" "Illegal nationality."

@@ -38,6 +38,8 @@ let getTestPerson () =
                         MaleFirstNames = [| "Nicolas" |];
                         FemaleFirstNames = [| "Diana" |];
                         LastNames = [| "Smith" |];
+                        MaleLastNames = [| |];
+                        FemaleLastNames = [| |];
         };
         addresses1 = [| "Test street" |];
         postalCodesAndCities = [| PostalCodeAndCity("0001", "OSLO") |];
