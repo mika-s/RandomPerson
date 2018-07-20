@@ -50,7 +50,7 @@ www.geonames.org
 - [Streets in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
 - [Postal codes and cities in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
 
-Regex for extracting patronyms from yellow pages: `^.*?(\w+dóttir).*$` and  `^.*?(\w+son).*$`
+Regex for extracting patronyms from yellow pages: `^.*?(\w+dóttir).*$` and  `^.*?(\w+son).*$`<br />
 Replace with (with Notepad++): `\1`
 
 # Misc

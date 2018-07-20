@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PreserveCompilationContext>false</PreserveCompilationContext>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/mika-s/RandomPerson/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <Authors>Mika Sundland</Authors>
     <Company>Mika Sundland</Company>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -66,6 +66,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="Datacontracts\PersonData.fs" />
+    <Compile Include="SSNs\Common\Validation.fs" />
     <Compile Include="SSNs\Danish\Parameters.fs" />
     <Compile Include="SSNs\Danish\Generation.fs" />
     <Compile Include="SSNs\Danish\Validation.fs" />
@@ -99,9 +100,9 @@
     <Compile Include="Validate.fs" />
     <Compile Include="TemplatePrint.fs" />
     <Compile Include="RandomPersonLib.fs" />
-    <None Include="ReadmeLib.md">
+    <None Include="Readme.md">
+      <Link>ReadmeLib.md</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <TargetPath>ReadmeLib.md</TargetPath>
     </None>
   </ItemGroup>
 

@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
 
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
 
     <Authors>Mika Sundland</Authors>
 
@@ -30,6 +30,7 @@
     <Compile Include="Lib\FinnishSSN.fs" />
     <Compile Include="Lib\NorwegianSSN.fs" />
     <Compile Include="Lib\SwedishSSN.fs" />
+    <Compile Include="Lib\CommonValidation.fs" />
     <Compile Include="Lib\ValidateDanishSSN.fs" />
     <Compile Include="Lib\ValidateFinnishSSN.fs" />
     <Compile Include="Lib\ValidateIcelandicSSN.fs" />
