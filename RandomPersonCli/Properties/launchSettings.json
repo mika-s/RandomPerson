@@ -1,7 +1,8 @@
 {
   "profiles": {
     "RandomPerson": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-m V"
     }
   }
 }

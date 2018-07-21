@@ -8,20 +8,37 @@ open RandomPersonLib
 let random = Random()
 
 let parseOrdinaryReplaces (originalOutput: string) (person: Person) =
-    originalOutput
-        .Replace("#{SSN}", person.SSN)
-        .Replace("#{Email}", person.Email)
-        .Replace("#{FirstName}", person.FirstName)
-        .Replace("#{LastName}", person.LastName)
-        .Replace("#{Address1}", person.Address1)
-        .Replace("#{Address2}", person.Address2)
-        .Replace("#{PostalCode}", person.PostalCode)
-        .Replace("#{City}", person.City)
-        .Replace("#{Nationality}", person.Nationality.ToString())
-        .Replace("#{BirthDate}", person.BirthDate.ToString())
-        .Replace("#{Gender}", person.Gender.ToString())
-        .Replace("#{MobilePhone}", person.MobilePhone)
-        .Replace("#{HomePhone}", person.HomePhone)
+    let mapping = 
+        [
+            "SSN", person.SSN;
+            "Email", person.Email;
+            "Password", person.Password;
+            "FirstName", person.FirstName;
+            "LastName", person.LastName;
+            "Address1", person.Address1;
+            "Address2", person.Address2;
+            "PostalCode", person.PostalCode;
+            "City", person.City;
+            "Nationality", person.Nationality.ToString();
+            "BirthDate", person.BirthDate.ToString();
+            "Gender", person.Gender.ToString();
+            "MobilePhone", person.MobilePhone;
+            "HomePhone", person.HomePhone;
+        ]
+
+    let replaceOrdinary (str: string) =
+        let ordinaryFolder (acc: string) (y: string * string) = acc.Replace(String.Format("#{{{0}}}", fst y), snd y)
+        List.fold ordinaryFolder str mapping
+
+    let replaceToLower (str: string) =
+        let toLowerFolder (acc: string) (y: string * string) = acc.Replace(String.Format("#{{{0}.ToLower()}}", fst y), (snd y).ToLower())
+        List.fold toLowerFolder str mapping
+
+    let replaceToUpper (str: string) =
+        let toUpperFolder (acc: string) (y: string * string) = acc.Replace(String.Format("#{{{0}.ToUpper()}}", fst y), (snd y).ToUpper())
+        List.fold toUpperFolder str mapping
+
+    originalOutput |> replaceOrdinary |> replaceToLower |> replaceToUpper
 
 let cleanupValue (input: string) = input.Trim()
 

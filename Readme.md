@@ -30,6 +30,7 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 * Birth date
 * SSN
 * Email
+* Password
 * Mobile phone
 * Home phone
 

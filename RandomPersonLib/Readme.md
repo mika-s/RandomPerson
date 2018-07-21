@@ -166,15 +166,26 @@ the format of *outputString* and replace the following variables with generated 
 - `#{MobilePhone}`
 - `#{HomePhone}`
 
-Example:
+The following methods can be chained to the variable replacements:
 
-outputString = "First name: #{FirstName}\nLast name: #{LastName}"
+- `ToLower()`: All lowercaps.
+- `ToUpper()`: All uppercaps.
 
-will generate
+*Example 1:*
 
-"First name: Test\nLast name: Person"
+`outputString = "First name: #{FirstName}\nLast name: #{LastName}"`
 
-when the generated person's first name is Test and the last name is Person.
+could generate
+
+`"First name: Test\nLast name: Person"`
+
+*Example 2:*
+
+`outputString = "Address: #{Address1.ToUpper()}"`
+
+could generate
+
+`"Address: TEST STREET 213"`
 
 The following functions are also available:
 

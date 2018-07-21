@@ -9,11 +9,29 @@ open TestData
 type ``parseOrdinaryReplaces should`` () =
 
     [<TestMethod>]
-    member __.``return a string with #{SSN} replaced with SSN`` () =
+    member __.``return a string with #{SSN} replaced by SSN`` () =
         let person = getTestPerson ()
         let replaced = parseOrdinaryReplaces "SSN: #{SSN}" person
 
         let expectedString = sprintf "SSN: %s" person.SSN
+
+        Assert.AreEqual(expectedString, replaced)
+
+    [<TestMethod>]
+    member __.``return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps`` () =
+        let person = getTestPerson ()
+        let replaced = parseOrdinaryReplaces "First name: #{FirstName.ToLower()}" person
+
+        let expectedString = sprintf "First name: %s" (person.FirstName.ToLower())
+
+        Assert.AreEqual(expectedString, replaced)
+
+    [<TestMethod>]
+    member __.``return a string with #{LastName.ToUpper()} replaced by the FirstName in all upper caps`` () =
+        let person = getTestPerson ()
+        let replaced = parseOrdinaryReplaces "Last name: #{LastName.ToUpper()}" person
+
+        let expectedString = sprintf "Last name: %s" (person.LastName.ToUpper())
 
         Assert.AreEqual(expectedString, replaced)
 
@@ -30,8 +48,7 @@ type ``cleanupNumber should`` () =
     member __.``return "123" when given "123 "`` () =
         let clean = cleanupValue "123 "
 
-        Assert.AreEqual("123", clean)
-        
+        Assert.AreEqual("123", clean)   
 
 [<TestClass>]
 type ``getValueForRandomInt should`` () =
@@ -293,20 +310,7 @@ type ``replaceRandomSwitch should`` () =
         Assert.IsTrue((randomPart.[0] = "'one'" && randomPart.[1] = "'one'") ||  (randomPart.[0] = "'two'" && randomPart.[1] = "'two'"))
 
     [<TestMethod>]
-    member __.``Temp test`` () =
-        let remaining = "Married: #{Random(switch, 'K01'\,'K01_VG', 'K03'\,'K03_VP')}"
-        let randomString = "Random(switch, 'K01'\,'K01_VG', 'K03'\,'K03_VP')"
-
-        let returnString = replaceRandomSwitch remaining randomSwitchPattern randomString
-
-        let firstPart = returnString.Substring(0, 9)
-        let randomPart = returnString.Split(':').[1].Split(',') |> Array.map (fun x -> x.Trim())
-
-        Assert.AreEqual("Married: ", firstPart)
-        Assert.IsTrue((randomPart.[0] = "'K01'" && randomPart.[1] = "'K01_VG'") ||  (randomPart.[0] = "'K03'" && randomPart.[1] = "'K03_VP'"))
-
-    [<TestMethod>]
-    member __.``return find and replace #{Random(switch, 'one', 'two')} in a string with either 'one' or 'two'`` () =
+    member __.``find and replace #{Random(switch, 'one', 'two')} in a string with either 'one' or 'two'`` () =
         let remaining = "Married: #{Random(switch, 'one', 'two')}, income: #{Random(float, 1000, 100000)}, "
         let randomString = "Random(switch, 'one', 'two')"
 
