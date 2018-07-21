@@ -10,32 +10,62 @@ let random = Random()
 let parseOrdinaryReplaces (originalOutput: string) (person: Person) =
     let mapping = 
         [
-            "SSN", person.SSN;
-            "Email", person.Email;
-            "Password", person.Password;
-            "FirstName", person.FirstName;
-            "LastName", person.LastName;
-            "Address1", person.Address1;
-            "Address2", person.Address2;
-            "PostalCode", person.PostalCode;
-            "City", person.City;
-            "Nationality", person.Nationality.ToString();
-            "BirthDate", person.BirthDate.ToString();
-            "Gender", person.Gender.ToString();
-            "MobilePhone", person.MobilePhone;
-            "HomePhone", person.HomePhone;
+            "SSN", box person.SSN;
+            "Email", box person.Email;
+            "Password", box person.Password;
+            "FirstName", box person.FirstName;
+            "LastName", box person.LastName;
+            "Address1", box person.Address1;
+            "Address2", box person.Address2;
+            "PostalCode", box person.PostalCode;
+            "City", box person.City;
+            "Nationality", box person.Nationality;
+            "BirthDate", box person.BirthDate;
+            "Gender", box person.Gender;
+            "MobilePhone", box person.MobilePhone;
+            "HomePhone", box person.HomePhone;
         ]
 
     let replaceOrdinary (str: string) =
-        let ordinaryFolder (acc: string) (y: string * string) = acc.Replace(String.Format("#{{{0}}}", fst y), snd y)
+        let ordinaryFolder (acc: string) (y: string * obj) =
+            let valueBoxed = snd y
+            let value = match valueBoxed.GetType() with
+                        | x when x = typedefof<string>      -> string (unbox valueBoxed)
+                        | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString()
+                        | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString()
+                        | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString()
+                        | _ -> failwith "Error in ordinaryFolder"
+
+            acc.Replace(String.Format("#{{{0}}}", fst y), value)
+
         List.fold ordinaryFolder str mapping
 
     let replaceToLower (str: string) =
-        let toLowerFolder (acc: string) (y: string * string) = acc.Replace(String.Format("#{{{0}.ToLower()}}", fst y), (snd y).ToLower())
+        let toLowerFolder (acc: string) (y: string * obj) =
+            let valueBoxed = snd y
+            let value = match valueBoxed.GetType() with
+                        | x when x = typedefof<string>      -> (string (unbox valueBoxed)).ToLower()
+                        | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString().ToLower()
+                        | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString().ToLower()
+                        | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString().ToLower()
+                        | _ -> failwith "Error in toLowerFolder"
+
+            acc.Replace(String.Format("#{{{0}.ToLower()}}", fst y), value)
+
         List.fold toLowerFolder str mapping
 
     let replaceToUpper (str: string) =
-        let toUpperFolder (acc: string) (y: string * string) = acc.Replace(String.Format("#{{{0}.ToUpper()}}", fst y), (snd y).ToUpper())
+        let toUpperFolder (acc: string) (y: string * obj) =
+            let valueBoxed = snd y
+            let value = match valueBoxed.GetType() with
+                        | x when x = typedefof<string>      -> (string (unbox valueBoxed)).ToUpper()
+                        | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString().ToUpper()
+                        | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString().ToUpper()
+                        | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString().ToUpper()
+                        | _ -> failwith "Error in toUpperFolder"
+
+            acc.Replace(String.Format("#{{{0}.ToUpper()}}", fst y), value)
+
         List.fold toUpperFolder str mapping
 
     originalOutput |> replaceOrdinary |> replaceToLower |> replaceToUpper
@@ -68,45 +98,32 @@ let removeLastParenthesisFromArray (input: string[]) =
 
 let getValueForRandomInt (randomString: string) =
     let splitString = randomString.Split(',')
-    let cleanMin = splitString.[1] |> cleanupValue
-    let cleanMax = removeLastParenthesis splitString.[2] |> cleanupValue
-    let min = Convert.ToInt32 (cleanMin)
-    let max = Convert.ToInt32 (cleanMax)
+    let min = splitString.[1] |> cleanupValue |> int
+    let max = splitString.[2] |> removeLastParenthesis |> cleanupValue |> int
     randomIntBetween min max
 
 let replaceRandomInt (remainingString: string) (randomIntPattern: string) (randomString: string) =
-    let randomNumber = getValueForRandomInt randomString
-    let numberAsString = sprintf "%d" randomNumber 
+    let numberAsString = randomString |> getValueForRandomInt |> sprintf "%d"
     let regex = Regex randomIntPattern
     regex.Replace(remainingString, numberAsString, 1)
 
 let getValueForRandomFloat (randomString: string) =
     let splitString = randomString.Split(',')
-    let cleanMin = splitString.[1] |> cleanupValue
-    let cleanMax = removeLastParenthesis splitString.[2] |> cleanupValue
-    let min = float (cleanMin)
-    let max = float (cleanMax)
+    let min = splitString.[1] |> cleanupValue |> float
+    let max = splitString.[2] |> removeLastParenthesis |> cleanupValue |> float
     randomFloatBetween min max
 
 let replaceRandomFloat (remainingString: string) (randomFloatPattern: string) (randomString: string) =
-    let randomNumber = getValueForRandomFloat randomString
-    let numberAsString = sprintf "%.3f" randomNumber 
+    let numberAsString = randomString |> getValueForRandomFloat |> sprintf "%.3f" 
     let regex = Regex randomFloatPattern
     regex.Replace(remainingString, numberAsString, 1)
 
 let getNumbersAfterDecimal (randomString: string) =
-    let firstSplit = randomString.Split(',')
-    let secondSplit = firstSplit.[0].Split('(')
-    let thirdSplit  = secondSplit.[1].Split(':')
-    let clean = thirdSplit.[1] |> cleanupValue
-    int (clean)
+    randomString.Split(',').[0].Split('(').[1].Split(':').[1] |> cleanupValue |> int
 
 let replaceRandomFloatWithDecimals (remainingString: string) (randomFloatPattern: string) (randomString: string) =
-    let randomNumber = getValueForRandomFloat randomString
-    let numberOfDigitsAfterDecimal = getNumbersAfterDecimal randomString
-    let printfFormatString = sprintf "%%.%df" numberOfDigitsAfterDecimal
-    let printfFormat = Printf.StringFormat<float->string>(printfFormatString)
-    let numberAsString = sprintf printfFormat randomNumber
+    let printfFormat = randomString |> getNumbersAfterDecimal |> sprintf "%%.%df" |> Printf.StringFormat<float->string>
+    let numberAsString = randomString |> getValueForRandomFloat |> sprintf printfFormat
     let regex = Regex randomFloatPattern
     regex.Replace(remainingString, numberAsString, 1)
 
@@ -123,9 +140,9 @@ let getValueForRandomSwitch (randomString: string) =
     cleanValues.[randomNumber]
 
 let replaceRandomSwitch (remainingString: string) (randomSwitchPattern: string) (randomString: string) =
-    let Random = getValueForRandomSwitch randomString
+    let randomValue = getValueForRandomSwitch randomString
     let regex = Regex randomSwitchPattern
-    regex.Replace(remainingString, Random, 1)
+    regex.Replace(remainingString, randomValue, 1)
 
 let modifyString (regex: Regex) (pattern: string) (replaceFunc: string -> string -> string -> string) (remaining: string) =
     let matching = regex.Match remaining

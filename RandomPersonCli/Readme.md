@@ -10,8 +10,8 @@ It can also validate SSNs.
 ## Usage
 
 ```
-dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Icelandic/Norwegian/Swedish>] [-a <n>] [-f <CSV/JSON/XML>]
-                              [-o <path>]  [-s <path>]
+dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Icelandic/Norwegian/Swedish>] [-a <n>]
+						   [-f <CSV/JSON/XML>] [-o <path>] [-s <path>]
 ```
 
 -m: Mode. Either I (interactive), L (list), T (templated list) or V (validation).<br />
