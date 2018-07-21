@@ -25,7 +25,7 @@ type ``|Int|_| should`` () =
     [<TestMethod>]
     member __.``match with Int when int as string`` () =
         let isMatch = match "1" with
-                      | Int i -> true
+                      | Int _ -> true
                       | _     -> false
 
         Assert.IsTrue(isMatch)
@@ -33,7 +33,7 @@ type ``|Int|_| should`` () =
     [<TestMethod>]
     member __.``not match with Int when not int as string`` () =
         let isMatch = match "a" with
-                      | Int i -> true
+                      | Int _ -> true
                       | _     -> false
 
         Assert.IsFalse(isMatch)
@@ -42,9 +42,9 @@ type ``|Int|_| should`` () =
 type ``|Filename|_| should`` () =
 
     [<TestMethod>]
-    member __.``match with Filename when input string is larger "test.txt"`` () =
+    member __.``match with Filename when input string is larger "test,txt"`` () =
         let isMatch = match "test.txt" with
-                      | Filename fn -> true
+                      | Filename _ -> true
                       | _           -> false
 
         Assert.IsTrue(isMatch)
@@ -52,7 +52,7 @@ type ``|Filename|_| should`` () =
     [<TestMethod>]
     member __.``not match with Filename when input string is empty`` () =
         let isMatch = match "" with
-                      | Filename fn -> true
+                      | Filename _ -> true
                       | _           -> false
 
         Assert.IsFalse(isMatch)

@@ -18,7 +18,8 @@ type ``parseOrdinaryReplaces should`` () =
         Assert.AreEqual(expectedString, replaced)
 
     [<TestMethod>]
-    member __.``return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps`` () =
+    member __.``return a string with`` () =
+        // return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps
         let person = getTestPerson ()
         let replaced = parseOrdinaryReplaces "First name: #{FirstName.ToLower()}" person
 
@@ -81,37 +82,37 @@ type ``getValueForRandomInt should`` () =
 type ``getValueForRandomFloat should`` () =
 
     [<TestMethod>]
-    member __.``return a random float between 0.0 and 100.0 when given Random(float, 0, 100)`` () =
+    member __.``return a random float between 0,0 and 100,0 when given Random(float, 0, 100)`` () =
         let randomNumber = getValueForRandomFloat "Random(float, 0, 100)"
 
         Assert.IsTrue(0.0 <= randomNumber && randomNumber < 100.0)
 
     [<TestMethod>]
-    member __.``return a random float between 50.0 and 200.0 when given Random(float,50.0,200.0)`` () =
+    member __.``return a random float between 50,0 and 200,0 when given Random(float,50.0,200.0)`` () =
         let randomNumber = getValueForRandomFloat "Random(float,50.0,200.0)"
 
         Assert.IsTrue(50.0 <= randomNumber && randomNumber < 200.0)
 
     [<TestMethod>]
-    member __.``return a random float between -100.0 and 1000.0 when given Random(float,-100.0,1000.0)`` () =
+    member __.``return a random float between -100,0 and 1000,0 when given Random(float,-100.0,1000.0)`` () =
         let randomNumber = getValueForRandomFloat "Random(float,-100.0,1000.0)"
 
         Assert.IsTrue(-100.0 <= randomNumber && randomNumber < 1000.0)
 
     [<TestMethod>]
-    member __.``return a random float between -100.0 and 1000.0 when given Random(float,-100,1000)`` () =
+    member __.``return a random float between -100,0 and 1000,0 when given Random(float,-100,1000)`` () =
         let randomNumber = getValueForRandomFloat "Random(float,-100,1000)"
 
         Assert.IsTrue(-100.0 <= randomNumber && randomNumber < 1000.0)
 
     [<TestMethod>]
-    member __.``return a random float between -1000.0 and 1000.0 when given Random(float:5,-1000,1000)`` () =
+    member __.``return a random float between -1000,0 and 1000,0 when given Random(float:5,-1000,1000)`` () =
         let randomNumber = getValueForRandomFloat "Random(float:5,-100,1000)"
 
         Assert.IsTrue(-1000.0 <= randomNumber && randomNumber < 1000.0)
 
     [<TestMethod>]
-    member __.``return a random float between -2000.0 and 1000.0 when given Random(float:1,-2000,1000)`` () =
+    member __.``return a random float between -2000,0 and 1000,0 when given Random(float:1,-2000,1000)`` () =
         let randomNumber = getValueForRandomFloat "Random(float:1,-100,1000)"
 
         Assert.IsTrue(-2000.0 <= randomNumber && randomNumber < 1000.0)

@@ -39,12 +39,12 @@ type ``randomIntBetween should`` () =
 type ``randomFloatBetween should`` () =
 
     [<TestMethod>]
-    member __.``return an random float between -20.0 and 20.0`` () =
+    member __.``return an random float between -20,0 and 20,0`` () =
         let result = randomFloatBetween -20.0 20.0
         Assert.IsTrue(-20.0 <= result && result < 20.0)
 
     [<TestMethod>]
-    member __.``return an random float between 0.0 and 200.0`` () =
+    member __.``return an random float between 0,0 and 200,0`` () =
         let result = randomFloatBetween 0.0 200.0
         Assert.IsTrue(0.0 <= result && result < 200.0)
 
