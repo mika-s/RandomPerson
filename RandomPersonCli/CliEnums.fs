@@ -7,8 +7,9 @@ type Mode =
 | Validation  = 3
 
 type OutputType =
-| Console = 0
-| File    = 1
+| Console        = 0
+| File           = 1
+| ConsoleAndFile = 2
 
 type FileFormat =
 | CSV  = 0

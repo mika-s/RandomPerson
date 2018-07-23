@@ -20,6 +20,8 @@ let getPhoneDetails () =
         Home   = { Patterns = [| "2xxxxxxx" |] };
     }
 
+let getAddresses1 () = [| "Test street"; "Test road" |];
+
 let getEmailAddresseses () = [| "gmail.com"; "hotmail.com"; "msn.com" |]
 
 let getPasswords () = [| "asdf"; "password"; "2134"; "qwerty" |]
@@ -41,7 +43,7 @@ let getTestPerson () =
                         MaleLastNames = [| |];
                         FemaleLastNames = [| |];
         };
-        addresses1 = [| "Test street" |];
+        addresses1 = getAddresses1 ()
         postalCodesAndCities = [| PostalCodeAndCity("0001", "OSLO") |];
     }
 

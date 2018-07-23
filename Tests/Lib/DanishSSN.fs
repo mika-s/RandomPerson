@@ -4,6 +4,7 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
+open DanishSSNParameters
 open DanishSSNGeneration
 
 [<TestClass>]
@@ -144,10 +145,10 @@ type ``generateDanishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = Convert.ToInt32(ssn.Substring(10, 1))
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("04", d)
         Assert.AreEqual("12", m)
         Assert.AreEqual("85", y)
@@ -164,10 +165,10 @@ type ``generateDanishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = Convert.ToInt32(ssn.Substring(10, 1))
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("06", d)
         Assert.AreEqual("02", m)
         Assert.AreEqual("52", y)
@@ -184,10 +185,10 @@ type ``generateDanishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = Convert.ToInt32(ssn.Substring(10, 1))
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("15", d)
         Assert.AreEqual("09", m)
         Assert.AreEqual("00", y)
@@ -204,10 +205,10 @@ type ``generateDanishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = Convert.ToInt32(ssn.Substring(10, 1))
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("01", d)
         Assert.AreEqual("01", m)
         Assert.AreEqual("99", y)
@@ -229,13 +230,13 @@ type ``generateDanishSSN should`` () =
         let d = ssnFake.Substring(0, 2)
         let m = ssnFake.Substring(2, 2)
         let y = ssnFake.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(7, 3))
+        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = Convert.ToInt32(ssnFake.Substring(10, 1))
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)
         Assert.AreNotEqual(ssnReal, ssnFake)
-        Assert.AreEqual(11, ssnFake.Length)
+        Assert.AreEqual(SsnLength, ssnFake.Length)
         Assert.AreEqual("15", d)
         Assert.AreEqual("09", m)
         Assert.AreEqual("00", y)

@@ -5,6 +5,6 @@ open System
 let generateAddress1 (random: Random) (addresses: string[]) = 
     let randomNumber = random.Next(addresses.Length)
 
-    addresses.[randomNumber] + " " + random.Next(50).ToString()
+    addresses.[randomNumber] + " " + random.Next(1, 50).ToString()
 
 let generateAddress2 () = ""

@@ -25,14 +25,14 @@ let main argv =
                                   options.settingsFilePath
         | Mode.List        -> listMode
                                   options.settingsFilePath
-                                  options.numberOfElements
+                                  options.amount
                                   options.nationality
                                   options.outputType
                                   options.fileFormat
                                   options.outputFilePath
         | Mode.Template    -> templateMode
                                   options.settingsFilePath
-                                  options.numberOfElements
+                                  options.amount
                                   options.nationality
         | Mode.Validation  -> validateMode ()
         | _ -> invalidArg "options.mode" "That mode doesn't exist."

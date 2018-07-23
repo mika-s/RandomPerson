@@ -7,7 +7,7 @@ open CliUtil
 
 type options = {
     mode: Mode
-    numberOfElements: int       // In ListMode and TemplateMode
+    amount: int                 // In ListMode and TemplateMode
     nationality: Nationality    // In ListMode and TemplateMode
     outputType: OutputType      // In ListMode
     fileFormat: FileFormat      // In ListMode
@@ -16,24 +16,25 @@ type options = {
 }
 
 let defaultOptions = {
-    mode = Mode.Interactive;
-    numberOfElements = 10;
-    nationality = Nationality.Norwegian;
+    mode = Mode.Interactive
+    amount = 10
+    nationality = Nationality.Norwegian
     outputType = OutputType.Console
-    fileFormat = FileFormat.CSV;
-    outputFilePath = "output.?";
-    settingsFilePath = "data/Settings.json";
+    fileFormat = FileFormat.CSV
+    outputFilePath = "output.?"
+    settingsFilePath = "data/Settings.json"
 }
 
 let printUsage () =
     printfn "Usage:"
     printfn "dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Icelandic/Norwegian/Swedish>] [-a <n>]"
-    printfn "                           [-f <CSV/JSON/XML>] [-o <path>] [-s <path>]"
+    printfn "                           [-f <CSV/JSON/XML>] [--caf <true/false>] [-o <path>] [-s <path>]"
     printfn ""
     printfn "-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation)."
     printfn "-n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode."
     printfn "-a: Amount. Number of people to generate in List or Template mode."
     printfn "-f: File format. File format to use when printing to file in List mode. Will print to the console if not specified."
+    printfn "--caf: Print to both console and file at the same time if true. Only used when -f is specified. False is default."
     printfn "-o: Output file path. Path to output file when printing to file in List mode."
     printfn "-s: Settings file path. Path to the settings file if non-default file is used."
     printfn ""
@@ -87,7 +88,7 @@ let rec parseArgs (args: list<string>) (options: options) =
     | "-a"::xs ->
         match xs with
         | (Int i)::xss ->
-            let newOptions = { options with numberOfElements = i }
+            let newOptions = { options with amount = i }
             parseArgs xss newOptions
         | _ -> invalidArg "-a flag" "needs a number after it\n"
     | "-f"::xs ->
@@ -102,6 +103,15 @@ let rec parseArgs (args: list<string>) (options: options) =
             let newOptions = { options with outputType = OutputType.File; fileFormat = FileFormat.XML }
             parseArgs xss newOptions
         | _ -> invalidArg "-f flag" "needs either CSV, JSON or XML after it\n"
+    | "--caf"::xs ->
+        match xs with
+        | "true"::xss ->
+            let newOptions = { options with outputType = OutputType.ConsoleAndFile  }
+            parseArgs xss newOptions
+        | "false"::xss ->
+            let newOptions = { options with outputType = OutputType.ConsoleAndFile }
+            parseArgs xss newOptions
+        | _ -> invalidArg "--caf flag" "needs either true or false after it\n"
     | "-o"::xs ->
         match xs with
         | (Filename fn)::xss ->

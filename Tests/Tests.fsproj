@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Compile Include="TestData.fs" />
+    <Compile Include="Lib\Address.fs" />
     <Compile Include="Lib\Password.fs" />
     <Compile Include="Lib\Email.fs" />
     <Compile Include="Lib\PostalCodeAndCity.fs" />
@@ -38,6 +39,7 @@
     <Compile Include="Lib\ValidateSwedishSSN.fs" />
     <Compile Include="Lib\Gender.fs" />
     <Compile Include="Lib\Birthdate.fs" />
+    <Compile Include="Cli\CmdLineArgumentParsing.fs" />
     <Compile Include="Cli\PrintCsv.fs" />
     <Compile Include="Cli\PrintToConsole.fs" />
     <Compile Include="Cli\ReadInputFiles.fs" />
