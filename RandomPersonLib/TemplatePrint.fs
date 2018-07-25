@@ -102,9 +102,21 @@ let getValueForRandomInt (randomString: string) =
     let max = splitString.[2] |> removeLastParenthesis |> cleanupValue |> int
     randomIntBetween min max
 
+let getValueForRandomIntWithStep (randomString: string) =
+    let splitString = randomString.Split(',')
+    let min  = splitString.[1] |> cleanupValue |> int
+    let step = splitString.[2] |> cleanupValue |> int
+    let max  = splitString.[3] |> removeLastParenthesis |> cleanupValue |> int
+    randomIntBetweenWithStep min step max
+
 let replaceRandomInt (remainingString: string) (randomIntPattern: string) (randomString: string) =
     let numberAsString = randomString |> getValueForRandomInt |> sprintf "%d"
     let regex = Regex randomIntPattern
+    regex.Replace(remainingString, numberAsString, 1)
+
+let replaceRandomIntWithStep (remainingString: string) (randomIntWithStepPattern: string) (randomString: string) =
+    let numberAsString = randomString |> getValueForRandomIntWithStep |> sprintf "%d"
+    let regex = Regex randomIntWithStepPattern
     regex.Replace(remainingString, numberAsString, 1)
 
 let getValueForRandomFloat (randomString: string) =
@@ -154,6 +166,9 @@ let parseSpecialReplaces (stringTodoReplaces: string) =
     let randomIntPattern = "#{Random\(\s?int\s?,\s?-?\d+\s?,\s?-?\d+\s?\)}"
     let randomIntRegex = Regex randomIntPattern
 
+    let randomIntWithStepSizePattern = "#{Random\(\s?int\s?,\s?-?\d+\s?,\s?-?\d+\s?,\s?-?\d+\s?\)}"
+    let randomIntWithStepSizeRegex = Regex randomIntWithStepSizePattern
+
     let randomFloatPattern = "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomFloatRegex = Regex randomFloatPattern
 
@@ -165,6 +180,7 @@ let parseSpecialReplaces (stringTodoReplaces: string) =
 
     let rec loop (remaining: string) =
         let modified = modifyString    randomIntRegex                 randomIntPattern                 replaceRandomInt               remaining
+                       |> modifyString randomIntWithStepSizeRegex     randomIntWithStepSizePattern     replaceRandomIntWithStep
                        |> modifyString randomFloatRegex               randomFloatPattern               replaceRandomFloat
                        |> modifyString randomFloatWithDecimalsNoRegex randomFloatWithDecimalsNoPattern replaceRandomFloatWithDecimals
                        |> modifyString randomSwitchRegex              randomSwitchPattern              replaceRandomSwitch

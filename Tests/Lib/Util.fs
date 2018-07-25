@@ -28,12 +28,25 @@ type ``randomIntBetween should`` () =
     [<TestMethod>]
     member __.``return an integer between 1 and 10, given 1 and 10`` () =
         let result = randomIntBetween 1 10
-        Assert.IsTrue(1 <= result && result < 10)
+        Assert.IsTrue(1 <= result && result <= 10)
 
     [<TestMethod>]
     member __.``return an integer between -100 and 10, given -100 and 10`` () =
         let result = randomIntBetween -100 10
-        Assert.IsTrue(-100 <= result && result < 10)
+        Assert.IsTrue(-100 <= result && result <= 10)
+
+[<TestClass>]
+type ``randomIntBetweenWithStep should`` () =
+
+    [<TestMethod>]
+    member __.``return an integer that is either 0, 5 or 10`` () =
+        let result = randomIntBetweenWithStep 0 5 10
+        Assert.IsTrue(result = 0 || result = 5 || result = 10)
+
+    [<TestMethod>]
+    member __.``return an integer that is either 0, 25, 50, 75 or 100`` () =
+        let result = randomIntBetweenWithStep 0 25 100
+        Assert.IsTrue(result = 0 || result = 25 || result = 50 || result = 75 || result = 100)
 
 [<TestClass>]
 type ``randomFloatBetween should`` () =

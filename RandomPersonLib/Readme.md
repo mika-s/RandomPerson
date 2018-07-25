@@ -190,14 +190,20 @@ could generate
 The following functions are also available:
 
 - `#{Random(int, min, max)}`
+- `#{Random(int, min, step, max)}`
 - `#{Random(float, min, max)}`
+- `#{Random(float, min, step, max)}`
 - `#{Random(float:X, min, max)}`
+- `#{Random(float:X, min, step, max)}`
 - `#{Random(switch, one, two, ...)}`
 
 For int and float:
 A random number is generated with the arguments as settings. type is either int
 or float. min is the minimum random value and max is the maximum random value.
-Lower bound is inclusive, upper bound is exclusive.
+Both lower and upper bounds are inclusive.
+
+The third parameter is step size if four parameters are given. E.g.
+`#{Random(int, 0, 2000, 10000)}` can generate 0, 2000, 4000, 6000, 8000 or 10000.
 
 For switch:
 One of the values in the list, after "switch", are chosen randomly. Use `\`, rather

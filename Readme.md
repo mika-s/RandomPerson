@@ -61,6 +61,9 @@ will generate
 `"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
 ("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678")`
 
+RandomPerson can also generate random integers and float between two given numbers, as well as random strings from a
+list.
+
 ### Options
 
 RandomPerson has options for:

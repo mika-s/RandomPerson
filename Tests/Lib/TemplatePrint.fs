@@ -18,8 +18,7 @@ type ``parseOrdinaryReplaces should`` () =
         Assert.AreEqual(expectedString, replaced)
 
     [<TestMethod>]
-    member __.``return a string with`` () =
-        // return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps
+    member __.``return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps`` () =
         let person = getTestPerson ()
         let replaced = parseOrdinaryReplaces "First name: #{FirstName.ToLower()}" person
 
@@ -77,6 +76,45 @@ type ``getValueForRandomInt should`` () =
         let randomNumber = getValueForRandomInt "Random(int,-20,-10)"
 
         Assert.IsTrue(-20 <= randomNumber && randomNumber < -10)
+
+[<TestClass>]
+type ``getValueForRandomIntWithStep should`` () =
+
+    [<TestMethod>]
+    member __.``return a random integer between 0 and 100, with step 25, when given Random(int, 0, 25, 100)`` () =
+        let randomNumber = getValueForRandomIntWithStep "Random(int, 0, 25, 100)"
+
+        Assert.IsTrue(randomNumber = 0 || randomNumber = 25 || randomNumber = 50 || randomNumber = 75 || randomNumber = 100)
+
+    [<TestMethod>]
+    member __.``return a random integer between 50 and 200, with step 50, when given Random(int,50,50,200)`` () =
+        let randomNumber = getValueForRandomIntWithStep "Random(int,50,50,200)"
+
+        Assert.IsTrue(randomNumber = 50 || randomNumber = 100 || randomNumber = 150 || randomNumber = 200)
+
+    [<TestMethod>]
+    member __.``return a random integer between -500 and 1000, with step 500, when given Random(int,-500,500,1000)`` () =
+        let randomNumber = getValueForRandomIntWithStep "Random(int,-500,500,1000)"
+
+        Assert.IsTrue(randomNumber = -500 || randomNumber = 0 || randomNumber = 500 || randomNumber = 1000)
+
+    [<TestMethod>]
+    member __.``return a random integer between -20 and -10, with step 10, when given Random(int,-20,10,-10)`` () =
+        let randomNumber = getValueForRandomIntWithStep "Random(int,-20,10,-10)"
+
+        Assert.IsTrue(randomNumber = -20 || randomNumber = -10)
+
+    [<TestMethod>]
+    member __.``return a random integer between 0 and 100, with step 45, when given Random(int,0,45, 100)`` () =
+        let randomNumber = getValueForRandomIntWithStep "Random(int,0,45, 100)"
+
+        Assert.IsTrue(randomNumber = 0 || randomNumber = 45 || randomNumber = 90)
+
+    [<TestMethod>]
+    member __.``return a random integer between 20 and 100, with step 45, when given Random(int, 20,45, 100)`` () =
+        let randomNumber = getValueForRandomIntWithStep "Random(int, 20,45, 100)"
+
+        Assert.IsTrue(randomNumber = 20 || randomNumber = 65)
 
 [<TestClass>]
 type ``getValueForRandomFloat should`` () =
@@ -160,7 +198,7 @@ type ``replaceRandomInt should`` () =
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Age: ", firstPart)
-        Assert.IsTrue(10 <= randomPart && randomPart < 100)
+        Assert.IsTrue(10 <= randomPart && randomPart <= 100)
 
     [<TestMethod>]
     member __.``return find and replace #{Random(int,-10,0)} in a string with a random integer`` () =
@@ -173,7 +211,38 @@ type ``replaceRandomInt should`` () =
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("DLA: ", firstPart)
-        Assert.IsTrue(-10 <= randomPart && randomPart < 0)
+        Assert.IsTrue(-10 <= randomPart && randomPart <= 0)
+
+[<TestClass>]
+type ``replaceRandomIntWithStep should`` () =
+
+    let randomIntWithStepPattern = "#{Random\(\s?int\s?,\s?-?\d+\s?,\s?-?\d+\s?,\s?-?\d+\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(int, 10, 100)} in a string with a random integer`` () =
+        let remaining = "Age: #{Random(int, 10, 20, 100)}, fortune: Random(float, 1000.0, 100000.0)"
+        let randomString = "Random(int, 10, 20, 100)"
+
+        let returnString = replaceRandomIntWithStep remaining randomIntWithStepPattern randomString
+
+        let firstPart = returnString.Substring(0, 5)
+        let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Age: ", firstPart)
+        Assert.IsTrue(randomPart = 10 || randomPart = 30 || randomPart = 50 || randomPart = 70 || randomPart = 90)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(int,-10,5,0)} in a string with a random integer`` () =
+        let remaining = "DLA: #{Random(int,-10,5,0)}, fortune: Random(float, 1000.0, 100000.0)"
+        let randomString = "Random(int,-10,5,0)"
+
+        let returnString = replaceRandomIntWithStep remaining randomIntWithStepPattern randomString
+
+        let firstPart = returnString.Substring(0, 5)
+        let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("DLA: ", firstPart)
+        Assert.IsTrue(randomPart = -10 || randomPart = -5 || randomPart = 0)
 
 [<TestClass>]
 type ``replaceRandomFloat should`` () =
