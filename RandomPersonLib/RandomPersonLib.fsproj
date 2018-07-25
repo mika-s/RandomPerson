@@ -98,7 +98,9 @@
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />
     <Compile Include="Validate.fs" />
-    <Compile Include="TemplatePrint.fs" />
+    <Compile Include="Templateprint\OrdinaryReplaces.fs" />
+    <Compile Include="Templateprint\SpecialReplaces.fs" />
+    <Compile Include="Templateprint\TemplatePrint.fs" />
     <Compile Include="RandomPersonLib.fs" />
     <None Include="Readme.md">
       <Link>ReadmeLib.md</Link>

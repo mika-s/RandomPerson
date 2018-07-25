@@ -56,6 +56,54 @@ type ``generateSSN should`` () =
         Assert.IsTrue(isEven checksum)
 
     [<TestMethod>]
+    member __.``return a correct SSN for Icelandic male`` () =
+        let nationality = Nationality.Icelandic
+        let birthdate = DateTime(1945, 10, 28)
+        let gender = Gender.Male
+        let random = getRandom false 100
+        let ssn = generateSSN random nationality birthdate gender false false
+
+        let d = ssn.Substring(0, 2)
+        let m = ssn.Substring(2, 2)
+        let y = ssn.Substring(4, 2)
+        let individualNumber = Convert.ToInt32(ssn.Substring(IcelandicSSNParameters.IndividualNumberStart,
+                                                             IcelandicSSNParameters.IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(IcelandicSSNParameters.ChecksumStart, IcelandicSSNParameters.ChecksumLength))
+        let centurySign = ssn.Substring(IcelandicSSNParameters.CenturySignStart, IcelandicSSNParameters.CenturySignLength)
+
+        Assert.AreEqual(IcelandicSSNParameters.SsnLength, ssn.Length)
+        Assert.AreEqual("28", d)
+        Assert.AreEqual("10", m)
+        Assert.AreEqual("45", y)
+        Assert.IsTrue(20 <= individualNumber && individualNumber < 100)
+        Assert.IsTrue(0 <= checksum && checksum <= 9)
+        Assert.AreEqual("9", centurySign)
+
+    [<TestMethod>]
+    member __.``return a correct SSN for Icelandic female`` () =
+        let nationality = Nationality.Icelandic
+        let birthdate = DateTime(1912, 1, 2)
+        let gender = Gender.Female
+        let random = getRandom false 100
+        let ssn = generateSSN random nationality birthdate gender false false
+
+        let d = ssn.Substring(0, 2)
+        let m = ssn.Substring(2, 2)
+        let y = ssn.Substring(4, 2)
+        let individualNumber = Convert.ToInt32(ssn.Substring(IcelandicSSNParameters.IndividualNumberStart,
+                                                             IcelandicSSNParameters.IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(IcelandicSSNParameters.ChecksumStart, IcelandicSSNParameters.ChecksumLength))
+        let centurySign = ssn.Substring(IcelandicSSNParameters.CenturySignStart, IcelandicSSNParameters.CenturySignLength)
+
+        Assert.AreEqual(IcelandicSSNParameters.SsnLength, ssn.Length)
+        Assert.AreEqual("02", d)
+        Assert.AreEqual("01", m)
+        Assert.AreEqual("12", y)
+        Assert.IsTrue(20 <= individualNumber && individualNumber < 100)
+        Assert.IsTrue(0 <= checksum && checksum <= 9)
+        Assert.AreEqual("9", centurySign)
+
+    [<TestMethod>]
     member __.``return a correct SSN for Norwegian male`` () =
         let nationality = Nationality.Norwegian
         let birthdate = DateTime(1954, 3, 21)

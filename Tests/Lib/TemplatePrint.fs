@@ -2,7 +2,8 @@
 
 open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
-open TemplatePrint
+open OrdinaryReplaces
+open SpecialReplaces
 open TestData
 
 [<TestClass>]
