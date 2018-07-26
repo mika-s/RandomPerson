@@ -2,9 +2,13 @@
 
 open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
+open RandomPersonLib
+open CommonTemplatePrint
+open SpecialGenderReplaces
 open OrdinaryReplaces
-open SpecialReplaces
+open RandomReplaces
 open TestData
+
 
 [<TestClass>]
 type ``parseOrdinaryReplaces should`` () =
@@ -12,7 +16,7 @@ type ``parseOrdinaryReplaces should`` () =
     [<TestMethod>]
     member __.``return a string with #{SSN} replaced by SSN`` () =
         let person = getTestPerson ()
-        let replaced = parseOrdinaryReplaces "SSN: #{SSN}" person
+        let replaced = performOrdinaryReplaces person "SSN: #{SSN}"
 
         let expectedString = sprintf "SSN: %s" person.SSN
 
@@ -21,7 +25,7 @@ type ``parseOrdinaryReplaces should`` () =
     [<TestMethod>]
     member __.``return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps`` () =
         let person = getTestPerson ()
-        let replaced = parseOrdinaryReplaces "First name: #{FirstName.ToLower()}" person
+        let replaced = performOrdinaryReplaces person "First name: #{FirstName.ToLower()}"
 
         let expectedString = sprintf "First name: %s" (person.FirstName.ToLower())
 
@@ -30,7 +34,7 @@ type ``parseOrdinaryReplaces should`` () =
     [<TestMethod>]
     member __.``return a string with #{LastName.ToUpper()} replaced by the FirstName in all upper caps`` () =
         let person = getTestPerson ()
-        let replaced = parseOrdinaryReplaces "Last name: #{LastName.ToUpper()}" person
+        let replaced = performOrdinaryReplaces person "Last name: #{LastName.ToUpper()}"
 
         let expectedString = sprintf "Last name: %s" (person.LastName.ToUpper())
 
@@ -58,25 +62,25 @@ type ``getValueForRandomInt should`` () =
     member __.``return a random integer between 0 and 100 when given Random(int, 0, 100)`` () =
         let randomNumber = getValueForRandomInt "Random(int, 0, 100)"
 
-        Assert.IsTrue(0 <= randomNumber && randomNumber < 100)
+        Assert.IsTrue(0 <= randomNumber && randomNumber <= 100)
 
     [<TestMethod>]
     member __.``return a random integer between 50 and 200 when given Random(int,50,200)`` () =
         let randomNumber = getValueForRandomInt "Random(int,50,200)"
 
-        Assert.IsTrue(50 <= randomNumber && randomNumber < 200)
+        Assert.IsTrue(50 <= randomNumber && randomNumber <= 200)
 
     [<TestMethod>]
     member __.``return a random integer between -100 and 1000 when given Random(int,-100,1000)`` () =
         let randomNumber = getValueForRandomInt "Random(int,-100,1000)"
 
-        Assert.IsTrue(-100 <= randomNumber && randomNumber < 1000)
+        Assert.IsTrue(-100 <= randomNumber && randomNumber <= 1000)
 
     [<TestMethod>]
     member __.``return a random integer between -20 and -10 when given Random(int,-20,-10)`` () =
         let randomNumber = getValueForRandomInt "Random(int,-20,-10)"
 
-        Assert.IsTrue(-20 <= randomNumber && randomNumber < -10)
+        Assert.IsTrue(-20 <= randomNumber && randomNumber <= -10)
 
 [<TestClass>]
 type ``getValueForRandomIntWithStep should`` () =
@@ -182,6 +186,23 @@ type ``getNumbersAfterDecimal should`` () =
         let numberOfDecimals = getNumbersAfterDecimal "Random(float:2,-10,-9)"
 
         Assert.AreEqual(2, numberOfDecimals)
+
+[<TestClass>]
+type ``getValueForGender should`` () =
+
+    [<TestMethod>]
+    member __.``return mann or kvinne when given Gender(mann,kvinne)`` () =
+        let genders = getValuesForGender "Gender(mann,kvinne)"
+
+        Assert.AreEqual("mann",   genders.[0])
+        Assert.AreEqual("kvinne", genders.[1])
+
+    [<TestMethod>]
+    member __.``return 3 when given Gender(Herr, Frau)`` () =
+        let genders = getValuesForGender "Gender(Herr, Frau)"
+
+        Assert.AreEqual("Herr", genders.[0])
+        Assert.AreEqual("Frau", genders.[1])
 
 [<TestClass>]
 type ``replaceRandomInt should`` () =
@@ -392,4 +413,35 @@ type ``replaceRandomSwitch should`` () =
 
         Assert.AreEqual("Married: ", firstPart)
         Assert.IsTrue(randomPart = "'one'" || randomPart = "'two'")
+
+[<TestClass>]
+type ``replaceGender should`` () =
+
+    let genderPattern = "#{Gender\(\s?\w+\s?,\s?\w+\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(float, 1000, 100000)} in a string with a random float`` () =
+        let remaining = "Gender: #{Gender(mann,kvinne)}, married: Random(switch,true,false)"
+        let randomString = "Gender(mann,kvinne)"
+
+        let returnString = replaceGender remaining genderPattern randomString Gender.Male
+
+        let firstPart = returnString.Substring(0, 8)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Gender: ", firstPart)
+        Assert.AreEqual("mann", randomPart)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(float,-1000, 0)} in a string with a random float`` () =
+        let remaining = "Income: #{Gender(man, woman)}, married: Random(switch,true,false)"
+        let randomString = "Gender(man, woman)"
+
+        let returnString = replaceGender remaining genderPattern randomString Gender.Female
+
+        let firstPart = returnString.Substring(0, 8)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Income: ", firstPart)
+        Assert.AreEqual("woman", randomPart)
         

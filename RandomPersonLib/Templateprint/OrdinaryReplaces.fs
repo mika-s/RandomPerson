@@ -3,7 +3,7 @@
 open System
 open RandomPersonLib
 
-let parseOrdinaryReplaces (originalOutput: string) (person: Person) =
+let performOrdinaryReplaces (person: Person) (originalOutput: string) =
     let mapping = 
         [
             "SSN", box person.SSN;

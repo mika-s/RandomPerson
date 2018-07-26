@@ -1,36 +1,11 @@
-﻿module SpecialReplaces
+﻿module RandomReplaces
 
 open System
 open System.Text.RegularExpressions
+open CommonTemplatePrint
 open Util
 
 let random = Random()
-
-let cleanupValue (input: string) = input.Trim()
-
-let rec removeLastParenthesis (input: string) = 
-    let lastIdx = input.Length - 1
-    
-    let maybeCleaned = match input.[lastIdx] with
-                       | '}' | ')' -> input.Remove(lastIdx)
-                       | _         -> input
-    
-    let newLastIdx = maybeCleaned.Length - 1
-    let lastCharacter = maybeCleaned.[newLastIdx]
-    
-    if (lastCharacter <> ')' && lastCharacter <> '}') then
-        maybeCleaned
-    else
-        removeLastParenthesis (maybeCleaned)
-
-let removeLastParenthesisFromArray (input: string[]) =
-    let lastElemIdx = input.Length - 1
-    let lastString = input.[lastElemIdx]
-    
-    let newArrayPart1 = input.[.. input.Length - 2]
-    let newArrayPart2 = removeLastParenthesis (lastString) |> Array.create 1
-    
-    Array.concat [ newArrayPart1; newArrayPart2 ]
 
 let getValueForRandomInt (randomString: string) =
     let splitString = randomString.Split(',')
@@ -38,17 +13,17 @@ let getValueForRandomInt (randomString: string) =
     let max = splitString.[2] |> removeLastParenthesis |> cleanupValue |> int
     randomIntBetween min max
 
+let replaceRandomInt (remainingString: string) (randomIntPattern: string) (randomString: string) =
+    let numberAsString = randomString |> getValueForRandomInt |> sprintf "%d"
+    let regex = Regex randomIntPattern
+    regex.Replace(remainingString, numberAsString, 1)
+
 let getValueForRandomIntWithStep (randomString: string) =
     let splitString = randomString.Split(',')
     let min  = splitString.[1] |> cleanupValue |> int
     let step = splitString.[2] |> cleanupValue |> int
     let max  = splitString.[3] |> removeLastParenthesis |> cleanupValue |> int
     randomIntBetweenWithStep min step max
-
-let replaceRandomInt (remainingString: string) (randomIntPattern: string) (randomString: string) =
-    let numberAsString = randomString |> getValueForRandomInt |> sprintf "%d"
-    let regex = Regex randomIntPattern
-    regex.Replace(remainingString, numberAsString, 1)
 
 let replaceRandomIntWithStep (remainingString: string) (randomIntWithStepPattern: string) (randomString: string) =
     let numberAsString = randomString |> getValueForRandomIntWithStep |> sprintf "%d"
@@ -98,7 +73,7 @@ let modifyString (regex: Regex) (pattern: string) (replaceFunc: string -> string
     | true  -> replaceFunc remaining pattern matching.Value
     | false -> remaining
 
-let parseSpecialReplaces (stringTodoReplaces: string) =
+let performRandomReplaces (stringToDoReplaces: string) =
     let randomIntPattern = "#{Random\(\s?int\s?,\s?-?\d+\s?,\s?-?\d+\s?\)}"
     let randomIntRegex = Regex randomIntPattern
 
@@ -121,9 +96,14 @@ let parseSpecialReplaces (stringTodoReplaces: string) =
                        |> modifyString randomFloatWithDecimalsNoRegex randomFloatWithDecimalsNoPattern replaceRandomFloatWithDecimals
                        |> modifyString randomSwitchRegex              randomSwitchPattern              replaceRandomSwitch
 
-        if (randomIntRegex.Match modified).Success || (randomFloatRegex.Match modified).Success then
-            loop modified
-        else
-            modified
+        let isMoreRemaining = (randomIntRegex.Match                 modified).Success 
+                           || (randomIntWithStepSizeRegex.Match     modified).Success
+                           || (randomFloatRegex.Match               modified).Success
+                           || (randomFloatWithDecimalsNoRegex.Match modified).Success
+                           || (randomSwitchRegex.Match              modified).Success
 
-    loop stringTodoReplaces
+        match isMoreRemaining with
+        | true  -> loop modified
+        | false -> modified
+            
+    loop stringToDoReplaces
