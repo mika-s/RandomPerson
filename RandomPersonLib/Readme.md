@@ -177,6 +177,12 @@ You can change the gender values if you don't want them to be "Male" or "Female"
 
 The male string is the first argument to `Format` and the female string is the second argument.
 
+You can also change the birthdate values to a given date format:
+
+- #{BirthDate(ddMMyy)}
+
+The datetime formats are the same as in the official Microsoft [documentation](https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings).
+
 *Example 1:*
 
 `outputString = "First name: #{FirstName}\nLast name: #{LastName}"`

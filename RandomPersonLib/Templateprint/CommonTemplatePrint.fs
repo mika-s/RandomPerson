@@ -12,16 +12,15 @@ let rec removeLastParenthesis (input: string) =
     let newLastIdx = maybeCleaned.Length - 1
     let lastCharacter = maybeCleaned.[newLastIdx]
     
-    if (lastCharacter <> ')' && lastCharacter <> '}') then
-        maybeCleaned
-    else
-        removeLastParenthesis (maybeCleaned)
+    match (lastCharacter <> ')' && lastCharacter <> '}') with
+    | true  -> maybeCleaned
+    | false -> removeLastParenthesis maybeCleaned
 
 let removeLastParenthesisFromArray (input: string[]) =
     let lastElemIdx = input.Length - 1
-    let lastString = input.[lastElemIdx]
+    let lastString  = input.[lastElemIdx]
     
-    let newArrayPart1 = input.[.. input.Length - 2]
-    let newArrayPart2 = removeLastParenthesis (lastString) |> Array.create 1
+    let newArrayPart1 = input.[.. lastElemIdx - 1]
+    let newArrayPart2 = lastString |> removeLastParenthesis |> Array.create 1
     
     Array.concat [ newArrayPart1; newArrayPart2 ]

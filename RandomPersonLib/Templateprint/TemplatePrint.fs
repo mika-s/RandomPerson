@@ -2,6 +2,7 @@
 
 open OrdinaryReplaces
 open SpecialGenderReplaces
+open SpecialBirthDateReplaces
 open RandomReplaces
 open RandomPersonLib
 
@@ -10,3 +11,4 @@ let printForTemplateMode (originalOutput: string) (person: Person) =
     |> performOrdinaryReplaces person
     |> performRandomReplaces
     |> performSpecialGenderReplaces person.Gender
+    |> performSpecialBirthDateReplaces person.BirthDate

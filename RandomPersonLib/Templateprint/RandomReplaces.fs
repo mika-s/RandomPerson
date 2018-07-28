@@ -90,7 +90,8 @@ let performRandomReplaces (stringToDoReplaces: string) =
     let randomSwitchRegex = Regex randomSwitchPattern
 
     let rec loop (remaining: string) =
-        let modified = modifyString    randomIntRegex                 randomIntPattern                 replaceRandomInt               remaining
+        let modified = remaining
+                       |> modifyString randomIntRegex                 randomIntPattern                 replaceRandomInt               
                        |> modifyString randomIntWithStepSizeRegex     randomIntWithStepSizePattern     replaceRandomIntWithStep
                        |> modifyString randomFloatRegex               randomFloatPattern               replaceRandomFloat
                        |> modifyString randomFloatWithDecimalsNoRegex randomFloatWithDecimalsNoPattern replaceRandomFloatWithDecimals

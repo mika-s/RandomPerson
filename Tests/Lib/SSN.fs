@@ -5,6 +5,7 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
 open SSN
+open System.Text.RegularExpressions
 
 [<TestClass>]
 type ``generateSSN should`` () =
@@ -54,6 +55,60 @@ type ``generateSSN should`` () =
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 499 || 900 <= individualNumber && individualNumber <= 999)
         Assert.IsTrue(0 <= checksum && checksum <= 9)
         Assert.IsTrue(isEven checksum)
+
+    [<TestMethod>]
+    member __.``return a correct SSN for Finnish male`` () =
+        let nationality = Nationality.Finnish
+        let birthdate = DateTime(1925, 8, 7)
+        let gender = Gender.Male
+        let random = getRandom false 100
+        let ssn = generateSSN random nationality birthdate gender false false
+
+        let d = ssn.Substring(0, 2)
+        let m = ssn.Substring(2, 2)
+        let y = ssn.Substring(4, 2)
+        let centurySign = ssn.Substring(FinnishSSNParameters.CenturySignStart, FinnishSSNParameters.CenturySignLength)
+        let individualNumber = Convert.ToInt32(ssn.Substring(FinnishSSNParameters.IndividualNumberStart,
+                                                             FinnishSSNParameters.IndividualNumberLength))
+        let checksum = ssn.Substring(FinnishSSNParameters.ChecksumStart, FinnishSSNParameters.ChecksumLength)
+        let checksumPattern = "^(\d|[A-Y])$"
+        let checksumRegex = Regex checksumPattern
+
+        Assert.AreEqual(FinnishSSNParameters.SsnLength, ssn.Length)
+        Assert.AreEqual("07", d)
+        Assert.AreEqual("08", m)
+        Assert.AreEqual("25", y)
+        Assert.AreEqual("-", centurySign)
+        Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
+        Assert.IsTrue((checksumRegex.Match checksum).Success)
+        Assert.IsTrue(isOdd individualNumber)
+
+    [<TestMethod>]
+    member __.``return a correct SSN for Finnish female`` () =
+        let nationality = Nationality.Finnish
+        let birthdate = DateTime(1977, 2, 15)
+        let gender = Gender.Female
+        let random = getRandom false 100
+        let ssn = generateSSN random nationality birthdate gender false false
+
+        let d = ssn.Substring(0, 2)
+        let m = ssn.Substring(2, 2)
+        let y = ssn.Substring(4, 2)
+        let centurySign = ssn.Substring(FinnishSSNParameters.CenturySignStart, FinnishSSNParameters.CenturySignLength)
+        let individualNumber = Convert.ToInt32(ssn.Substring(FinnishSSNParameters.IndividualNumberStart,
+                                                             FinnishSSNParameters.IndividualNumberLength))
+        let checksum = ssn.Substring(FinnishSSNParameters.ChecksumStart, FinnishSSNParameters.ChecksumLength)
+        let checksumPattern = "^(\d|[A-Y])$"
+        let checksumRegex = Regex checksumPattern
+
+        Assert.AreEqual(FinnishSSNParameters.SsnLength, ssn.Length)
+        Assert.AreEqual("15", d)
+        Assert.AreEqual("02", m)
+        Assert.AreEqual("77", y)
+        Assert.AreEqual("-", centurySign)
+        Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
+        Assert.IsTrue((checksumRegex.Match checksum).Success)
+        Assert.IsTrue(isEven individualNumber)
 
     [<TestMethod>]
     member __.``return a correct SSN for Icelandic male`` () =

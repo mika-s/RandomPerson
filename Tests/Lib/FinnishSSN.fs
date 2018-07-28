@@ -150,7 +150,7 @@ type ``generateFinnishSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let centurySign = ssn.[6]
+        let centurySign = ssn.[CenturySignStart]
         let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
