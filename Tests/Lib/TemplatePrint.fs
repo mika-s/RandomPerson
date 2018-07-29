@@ -9,6 +9,7 @@ open SpecialBirthDateReplaces
 open OrdinaryReplaces
 open RandomReplaces
 open TestData
+open System.Text.RegularExpressions
 
 
 [<TestClass>]
@@ -204,21 +205,6 @@ type ``getValueForGender should`` () =
 
         Assert.AreEqual("Herr", genders.[0])
         Assert.AreEqual("Frau", genders.[1])
-
-[<TestClass>]
-type ``getValueForBirthDate should`` () =
-
-    [<TestMethod>]
-    member __.``return "ddMMyy" when given BirthDate(ddMMyy)`` () =
-        let birthDateFormat = getValueForBirthDate "BirthDate(ddMMyy)"
-
-        Assert.AreEqual("ddMMyy", birthDateFormat)
-
-    [<TestMethod>]
-    member __.``return "MMMM dd, yyyy" when given BirthDate(MMMM dd, yyyy)`` () =
-        let birthDateFormat = getValueForBirthDate "BirthDate(MMMM dd, yyyy)"
-
-        Assert.AreEqual("MMMM dd, yyyy", birthDateFormat)
 
 [<TestClass>]
 type ``replaceRandomInt should`` () =
@@ -460,19 +446,35 @@ type ``replaceGender should`` () =
 
         Assert.AreEqual("Gender: ", firstPart)
         Assert.AreEqual("woman", genderPart)
-        
+   
 [<TestClass>]
-type ``replaceBirthDate should`` () =
+type ``modifyWithoutCulture should`` () =
 
-    let birthDatePattern = "#{BirthDate\(\s?[dfFghHKmMstyz ,\/-]+\s?\)}"
+    let birthDateRegex = Regex "#{BirthDate\(\s?([dfFghHKmMstyz ,\/-]+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``replace the birthdate in a string with #{BirthDate(ddMMyy)}`` () =
+        let birthDate = DateTime(1977, 5, 17)
+        let replacedBirthDate = modifyWithoutCulture birthDateRegex birthDate "#{BirthDate(ddMMyy)}"
+
+        Assert.AreEqual("170577", replacedBirthDate)
+
+    [<TestMethod>]
+    member __.``replace the birthdate in a string with #{BirthDate(yyyy-MM-dd)}`` () =
+        let birthDate = DateTime(1965, 3, 21)
+        let replacedBirthDate = modifyWithoutCulture birthDateRegex birthDate "#{BirthDate(yyyy-MM-dd)}"
+
+        Assert.AreEqual("1965-03-21", replacedBirthDate)   
+
+[<TestClass>]
+type ``performSpecialBirthDateReplaces should`` () =
 
     [<TestMethod>]
     member __.``return find and replace #{BirthDate(ddMMyy)} in a string with the birthdate on ddMMyy format`` () =
-        let remaining = "Birthdate: #{BirthDate(ddMMyy)}, married: Random(switch,true,false)"
-        let birthDateString = "BirthDate(ddMMyy)"
+        let stringToDoReplaces = "Birthdate: #{BirthDate(ddMMyy)}, married: Random(switch,true,false)"
 
         let birthDate = DateTime(1997, 03, 11)
-        let returnString = replaceBirthDate remaining birthDatePattern birthDateString birthDate
+        let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
         let firstPart = returnString.Substring(0, 11)
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
@@ -482,11 +484,10 @@ type ``replaceBirthDate should`` () =
 
     [<TestMethod>]
     member __.``return find and replace #{BirthDate(MMMM dd yyyy)} in a string with the birthdate on MMMM dd yyyy format`` () =
-        let remaining = "Birthdate: #{BirthDate(MMMM dd yyyy)}, married: Random(switch,true,false)"
-        let birthDateString = "BirthDate(MMMM dd yyyy)"
+        let stringToDoReplaces = "Birthdate: #{BirthDate(MMMM dd yyyy)}, married: Random(switch,true,false)"
 
         let birthDate = DateTime(1987, 12, 01)
-        let returnString = replaceBirthDate remaining birthDatePattern birthDateString birthDate
+        let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
         let firstPart = returnString.Substring(0, 11)
         let birthDatePart = returnString.Split(',').[0].Split(':').[1].Trim()
@@ -496,11 +497,10 @@ type ``replaceBirthDate should`` () =
 
     [<TestMethod>]
     member __.``return find and replace #{BirthDate(MM-dd-yy)} in a string with the birthdate on MM-dd-yy format`` () =
-        let remaining = "Birthdate: #{BirthDate(MM-dd-yy)}, married: Random(switch,true,false)"
-        let birthDateString = "BirthDate(MM-dd-yy)"
+        let stringToDoReplaces = "Birthdate: #{BirthDate(MM-dd-yy)}, married: Random(switch,true,false)"
 
         let birthDate = DateTime(1952, 07, 23)
-        let returnString = replaceBirthDate remaining birthDatePattern birthDateString birthDate
+        let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
         let firstPart = returnString.Substring(0, 11)
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]

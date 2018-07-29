@@ -180,8 +180,12 @@ The male string is the first argument to `Format` and the female string is the s
 You can also change the birthdate values to a given date format:
 
 - #{BirthDate(ddMMyy)}
+- #{BirthDate(MMMM dd, da-DK)}
 
 The datetime formats are the same as in the official Microsoft [documentation](https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings).
+The culture info can be passed as an optional second parameter. The current culture is
+used if a culture is not provided. The culture info has to be in exactly the same format
+as in the documentation linked to above.
 
 *Example 1:*
 

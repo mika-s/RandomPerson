@@ -2,30 +2,39 @@
 
 open System
 open System.Text.RegularExpressions
-open CommonTemplatePrint
+open System.Globalization
 
-let getValueForBirthDate (birthDateString: string) =
-    birthDateString.Split('(').[1]
-    |> removeLastParenthesis
-    |> cleanupValue
+let modifyWithoutCulture (regex: Regex) (birthDate: DateTime) (remaining: string) =
+    let matching = regex.Match remaining
 
-let replaceBirthDate (remainingString: string) (birthDatePattern: string) (birthDateString: string) (birthDate: DateTime) =
-    let datetimeFormatInString = getValueForBirthDate birthDateString
-    let regex = Regex birthDatePattern
-    regex.Replace(remainingString, birthDate.ToString(datetimeFormatInString), 1)
+    let birthDateFormat = matching.Groups.[1].Value
+
+    match matching.Success with
+    | true  -> regex.Replace(remaining, birthDate.ToString(birthDateFormat), 1)
+    | false -> remaining
+
+let modifyWithCulture (regex: Regex) (birthDate: DateTime) (remaining: string) =
+    let matching = regex.Match remaining
+
+    let birthDateFormat = matching.Groups.[1].Value
+    let culture = matching.Groups.[2].Value
+
+    match matching.Success with
+    | true  -> regex.Replace(remaining, birthDate.ToString(birthDateFormat, CultureInfo.CreateSpecificCulture(culture)), 1)
+    | false -> remaining
 
 let performSpecialBirthDateReplaces (birthDate: DateTime) (stringToDoReplaces: string) =
-    let birthDatePattern = "#{BirthDate\(\s?[dfFghHKmMstyz ,\/-]+\s?\)}"
-    let birthDateRegex = Regex birthDatePattern
+    let birthDateRegex            = Regex "#{BirthDate\(\s?([dfFghHKmMstyz ,\/-]+)\s?\)}"
+    let birthDateWithCultureRegex = Regex "#{BirthDate\(\s?([dfFghHKmMstyz ,\/-]+)\s?,\s?([a-zA-Z-]+)\s?\)}"
 
     let rec loop (remaining: string) =
-        let matching = birthDateRegex.Match remaining
 
-        let modified = match matching.Success with
-                       | true  -> replaceBirthDate remaining birthDatePattern matching.Value birthDate
-                       | false -> remaining
+        let modified = remaining
+                       |> modifyWithoutCulture birthDateRegex birthDate
+                       |> modifyWithCulture    birthDateWithCultureRegex birthDate
 
         let isMoreRemaining = (birthDateRegex.Match modified).Success
+                           || (birthDateWithCultureRegex.Match modified).Success
         match isMoreRemaining with
         | true  -> loop modified
         | false -> modified

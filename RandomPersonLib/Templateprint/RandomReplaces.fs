@@ -55,7 +55,8 @@ let getValueForRandomSwitch (randomString: string) =
     let replaceEscapedComma = randomString.Replace("\,", specialSplitReplaceComma)
     let splitString = replaceEscapedComma.Split(',') |> Array.map(fun x -> x.Replace(specialSplitReplaceComma, ","))
 
-    let cleanValues = removeLastParenthesisFromArray splitString
+    let cleanValues = splitString
+                      |> removeLastParenthesisFromArray 
                       |> Array.skip(1)
                       |> Array.map(cleanupValue)
     
