@@ -30,25 +30,31 @@ let replaceRandomIntWithStep (regex: Regex) (remaining: string) =
         regex.Replace(remaining, randomValue.ToString(), 1)
     | false -> remaining
 
-let getValueForRandomFloat (randomString: string) =
-    let splitString = randomString.Split(',')
-    let min = splitString.[1] |> cleanupValue |> float
-    let max = splitString.[2] |> removeLastParenthesis |> cleanupValue |> float
-    randomFloatBetween min max
+let replaceRandomFloat (regex: Regex) (remaining: string) =
+    let matching = regex.Match remaining
 
-let replaceRandomFloat (remainingString: string) (randomFloatPattern: string) (randomString: string) =
-    let numberAsString = randomString |> getValueForRandomFloat |> sprintf "%.3f" 
-    let regex = Regex randomFloatPattern
-    regex.Replace(remainingString, numberAsString, 1)
+    match matching.Success with
+    | true  ->
+        let min = float matching.Groups.[1].Value
+        let max = float matching.Groups.[2].Value
+        let randomValue = randomFloatBetween min max
+        regex.Replace(remaining, randomValue.ToString(), 1)
+    | false -> remaining
 
-let getNumbersAfterDecimal (randomString: string) =
-    randomString.Split(',').[0].Split('(').[1].Split(':').[1] |> cleanupValue |> int
+let replaceRandomFloatWithDecimals (regex: Regex) (remaining: string) =
+    let matching = regex.Match remaining
 
-let replaceRandomFloatWithDecimals (remainingString: string) (randomFloatPattern: string) (randomString: string) =
-    let printfFormat = randomString |> getNumbersAfterDecimal |> sprintf "%%.%df" |> Printf.StringFormat<float->string>
-    let numberAsString = randomString |> getValueForRandomFloat |> sprintf printfFormat
-    let regex = Regex randomFloatPattern
-    regex.Replace(remainingString, numberAsString, 1)
+    match matching.Success with
+    | true  ->
+        let decimals = int   matching.Groups.[1].Value
+        let min      = float matching.Groups.[2].Value
+        let max      = float matching.Groups.[3].Value
+        
+        let printfFormat = decimals |> sprintf "%%.%df" |> Printf.StringFormat<float->string>
+        let numberAsString = randomFloatBetween min max |> sprintf printfFormat
+
+        regex.Replace(remaining, numberAsString, 1)
+    | false -> remaining
 
 let getValueForRandomSwitch (randomString: string) =
     let specialSplitReplaceComma = "0x¤@$§|1"
@@ -75,24 +81,20 @@ let modifyString (regex: Regex) (pattern: string) (replaceFunc: string -> string
     | false -> remaining
 
 let performRandomReplaces (stringToDoReplaces: string) =
-    let randomIntRegex             = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
-    let randomIntWithStepSizeRegex = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
-
-    let randomFloatPattern = "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
-    let randomFloatRegex = Regex randomFloatPattern
-
-    let randomFloatWithDecimalsNoPattern = "#{Random\(\s?float:\d+\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
-    let randomFloatWithDecimalsNoRegex = Regex randomFloatWithDecimalsNoPattern
+    let randomIntRegex                 = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+    let randomIntWithStepSizeRegex     = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+    let randomFloatRegex               = Regex "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
+    let randomFloatWithDecimalsNoRegex = Regex "#{Random\(\s?float:(\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
 
     let randomSwitchPattern = "#{Random\(\s?switch\s?,(\s?['\w\,\\\/]+\s?,)+\s?['\w\,\\\/]+\s?\)}"
     let randomSwitchRegex = Regex randomSwitchPattern
 
     let rec loop (remaining: string) =
         let modified = remaining
-                       |> replaceRandomInt          randomIntRegex
-                       |> replaceRandomIntWithStep  randomIntWithStepSizeRegex
-                       |> modifyString randomFloatRegex               randomFloatPattern               replaceRandomFloat
-                       |> modifyString randomFloatWithDecimalsNoRegex randomFloatWithDecimalsNoPattern replaceRandomFloatWithDecimals
+                       |> replaceRandomInt                randomIntRegex
+                       |> replaceRandomIntWithStep        randomIntWithStepSizeRegex
+                       |> replaceRandomFloat              randomFloatRegex
+                       |> replaceRandomFloatWithDecimals  randomFloatWithDecimalsNoRegex
                        |> modifyString randomSwitchRegex              randomSwitchPattern              replaceRandomSwitch
 
         let isMoreRemaining = (randomIntRegex.Match                 modified).Success 

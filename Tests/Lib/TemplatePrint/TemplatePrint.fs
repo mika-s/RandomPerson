@@ -1,6 +1,5 @@
 ﻿namespace Tests
 
-open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open CommonTemplatePrint
 open OrdinaryReplaces
@@ -51,103 +50,6 @@ type ``cleanupNumber should`` () =
         let clean = cleanupValue "123 "
 
         Assert.AreEqual("123", clean)
-
-[<TestClass>]
-type ``getValueForRandomFloat should`` () =
-
-    [<TestMethod>]
-    member __.``return a random float between 0,0 and 100,0 when given Random(float, 0, 100)`` () =
-        let randomNumber = getValueForRandomFloat "Random(float, 0, 100)"
-
-        Assert.IsTrue(0.0 <= randomNumber && randomNumber < 100.0)
-
-    [<TestMethod>]
-    member __.``return a random float between 50,0 and 200,0 when given Random(float,50.0,200.0)`` () =
-        let randomNumber = getValueForRandomFloat "Random(float,50.0,200.0)"
-
-        Assert.IsTrue(50.0 <= randomNumber && randomNumber < 200.0)
-
-    [<TestMethod>]
-    member __.``return a random float between -100,0 and 1000,0 when given Random(float,-100.0,1000.0)`` () =
-        let randomNumber = getValueForRandomFloat "Random(float,-100.0,1000.0)"
-
-        Assert.IsTrue(-100.0 <= randomNumber && randomNumber < 1000.0)
-
-    [<TestMethod>]
-    member __.``return a random float between -100,0 and 1000,0 when given Random(float,-100,1000)`` () =
-        let randomNumber = getValueForRandomFloat "Random(float,-100,1000)"
-
-        Assert.IsTrue(-100.0 <= randomNumber && randomNumber < 1000.0)
-
-    [<TestMethod>]
-    member __.``return a random float between -1000,0 and 1000,0 when given Random(float:5,-1000,1000)`` () =
-        let randomNumber = getValueForRandomFloat "Random(float:5,-100,1000)"
-
-        Assert.IsTrue(-1000.0 <= randomNumber && randomNumber < 1000.0)
-
-    [<TestMethod>]
-    member __.``return a random float between -2000,0 and 1000,0 when given Random(float:1,-2000,1000)`` () =
-        let randomNumber = getValueForRandomFloat "Random(float:1,-100,1000)"
-
-        Assert.IsTrue(-2000.0 <= randomNumber && randomNumber < 1000.0)
-
-[<TestClass>]
-type ``getNumbersAfterDecimal should`` () =
-
-    [<TestMethod>]
-    member __.``return 2 when given Random(float:2, 0, 100)`` () =
-        let numberOfDecimals = getNumbersAfterDecimal "Random(float:2, 0, 100)"
-
-        Assert.AreEqual(2, numberOfDecimals)
-
-    [<TestMethod>]
-    member __.``return 3 when given Random(float:3, -1000, 100)`` () =
-        let numberOfDecimals = getNumbersAfterDecimal "Random(float:3, -1000, 100)"
-
-        Assert.AreEqual(3, numberOfDecimals)
-
-    [<TestMethod>]
-    member __.``return 1 when given Random(float:1,10,20)`` () =
-        let numberOfDecimals = getNumbersAfterDecimal "Random(float:1,10,20)"
-
-        Assert.AreEqual(1, numberOfDecimals)
-
-    [<TestMethod>]
-    member __.``return 2 when given Random(float:2,-10,-9)`` () =
-        let numberOfDecimals = getNumbersAfterDecimal "Random(float:2,-10,-9)"
-
-        Assert.AreEqual(2, numberOfDecimals)
-
-[<TestClass>]
-type ``replaceRandomFloat should`` () =
-
-    let randomFloatPattern = "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
-
-    [<TestMethod>]
-    member __.``return find and replace #{Random(float, 1000, 100000)} in a string with a random float`` () =
-        let remaining = "Income: #{Random(float, 1000, 100000)}, married: Random(switch,true,false)"
-        let randomString = "Random(float, 1000, 100000)"
-
-        let returnString = replaceRandomFloat remaining randomFloatPattern randomString
-
-        let firstPart = returnString.Substring(0, 8)
-        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
-
-        Assert.AreEqual("Income: ", firstPart)
-        Assert.IsTrue(1000.0 <= randomPart && randomPart < 100000.0)
-
-    [<TestMethod>]
-    member __.``return find and replace #{Random(float,-1000, 0)} in a string with a random float`` () =
-        let remaining = "Income: #{Random(float,-1000, 0)}, married: Random(switch,true,false)"
-        let randomString = "Random(float,-1000, 0)"
-
-        let returnString = replaceRandomFloat remaining randomFloatPattern randomString
-
-        let firstPart = returnString.Substring(0, 8)
-        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
-
-        Assert.AreEqual("Income: ", firstPart)
-        Assert.IsTrue(-1000.0 <= randomPart && randomPart < 0.0)
 
 [<TestClass>]
 type ``replaceRandomSwitch should`` () =

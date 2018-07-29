@@ -74,3 +74,32 @@ type ``replaceRandomIntWithStep should`` () =
 
         Assert.AreEqual("DLA: ", firstPart)
         Assert.IsTrue(randomPart = 10 || randomPart = 30 || randomPart = 50 || randomPart = 70 || randomPart = 90)
+
+[<TestClass>]
+type ``replaceRandomFloat should`` () =
+
+    let randomFloatRegex = Regex "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(float, 1000, 100000)} in a string with a random float`` () =
+        let remaining = "Income: #{Random(float, 1000, 100000)}, married: Random(switch,true,false)"
+
+        let returnString = replaceRandomFloat randomFloatRegex remaining
+
+        let firstPart = returnString.Substring(0, 8)
+        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Income: ", firstPart)
+        Assert.IsTrue(1000.0 <= randomPart && randomPart <= 100000.0)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(float,-1000, 0)} in a string with a random float`` () =
+        let remaining = "Income: #{Random(float,-1000, 0)}, married: Random(switch,true,false)"
+
+        let returnString = replaceRandomFloat randomFloatRegex remaining
+
+        let firstPart = returnString.Substring(0, 8)
+        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Income: ", firstPart)
+        Assert.IsTrue(-1000.0 <= randomPart && randomPart <= 0.0)
