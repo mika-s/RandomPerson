@@ -7,20 +7,20 @@ open System.Globalization
 let replaceWithoutCulture (regex: Regex) (birthDate: DateTime) (remaining: string) =
     let matching = regex.Match remaining
 
-    let birthDateFormat = matching.Groups.[1].Value
-
     match matching.Success with
-    | true  -> regex.Replace(remaining, birthDate.ToString(birthDateFormat), 1)
+    | true  ->
+        let birthDateFormat = matching.Groups.[1].Value
+        regex.Replace(remaining, birthDate.ToString(birthDateFormat), 1)
     | false -> remaining
 
 let replaceWithCulture (regex: Regex) (birthDate: DateTime) (remaining: string) =
     let matching = regex.Match remaining
 
-    let birthDateFormat = matching.Groups.[1].Value
-    let culture = matching.Groups.[2].Value
-
     match matching.Success with
-    | true  -> regex.Replace(remaining, birthDate.ToString(birthDateFormat, CultureInfo.CreateSpecificCulture(culture)), 1)
+    | true  ->
+        let birthDateFormat = matching.Groups.[1].Value
+        let culture         = matching.Groups.[2].Value
+        regex.Replace(remaining, birthDate.ToString(birthDateFormat, CultureInfo.CreateSpecificCulture(culture)), 1)
     | false -> remaining
 
 let performSpecialBirthDateReplaces (birthDate: DateTime) (stringToDoReplaces: string) =
@@ -30,7 +30,7 @@ let performSpecialBirthDateReplaces (birthDate: DateTime) (stringToDoReplaces: s
     let rec loop (remaining: string) =
 
         let modified = remaining
-                       |> replaceWithoutCulture birthDateRegex birthDate
+                       |> replaceWithoutCulture birthDateRegex            birthDate
                        |> replaceWithCulture    birthDateWithCultureRegex birthDate
 
         let isMoreRemaining = (birthDateRegex.Match modified).Success

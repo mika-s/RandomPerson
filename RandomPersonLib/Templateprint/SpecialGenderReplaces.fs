@@ -6,10 +6,10 @@ open RandomPersonLib
 let replaceGender (regex: Regex) (gender: Gender) (remaining: string) =
     let matching = regex.Match remaining
 
-    let gendersInString = [| matching.Groups.[1].Value; matching.Groups.[2].Value |]
-
     match matching.Success with
-    | true  -> regex.Replace(remaining, gendersInString.[int gender - 1], 1)
+    | true  ->
+        let gendersInString = [| matching.Groups.[1].Value; matching.Groups.[2].Value |]
+        regex.Replace(remaining, gendersInString.[int gender - 1], 1)
     | false -> remaining
 
 let performSpecialGenderReplaces (gender: Gender) (stringToDoReplaces: string) =

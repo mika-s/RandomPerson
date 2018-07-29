@@ -7,28 +7,28 @@ open Util
 
 let random = Random()
 
-let getValueForRandomInt (randomString: string) =
-    let splitString = randomString.Split(',')
-    let min = splitString.[1] |> cleanupValue |> int
-    let max = splitString.[2] |> removeLastParenthesis |> cleanupValue |> int
-    randomIntBetween min max
+let replaceRandomInt (regex: Regex) (remaining: string) =
+    let matching = regex.Match remaining
 
-let replaceRandomInt (remainingString: string) (randomIntPattern: string) (randomString: string) =
-    let numberAsString = randomString |> getValueForRandomInt |> sprintf "%d"
-    let regex = Regex randomIntPattern
-    regex.Replace(remainingString, numberAsString, 1)
+    match matching.Success with
+    | true  ->
+        let min = int matching.Groups.[1].Value
+        let max = int matching.Groups.[2].Value
+        let randomValue = randomIntBetween min max
+        regex.Replace(remaining, randomValue.ToString(), 1)
+    | false -> remaining
 
-let getValueForRandomIntWithStep (randomString: string) =
-    let splitString = randomString.Split(',')
-    let min  = splitString.[1] |> cleanupValue |> int
-    let step = splitString.[2] |> cleanupValue |> int
-    let max  = splitString.[3] |> removeLastParenthesis |> cleanupValue |> int
-    randomIntBetweenWithStep min step max
+let replaceRandomIntWithStep (regex: Regex) (remaining: string) =
+    let matching = regex.Match remaining
 
-let replaceRandomIntWithStep (remainingString: string) (randomIntWithStepPattern: string) (randomString: string) =
-    let numberAsString = randomString |> getValueForRandomIntWithStep |> sprintf "%d"
-    let regex = Regex randomIntWithStepPattern
-    regex.Replace(remainingString, numberAsString, 1)
+    match matching.Success with
+    | true  ->
+        let min =  int matching.Groups.[1].Value
+        let step = int matching.Groups.[2].Value
+        let max =  int matching.Groups.[3].Value
+        let randomValue = randomIntBetweenWithStep min step max
+        regex.Replace(remaining, randomValue.ToString(), 1)
+    | false -> remaining
 
 let getValueForRandomFloat (randomString: string) =
     let splitString = randomString.Split(',')
@@ -75,11 +75,8 @@ let modifyString (regex: Regex) (pattern: string) (replaceFunc: string -> string
     | false -> remaining
 
 let performRandomReplaces (stringToDoReplaces: string) =
-    let randomIntPattern = "#{Random\(\s?int\s?,\s?-?\d+\s?,\s?-?\d+\s?\)}"
-    let randomIntRegex = Regex randomIntPattern
-
-    let randomIntWithStepSizePattern = "#{Random\(\s?int\s?,\s?-?\d+\s?,\s?-?\d+\s?,\s?-?\d+\s?\)}"
-    let randomIntWithStepSizeRegex = Regex randomIntWithStepSizePattern
+    let randomIntRegex             = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+    let randomIntWithStepSizeRegex = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
 
     let randomFloatPattern = "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomFloatRegex = Regex randomFloatPattern
@@ -92,8 +89,8 @@ let performRandomReplaces (stringToDoReplaces: string) =
 
     let rec loop (remaining: string) =
         let modified = remaining
-                       |> modifyString randomIntRegex                 randomIntPattern                 replaceRandomInt               
-                       |> modifyString randomIntWithStepSizeRegex     randomIntWithStepSizePattern     replaceRandomIntWithStep
+                       |> replaceRandomInt          randomIntRegex
+                       |> replaceRandomIntWithStep  randomIntWithStepSizeRegex
                        |> modifyString randomFloatRegex               randomFloatPattern               replaceRandomFloat
                        |> modifyString randomFloatWithDecimalsNoRegex randomFloatWithDecimalsNoPattern replaceRandomFloatWithDecimals
                        |> modifyString randomSwitchRegex              randomSwitchPattern              replaceRandomSwitch
