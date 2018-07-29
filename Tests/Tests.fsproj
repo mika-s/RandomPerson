@@ -20,6 +20,9 @@
 
   <ItemGroup>
     <Compile Include="TestData.fs" />
+    <Compile Include="Lib\TemplatePrint\SpecialBirthDateReplaces.fs" />
+    <Compile Include="Lib\TemplatePrint\SpecialGenderReplaces.fs" />
+    <Compile Include="Lib\TemplatePrint\TemplatePrint.fs" />
     <Compile Include="Lib\Address.fs" />
     <Compile Include="Lib\Password.fs" />
     <Compile Include="Lib\Email.fs" />
@@ -44,7 +47,6 @@
     <Compile Include="Cli\PrintToConsole.fs" />
     <Compile Include="Cli\ReadInputFiles.fs" />
     <Compile Include="Cli\CliUtil.fs" />
-    <Compile Include="Lib\TemplatePrint.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

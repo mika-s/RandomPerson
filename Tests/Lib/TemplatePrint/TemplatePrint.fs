@@ -2,15 +2,10 @@
 
 open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
-open RandomPersonLib
 open CommonTemplatePrint
-open SpecialGenderReplaces
-open SpecialBirthDateReplaces
 open OrdinaryReplaces
 open RandomReplaces
 open TestData
-open System.Text.RegularExpressions
-
 
 [<TestClass>]
 type ``parseOrdinaryReplaces should`` () =
@@ -188,23 +183,6 @@ type ``getNumbersAfterDecimal should`` () =
         let numberOfDecimals = getNumbersAfterDecimal "Random(float:2,-10,-9)"
 
         Assert.AreEqual(2, numberOfDecimals)
-
-[<TestClass>]
-type ``getValueForGender should`` () =
-
-    [<TestMethod>]
-    member __.``return mann or kvinne when given Gender(mann,kvinne)`` () =
-        let genders = getValuesForGender "Gender(mann,kvinne)"
-
-        Assert.AreEqual("mann",   genders.[0])
-        Assert.AreEqual("kvinne", genders.[1])
-
-    [<TestMethod>]
-    member __.``return 3 when given Gender(Herr, Frau)`` () =
-        let genders = getValuesForGender "Gender(Herr, Frau)"
-
-        Assert.AreEqual("Herr", genders.[0])
-        Assert.AreEqual("Frau", genders.[1])
 
 [<TestClass>]
 type ``replaceRandomInt should`` () =
@@ -415,95 +393,3 @@ type ``replaceRandomSwitch should`` () =
 
         Assert.AreEqual("Married: ", firstPart)
         Assert.IsTrue(randomPart = "'one'" || randomPart = "'two'")
-
-[<TestClass>]
-type ``replaceGender should`` () =
-
-    let genderPattern = "#{Gender\(\s?\w+\s?,\s?\w+\s?\)}"
-
-    [<TestMethod>]
-    member __.``return find and replace #{Gender(mann,kvinne)} in a string with "mann"`` () =
-        let remaining = "Gender: #{Gender(mann,kvinne)}, married: Random(switch,true,false)"
-        let genderString = "Gender(mann,kvinne)"
-
-        let returnString = replaceGender remaining genderPattern genderString Gender.Male
-
-        let firstPart = returnString.Substring(0, 8)
-        let genderPart = returnString.Split(',').[0].Split(' ').[1]
-
-        Assert.AreEqual("Gender: ", firstPart)
-        Assert.AreEqual("mann", genderPart)
-
-    [<TestMethod>]
-    member __.``return find and replace #{Gender(man, woman)} in a string with "woman"`` () =
-        let remaining = "Gender: #{Gender(man, woman)}, married: Random(switch,true,false)"
-        let genderString = "Gender(man, woman)"
-
-        let returnString = replaceGender remaining genderPattern genderString Gender.Female
-
-        let firstPart = returnString.Substring(0, 8)
-        let genderPart = returnString.Split(',').[0].Split(' ').[1]
-
-        Assert.AreEqual("Gender: ", firstPart)
-        Assert.AreEqual("woman", genderPart)
-   
-[<TestClass>]
-type ``modifyWithoutCulture should`` () =
-
-    let birthDateRegex = Regex "#{BirthDate\(\s?([dfFghHKmMstyz ,\/-]+)\s?\)}"
-
-    [<TestMethod>]
-    member __.``replace the birthdate in a string with #{BirthDate(ddMMyy)}`` () =
-        let birthDate = DateTime(1977, 5, 17)
-        let replacedBirthDate = modifyWithoutCulture birthDateRegex birthDate "#{BirthDate(ddMMyy)}"
-
-        Assert.AreEqual("170577", replacedBirthDate)
-
-    [<TestMethod>]
-    member __.``replace the birthdate in a string with #{BirthDate(yyyy-MM-dd)}`` () =
-        let birthDate = DateTime(1965, 3, 21)
-        let replacedBirthDate = modifyWithoutCulture birthDateRegex birthDate "#{BirthDate(yyyy-MM-dd)}"
-
-        Assert.AreEqual("1965-03-21", replacedBirthDate)   
-
-[<TestClass>]
-type ``performSpecialBirthDateReplaces should`` () =
-
-    [<TestMethod>]
-    member __.``return find and replace #{BirthDate(ddMMyy)} in a string with the birthdate on ddMMyy format`` () =
-        let stringToDoReplaces = "Birthdate: #{BirthDate(ddMMyy)}, married: Random(switch,true,false)"
-
-        let birthDate = DateTime(1997, 03, 11)
-        let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
-
-        let firstPart = returnString.Substring(0, 11)
-        let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
-
-        Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("110397", birthDatePart)
-
-    [<TestMethod>]
-    member __.``return find and replace #{BirthDate(MMMM dd yyyy)} in a string with the birthdate on MMMM dd yyyy format`` () =
-        let stringToDoReplaces = "Birthdate: #{BirthDate(MMMM dd yyyy)}, married: Random(switch,true,false)"
-
-        let birthDate = DateTime(1987, 12, 01)
-        let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
-
-        let firstPart = returnString.Substring(0, 11)
-        let birthDatePart = returnString.Split(',').[0].Split(':').[1].Trim()
-
-        Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("December 01 1987", birthDatePart)
-
-    [<TestMethod>]
-    member __.``return find and replace #{BirthDate(MM-dd-yy)} in a string with the birthdate on MM-dd-yy format`` () =
-        let stringToDoReplaces = "Birthdate: #{BirthDate(MM-dd-yy)}, married: Random(switch,true,false)"
-
-        let birthDate = DateTime(1952, 07, 23)
-        let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
-
-        let firstPart = returnString.Substring(0, 11)
-        let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
-
-        Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("07-23-52", birthDatePart)

@@ -1,29 +1,24 @@
 ﻿module SpecialGenderReplaces
 
 open System.Text.RegularExpressions
-open CommonTemplatePrint
 open RandomPersonLib
 
-let getValuesForGender (genderString: string) =
-    genderString.Split('(').[1].Split(',')
-    |> removeLastParenthesisFromArray
-    |> Array.map(cleanupValue)
+let replaceGender (regex: Regex) (gender: Gender) (remaining: string) =
+    let matching = regex.Match remaining
 
-let replaceGender (remainingString: string) (genderPattern: string) (genderString: string) (gender: Gender) =
-    let gendersInString = getValuesForGender genderString
-    let regex = Regex genderPattern
-    regex.Replace(remainingString, gendersInString.[int gender - 1], 1)
+    let gendersInString = [| matching.Groups.[1].Value; matching.Groups.[2].Value |]
+
+    match matching.Success with
+    | true  -> regex.Replace(remaining, gendersInString.[int gender - 1], 1)
+    | false -> remaining
 
 let performSpecialGenderReplaces (gender: Gender) (stringToDoReplaces: string) =
-    let genderPattern = "#{Gender\(\s?\w+\s?,\s?\w+\s?\)}"
-    let genderRegex = Regex genderPattern
+    let genderRegex = Regex "#{Gender\(\s?(\w+)\s?,\s?(\w+)\s?\)}"
 
     let rec loop (remaining: string) =
-        let matching = genderRegex.Match remaining
 
-        let modified = match matching.Success with
-                       | true  -> replaceGender remaining genderPattern matching.Value gender
-                       | false -> remaining
+        let modified = remaining
+                       |> replaceGender genderRegex gender
 
         let isMoreRemaining = (genderRegex.Match modified).Success
         match isMoreRemaining with
