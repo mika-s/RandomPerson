@@ -13,7 +13,7 @@ let replaceGender (regex: Regex) (gender: Gender) (remaining: string) =
     | false -> remaining
 
 let performSpecialGenderReplaces (gender: Gender) (stringToDoReplaces: string) =
-    let genderRegex = Regex "#{Gender\(\s?(\w+)\s?,\s?(\w+)\s?\)}"
+    let genderRegex = Regex "#{Gender\(\s?'([\w-\\\/, ]+)'\s?,\s?'([\w-\\\/, ]+)'\s?\)}"
 
     let rec loop (remaining: string) =
 

@@ -23,7 +23,7 @@
     <Compile Include="Lib\TemplatePrint\RandomReplaces.fs" />
     <Compile Include="Lib\TemplatePrint\SpecialBirthDateReplaces.fs" />
     <Compile Include="Lib\TemplatePrint\SpecialGenderReplaces.fs" />
-    <Compile Include="Lib\TemplatePrint\TemplatePrint.fs" />
+    <Compile Include="Lib\TemplatePrint\OrdinaryReplaces.fs" />
     <Compile Include="Lib\Address.fs" />
     <Compile Include="Lib\Password.fs" />
     <Compile Include="Lib\Email.fs" />

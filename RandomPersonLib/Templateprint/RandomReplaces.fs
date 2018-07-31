@@ -6,63 +6,43 @@ open Util
 
 let random = Random()
 
-let replaceRandomInt (regex: Regex) (remaining: string) =
+let randomInt (regex: Regex) (matching: Match) (remaining: string) =
+    let min = int matching.Groups.[1].Value
+    let max = int matching.Groups.[2].Value
+    let randomValue = randomIntBetween min max
+    regex.Replace(remaining, randomValue.ToString(), 1)
+
+let randomIntWithStep (regex: Regex) (matching: Match) (remaining: string) =
+    let min =  int matching.Groups.[1].Value
+    let step = int matching.Groups.[2].Value
+    let max =  int matching.Groups.[3].Value
+    let randomValue = randomIntBetweenWithStep min step max
+    regex.Replace(remaining, randomValue.ToString(), 1)
+
+let randomFloat (regex: Regex) (matching: Match) (remaining: string) =
+    let min = float matching.Groups.[1].Value
+    let max = float matching.Groups.[2].Value
+    let randomValue = randomFloatBetween min max
+    regex.Replace(remaining, randomValue.ToString(), 1)
+
+let randomFloatWithDecimals (regex: Regex) (matching: Match) (remaining: string) =
+    let decimals = int   matching.Groups.[1].Value
+    let min      = float matching.Groups.[2].Value
+    let max      = float matching.Groups.[3].Value
+    let printfFormat = decimals |> sprintf "%%.%df" |> Printf.StringFormat<float->string>
+    let numberAsString = randomFloatBetween min max |> sprintf printfFormat
+    regex.Replace(remaining, numberAsString, 1)
+
+let randomSwitch (regex: Regex) (matching: Match) (remaining: string) =
+    let randomNumber = randomIntBetween 0 (matching.Groups.[1].Captures.Count - 1)
+    let randomValue = matching.Groups.[1].Captures.[randomNumber].Value
+    regex.Replace(remaining, randomValue, 1)
+
+let replace (replaceFunction: Regex -> Match -> string -> string) (regex: Regex) (remaining: string) =
     let matching = regex.Match remaining
 
     match matching.Success with
-    | true  ->
-        let min = int matching.Groups.[1].Value
-        let max = int matching.Groups.[2].Value
-        let randomValue = randomIntBetween min max
-        regex.Replace(remaining, randomValue.ToString(), 1)
-    | false -> remaining
-
-let replaceRandomIntWithStep (regex: Regex) (remaining: string) =
-    let matching = regex.Match remaining
-
-    match matching.Success with
-    | true  ->
-        let min =  int matching.Groups.[1].Value
-        let step = int matching.Groups.[2].Value
-        let max =  int matching.Groups.[3].Value
-        let randomValue = randomIntBetweenWithStep min step max
-        regex.Replace(remaining, randomValue.ToString(), 1)
-    | false -> remaining
-
-let replaceRandomFloat (regex: Regex) (remaining: string) =
-    let matching = regex.Match remaining
-
-    match matching.Success with
-    | true  ->
-        let min = float matching.Groups.[1].Value
-        let max = float matching.Groups.[2].Value
-        let randomValue = randomFloatBetween min max
-        regex.Replace(remaining, randomValue.ToString(), 1)
-    | false -> remaining
-
-let replaceRandomFloatWithDecimals (regex: Regex) (remaining: string) =
-    let matching = regex.Match remaining
-
-    match matching.Success with
-    | true  ->
-        let decimals = int   matching.Groups.[1].Value
-        let min      = float matching.Groups.[2].Value
-        let max      = float matching.Groups.[3].Value
-        
-        let printfFormat = decimals |> sprintf "%%.%df" |> Printf.StringFormat<float->string>
-        let numberAsString = randomFloatBetween min max |> sprintf printfFormat
-
-        regex.Replace(remaining, numberAsString, 1)
-    | false -> remaining
-
-let replaceRandomSwitch (regex: Regex) (remaining: string) =
-    let matching = regex.Match remaining
-
-    match matching.Success with
-    | true  ->
-        let randomNumber = randomIntBetween 0 (matching.Groups.[1].Captures.Count - 1)
-        let randomValue = matching.Groups.[1].Captures.[randomNumber].Value
-        regex.Replace(remaining, randomValue, 1)
+    | true  -> replaceFunction regex matching remaining 
     | false -> remaining
 
 let performRandomReplaces (stringToDoReplaces: string) =
@@ -74,11 +54,11 @@ let performRandomReplaces (stringToDoReplaces: string) =
 
     let rec loop (remaining: string) =
         let modified = remaining
-                       |> replaceRandomInt                randomIntRegex
-                       |> replaceRandomIntWithStep        randomIntWithStepSizeRegex
-                       |> replaceRandomFloat              randomFloatRegex
-                       |> replaceRandomFloatWithDecimals  randomFloatWithDecimalsNoRegex
-                       |> replaceRandomSwitch             randomSwitchRegex
+                       |> replace randomInt                randomIntRegex
+                       |> replace randomIntWithStep        randomIntWithStepSizeRegex
+                       |> replace randomFloat              randomFloatRegex
+                       |> replace randomFloatWithDecimals  randomFloatWithDecimalsNoRegex
+                       |> replace randomSwitch             randomSwitchRegex
 
         let isMoreRemaining = (randomIntRegex.Match                 modified).Success 
                            || (randomIntWithStepSizeRegex.Match     modified).Success

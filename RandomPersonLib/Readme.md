@@ -173,9 +173,9 @@ The following methods can be chained to the variable replacements:
 
 You can change the gender values if you don't want them to be "Male" or "Female":
 
-- `#{Gender(Mann, Kvinne)}`
+- `#{Gender('Mann', 'Kvinne')}`
 
-The male string is the first argument to `Format` and the female string is the second argument.
+The male string is the first argument to `Gender` and the female string is the second argument.
 
 You can also change the birthdate values to a given date format:
 
