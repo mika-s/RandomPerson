@@ -2,7 +2,6 @@
 
 open System
 open System.Text.RegularExpressions
-open CommonTemplatePrint
 open Util
 
 let random = Random()
@@ -56,28 +55,14 @@ let replaceRandomFloatWithDecimals (regex: Regex) (remaining: string) =
         regex.Replace(remaining, numberAsString, 1)
     | false -> remaining
 
-let getValueForRandomSwitch (randomString: string) =
-    let specialSplitReplaceComma = "0x¤@$§|1"
-    let replaceEscapedComma = randomString.Replace("\,", specialSplitReplaceComma)
-    let splitString = replaceEscapedComma.Split(',') |> Array.map(fun x -> x.Replace(specialSplitReplaceComma, ","))
-
-    let cleanValues = splitString
-                      |> removeLastParenthesisFromArray 
-                      |> Array.skip(1)
-                      |> Array.map(cleanupValue)
-    
-    let randomNumber = random.Next(0, cleanValues.Length)
-    cleanValues.[randomNumber]
-
-let replaceRandomSwitch (remainingString: string) (randomSwitchPattern: string) (randomString: string) =
-    let randomValue = getValueForRandomSwitch randomString
-    let regex = Regex randomSwitchPattern
-    regex.Replace(remainingString, randomValue, 1)
-
-let modifyString (regex: Regex) (pattern: string) (replaceFunc: string -> string -> string -> string) (remaining: string) =
+let replaceRandomSwitch (regex: Regex) (remaining: string) =
     let matching = regex.Match remaining
+
     match matching.Success with
-    | true  -> replaceFunc remaining pattern matching.Value
+    | true  ->
+        let randomNumber = randomIntBetween 0 (matching.Groups.[1].Captures.Count - 1)
+        let randomValue = matching.Groups.[1].Captures.[randomNumber].Value
+        regex.Replace(remaining, randomValue, 1)
     | false -> remaining
 
 let performRandomReplaces (stringToDoReplaces: string) =
@@ -85,9 +70,7 @@ let performRandomReplaces (stringToDoReplaces: string) =
     let randomIntWithStepSizeRegex     = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
     let randomFloatRegex               = Regex "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomFloatWithDecimalsNoRegex = Regex "#{Random\(\s?float:(\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
-
-    let randomSwitchPattern = "#{Random\(\s?switch\s?,(\s?['\w\,\\\/]+\s?,)+\s?['\w\,\\\/]+\s?\)}"
-    let randomSwitchRegex = Regex randomSwitchPattern
+    let randomSwitchRegex              = Regex "#{Random\((?:switch,+)\s?(?:\s*([\w']+),?){2,}\)}"
 
     let rec loop (remaining: string) =
         let modified = remaining
@@ -95,7 +78,7 @@ let performRandomReplaces (stringToDoReplaces: string) =
                        |> replaceRandomIntWithStep        randomIntWithStepSizeRegex
                        |> replaceRandomFloat              randomFloatRegex
                        |> replaceRandomFloatWithDecimals  randomFloatWithDecimalsNoRegex
-                       |> modifyString randomSwitchRegex              randomSwitchPattern              replaceRandomSwitch
+                       |> replaceRandomSwitch             randomSwitchRegex
 
         let isMoreRemaining = (randomIntRegex.Match                 modified).Success 
                            || (randomIntWithStepSizeRegex.Match     modified).Success

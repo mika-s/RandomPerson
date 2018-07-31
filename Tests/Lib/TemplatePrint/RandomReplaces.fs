@@ -103,3 +103,98 @@ type ``replaceRandomFloat should`` () =
 
         Assert.AreEqual("Income: ", firstPart)
         Assert.IsTrue(-1000.0 <= randomPart && randomPart <= 0.0)
+
+[<TestClass>]
+type ``replaceRandomSwitch should`` () =
+
+    let randomSwitchRegex = Regex "#{Random\((?:switch,+)\s?(?:\s*([\w']+),?){2,}\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(switch, true, false)} in a string with either true or false`` () =
+        let remaining = "Married: #{Random(switch, true, false)}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Married: ", firstPart)
+        Assert.IsTrue(randomPart = "true" || randomPart = "false")
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(switch, yes, no, maybe)} in a string with either yes, no or maybe`` () =
+        let remaining = "Married: #{Random(switch, yes, no, maybe)}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Married: ", firstPart)
+        Assert.IsTrue(randomPart = "yes" || randomPart = "no" || randomPart = "maybe")
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(switch,yes,no,maybe)} in a string with either yes, no or maybe`` () =
+        let remaining = "Married: #{Random(switch,yes,no,maybe)}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Married: ", firstPart)
+        Assert.IsTrue(randomPart = "yes" || randomPart = "no" || randomPart = "maybe")
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(switch,one,two,three,four)} in a string with either one,one; two; three or four`` () =
+        let remaining = "Married: #{Random(switch,one,two,three,four)}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Married: ", firstPart)
+
+        match randomPart with
+        | "one" | "two" | "three" | "four" -> Assert.IsTrue(true)
+        | _                                -> Assert.IsTrue(false)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(switch,one, two, three, four)} in a string with either one, two, three or four`` () =
+        let remaining = "Married: #{Random(switch,one, two, three, four)}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Married: ", firstPart)
+
+        match randomPart with
+        | "one" |"two" | "three" | "four" -> Assert.IsTrue(true)
+        | _                               -> Assert.IsTrue(false)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(switch, 'one', 'two')} in a string with either 'one'' or 'two'`` () =
+        let remaining = "Married: #{Random(switch, 'one', 'two')}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(':').[1].Split(',') |> Array.map (fun x -> x.Trim())
+
+        Assert.AreEqual("Married: ", firstPart)
+        Assert.IsTrue(randomPart.[0] = "'one'" ||  randomPart.[0] = "'two'")
+
+    [<TestMethod>]
+    member __.``find and replace #{Random(switch, 'one', 'two')} in a string with either 'one' or 'two'`` () =
+        let remaining = "Married: #{Random(switch, 'one', 'two')}, income: #{Random(float, 1000, 100000)}, "
+
+        let returnString = replaceRandomSwitch randomSwitchRegex remaining
+
+        let firstPart = returnString.Substring(0, 9)
+        let randomPart = returnString.Split(',').[0].Split(' ').[1]
+
+        Assert.AreEqual("Married: ", firstPart)
+        Assert.IsTrue(randomPart = "'one'" || randomPart = "'two'")

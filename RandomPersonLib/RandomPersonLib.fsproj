@@ -98,7 +98,6 @@
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />
     <Compile Include="Validate.fs" />
-    <Compile Include="Templateprint\CommonTemplatePrint.fs" />
     <Compile Include="Templateprint\SpecialGenderReplaces.fs" />
     <Compile Include="Templateprint\SpecialBirthDateReplaces.fs" />
     <Compile Include="Templateprint\OrdinaryReplaces.fs" />
