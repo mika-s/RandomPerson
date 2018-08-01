@@ -25,6 +25,13 @@ let randomFloat (regex: Regex) (matching: Match) (remaining: string) =
     let randomValue = randomFloatBetween min max
     regex.Replace(remaining, randomValue.ToString(), 1)
 
+let randomFloatWithStep (regex: Regex) (matching: Match) (remaining: string) =
+    let min  = float matching.Groups.[1].Value
+    let step = float matching.Groups.[2].Value
+    let max  = float matching.Groups.[3].Value
+    let randomValue = randomFloatBetweenWithStep min step max
+    regex.Replace(remaining, randomValue.ToString(), 1)
+
 let randomFloatWithDecimals (regex: Regex) (matching: Match) (remaining: string) =
     let decimals = int   matching.Groups.[1].Value
     let min      = float matching.Groups.[2].Value
@@ -49,6 +56,7 @@ let performRandomReplaces (stringToDoReplaces: string) =
     let randomIntRegex                 = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
     let randomIntWithStepSizeRegex     = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
     let randomFloatRegex               = Regex "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
+    let randomFloatWithStepRegex       = Regex "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomFloatWithDecimalsNoRegex = Regex "#{Random\(\s?float:(\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomSwitchRegex              = Regex "#{Random\((?:switch,)\s?(?:\s*'([\w- \\\/,]+)',?){2,}\)}"
 
@@ -57,12 +65,14 @@ let performRandomReplaces (stringToDoReplaces: string) =
                        |> replace randomInt                randomIntRegex
                        |> replace randomIntWithStep        randomIntWithStepSizeRegex
                        |> replace randomFloat              randomFloatRegex
+                       |> replace randomFloatWithStep      randomFloatWithStepRegex
                        |> replace randomFloatWithDecimals  randomFloatWithDecimalsNoRegex
                        |> replace randomSwitch             randomSwitchRegex
 
         let isMoreRemaining = (randomIntRegex.Match                 modified).Success 
                            || (randomIntWithStepSizeRegex.Match     modified).Success
                            || (randomFloatRegex.Match               modified).Success
+                           || (randomFloatWithStepRegex.Match       modified).Success
                            || (randomFloatWithDecimalsNoRegex.Match modified).Success
                            || (randomSwitchRegex.Match              modified).Success
 

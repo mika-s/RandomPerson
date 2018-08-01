@@ -109,17 +109,4 @@ type ``incrementNumberInString should`` () =
         let incremented = incrementNumberInString input 3
         Assert.AreEqual("1230", incremented)
 
-[<TestClass>]
-type ``convertDictToMap should`` () =
-
-    [<TestMethod>]
-    member __.``convert a Dictionary into a Map`` () =
-        let dictionary = Dictionary<string, string>()
-        dictionary.Add("key1", "value1")
-        dictionary.Add("key2", "value2")
-
-        let map = convertDictToMap dictionary
-
-        Assert.AreEqual("value1", map.["key1"])
-        Assert.AreEqual("value2", map.["key2"])
         

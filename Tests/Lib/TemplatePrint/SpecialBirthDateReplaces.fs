@@ -1,9 +1,9 @@
 ﻿namespace Tests
 
 open System
+open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open SpecialBirthDateReplaces
-open System.Text.RegularExpressions
 
 [<TestClass>]
 type ``replaceWithoutCulture should`` () =
