@@ -24,8 +24,8 @@ let replaceWithCulture (regex: Regex) (birthDate: DateTime) (remaining: string) 
     | false -> remaining
 
 let performSpecialBirthDateReplaces (birthDate: DateTime) (stringToDoReplaces: string) =
-    let birthDateRegex            = Regex "#{BirthDate\(\s?([dfFghHKmMstyz ,\/-]+)\s?\)}"
-    let birthDateWithCultureRegex = Regex "#{BirthDate\(\s?([dfFghHKmMstyz ,\/-]+)\s?,\s?([a-zA-Z-]+)\s?\)}"
+    let birthDateRegex            = Regex "#{BirthDate\(\s?'([dfFghHKmMstyz ,\/-]+)'\s?\)}"
+    let birthDateWithCultureRegex = Regex "#{BirthDate\(\s?'([dfFghHKmMstyz ,\/-]+)'\s?,\s?'([a-zA-Z-]+)'\s?\)}"
 
     let rec loop (remaining: string) =
 

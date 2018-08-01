@@ -50,7 +50,7 @@ let performRandomReplaces (stringToDoReplaces: string) =
     let randomIntWithStepSizeRegex     = Regex "#{Random\(\s?int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
     let randomFloatRegex               = Regex "#{Random\(\s?float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomFloatWithDecimalsNoRegex = Regex "#{Random\(\s?float:(\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
-    let randomSwitchRegex              = Regex "#{Random\((?:switch,+)\s?(?:\s*([\w']+),?){2,}\)}"
+    let randomSwitchRegex              = Regex "#{Random\((?:switch,)\s?(?:\s*'([\w- \\\/,]+)',?){2,}\)}"
 
     let rec loop (remaining: string) =
         let modified = remaining

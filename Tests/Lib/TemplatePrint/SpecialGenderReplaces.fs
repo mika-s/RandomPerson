@@ -15,14 +15,14 @@ type ``replaceGender should`` () =
         let gender = Gender.Male
         let replaced = replaceGender genderRegex gender "#{Gender('mann','kvinne')}"
 
-        Assert.AreEqual("mann",   replaced)
+        Assert.AreEqual("mann", replaced)
 
     [<TestMethod>]
     member __.``return Herr or Frau when given #{Gender('Herr','Frau')}`` () =
         let gender = Gender.Female
         let replaced = replaceGender genderRegex gender "#{Gender('Herr', 'Frau')}"
 
-        Assert.AreEqual("Frau",   replaced)
+        Assert.AreEqual("Frau", replaced)
 
 [<TestClass>]
 type ``performSpecialGenderReplaces should`` () =

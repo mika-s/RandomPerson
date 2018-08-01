@@ -179,8 +179,8 @@ The male string is the first argument to `Gender` and the female string is the s
 
 You can also change the birthdate values to a given date format:
 
-- #{BirthDate(ddMMyy)}
-- #{BirthDate(MMMM dd, da-DK)}
+- `#{BirthDate('ddMMyy')}`
+- `#{BirthDate('MMMM dd', 'da-DK')}`
 
 The datetime formats are the same as in the official Microsoft [documentation](https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings).
 The culture info can be passed as an optional second parameter. The current culture is
@@ -237,7 +237,7 @@ The number after `:` defines the amount of numbers after the decimal. Default is
 
 Example for switch:
 
-`#{Random(switch, true, false)}`
+`#{Random(switch, 'true', 'false')}`
 
 There is a 50/50 chance of generating either true or false.
 
