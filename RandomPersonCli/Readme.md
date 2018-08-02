@@ -11,7 +11,7 @@ It can also validate SSNs.
 
 ```
 dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Icelandic/Norwegian/Swedish>] [-a <n>]
-						   [-f <CSV/JSON/XML>] [--caf <true/false>] [-o <path>] [-s <path>]
+                           [-f <CSV/JSON/XML>] [--caf <true/false>] [-o <path>] [-s <path>]
 ```
 
 -m: Mode. Either I (interactive), L (list), T (templated list) or V (validation).<br />

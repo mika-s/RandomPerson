@@ -3,8 +3,8 @@
 open System
 open Newtonsoft.Json
 open Newtonsoft.Json.Converters
-open CliUtil
 open RandomPersonLib
+open CliUtil
 open Settings
 
 type PersonSerializable = {

@@ -115,7 +115,7 @@
             }
         },
         "Print": {
-            "Output": "INSERT INTO Account (SSN, FirstNames, LastName, Age, IsEmployed, XFactor) VALUES ('#{SSN}', '#{FirstName}', '#{LastName}', #{Random(float:2, 18.0, 60.0)}, #{Random(int, 0, 1)}, #{Random(switch, yes, no, maybe)})"
+            "Output": "INSERT INTO Account (SSN, FirstNames, LastName, Age, IsEmployed, XFactor) VALUES ('#{SSN}', '#{FirstName}', '#{LastName}', #{Random(float:2, 18.0, 60.0)}, #{Random(int, 0, 1)}, #{Random(switch, 'yes', 'no', 'maybe')})"
         }
     }
 }
