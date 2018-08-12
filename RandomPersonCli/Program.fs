@@ -34,8 +34,10 @@ let main argv =
                                   options.settingsFilePath
                                   options.amount
                                   options.nationality
-        | Mode.Validation  -> validateMode ()
-        | _ -> invalidArg "options.mode" "That mode doesn't exist."
+        | Mode.Validation  -> validateMode
+                                  options.ssn
+                                  options.nationality
+        | _ -> invalidArg "options.mode" "That mode does not exist."
     
         0
     with

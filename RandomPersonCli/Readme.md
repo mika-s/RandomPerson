@@ -10,21 +10,25 @@ It can also validate SSNs.
 ## Usage
 
 ```
-dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Icelandic/Norwegian/Swedish>] [-a <n>]
-                           [-f <CSV/JSON/XML>] [--caf <true/false>] [-o <path>] [-s <path>]
-```
+dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]
+                           [-f (CSV|JSON|XML)] [--caf (true|false)] [-o (path)] [-s (path)]
 
--m: Mode. Either I (interactive), L (list), T (templated list) or V (validation).<br />
--n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode.<br />
--a: Amount. Number of people to generate in List or Template mode.<br />
--f: Format to print file in for use with List mode. CSV, JSON or XML.<br />
---caf: Print to both console and file at the same time if true. Only used when -f is specified. False is default.<br />
--o: Path to output file, for use with List mode.<br />
--s: Settings file path. Path to the settings file if non-default file is used.<br />
 
-Default: Interactive mode. If List or Template mode: 10 people, Norwegian nationality.
+-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation). Validation mode can take SSN as
+    optional input, otherwise it's using interactive validation.
+-n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode.
+-a: Amount. Number of people to generate in List or Template mode.
+-f: File format. File format to use when printing to file in List mode. Will print to the console if not specified.
+--caf: Print to both console and file at the same time if true. Only used when -f is specified. False is default.
+-o: Output file path. Path to output file when printing to file in List mode.
+-s: Settings file path. Path to the settings file if non-default file is used.
+
+Default: Interactive mode.
+         If List or Template mode: 10 people, Norwegian nationality.
+         If Validation mode with SSN supplied as argument: Norwegian nationality.
 
 The options are case-sensitive.
+```
 
 ### Examples
 

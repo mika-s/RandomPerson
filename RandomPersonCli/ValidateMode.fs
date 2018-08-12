@@ -2,6 +2,7 @@
 
 open System
 open RandomPersonLib
+open CliUtil
 
 let validateDK (lib: RandomPerson) =
     let rec loop () = 
@@ -73,22 +74,32 @@ let printHelp () =
     printfn "Go back: b"
     printfn "Quit: q\n\n"
 
-let validateMode () =
+let validateMode (ssn: string) (nationality: Nationality) =
     let lib = RandomPerson()
 
-    printHelp ()
+    match ssn with
+    | "" ->
+        printHelp ()
 
-    let rec mainloop() =
-        if Console.KeyAvailable then
-            match Console.ReadKey(true).Key with
-            | ConsoleKey.Q -> ()
-            | ConsoleKey.D -> validateDK lib |> printHelp |> mainloop
-            | ConsoleKey.F -> validateFI lib |> printHelp |> mainloop
-            | ConsoleKey.I -> validateIC lib |> printHelp |> mainloop
-            | ConsoleKey.N -> validateNO lib |> printHelp |> mainloop
-            | ConsoleKey.S -> validateSE lib |> printHelp |> mainloop
-            | _ -> mainloop()
-        else
-            mainloop ()
+        let rec mainloop() =
+            if Console.KeyAvailable then
+                match Console.ReadKey(true).Key with
+                | ConsoleKey.Q -> ()
+                | ConsoleKey.D -> validateDK lib |> printHelp |> mainloop
+                | ConsoleKey.F -> validateFI lib |> printHelp |> mainloop
+                | ConsoleKey.I -> validateIC lib |> printHelp |> mainloop
+                | ConsoleKey.N -> validateNO lib |> printHelp |> mainloop
+                | ConsoleKey.S -> validateSE lib |> printHelp |> mainloop
+                | _ -> mainloop()
+            else
+                mainloop ()
 
-    mainloop()
+        mainloop()
+    | _ ->
+        match nationality with
+        | Nationality.Danish    -> lib.ValidateSSN(Nationality.Danish,    ssn) |> printfn "%b"
+        | Nationality.Finnish   -> lib.ValidateSSN(Nationality.Finnish,   ssn) |> printfn "%b"
+        | Nationality.Icelandic -> lib.ValidateSSN(Nationality.Icelandic, ssn) |> printfn "%b"
+        | Nationality.Norwegian -> lib.ValidateSSN(Nationality.Norwegian, ssn) |> printfn "%b"
+        | Nationality.Swedish   -> lib.ValidateSSN(Nationality.Swedish,   ssn) |> printfn "%b"
+        | _ -> invalidArg "nationality" "Illegal nationality."

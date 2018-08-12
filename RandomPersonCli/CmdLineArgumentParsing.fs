@@ -13,6 +13,7 @@ type options = {
     fileFormat: FileFormat      // In ListMode
     outputFilePath: string      // In ListMode
     settingsFilePath: string
+    ssn: string                 // In ValidationMode
 }
 
 let defaultOptions = {
@@ -23,14 +24,16 @@ let defaultOptions = {
     fileFormat = FileFormat.CSV
     outputFilePath = "output.?"
     settingsFilePath = "data/Settings.json"
+    ssn = String.Empty
 }
 
 let printUsage () =
     printfn "Usage:"
-    printfn "dotnet RandomPersonCli.dll [-m <I/L/T/V>] [-n <Danish/Finnish/Icelandic/Norwegian/Swedish>] [-a <n>]"
-    printfn "                           [-f <CSV/JSON/XML>] [--caf <true/false>] [-o <path>] [-s <path>]"
+    printfn "dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]"
+    printfn "                           [-f (CSV|JSON|XML)] [--caf (true|false)] [-o (path)] [-s (path)]"
     printfn ""
-    printfn "-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation)."
+    printfn "-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation). Validation mode can take SSN as"
+    printfn "    optional input, otherwise it's using interactive validation."
     printfn "-n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode."
     printfn "-a: Amount. Number of people to generate in List or Template mode."
     printfn "-f: File format. File format to use when printing to file in List mode. Will print to the console if not specified."
@@ -38,7 +41,9 @@ let printUsage () =
     printfn "-o: Output file path. Path to output file when printing to file in List mode."
     printfn "-s: Settings file path. Path to the settings file if non-default file is used."
     printfn ""
-    printfn "Default: Interactive mode. If List or Template mode: 10 people, Norwegian nationality."
+    printfn "Default: Interactive mode."
+    printfn "         If List or Template mode: 10 people, Norwegian nationality."
+    printfn "         If Validation mode with SSN supplied as argument: Norwegian nationality."
     printfn ""
     printfn "The options are case-sensitive."
 
@@ -60,8 +65,19 @@ let rec parseArgs (args: list<string>) (options: options) =
             let newOptions = { options with mode = Mode.Template }
             parseArgs xss newOptions
         | "V"::xss ->
-            let newOptions = { options with mode = Mode.Validation }
-            parseArgs xss newOptions
+            match xss.Length with
+            | length when 0 < length ->
+                match xss with
+                | (CmdLineArgument _)::_ ->
+                    let newOptions = { options with mode = Mode.Validation }
+                    parseArgs xss newOptions
+                | _ ->
+                    let newOptions = { options with mode = Mode.Validation; ssn = xss.[0] }
+                    let xsss = List.skip 1 xss
+                    parseArgs xsss newOptions
+            | _ ->
+                let newOptions = { options with mode = Mode.Validation }
+                parseArgs xss newOptions
         | _ ->
             eprintf "-m flag needs either I (interactive mode), L (list mode), T (template mode) or V (validation mode)\n"
             parseArgs xs options

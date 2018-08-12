@@ -37,3 +37,8 @@ let (|Filename|_|) (str: string) =
     match str.Length with
     | x when x > 0 -> Some(str)
     | _            -> None
+
+let (|CmdLineArgument|_|) (str: string) =
+    match str with
+    | "-a" | "-n" | "-m" | "-f" | "-s" | "--caf" | "-o" -> Some(str)
+    | _                                                 -> None
