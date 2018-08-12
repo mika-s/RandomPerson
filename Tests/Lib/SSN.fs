@@ -1,11 +1,11 @@
 ﻿namespace Tests
 
 open System
+open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
 open SSN
-open System.Text.RegularExpressions
 
 [<TestClass>]
 type ``generateSSN should`` () =

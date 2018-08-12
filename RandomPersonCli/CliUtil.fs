@@ -39,6 +39,6 @@ let (|Filename|_|) (str: string) =
     | _            -> None
 
 let (|CmdLineArgument|_|) (str: string) =
-    match str with
-    | "-a" | "-n" | "-m" | "-f" | "-s" | "--caf" | "-o" -> Some(str)
-    | _                                                 -> None
+    match str.[0] with
+    | '-' -> Some(str)
+    | _   -> None
