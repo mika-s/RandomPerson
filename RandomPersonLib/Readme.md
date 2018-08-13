@@ -212,18 +212,30 @@ The following functions are also available:
 - `#{Random(float:X, min, max)}`
 - `#{Random(float:X, min, step, max)}`
 - `#{Random(switch, 'one', 'two', ...)}`
+- `#{Random(nd_int, mean, std)}`
+- `#{Random(nd_float, mean, std)}`
+- `#{Random(nd_int:X, mean, std)}`
+- `#{Random(nd_float:X, mean, std)}`
 
-For int and float:
-A random number is generated with the arguments as settings. type is either int
-or float. min is the minimum random value and max is the maximum random value.
+For `int` and `float`:
+A random number is generated with the arguments as settings. Type is either int
+or float. `min` is the minimum random value and `max` is the maximum random value.
 Both lower and upper bounds are inclusive.
 
 The third parameter is step size if four parameters are given. E.g.
 `#{Random(int, 0, 2000, 10000)}` can generate 0, 2000, 4000, 6000, 8000 or 10000.
 
-For switch:
+The number after `:` defines the amount of numbers after the decimal. Default is 3 numbers. This is optional.
+
+For `switch`:
 One of the values in the list, after "switch", are chosen randomly. Use single quotes
 around the arguments that should be picked randomly.
+
+For `nd_int` and `nd_float`:
+A random number, either int or float, is generated using [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
+The mean and standard deviation have to be provided as arguments.
+
+The number after `:` defines the amount of numbers after the decimal. Default is 3 numbers. This is optional.
 
 Example for int:
 
@@ -232,8 +244,6 @@ Example for int:
 Example for float:
 
 `#{Random(float, 18.0, 60.0)}` or `#{Random(float:2, 18.0, 60.0)}`
-
-The number after `:` defines the amount of numbers after the decimal. Default is 3 numbers.
 
 Example for switch:
 

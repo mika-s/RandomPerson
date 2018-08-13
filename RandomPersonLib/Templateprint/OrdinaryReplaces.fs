@@ -3,6 +3,39 @@
 open System
 open RandomPersonLib
 
+let ordinaryReplacer (valueBoxed: obj) =
+    match valueBoxed.GetType() with
+    | x when x = typedefof<string>      -> string (unbox valueBoxed)
+    | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString()
+    | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString()
+    | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString()
+    | _ -> invalidOp "Error in ordinaryReplacer"
+
+let toLowerReplacer (valueBoxed: obj) =
+    match valueBoxed.GetType() with
+    | x when x = typedefof<string>      -> (string (unbox valueBoxed)).ToLower()
+    | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString().ToLower()
+    | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString().ToLower()
+    | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString().ToLower()
+    | _ -> invalidOp "Error in toLowerReplacer"
+
+let toUpperReplacer (valueBoxed: obj) =
+    match valueBoxed.GetType() with
+    | x when x = typedefof<string>      -> (string (unbox valueBoxed)).ToUpper()
+    | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString().ToUpper()
+    | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString().ToUpper()
+    | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString().ToUpper()
+    | _ -> invalidOp "Error in toUpperReplacer"
+
+let replacer (mapping: (string * obj) list) (replaceFunc: obj -> string) (strFormat: string) (str: string) =
+    let folder (acc: string) (y: string * obj) =
+        let valueBoxed = snd y
+        let value = replaceFunc valueBoxed
+
+        acc.Replace(String.Format(strFormat, fst y), value)
+
+    List.fold folder str mapping
+
 let performOrdinaryReplaces (person: Person) (originalOutput: string) =
     let mapping = 
         [
@@ -22,46 +55,7 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
             "HomePhone", box person.HomePhone;
         ]
 
-    let replaceOrdinary (str: string) =
-        let ordinaryFolder (acc: string) (y: string * obj) =
-            let valueBoxed = snd y
-            let value = match valueBoxed.GetType() with
-                        | x when x = typedefof<string>      -> string (unbox valueBoxed)
-                        | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString()
-                        | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString()
-                        | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString()
-                        | _ -> invalidOp "Error in ordinaryFolder"
-
-            acc.Replace(String.Format("#{{{0}}}", fst y), value)
-
-        List.fold ordinaryFolder str mapping
-
-    let replaceToLower (str: string) =
-        let toLowerFolder (acc: string) (y: string * obj) =
-            let valueBoxed = snd y
-            let value = match valueBoxed.GetType() with
-                        | x when x = typedefof<string>      -> (string (unbox valueBoxed)).ToLower()
-                        | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString().ToLower()
-                        | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString().ToLower()
-                        | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString().ToLower()
-                        | _ -> invalidOp "Error in toLowerFolder"
-
-            acc.Replace(String.Format("#{{{0}.ToLower()}}", fst y), value)
-
-        List.fold toLowerFolder str mapping
-
-    let replaceToUpper (str: string) =
-        let toUpperFolder (acc: string) (y: string * obj) =
-            let valueBoxed = snd y
-            let value = match valueBoxed.GetType() with
-                        | x when x = typedefof<string>      -> (string (unbox valueBoxed)).ToUpper()
-                        | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString().ToUpper()
-                        | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString().ToUpper()
-                        | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString().ToUpper()
-                        | _ -> invalidOp "Error in toUpperFolder"
-
-            acc.Replace(String.Format("#{{{0}.ToUpper()}}", fst y), value)
-
-        List.fold toUpperFolder str mapping
-
-    originalOutput |> replaceOrdinary |> replaceToLower |> replaceToUpper
+    originalOutput
+    |> replacer mapping ordinaryReplacer "#{{{0}}}"
+    |> replacer mapping toLowerReplacer "#{{{0}.ToLower()}}"
+    |> replacer mapping toUpperReplacer "#{{{0}.ToUpper()}}"

@@ -62,7 +62,7 @@ will generate
 ("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678")`
 
 RandomPerson can also generate random integers and float between two given numbers, as well as random strings from a
-list.
+list. It can also generate normal distributed random numbers, given mean and standard deviation.
 
 ### Options
 
@@ -70,7 +70,8 @@ RandomPerson has options for:
 
 - Deterministic randomization can be enabled if wanted, meaning you can get the same set of people for every
   generated list of people.
-- Setting a range for birth dates in either absolute values (birth year) or relative values (age).
+- Setting a range for birth dates in either absolute values (birth year) or relative values (age). This will also affect
+  the generated SSN.
 - Anonymization of SSNs.
 - Output format for phone numbers (e.g. with country code or not) and SSNs.
   
