@@ -10,6 +10,9 @@ let isEven (x: int) = x % 2 =  0
 let intFromChar (x: char) = int(Char.GetNumericValue x)
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
 
+let uppercase (str: string) = str.ToUpper()
+let lowercase (str: string) = str.ToLower()
+
 let randomIntBetween (min: int) (max: int) = Random().Next(min, max + 1)
 let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetween 0 ((max - min) / step)) * step + min
 
