@@ -48,6 +48,28 @@ let randomSwitch (matching: Match) =
     let randomNumber = randomIntBetween min max
     matching.Groups.[1].Captures.[randomNumber].Value
 
+let randomNormallyDistributedInt (matching: Match) =
+    let mean               = int matching.Groups.[1].Value
+    let standard_deviation = int matching.Groups.[2].Value
+    normallyDistributedInt mean standard_deviation |> sprintf "%d"
+
+let randomNormallyDistributedIntWithStep (matching: Match) =
+    let mean               = int   matching.Groups.[1].Value
+    let standard_deviation = int   matching.Groups.[2].Value
+    let rounding           = float matching.Groups.[3].Value
+    normallyDistributedInt mean standard_deviation |> float |> roundToNearest rounding |> int |> sprintf "%d"
+
+let randomNormallyDistributedFloat (matching: Match) =
+    let mean               = float matching.Groups.[1].Value
+    let standard_deviation = float matching.Groups.[2].Value
+    normallyDistributedFloat mean standard_deviation |> sprintf "%.3f"
+
+let randomNormallyDistributedFloatWithStep (matching: Match) =
+    let mean               = float matching.Groups.[1].Value
+    let standard_deviation = float matching.Groups.[2].Value
+    let rounding           = float matching.Groups.[3].Value
+    normallyDistributedFloat mean standard_deviation |> roundToNearest rounding |> sprintf "%.3f"
+
 let replace (replaceFunction:  Match -> string) (regex: Regex) (remaining: string) =
     let matching = regex.Match remaining
 
@@ -65,16 +87,24 @@ let performRandomReplaces (stringToDoReplaces: string) =
     let randomFloatWithDecimalsRegex          = Regex "#{Random\(\s?float:(\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomFloatWithDecimalsWithStepRegex  = Regex "#{Random\(\s?float:(\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
     let randomSwitchRegex                     = Regex "#{Random\((?:switch,)\s?(?:\s*'([\w- \\\/,]+)',?){2,}\)}"
+    let randomNdIntRegex                      = Regex "#{Random\(\s?nd_int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+    let randomNdIntWithStepSizeRegex          = Regex "#{Random\(\s?nd_int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+    let randomNdFloatRegex                    = Regex "#{Random\(\s?nd_float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
+    let randomNdFloatWithStepRegex            = Regex "#{Random\(\s?nd_float\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?,\s?(-?\d+.\d+|-?\d+)\s?\)}"
 
     let rec loop (remaining: string) =
         let modified = remaining
-                       |> replace randomInt                       randomIntRegex
-                       |> replace randomIntWithStep               randomIntWithStepSizeRegex
-                       |> replace randomFloat                     randomFloatRegex
-                       |> replace randomFloatWithStep             randomFloatWithStepRegex
-                       |> replace randomFloatWithDecimals         randomFloatWithDecimalsRegex
-                       |> replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex
-                       |> replace randomSwitch                    randomSwitchRegex
+                       |> replace randomInt                              randomIntRegex
+                       |> replace randomIntWithStep                      randomIntWithStepSizeRegex
+                       |> replace randomFloat                            randomFloatRegex
+                       |> replace randomFloatWithStep                    randomFloatWithStepRegex
+                       |> replace randomFloatWithDecimals                randomFloatWithDecimalsRegex
+                       |> replace randomFloatWithDecimalsWithStep        randomFloatWithDecimalsWithStepRegex
+                       |> replace randomSwitch                           randomSwitchRegex
+                       |> replace randomNormallyDistributedInt           randomNdIntRegex
+                       |> replace randomNormallyDistributedIntWithStep   randomNdIntWithStepSizeRegex
+                       |> replace randomNormallyDistributedFloat         randomNdFloatRegex
+                       |> replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex
 
         let isMoreRemaining = (randomIntRegex.Match                       modified).Success 
                            || (randomIntWithStepSizeRegex.Match           modified).Success
@@ -83,6 +113,10 @@ let performRandomReplaces (stringToDoReplaces: string) =
                            || (randomFloatWithDecimalsRegex.Match         modified).Success
                            || (randomFloatWithDecimalsWithStepRegex.Match modified).Success
                            || (randomSwitchRegex.Match                    modified).Success
+                           || (randomNdIntRegex.Match                     modified).Success
+                           || (randomNdIntWithStepSizeRegex.Match         modified).Success
+                           || (randomNdFloatRegex.Match                   modified).Success
+                           || (randomNdFloatWithStepRegex.Match           modified).Success
 
         match isMoreRemaining with
         | true  -> loop modified

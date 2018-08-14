@@ -212,10 +212,13 @@ The following functions are also available:
 - `#{Random(float:X, min, max)}`
 - `#{Random(float:X, min, step, max)}`
 - `#{Random(switch, 'one', 'two', ...)}`
+
 - `#{Random(nd_int, mean, std)}`
+- `#{Random(nd_int, mean, std, rounding)}`
 - `#{Random(nd_float, mean, std)}`
-- `#{Random(nd_int:X, mean, std)}`
+- `#{Random(nd_float, mean, std, rounding)}`
 - `#{Random(nd_float:X, mean, std)}`
+- `#{Random(nd_float:X, mean, std, rounding)}`
 
 For `int` and `float`:
 A random number is generated with the arguments as settings. Type is either int
@@ -233,7 +236,8 @@ around the arguments that should be picked randomly.
 
 For `nd_int` and `nd_float`:
 A random number, either int or float, is generated using [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
-The mean and standard deviation have to be provided as arguments.
+The mean and standard deviation have to be provided as arguments. The rounding is an optional argument that
+can be used to round the generated number.
 
 The number after `:` defines the amount of numbers after the decimal. Default is 3 numbers. This is optional.
 
