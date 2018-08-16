@@ -1,6 +1,5 @@
 ﻿namespace Tests
 
-open System.Collections.Generic
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open Util
 
@@ -109,4 +108,42 @@ type ``incrementNumberInString should`` () =
         let incremented = incrementNumberInString input 3
         Assert.AreEqual("1230", incremented)
 
+[<TestClass>]
+type ``roundToNearest should`` () =
+
+    [<TestMethod>]
+    member __.``return 20,0 when given 1,0 as rounding and 19,6 as value`` () =
+        let rounding = 1.0
+        let value = 19.6
+        let result = roundToNearest rounding value
+        Assert.IsTrue(19.999 < result || result < 20.001)
+
+    [<TestMethod>]
+    member __.``return 50,0 when given 10,0 as rounding and 45,6 as value`` () =
+        let rounding = 10.0
+        let value = 45.6
+        let result = roundToNearest rounding value
+        Assert.IsTrue(49.999 < result || result < 50.001)
+
+    [<TestMethod>]
+    member __.``return -5,5 when given 0,5 as rounding and -5,4 as value`` () =
+        let rounding = 0.5
+        let value = -5.4
+        let result = roundToNearest rounding value
+        Assert.IsTrue(-5.501 < result || result < -5.499)
         
+[<TestClass>]
+type ``uppercase should`` () =
+
+    [<TestMethod>]
+    member __.``return "ASDF" when given "asdF"`` () =
+        let result = uppercase "asdF"
+        Assert.AreEqual("ASDF", result)
+
+[<TestClass>]
+type ``lowercase should`` () =
+
+    [<TestMethod>]
+    member __.``return "sadf" when given "SAdF"`` () =
+        let result = lowercase "SAdF"
+        Assert.AreEqual("sadf", result)   

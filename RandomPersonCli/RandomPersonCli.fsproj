@@ -17,6 +17,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="data\Max_Settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\Settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

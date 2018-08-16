@@ -339,3 +339,20 @@ type ``replace randomSwitch should`` () =
 
         Assert.AreEqual("Married: ", firstPart)
         Assert.IsTrue(randomPart = "one/one" || randomPart = "two/two")
+
+[<TestClass>]
+type ``replace randomNormallyDistributedFloat should`` () =
+
+    let randomNdFloatRegex = Regex "#{Random\(\s?nd_float\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float,20.0, 0.0)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float,20.0, 0.0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloat randomNdFloatRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(19.99 <= randomPart && randomPart <= 20.01)

@@ -17,7 +17,7 @@ type ``parseOrdinaryReplaces should`` () =
         Assert.AreEqual(expectedString, replaced)
 
     [<TestMethod>]
-    member __.``return a string with #{FirstName.ToLower()} replaced by the FirstName in all lower caps`` () =
+    member __.``return a string with #{FirstName,ToLower()} replaced by the FirstName in all lower caps`` () =
         let person = getTestPerson ()
         let replaced = performOrdinaryReplaces person "First name: #{FirstName.ToLower()}"
 
@@ -26,7 +26,7 @@ type ``parseOrdinaryReplaces should`` () =
         Assert.AreEqual(expectedString, replaced)
 
     [<TestMethod>]
-    member __.``return a string with #{LastName.ToUpper()} replaced by the FirstName in all upper caps`` () =
+    member __.``return a string with #{LastName,ToUpper()} replaced by the FirstName in all upper caps`` () =
         let person = getTestPerson ()
         let replaced = performOrdinaryReplaces person "Last name: #{LastName.ToUpper()}"
 
