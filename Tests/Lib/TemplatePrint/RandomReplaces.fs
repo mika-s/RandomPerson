@@ -341,6 +341,65 @@ type ``replace randomSwitch should`` () =
         Assert.IsTrue(randomPart = "one/one" || randomPart = "two/two")
 
 [<TestClass>]
+type ``replace randomNormallyDistributedInt should`` () =
+
+    let randomNdIntRegex = Regex "#{Random\(\s?nd_int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_int,20,0)} in a string with a normally distributed random int`` () =
+        let remaining = "Value: #{Random(nd_int,20,0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedInt randomNdIntRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.AreEqual(20, randomPart)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_int,100,1)} in a string with a normally distributed random int`` () =
+        let remaining = "Value: #{Random(nd_int,100,1)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedInt randomNdIntRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(0 < randomPart && randomPart < 200)
+
+[<TestClass>]
+type ``replace randomNdIntWithStepSizeRegex should`` () =
+
+    let randomNdIntWithStepSizeRegex = Regex "#{Random\(\s?nd_int\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?,\s?(-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_int,20,0,5)} in a string with a normally distributed random int`` () =
+        let remaining = "Value: #{Random(nd_int,20,0,5)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedIntWithStep randomNdIntWithStepSizeRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.AreEqual(20, randomPart)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_int,100,1,5)} in a string with a normally distributed random int`` () =
+        let remaining = "Value: #{Random(nd_int,100,1,5)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedIntWithStep randomNdIntWithStepSizeRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(0 < randomPart && randomPart < 200)
+        Assert.IsTrue(randomPart % 5 = 0)
+
+[<TestClass>]
 type ``replace randomNormallyDistributedFloat should`` () =
 
     let randomNdFloatRegex = Regex "#{Random\(\s?nd_float\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?\)}"

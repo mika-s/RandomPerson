@@ -13,6 +13,15 @@ let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rou
 let uppercase (str: string) = str.ToUpper()
 let lowercase (str: string) = str.ToLower()
 
+let titlecase (str: string) =
+    match str.Length with
+    | length when 1 < length ->
+        let lowered = str.Substring(1, str.Length - 1).ToLower()
+        let firstCapitalized = str.[0].ToString().ToUpper()
+        let result = String.Concat(firstCapitalized, lowered)
+        result
+    | _ -> String.Empty
+
 let randomIntBetween (min: int) (max: int) = Random().Next(min, max + 1)
 let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetween 0 ((max - min) / step)) * step + min
 

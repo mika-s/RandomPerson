@@ -115,30 +115,47 @@
         }
       },
         "Print": {
-          "Output": "SSN: #{SSN}
-Firstname: #{FirstName}
-Lastname: #{LastName}
-Nationality: #{Nationality}
-Address1: #{Address1}
-Address2: #{Address2}
-PostalCode: #{PostalCode}
-City: #{City}
+          "Output": "
+---------------------
+Personal information:          
+---------------------
+
+SSN: #{SSN}
+Firstname:                #{FirstName}
+Lastname:                 #{LastName}
+Nationality:              #{Nationality}
+Address1:                 #{Address1}
+Address2:                 #{Address2}
+PostalCode:               #{PostalCode}
+City:                     #{City}
 BirthDate default format: #{BirthDate}
-BirthDate ISO format: #{BirthDate('yyyy-MM-dd')}
-Gender default values: #{Gender}
-Gender given values: #{Gender('Man', 'Woman')}
-Email: #{Email}
-Password: #{Password}
-MobilePhone: #{MobilePhone}
-HomePhone: #{HomePhone}
+BirthDate ISO format:     #{BirthDate('yyyy-MM-dd')}
+Gender default values:    #{Gender}
+Gender given values:      #{Gender('Man', 'Woman')}
+Email:                    #{Email}
+Password:                 #{Password}
+MobilePhone:              #{MobilePhone}
+HomePhone:                #{HomePhone}
+
+---------------------
+Formatting functions:
+---------------------
+
+ToLower: #{FirstName.ToLower()}
+ToUpper: #{FirstName.ToUpper()}
+Titlecase: #{City.Titlecase()}
+
+---------------
+Random values:
+---------------
 
 Random int between 0 and 1: #{Random(int, 0, 1)}
-Random int between 0 and 100 with 10 step: #{Random(int, 0, 100, 10)}
+Random int between 0 and 100 with 10 step: #{Random(int, 0, 10, 100)}
 
 Random float with 2 digits: #{Random(float:2, 18.0, 60.0)}
 Random float with default digits: #{Random(float, 18.0, 60.0)}
-Random float with default digits with step: #{Random(float, 10.0, 60.0, 10.0)}
-Random float with 2 digits with step: #{Random(float:2, 10.0, 60.0, 10.0)}
+Random float with default digits with step: #{Random(float, 10.0, 10.0, 48.0)}
+Random float with 2 digits with step: #{Random(float:2, 10.0, 10.0, 60.0)}
 
 Random switch, yes, no or maybe: #{Random(switch, 'yes', 'no', 'maybe')}
 
