@@ -415,3 +415,98 @@ type ``replace randomNormallyDistributedFloat should`` () =
 
         Assert.AreEqual("Value: ", firstPart)
         Assert.IsTrue(19.99 <= randomPart && randomPart <= 20.01)
+
+[<TestClass>]
+type ``replace randomNormallyDistributedFloatWithStep should`` () =
+
+    let randomNdFloatWithStepRegex = Regex "#{Random\(\s?nd_float\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float,20.0, 0.0, 1.0)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float,20.0, 0.0, 1.0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(19.99 <= randomPart && randomPart <= 20.01)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float,20.0, 0.1, 1.0)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float,20.0, 0.1, 1.0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(0.0 <= randomPart && randomPart <= 40.0)
+
+[<TestClass>]
+type ``replace randomNormallyDistributedFloatWithDecimals should`` () =
+
+    let randomNdFloatWithDecimalsRegex = Regex "#{Random\(\s?nd_float:(\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float:1,20.0, 0.0)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float:1,20.0, 0.0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloatWithDecimals randomNdFloatWithDecimalsRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let asString = returnString.Split(',').[0].Split(' ').[1]
+        let randomPart = float asString
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(19.99 <= randomPart && randomPart <= 20.01)
+        Assert.IsTrue(asString.Split(".").[1].Length = 1)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float:4,20.0, 0.1)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float:4,20.0, 0.1)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloatWithDecimals randomNdFloatWithDecimalsRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let asString = returnString.Split(',').[0].Split(' ').[1]
+        let randomPart = float asString
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(0.0 <= randomPart && randomPart <= 40.0)
+        Assert.IsTrue(asString.Split(".").[1].Length = 4)
+
+[<TestClass>]
+type ``replace randomNormallyDistributedFloatWithDecimalsWithStep should`` () =
+
+    let randomNdFloatWithDecimalsWithStepRegex = Regex "#{Random\(\s?nd_float:(\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?,\s?(-?\d+\.\d+|-?\d+)\s?\)}"
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float,20.0, 0.0, 1.0)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float:1,20.0, 0.0, 1.0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloatWithDecimalsWithStep randomNdFloatWithDecimalsWithStepRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let asString = returnString.Split(',').[0].Split(' ').[1]
+        let randomPart = float asString
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(19.99 <= randomPart && randomPart <= 20.01)
+        Assert.IsTrue(asString.Split(".").[1].Length = 1)
+
+    [<TestMethod>]
+    member __.``return find and replace #{Random(nd_float,20.0, 0.1, 1.0)} in a string with a normally distributed random float`` () =
+        let remaining = "Value: #{Random(nd_float:4,20.0, 0.1, 1.0)}, married: Random(switch,true,false)"
+
+        let returnString = replace randomNormallyDistributedFloatWithDecimalsWithStep randomNdFloatWithDecimalsWithStepRegex remaining
+
+        let firstPart = returnString.Substring(0, 7)
+        let asString = returnString.Split(',').[0].Split(' ').[1]
+        let randomPart = float asString
+
+        Assert.AreEqual("Value: ", firstPart)
+        Assert.IsTrue(0.0 <= randomPart && randomPart <= 40.0)
+        Assert.IsTrue(asString.Split(".").[1].Length = 4)

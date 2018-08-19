@@ -146,4 +146,17 @@ type ``lowercase should`` () =
     [<TestMethod>]
     member __.``return "sadf" when given "SAdF"`` () =
         let result = lowercase "SAdF"
-        Assert.AreEqual("sadf", result)   
+        Assert.AreEqual("sadf", result)
+
+[<TestClass>]
+type ``firstupper should`` () =
+
+    [<TestMethod>]
+    member __.``return "Sadf" when given "SAdF"`` () =
+        let result = firstUpper "SAdF"
+        Assert.AreEqual("Sadf", result)
+
+    [<TestMethod>]
+    member __.``return "Town" when given "TOWN"`` () =
+        let result = firstUpper "TOWN"
+        Assert.AreEqual("Town", result)

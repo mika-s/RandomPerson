@@ -129,7 +129,8 @@ Address2:                 #{Address2}
 PostalCode:               #{PostalCode}
 City:                     #{City}
 BirthDate default format: #{BirthDate}
-BirthDate ISO format:     #{BirthDate('yyyy-MM-dd')}
+BirthDate Euro format:    #{BirthDate('dd/MM/yyyy')}
+BirthDate US format:      #{BirthDate('MM/dd/yyyy')}
 Gender default values:    #{Gender}
 Gender given values:      #{Gender('Man', 'Woman')}
 Email:                    #{Email}
@@ -143,7 +144,7 @@ Formatting functions:
 
 ToLower: #{FirstName.ToLower()}
 ToUpper: #{FirstName.ToUpper()}
-Titlecase: #{City.Titlecase()}
+FirstUpper: #{City.FirstUpper()}
 
 ---------------
 Random values:

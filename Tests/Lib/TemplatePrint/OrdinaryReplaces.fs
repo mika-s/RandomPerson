@@ -33,3 +33,12 @@ type ``parseOrdinaryReplaces should`` () =
         let expectedString = sprintf "Last name: %s" (person.LastName.ToUpper())
 
         Assert.AreEqual(expectedString, replaced)
+
+    [<TestMethod>]
+    member __.``return a string with #{City,FirstUpper()} replaced by the City with first letter uppercase and the rest lowercase`` () =
+        let person = getTestPerson ()
+        let replaced = performOrdinaryReplaces person "City: #{City.FirstUpper()}"
+
+        let expectedString = "City: Oslo"
+
+        Assert.AreEqual(expectedString, replaced)

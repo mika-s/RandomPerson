@@ -9,12 +9,12 @@ let ordinaryReplacer (valueBoxed: obj) =
     | x when x = typedefof<string>      -> string (unbox valueBoxed)
     | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString()
     | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString()
-    | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString()
+    | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString("yyyy-MM-dd")
     | _ -> invalidOp "Error in ordinaryReplacer"
 
-let toLowerReplacer   (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> lowercase
-let toUpperReplacer   (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> uppercase
-let titlecaseReplacer (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> titlecase
+let toLowerReplacer    (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> lowercase
+let toUpperReplacer    (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> uppercase
+let firstUpperReplacer (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> firstUpper
 
 let replacer (mapping: (string * obj) list) (replaceFunc: obj -> string) (strFormat: string) (str: string) =
     let folder (acc: string) (y: string * obj) =
@@ -45,7 +45,7 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
         ]
 
     originalOutput
-    |> replacer mapping ordinaryReplacer  "#{{{0}}}"
-    |> replacer mapping toLowerReplacer   "#{{{0}.ToLower()}}"
-    |> replacer mapping toUpperReplacer   "#{{{0}.ToUpper()}}"
-    |> replacer mapping titlecaseReplacer "#{{{0}.Titlecase()}}"
+    |> replacer mapping ordinaryReplacer   "#{{{0}}}"
+    |> replacer mapping toLowerReplacer    "#{{{0}.ToLower()}}"
+    |> replacer mapping toUpperReplacer    "#{{{0}.ToUpper()}}"
+    |> replacer mapping firstUpperReplacer "#{{{0}.FirstUpper()}}"
