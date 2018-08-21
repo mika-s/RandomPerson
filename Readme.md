@@ -53,13 +53,13 @@ with the randomly generated values.
 This can, for example, be used for creating SQL insert statements that create test data for use in development
 or testing:
 
-`"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
-(\"#{FirstName}\", \"#{LastName}\", \"#{Address1}\", \"#{Address2}\", \"#{PostalCode}\", \"#{City}\", \"#{MobilePhone}\")"`
+`"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone, Level) VALUES
+(\"#{FirstName}\", \"#{LastName}\", \"#{Address1}\", \"#{Address2}\", \"#{PostalCode}\", \"#{City}\", \"#{MobilePhone}\", #{Random(int, 3, 10)})"`
 
 will generate
 
-`"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone) VALUES
-("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678")`
+`"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone, Level) VALUES
+("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678", 7)`
 
 RandomPerson can also generate random integers and float between two given numbers, as well as random strings from a
 list. It can also generate normal distributed random numbers, given mean and standard deviation.
@@ -74,7 +74,7 @@ RandomPerson has options for:
   the generated SSN.
 - Anonymization of SSNs.
 - Output format for phone numbers (e.g. with country code or not) and SSNs.
-  
+
 ### Validate SSNs
 
 RandomPerson can validate SSNs for the countries listed above.

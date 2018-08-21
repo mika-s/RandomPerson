@@ -30,6 +30,8 @@ Default: Interactive mode.
 The options are case-sensitive.
 ```
 
+You might want to change encoding for the console to UTF8: `chcp 65001` (for Windows).
+
 ### Examples
 
 Open in interactive mode:
@@ -40,9 +42,9 @@ Generate 100 Swedish persons:
 
 ```dotnet RandomPersonCli -m L -n Swedish -a 100```
 
-Generate 50 Danish persons:
+Generate 50 Danish persons, print to JSON file called test_people.json:
 
-```dotnet RandomPersonCli -m L -n Danish -a 50```
+```dotnet RandomPersonCli -m L -n Danish -a 50 -f JSON -o test_people.json```
 
 Generate 200 Norwegian persons in Template mode (template string read from Settings.json):
 
@@ -70,52 +72,65 @@ Generate 200 Norwegian persons in Template mode (template string read from Setti
     }
 }
 ```
+### Top-level settings
 
-`AnonymizeSSN` is set to true if the SSN should be anonymized (non-validating checksum).
+#### AnonymizeSSN
+Is set to true if the SSN should be anonymized (non-validating checksum).
 Set it to false to generate real SSNs.
 
-`Under18` is set to true if people under 18 years old should be generated (as well as over 18).
+#### Under18
+Is set to true if people under 18 years old should be generated (as well as over 18).
 Set it to false to generate over-18s only. This setting is only active if `SetYearManually` is
 false.
 
-`AddCountryCodeToPhoneNumber` is set to true if country code should be added to the
+#### AddCountryCodeToPhoneNumber
+Is set to true if country code should be added to the
 telephone numbers.
 
-`RemoveHyphenFromPhoneNumber` is set to true if hyphens should be excluded from telephone
+#### RemoveHyphenFromPhoneNumber
+Is set to true if hyphens should be excluded from telephone
 numbers, for telephone numbers that usually include this.
 
-`RemoveSpaceFromPhoneNumber` is set to true if space should be excluded from telephone
+#### RemoveSpaceFromPhoneNumber
+Is set to true if space should be excluded from telephone
 numbers, for telephone numbers that usually include this.
 
-`RemoveHyphenFromSSN` is set to true if hyphens should be excluded from SSNs, for SSNs
+#### RemoveHyphenFromSSN
+Is set to true if hyphens should be excluded from SSNs, for SSNs
 that usually include this (e.g. Swedish and Danish).
 
-In `BirthDate`:
+### In BirthDate
 
-`SetYearManually` is set to true if the birthdate should be between two different years than
+#### SetYearManually
+Is set to true if the birthdate should be between two different years than
 the default values (which is between 1920 and now minus 18 years ago (or now if Under18 is true)).
 The two different years are set in `Low` and `High`. This setting overrides `Under18`.
 
-`SetUsingAge` is set to true if the `Low` and `High` values should be years of age instead of
+#### SetUsingAge
+Is set to true if the `Low` and `High` values should be years of age instead of
 years in general.
 
-`Low`: Smallest year that the random person can be born in, if `SetYearManually` is set to true
+#### Low
+Smallest year that the random person can be born in, if `SetYearManually` is set to true
 and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the lowest age of
 the randomly generated person. E.g. `Low = 1900` means the random person can only be born after
 1900, when `SetUsingAge = true`.
 
-`High`: largest year that the random person can be born in, if `SetYearManually` is set to true
+#### High
+Largest year that the random person can be born in, if `SetYearManually` is set to true
 and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the largest age of
 the randomly generated person. E.g. `High = 2000` means the random person can only be born before
 1900, when `SetUsingAge = true`.
 
-In `Randomness`:
+### In Randomness:
 
-`ManualSeed`: is set to true if the random function should use a manual seed. The manual seed is
+#### ManualSeed
+Is set to true if the random function should use a manual seed. The manual seed is
 set in the `Seed` field. When using a manual seed, the generated values will be deterministic per
 seed. I.e. RandomPerson will always generate the same values every time it's called.
 
-`Seed`: The seed to use with the random function in .NET. Only used when `ManualSeed = true`.
+#### Seed
+The seed to use with the random function in .NET. Only used when `ManualSeed = true`.
 
 ## PrintOptions in Settings.json
 
@@ -127,15 +142,20 @@ seed. I.e. RandomPerson will always generate the same values every time it's cal
 }
 ```
 
-`JsonPrintType` is used to determine the JSON output format when printing to a file in
+#### JsonPrintType
+Is used to determine the JSON output format when printing to a file in
 List mode, when format is set to JSON. This mainly affects the birthdate, as this can be
 in several different formats. Legal values are: "Microsoft" and "ISO".
 
-Microsoft format: `Date(267573600000+0200)` <br />
-ISO       format: `2018-05-01T10:02:57`
+| Format           | Example                   |
+|------------------|---------------------------|
+| Microsoft format | `Date(267573600000+0200)` |
+| ISO format       | `2018-05-01T10:02:57`     |
 
-`JsonPrettyPrint` is used to set whether the JSON output should be pretty printed or not
+#### JsonPrettyPrint
+Is used to set whether the JSON output should be pretty printed or not
 when printing to a file in List mode. Set to true for pretty print, false otherwise.
 
-`XmlPrettyPrint` is used to set whether the XML output should be pretty printed or not
+#### XmlPrettyPrint
+Is used to set whether the XML output should be pretty printed or not
 when printing to a file in List mode. Set to true for pretty print, false otherwise.

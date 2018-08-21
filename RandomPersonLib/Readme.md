@@ -38,7 +38,7 @@ The library can also validate SSNs for the countries listed above.
 
 ### In C#
 
-Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.0 to the references
+Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.2 to the references
 using NuGet.
 
 #### Example 1
