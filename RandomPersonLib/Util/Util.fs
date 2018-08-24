@@ -9,6 +9,7 @@ let isOdd  (x: int) = x % 2 <> 0
 let isEven (x: int) = x % 2 =  0
 let intFromChar (x: char) = int(Char.GetNumericValue x)
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
+let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 
 let uppercase (str: string) = str.ToUpper()
 let lowercase (str: string) = str.ToLower()

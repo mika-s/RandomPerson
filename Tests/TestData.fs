@@ -12,6 +12,14 @@ type PlainTestClass (firstname: string, lastname: string, isMarried: bool) =
     member this.Lastname = lastname
     member this.IsMarried = isMarried
 
+let getMiscDetails () =
+    {
+        CountryNameEnglish = "Norway";
+        CountryNameNative = "Norge";
+        CountryNameNativeAlternative1 = "Noreg";
+        CountryNameNativeAlternative2 = "Norga";
+    }
+
 let getPhoneDetails () =
     { 
         CountryCode = 47;
@@ -35,6 +43,7 @@ let getTestPerson () =
 
     let langugageFiles = {
         generalData = {
+                        Misc = getMiscDetails ();
                         Phone = getPhoneDetails ();
                         EmailEndings = getEmailAddresseses ();
                         MaleFirstNames = [| "Nicolas" |];

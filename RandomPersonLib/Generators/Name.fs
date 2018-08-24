@@ -40,6 +40,3 @@ let generateLastName (random: Random) (gender: Gender) (data: PersonData) =
                 data.FemaleLastNames.[randomNoFemaleLastName]
             | _ -> invalidArg "gender" "Illegal gender."
         | _ -> invalidArg "LastNames, MaleLastNames, FemaleLastNames" "Either populate LastNames or MaleLastNames/FemaleLastNames."
-
-
-

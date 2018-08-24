@@ -147,10 +147,10 @@ Is used to determine the JSON output format when printing to a file in
 List mode, when format is set to JSON. This mainly affects the birthdate, as this can be
 in several different formats. Legal values are: "Microsoft" and "ISO".
 
-| Format           | Example                   |
-|------------------|---------------------------|
-| Microsoft format | `Date(267573600000+0200)` |
-| ISO format       | `2018-05-01T10:02:57`     |
+| Format           | Example                 |
+|------------------|-------------------------|
+| Microsoft format | Date(267573600000+0200) |
+| ISO format       | 2018-05-01T10:02:57     |
 
 #### JsonPrettyPrint
 Is used to set whether the JSON output should be pretty printed or not

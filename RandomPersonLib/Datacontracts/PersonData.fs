@@ -3,10 +3,25 @@
 open System.Runtime.Serialization
 
 [<DataContract>]
+type MiscData = {
+    [<field : DataMember(Name="CountryNameEnglish")>]
+    CountryNameEnglish : string
+
+    [<field : DataMember(Name="CountryNameNative")>]
+    CountryNameNative : string
+
+    [<field : DataMember(Name="CountryNameNativeAlternative1")>]
+    CountryNameNativeAlternative1 : string
+
+    [<field : DataMember(Name="CountryNameNativeAlternative2")>]
+    CountryNameNativeAlternative2 : string
+}
+
+[<DataContract>]
 type MobileData = {
         [<field : DataMember(Name="Patterns")>]
         Patterns: string[]
-    }
+}
 
 [<DataContract>]
 type PhoneData = {
@@ -25,6 +40,9 @@ type PhoneData = {
 
 [<DataContract>]
 type PersonData = {
+    [<field : DataMember(Name="Misc")>]
+    Misc : MiscData
+
     [<field : DataMember(Name="Phone")>]
     Phone : PhoneData
 

@@ -151,37 +151,37 @@ Creates a list of strings. Nationality is an enum. options is an optional object
 options. Default settings are used if options is not provided. The string will follow
 the format of *outputString* and replace the following variables with generated values:
 
-- `#{SSN}`
-- `#{Email}`
-- `#{Password}`
-- `#{FirstName}`
-- `#{LastName}`
-- `#{Address1}`
-- `#{Address2}`
-- `#{PostalCode}`
-- `#{City}`
-- `#{Nationality}`
-- `#{BirthDate}`
-- `#{Gender}`
-- `#{MobilePhone}`
-- `#{HomePhone}`
+`#{SSN}` <br />
+`#{Email}` <br />
+`#{Password}` <br />
+`#{FirstName}` <br />
+`#{LastName}` <br />
+`#{Address1}` <br />
+`#{Address2}` <br />
+`#{PostalCode}` <br />
+`#{City}` <br />
+`#{Nationality}` <br />
+`#{BirthDate}` <br />
+`#{Gender}` <br />
+`#{MobilePhone}` <br />
+`#{HomePhone}`
 
 The following methods can be chained to the variable replacements:
 
-- `ToLower()`: All lowercaps.
-- `ToUpper()`: All uppercaps.
-- `FirstUpper()`: First letter uppercase, rest lowercase.
+`ToLower()`: All lowercaps. <br />
+`ToUpper()`: All uppercaps. <br />
+`FirstUpper()`: First letter uppercase, rest lowercase.
 
 You can change the gender values if you don't want them to be "Male" or "Female":
 
-- `#{Gender('Mann', 'Kvinne')}`
+`#{Gender('Mann', 'Kvinne')}`
 
 The male string is the first argument to `Gender` and the female string is the second argument.
 
 You can also change the birthdate values to a given date format:
 
-- `#{BirthDate('ddMMyy')}`
-- `#{BirthDate('MMMM dd', 'da-DK')}`
+`#{BirthDate('ddMMyy')}` <br />
+`#{BirthDate('MMMM dd', 'da-DK')}`
 
 The datetime formats are the same as in the official Microsoft [documentation](https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings).
 The culture info can be passed as an optional second parameter. The current culture is
@@ -206,20 +206,20 @@ could generate
 
 The following functions are also available:
 
-- `#{Random(int, min, max)}`
-- `#{Random(int, min, step, max)}`
-- `#{Random(float, min, max)}`
-- `#{Random(float, min, step, max)}`
-- `#{Random(float:X, min, max)}`
-- `#{Random(float:X, min, step, max)}`
-- `#{Random(switch, 'one', 'two', ...)}`
-
-- `#{Random(nd_int, mean, std)}`
-- `#{Random(nd_int, mean, std, rounding)}`
-- `#{Random(nd_float, mean, std)}`
-- `#{Random(nd_float, mean, std, rounding)}`
-- `#{Random(nd_float:X, mean, std)}`
-- `#{Random(nd_float:X, mean, std, rounding)}`
+`#{Random(int, min, max)}` <br />
+`#{Random(int, min, step, max)}` <br />
+`#{Random(float, min, max)}` <br />
+`#{Random(float, min, step, max)}` <br />
+`#{Random(float:X, min, max)}` <br />
+`#{Random(float:X, min, step, max)}` <br />
+`#{Random(switch, 'one', 'two', ...)}` <br />
+<br />
+`#{Random(nd_int, mean, std)}` <br />
+`#{Random(nd_int, mean, std, rounding)}` <br />
+`#{Random(nd_float, mean, std)}` <br />
+`#{Random(nd_float, mean, std, rounding)}` <br />
+`#{Random(nd_float:X, mean, std)}` <br />
+`#{Random(nd_float:X, mean, std, rounding)}` <br />
 
 For `int` and `float`:
 A random number is generated with the arguments as settings. Type is either int

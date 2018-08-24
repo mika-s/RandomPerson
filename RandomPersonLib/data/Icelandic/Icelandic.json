@@ -1,4 +1,8 @@
 {
+  "Misc": {
+    "CountryNameEnglish": "Iceland",
+    "CountryNameNative": "Ísland"
+  },
   "Phone": {
     "CountryCode": 354,
     "TrunkPrefix": "",

@@ -51,6 +51,18 @@ type genericPrintSettings = {
 
     [<field : DataMember(Name="HomePhone")>]
     HomePhone : bool
+    
+    [<field : DataMember(Name="CountryNameEnglish")>]
+    CountryNameEnglish : bool
+    
+    [<field : DataMember(Name="CountryNameNative")>]
+    CountryNameNative : bool
+    
+    [<field : DataMember(Name="CountryNameNativeAlternative1")>]
+    CountryNameNativeAlternative1 : bool
+    
+    [<field : DataMember(Name="CountryNameNativeAlternative2")>]
+    CountryNameNativeAlternative2 : bool
 }
 
 [<DataContract>]

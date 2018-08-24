@@ -33,7 +33,11 @@
         "Email": true,
         "Password": true,
         "MobilePhone": true,
-        "HomePhone": true
+        "HomePhone": true,
+        "CountryNameEnglish": true,
+        "CountryNameNative": true,
+        "CountryNameNativeAlternative1": true,
+        "CountryNameNativeAlternative2": true
       }
     },
     "ListMode": {
@@ -75,7 +79,11 @@
         "Email": true,
         "Password": true,
         "MobilePhone": true,
-        "HomePhone": true
+        "HomePhone": true,
+        "CountryNameEnglish": true,
+        "CountryNameNative": true,
+        "CountryNameNativeAlternative1": true,
+        "CountryNameNativeAlternative2": true
       },
       "FilePrint": {
         "Label": true,
@@ -92,7 +100,11 @@
         "Email": true,
         "Password": true,
         "MobilePhone": true,
-        "HomePhone": true
+        "HomePhone": true,
+        "CountryNameEnglish": true,
+        "CountryNameNative": true,
+        "CountryNameNativeAlternative1": true,
+        "CountryNameNativeAlternative2": true
       }
     },
     "TemplateMode": {
@@ -120,30 +132,34 @@
 Personal information:          
 ---------------------
 
-SSN: #{SSN}
-Firstname:                #{FirstName}
-Lastname:                 #{LastName}
-Nationality:              #{Nationality}
-Address1:                 #{Address1}
-Address2:                 #{Address2}
-PostalCode:               #{PostalCode}
-City:                     #{City}
-BirthDate default format: #{BirthDate}
-BirthDate Euro format:    #{BirthDate('dd/MM/yyyy')}
-BirthDate US format:      #{BirthDate('MM/dd/yyyy')}
-Gender default values:    #{Gender}
-Gender given values:      #{Gender('Man', 'Woman')}
-Email:                    #{Email}
-Password:                 #{Password}
-MobilePhone:              #{MobilePhone}
-HomePhone:                #{HomePhone}
+SSN:                       #{SSN}
+Firstname:                 #{FirstName}
+Lastname:                  #{LastName}
+Nationality:               #{Nationality}
+Address1:                  #{Address1}
+Address2:                  #{Address2}
+PostalCode:                #{PostalCode}
+City:                      #{City}
+BirthDate default format:  #{BirthDate}
+BirthDate Euro format:     #{BirthDate('dd/MM/yyyy')}
+BirthDate US format:       #{BirthDate('MM/dd/yyyy')}
+Gender default values:     #{Gender}
+Gender given values:       #{Gender('Man', 'Woman')}
+Email:                     #{Email}
+Password:                  #{Password}
+MobilePhone:               #{MobilePhone}
+HomePhone:                 #{HomePhone}
+Country (English):         #{CountryNameEnglish}
+Country (native language): #{CountryNameNative}
+Country (native language, alternative 1): #{CountryNameNativeAlt1}
+Country (native language, alternative 2): #{CountryNameNativeAlt2}
 
 ---------------------
 Formatting functions:
 ---------------------
 
-ToLower: #{FirstName.ToLower()}
-ToUpper: #{FirstName.ToUpper()}
+ToLower:    #{FirstName.ToLower()}
+ToUpper:    #{FirstName.ToUpper()}
 FirstUpper: #{City.FirstUpper()}
 
 ---------------

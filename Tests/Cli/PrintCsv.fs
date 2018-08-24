@@ -25,6 +25,10 @@ type ``createHeader should`` () =
             Password = false;
             MobilePhone = false;
             HomePhone = true;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let header = createHeader genericPrintSettings
@@ -49,6 +53,10 @@ type ``createHeader should`` () =
             Password = false;
             MobilePhone = true;
             HomePhone = true;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let header = createHeader genericPrintSettings
@@ -73,6 +81,10 @@ type ``createHeader should`` () =
             Password = false;
             MobilePhone = false;
             HomePhone = false;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let header = createHeader genericPrintSettings
@@ -97,6 +109,10 @@ type ``createHeader should`` () =
             Password = false;
             MobilePhone = false;
             HomePhone = false;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let header = createHeader genericPrintSettings

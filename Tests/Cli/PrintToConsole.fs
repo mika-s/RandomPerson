@@ -25,6 +25,10 @@ type ``isPrintingMoreThanOneLine should`` () =
             Password = false;
             MobilePhone = false;
             HomePhone = false;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let result = isPrintingMoreThanOneLine genericPrintSettings
@@ -49,6 +53,10 @@ type ``isPrintingMoreThanOneLine should`` () =
             Password = false;
             MobilePhone = false;
             HomePhone = false;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let result = isPrintingMoreThanOneLine genericPrintSettings
@@ -73,6 +81,10 @@ type ``isPrintingMoreThanOneLine should`` () =
             Password = false;
             MobilePhone = false;
             HomePhone = false;
+            CountryNameEnglish = false;
+            CountryNameNative = false;
+            CountryNameNativeAlternative1 = false;
+            CountryNameNativeAlternative2 = true;
         }
 
         let result = isPrintingMoreThanOneLine genericPrintSettings

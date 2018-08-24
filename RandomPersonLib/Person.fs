@@ -12,6 +12,7 @@ open Password
 open Phone
 open FilesForLanguage
 open GenericFiles
+open Util
 
 /// A class representing a randomly generated person.
 type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles: filesForLanguage, options: RandomPersonOptions, random: Random) =
@@ -48,6 +49,12 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
                             options.AddCountryCodeToPhoneNumber
                             options.RemoveHyphenFromPhoneNumber
                             options.RemoveSpaceFromPhoneNumber
+    let countryNameEnglish = languageFiles.generalData.Misc.CountryNameEnglish
+    let countryNameNative = languageFiles.generalData.Misc.CountryNameNative
+    let countryNameNativeAlternative1 = if languageFiles.generalData.Misc.CountryNameNativeAlternative1 <> null then
+                                           languageFiles.generalData.Misc.CountryNameNativeAlternative1 else ""
+    let countryNameNativeAlternative2 = if languageFiles.generalData.Misc.CountryNameNativeAlternative2 <> null then
+                                           languageFiles.generalData.Misc.CountryNameNativeAlternative2 else ""
 
     member this.Gender = gender
     member this.FirstName = firstName
@@ -63,3 +70,7 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
     member this.Password = password
     member this.MobilePhone = mobilePhone
     member this.HomePhone = homePhone
+    member this.CountryNameEnglish = countryNameEnglish
+    member this.CountryNameNative = countryNameNative
+    member this.CountryNameNativeAlternative1 = countryNameNativeAlternative1
+    member this.CountryNameNativeAlternative2 = countryNameNativeAlternative2
