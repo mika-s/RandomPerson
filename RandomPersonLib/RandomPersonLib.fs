@@ -29,6 +29,7 @@ type RandomPerson() =
     let createPerson (nationality: Nationality, options: RandomPersonOptions, random: Random) =
         match nationality with
         | Nationality.Danish    -> Person(nationality, i.generic, i.danish,    options, random)
+        | Nationality.Dutch     -> Person(nationality, i.generic, i.dutch,     options, random)
         | Nationality.Finnish   -> Person(nationality, i.generic, i.finnish,   options, random)
         | Nationality.Icelandic -> Person(nationality, i.generic, i.icelandic, options, random)
         | Nationality.Norwegian -> Person(nationality, i.generic, i.norwegian, options, random)
@@ -64,6 +65,7 @@ type RandomPerson() =
     member this.ValidateSSN (nationality: Nationality, ssn: string) =
         match nationality with
         | Nationality.Danish    -> validateDK ssn
+        | Nationality.Dutch     -> validateNL ssn
         | Nationality.Finnish   -> validateFI ssn
         | Nationality.Icelandic -> validateIC ssn
         | Nationality.Norwegian -> validateNO ssn

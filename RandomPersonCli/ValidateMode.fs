@@ -37,6 +37,7 @@ let validateMode (ssn: string) (nationality: Nationality) =
                 match Console.ReadKey(true).Key with
                 | ConsoleKey.Q -> ()
                 | ConsoleKey.D -> validate lib Nationality.Danish    |> printHelp |> mainloop
+                | ConsoleKey.R -> validate lib Nationality.Dutch     |> printHelp |> mainloop   // find new key.
                 | ConsoleKey.F -> validate lib Nationality.Finnish   |> printHelp |> mainloop
                 | ConsoleKey.I -> validate lib Nationality.Icelandic |> printHelp |> mainloop
                 | ConsoleKey.N -> validate lib Nationality.Norwegian |> printHelp |> mainloop
@@ -49,6 +50,7 @@ let validateMode (ssn: string) (nationality: Nationality) =
     | _ ->
         match nationality with
         | Nationality.Danish    -> lib.ValidateSSN(Nationality.Danish,    ssn) |> printfn "%b"
+        | Nationality.Dutch     -> lib.ValidateSSN(Nationality.Dutch,     ssn) |> printfn "%b"
         | Nationality.Finnish   -> lib.ValidateSSN(Nationality.Finnish,   ssn) |> printfn "%b"
         | Nationality.Icelandic -> lib.ValidateSSN(Nationality.Icelandic, ssn) |> printfn "%b"
         | Nationality.Norwegian -> lib.ValidateSSN(Nationality.Norwegian, ssn) |> printfn "%b"

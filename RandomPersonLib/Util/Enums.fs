@@ -8,7 +8,8 @@ type Gender =
 /// Enum representing a person's nationality.
 type Nationality =
 | Danish    = 1
-| Finnish   = 2
-| Icelandic = 3
-| Norwegian = 4
-| Swedish   = 5
+| Dutch     = 2
+| Finnish   = 3
+| Icelandic = 4
+| Norwegian = 5
+| Swedish   = 6

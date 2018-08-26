@@ -29,12 +29,12 @@ let defaultOptions = {
 
 let printUsage () =
     printfn "Usage:"
-    printfn "dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]"
+    printfn "dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Dutch|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]"
     printfn "                           [-f (CSV|JSON|XML)] [--caf (true|false)] [-o (path)] [-s (path)]"
     printfn ""
     printfn "-m: Mode. Either I (interactive), L (list), T (templated list) or V (validation). Validation mode can take SSN as"
     printfn "    optional input, otherwise it's using interactive validation."
-    printfn "-n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode."
+    printfn "-n: Nationality. Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode."
     printfn "-a: Amount. Number of people to generate in List or Template mode."
     printfn "-f: File format. File format to use when printing to file in List mode. Will print to the console if not specified."
     printfn "--caf: Print to both console and file at the same time if true. Only used when -f is specified. False is default."
@@ -86,6 +86,9 @@ let rec parseArgs (args: list<string>) (options: options) =
         | "Danish"::xss ->
             let newOptions = { options with nationality = Nationality.Danish }
             parseArgs xss newOptions
+        | "Dutch"::xss ->
+            let newOptions = { options with nationality = Nationality.Dutch }
+            parseArgs xss newOptions
         | "Finnish"::xss ->
             let newOptions = { options with nationality = Nationality.Finnish }
             parseArgs xss newOptions
@@ -99,7 +102,7 @@ let rec parseArgs (args: list<string>) (options: options) =
             let newOptions = { options with nationality = Nationality.Swedish }
             parseArgs xss newOptions
         | _ ->
-            invalidArg "-n flag" "needs either Danish, Finnish, Icelandic, Norwegian or Swedish after it\n"
+            invalidArg "-n flag" "needs either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish after it\n"
             parseArgs xs options
     | "-a"::xs ->
         match xs with

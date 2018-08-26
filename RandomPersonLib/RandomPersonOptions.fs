@@ -8,13 +8,11 @@ type BirthDateOptions (setYearManually: bool, setUsingAge: bool, low: int, high:
     member val Low = low with get, set
     member val High = high with get, set
 
-
 type RandomnessOptions (manualSeed: bool, seed: int) = 
     new () = RandomnessOptions(false, 1)
 
     member val ManualSeed = manualSeed with get, set
     member val Seed = seed with get, set
-
 
 type RandomPersonOptions (
                           anonymizeSSN: bool,

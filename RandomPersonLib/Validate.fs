@@ -1,6 +1,7 @@
 ﻿module internal Validate
 
 open DanishSSNValidation
+open DutchSSNValidation
 open FinnishSSNValidation
 open IcelandicSSNValidation
 open NorwegianSSNValidation
@@ -19,6 +20,11 @@ let validateFI (ssn: string) =
 let validateIC (ssn: string) =
     match ssn with
     | IcelandicSSN readSSN -> validateIcelandicSSN readSSN
+    | _ -> false
+
+let validateNL (ssn: string) =
+    match ssn with
+    | DutchSSN readSSN -> validateDutchSSN readSSN
     | _ -> false
 
 let validateNO (ssn: string) =

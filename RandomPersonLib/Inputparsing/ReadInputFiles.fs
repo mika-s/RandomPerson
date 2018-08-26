@@ -12,6 +12,7 @@ open Util
 type inputFiles = {
     generic:   genericFiles
     danish:    filesForLanguage
+    dutch:     filesForLanguage
     finnish:   filesForLanguage
     icelandic: filesForLanguage
     norwegian: filesForLanguage
@@ -28,6 +29,13 @@ let readInputFiles () =
         addresses1           = File.ReadAllLines("data/Danish/Gader i København.txt", Encoding.UTF8);
         postalCodesAndCities = File.ReadAllLines("data/Danish/DK.txt", Encoding.UTF8)
                                |> Array.map(stringToPostalCodeAndCity Nationality.Danish);
+    }
+
+    let dutch = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Dutch/dutch.json";
+        addresses1           = File.ReadAllLines("data/Danish/Gader i København.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Danish/DK.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Nationality.Dutch);
     }
 
     let finnish = {
@@ -61,6 +69,7 @@ let readInputFiles () =
     {
         generic = generic;
         danish = danish;
+        dutch = dutch;
         finnish = finnish;
         icelandic = icelandic;
         norwegian = norwegian;

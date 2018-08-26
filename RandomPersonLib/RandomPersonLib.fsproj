@@ -29,6 +29,9 @@
     <Content Include="data\Danish\Gader i København.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\Dutch\dutch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\Finnish\Streets in Finland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -70,6 +73,9 @@
     <Compile Include="SSNs\Danish\Parameters.fs" />
     <Compile Include="SSNs\Danish\Generation.fs" />
     <Compile Include="SSNs\Danish\Validation.fs" />
+    <Compile Include="SSNs\Dutch\Parameters.fs" />
+    <Compile Include="SSNs\Dutch\Generation.fs" />
+    <Compile Include="SSNs\Dutch\Validation.fs" />
     <Compile Include="SSNs\Icelandic\Parameters.fs" />
     <Compile Include="SSNs\Icelandic\Generation.fs" />
     <Compile Include="SSNs\Icelandic\Validation.fs" />
@@ -119,5 +125,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>

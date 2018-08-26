@@ -28,7 +28,7 @@ type ``isPrintingMoreThanOneLine should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let result = isPrintingMoreThanOneLine genericPrintSettings
@@ -56,7 +56,7 @@ type ``isPrintingMoreThanOneLine should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let result = isPrintingMoreThanOneLine genericPrintSettings
@@ -84,7 +84,7 @@ type ``isPrintingMoreThanOneLine should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let result = isPrintingMoreThanOneLine genericPrintSettings

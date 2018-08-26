@@ -14,6 +14,7 @@ It supports creating personal data for the following countries:
 - Iceland
 - Norway
 - Sweden
+- The Netherlands
 
 Check the RandomPersonLib folder for more information regarding the library. <br />
 Check the RandomPersonCli folder for more information regarding the CLI tool.

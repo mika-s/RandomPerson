@@ -10,13 +10,13 @@ It can also validate SSNs.
 ## Usage
 
 ```
-dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]
+dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Dutch|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]
                            [-f (CSV|JSON|XML)] [--caf (true|false)] [-o (path)] [-s (path)]
 
 
 -m: Mode. Either I (interactive), L (list), T (templated list) or V (validation). Validation mode can take SSN as
     optional input, otherwise it's using interactive validation.
--n: Nationality. Either Danish, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode.
+-n: Nationality. Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode.
 -a: Amount. Number of people to generate in List or Template mode.
 -f: File format. File format to use when printing to file in List mode. Will print to the console if not specified.
 --caf: Print to both console and file at the same time if true. Only used when -f is specified. False is default.

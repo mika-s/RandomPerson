@@ -12,7 +12,6 @@ open Password
 open Phone
 open FilesForLanguage
 open GenericFiles
-open Util
 
 /// A class representing a randomly generated person.
 type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles: filesForLanguage, options: RandomPersonOptions, random: Random) =

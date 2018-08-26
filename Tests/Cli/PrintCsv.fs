@@ -28,7 +28,7 @@ type ``createHeader should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let header = createHeader genericPrintSettings
@@ -56,7 +56,7 @@ type ``createHeader should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let header = createHeader genericPrintSettings
@@ -84,7 +84,7 @@ type ``createHeader should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let header = createHeader genericPrintSettings
@@ -112,7 +112,7 @@ type ``createHeader should`` () =
             CountryNameEnglish = false;
             CountryNameNative = false;
             CountryNameNativeAlternative1 = false;
-            CountryNameNativeAlternative2 = true;
+            CountryNameNativeAlternative2 = false;
         }
 
         let header = createHeader genericPrintSettings

@@ -30,6 +30,7 @@
     <Compile Include="Lib\SwedishSSN.fs" />
     <Compile Include="Lib\CommonValidation.fs" />
     <Compile Include="Lib\ValidateDanishSSN.fs" />
+    <Compile Include="Lib\ValidateDutchSSN.fs" />
     <Compile Include="Lib\ValidateFinnishSSN.fs" />
     <Compile Include="Lib\ValidateIcelandicSSN.fs" />
     <Compile Include="Lib\ValidateNorwegianSSN.fs" />
