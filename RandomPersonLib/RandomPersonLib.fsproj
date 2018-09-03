@@ -29,6 +29,12 @@
     <Content Include="data\Danish\Gader i København.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\Dutch\NL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Dutch\License for last names.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\Dutch\dutch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -125,7 +131,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <ItemGroup />
 
 </Project>

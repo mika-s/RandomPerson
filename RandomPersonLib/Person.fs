@@ -19,7 +19,7 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
     let isAllowingUnder18 = options.Under18
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN
     
-    let postalCodeAndCity = generatePostalCodeAndCity random languageFiles.postalCodesAndCities
+    let postalCodeAndCity = generatePostalCodeAndCity random languageFiles.postalCodesAndCities nationality
 
     let gender = generateGender random
     let firstName = generateFirstName random gender languageFiles.generalData

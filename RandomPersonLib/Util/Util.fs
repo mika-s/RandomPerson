@@ -29,6 +29,11 @@ let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetwe
 let randomFloatBetween (min: float) (max: float) = Random().NextDouble() * (max - min) + min
 let randomFloatBetweenWithStep (min: float) (step: float) (max: float) = (float (randomIntBetween 0 (int ((max - min) / step))))  * step + min
 
+let randomUppercaseLetter (random: Random) =
+    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let randomNumber = random.Next(0, alphabet.Length - 1)
+    alphabet.[randomNumber]
+
 let boxMullerTransform () =
     let random = Random()
     let u1 = random.NextDouble()

@@ -55,12 +55,12 @@ This can, for example, be used for creating SQL insert statements that create te
 or testing:
 
 `"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone, Level) VALUES
-(\"#{FirstName}\", \"#{LastName}\", \"#{Address1}\", \"#{Address2}\", \"#{PostalCode}\", \"#{City}\", \"#{MobilePhone}\", #{Random(int, 3, 10)})"`
+('#{FirstName}', '#{LastName}', '#{Address1}', '#{Address2}', '#{PostalCode}', '#{City}', '#{MobilePhone}', #{Random(int, 3, 10)})"`
 
 will generate
 
 `"INSERT INTO Customers (FirstName, LastName, Address1, Address2, PostalCode, City, Phone, Level) VALUES
-("Lars", "Olsen", "Dybviksgata 13", "", "1234", "Gokk", "12345678", 7)`
+('Lars', 'Olsen', 'Dybviksgata 13', '', '1234', 'Gokk', '12345678', 7)`
 
 RandomPerson can also generate random integers and float between two given numbers, as well as random strings from a
 list. It can also generate normal distributed random numbers, given mean and standard deviation.

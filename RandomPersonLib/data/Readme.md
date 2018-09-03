@@ -5,6 +5,7 @@ The following sources are used for the data that is used to generate random pers
 ## Generic
 
 - [Password list](https://github.com/danielmiessler/SecLists/blob/master/Passwords/darkweb2017-top1000.txt)
+- [National conventions for writing telephone numbers](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers)
 
 ## Denmark
 
@@ -41,6 +42,17 @@ The list of Swedish postal codes and cities is under the [Creative Commons Attri
 
 www.geonames.org
 
+## The Netherlands
+
+- [Dutch firstnames](https://www.meertens.knaw.nl/nvb/topnamen/land/Nederland/2014)
+- [Dutch lastnames](https://github.com/digitalheir/family-names-in-the-netherlands)
+- [Telephone numbers in The Netherlands](https://en.wikipedia.org/wiki/Telephone_numbers_in_the_Netherlands)
+- [Postal codes in The Netherlands](https://en.wikipedia.org/wiki/Postal_codes_in_the_Netherlands)
+- [List of postal codes in The Netherlands](http://download.geonames.org/export/zip/NL.zip)
+
+The list of Dutch postal codes and cities is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
+
+www.geonames.org
 
 ## Iceland
 
