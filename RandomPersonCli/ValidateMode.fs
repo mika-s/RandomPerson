@@ -18,6 +18,7 @@ let validate (lib: RandomPerson) (nationality: Nationality) =
 let printHelp () =
     printfn "\nUsage:"
     printfn "Danish: d"
+    printfn "Dutch: D"
     printfn "Finnish: f"
     printfn "Icelandic: i"
     printfn "Norwegian: n"
@@ -34,14 +35,14 @@ let validateMode (ssn: string) (nationality: Nationality) =
 
         let rec mainloop() =
             if Console.KeyAvailable then
-                match Console.ReadKey(true).Key with
-                | ConsoleKey.Q -> ()
-                | ConsoleKey.D -> validate lib Nationality.Danish    |> printHelp |> mainloop
-                | ConsoleKey.R -> validate lib Nationality.Dutch     |> printHelp |> mainloop   // find new key.
-                | ConsoleKey.F -> validate lib Nationality.Finnish   |> printHelp |> mainloop
-                | ConsoleKey.I -> validate lib Nationality.Icelandic |> printHelp |> mainloop
-                | ConsoleKey.N -> validate lib Nationality.Norwegian |> printHelp |> mainloop
-                | ConsoleKey.S -> validate lib Nationality.Swedish   |> printHelp |> mainloop
+                match Console.ReadKey(true).KeyChar with
+                | 'q' -> ()
+                | 'd' -> validate lib Nationality.Danish    |> printHelp |> mainloop
+                | 'D' -> validate lib Nationality.Dutch     |> printHelp |> mainloop
+                | 'f' -> validate lib Nationality.Finnish   |> printHelp |> mainloop
+                | 'i' -> validate lib Nationality.Icelandic |> printHelp |> mainloop
+                | 'n' -> validate lib Nationality.Norwegian |> printHelp |> mainloop
+                | 's' -> validate lib Nationality.Swedish   |> printHelp |> mainloop
                 | _ -> mainloop()
             else
                 mainloop ()

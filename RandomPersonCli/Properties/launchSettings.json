@@ -2,7 +2,7 @@
   "profiles": {
     "RandomPerson": {
       "commandName": "Project",
-      "commandLineArgs": "-m T -s data\\Max_Settings.json -a 1 -n Dutch"
+      "commandLineArgs": "-m V -s data\\Max_Settings.json -a 1 -n Dutch"
     }
   }
 }

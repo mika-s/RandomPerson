@@ -8,11 +8,12 @@ open Settings
 
 let interactiveMode (settingsFilePath: string) =
     printfn "Usage:"
-    printfn "Danish: d"
-    printfn "Finnish: f"
-    printfn "Iceland: i"
+    printfn "Danish:    d"
+    printfn "Dutch:     D"
+    printfn "Finnish:   f"
+    printfn "Iceland:   i"
     printfn "Norwegian: n"
-    printfn "Swedish: s"
+    printfn "Swedish:   s"
     printfn "Quit: q\n\n"
 
     let i = readInputFiles settingsFilePath
@@ -21,13 +22,14 @@ let interactiveMode (settingsFilePath: string) =
 
     let rec mainloop() = 
         if Console.KeyAvailable then
-            match Console.ReadKey(true).Key with
-            | ConsoleKey.Q -> ()
-            | ConsoleKey.D -> lib.CreatePerson(Nationality.Danish,    options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | ConsoleKey.F -> lib.CreatePerson(Nationality.Finnish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | ConsoleKey.I -> lib.CreatePerson(Nationality.Icelandic, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | ConsoleKey.N -> lib.CreatePerson(Nationality.Norwegian, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | ConsoleKey.S -> lib.CreatePerson(Nationality.Swedish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            match Console.ReadKey(true).KeyChar with
+            | 'q' -> ()
+            | 'd' -> lib.CreatePerson(Nationality.Danish,    options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'D' -> lib.CreatePerson(Nationality.Dutch,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'f' -> lib.CreatePerson(Nationality.Finnish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'i' -> lib.CreatePerson(Nationality.Icelandic, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'n' -> lib.CreatePerson(Nationality.Norwegian, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 's' -> lib.CreatePerson(Nationality.Swedish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | _ -> mainloop()
         else
             mainloop()
