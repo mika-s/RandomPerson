@@ -33,7 +33,7 @@ let readInputFiles () =
 
     let dutch = {
         generalData          = readDataFromJsonFile<PersonData> "data/Dutch/dutch.json";
-        addresses1           = File.ReadAllLines("data/Danish/Gader i København.txt", Encoding.UTF8);
+        addresses1           = File.ReadAllLines("data/Dutch/Addresses in NL.txt", Encoding.UTF8);
         postalCodesAndCities = File.ReadAllLines("data/Dutch/NL.txt", Encoding.UTF8)
                                |> Array.map(stringToPostalCodeAndCity Nationality.Dutch);
     }

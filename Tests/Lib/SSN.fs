@@ -57,6 +57,22 @@ type ``generateSSN should`` () =
         Assert.IsTrue(isEven checksum)
 
     [<TestMethod>]
+    member __.``return a correct SSN for Dutch person`` () =
+        let nationality = Nationality.Dutch
+        let birthdate = DateTime(1962, 2, 3)
+        let gender = Gender.Female
+        let random = getRandom false 100
+        let ssn = generateSSN random nationality birthdate gender false false
+
+        let individualNumber = Convert.ToInt32(ssn.Substring(DutchSSNParameters.IndividualNumberStart,
+                                                             DutchSSNParameters.IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(DutchSSNParameters.ChecksumStart, DutchSSNParameters.ChecksumLength))
+
+        Assert.AreEqual(DutchSSNParameters.SsnLength, ssn.Length)
+        Assert.IsTrue(0 <= individualNumber && individualNumber <= 99999999)
+        Assert.IsTrue(0 <= checksum && checksum <= 9)
+
+    [<TestMethod>]
     member __.``return a correct SSN for Finnish male`` () =
         let nationality = Nationality.Finnish
         let birthdate = DateTime(1925, 8, 7)

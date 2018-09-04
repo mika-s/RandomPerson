@@ -49,8 +49,9 @@ www.geonames.org
 - [Telephone numbers in The Netherlands](https://en.wikipedia.org/wiki/Telephone_numbers_in_the_Netherlands)
 - [Postal codes in The Netherlands](https://en.wikipedia.org/wiki/Postal_codes_in_the_Netherlands)
 - [List of postal codes in The Netherlands](http://download.geonames.org/export/zip/NL.zip)
+- [List of addresses in The Netherlands](http://download.geonames.org/export/dump/NL.zip)
 
-The list of Dutch postal codes and cities is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
+The list of Dutch postal codes, cities and addresses is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
 
 www.geonames.org
 

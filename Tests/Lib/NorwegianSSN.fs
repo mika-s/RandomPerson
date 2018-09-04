@@ -4,6 +4,7 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
+open NorwegianSSNParameters
 open NorwegianSSNGeneration
 
 [<TestClass>]
@@ -148,8 +149,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(6, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(9, 2))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("04", d)
@@ -168,8 +169,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(6, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(9, 2))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("06", d)
@@ -188,8 +189,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(6, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(9, 2))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("15", d)
@@ -208,8 +209,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(6, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(9, 2))
+        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("01", d)
@@ -233,8 +234,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssnFake.Substring(0, 2)
         let m = ssnFake.Substring(2, 2)
         let y = ssnFake.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(6, 3))
-        let checksum = Convert.ToInt32(ssnFake.Substring(9, 2))
+        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = Convert.ToInt32(ssnFake.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

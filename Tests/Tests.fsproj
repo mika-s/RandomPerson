@@ -24,6 +24,7 @@
     <Compile Include="Lib\Util.fs" />
     <Compile Include="Lib\SSN.fs" />
     <Compile Include="Lib\DanishSSN.fs" />
+    <Compile Include="Lib\DutchSSN.fs" />
     <Compile Include="Lib\IcelandicSSN.fs" />
     <Compile Include="Lib\FinnishSSN.fs" />
     <Compile Include="Lib\NorwegianSSN.fs" />
