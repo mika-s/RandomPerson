@@ -171,7 +171,7 @@ The following methods can be chained to the variable replacements:
 
 `ToLower()`: All lowercaps. <br />
 `ToUpper()`: All uppercaps. <br />
-`FirstUpper()`: First letter uppercase, rest lowercase.
+`Capitalize()`: First letter uppercase, rest lowercase.
 
 You can change the gender values if you don't want them to be "Male" or "Female":
 

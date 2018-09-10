@@ -7,7 +7,7 @@
     <Authors>Mika Sundland</Authors>
     <AssemblyName>RandomPersonCli</AssemblyName>
     <RunPostBuildEvent>1</RunPostBuildEvent>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/mika-s/RandomPerson/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>

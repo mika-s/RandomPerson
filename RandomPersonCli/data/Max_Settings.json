@@ -160,7 +160,7 @@ Formatting functions:
 
 ToLower:    #{FirstName.ToLower()}
 ToUpper:    #{FirstName.ToUpper()}
-FirstUpper: #{City.FirstUpper()}
+Capitalize: #{City.Capitalize()}
 
 ---------------
 Random values:

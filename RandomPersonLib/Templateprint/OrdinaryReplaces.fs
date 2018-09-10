@@ -14,7 +14,7 @@ let ordinaryReplacer (valueBoxed: obj) =
 
 let toLowerReplacer    (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> lowercase
 let toUpperReplacer    (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> uppercase
-let firstUpperReplacer (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> firstUpper
+let capitalizeReplacer (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> capitalize
 
 let replacer (mapping: (string * obj) list) (replaceFunc: obj -> string) (strFormat: string) (str: string) =
     let folder (acc: string) (y: string * obj) =
@@ -52,4 +52,4 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
     |> replacer mapping ordinaryReplacer   "#{{{0}}}"
     |> replacer mapping toLowerReplacer    "#{{{0}.ToLower()}}"
     |> replacer mapping toUpperReplacer    "#{{{0}.ToUpper()}}"
-    |> replacer mapping firstUpperReplacer "#{{{0}.FirstUpper()}}"
+    |> replacer mapping capitalizeReplacer "#{{{0}.Capitalize()}}"

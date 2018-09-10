@@ -35,9 +35,9 @@ type ``parseOrdinaryReplaces should`` () =
         Assert.AreEqual(expectedString, replaced)
 
     [<TestMethod>]
-    member __.``return a string with #{City,FirstUpper()} replaced by the City with first letter uppercase and the rest lowercase`` () =
+    member __.``return a string with #{City,Capitalize()} replaced by the City with first letter uppercase and the rest lowercase`` () =
         let person = getTestPerson ()
-        let replaced = performOrdinaryReplaces person "City: #{City.FirstUpper()}"
+        let replaced = performOrdinaryReplaces person "City: #{City.Capitalize()}"
 
         let expectedString = "City: Oslo"
 

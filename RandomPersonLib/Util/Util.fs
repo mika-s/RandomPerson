@@ -14,7 +14,7 @@ let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then
 let uppercase (str: string) = str.ToUpper()
 let lowercase (str: string) = str.ToLower()
 
-let firstUpper (str: string) =
+let capitalize (str: string) =
     match str.Length with
     | length when 1 < length ->
         let lowered = str.Substring(1, str.Length - 1).ToLower()
