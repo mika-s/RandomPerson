@@ -17,7 +17,7 @@ let randomIntWithStep (matching: Match) =
     let max =  int matching.Groups.[3].Value
     randomIntBetweenWithStep min step max |> sprintf "%d"
 
-let randomFloat  (matching: Match) =
+let randomFloat (matching: Match) =
     let min = float matching.Groups.[1].Value
     let max = float matching.Groups.[2].Value
     randomFloatBetween min max |> sprintf "%.3f"
@@ -85,7 +85,7 @@ let randomNormallyDistributedFloatWithDecimalsWithStep (matching: Match) =
     let printfFormat = decimals |> sprintf "%%.%df" |> Printf.StringFormat<float->string>
     normallyDistributedFloat mean standard_deviation |> roundToNearest rounding |> sprintf printfFormat
 
-let replace (replaceFunction:  Match -> string) (regex: Regex) (remaining: string) =
+let replace (replaceFunction: Match -> string) (regex: Regex) (remaining: string) =
     let matching = regex.Match remaining
 
     match matching.Success with

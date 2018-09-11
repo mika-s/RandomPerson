@@ -163,8 +163,19 @@ ToUpper:    #{FirstName.ToUpper()}
 Capitalize: #{City.Capitalize()}
 
 ---------------
-Random values:
+Misc functions:
 ---------------
+
+GUID:       #{GUID()}
+GUID (N):   #{GUID('N')}
+GUID (D):   #{GUID('D')}
+GUID (B):   #{GUID('B')}
+GUID (P):   #{GUID('P')}
+GUID (X):   #{GUID('X')}
+
+--------------
+Random values:
+--------------
 
 Random int between 0 and 1: #{Random(int, 0, 1)}
 Random int between 0 and 100 with 10 step: #{Random(int, 0, 10, 100)}

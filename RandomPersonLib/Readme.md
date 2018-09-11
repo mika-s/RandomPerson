@@ -207,6 +207,18 @@ could generate
 
 The following functions are also available:
 
+`#{GUID()}` <br />
+`#{GUID(format)}` <br />
+
+This will create a [GUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+`format` is an optional argument to format the GUID. Please see the offical [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.guid.tostring).
+
+<br />
+`#{Date(now)}` <br />
+`#{Date(now, dateformat)}` <br />
+`#{Date(X)}` <br />
+`#{Date(X, dateformat)}` <br />
+<br />
 `#{Random(int, min, max)}` <br />
 `#{Random(int, min, step, max)}` <br />
 `#{Random(float, min, max)}` <br />
