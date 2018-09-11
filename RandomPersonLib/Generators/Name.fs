@@ -18,9 +18,17 @@ let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
 
     let percentChanceForMiddleName = 25
 
-    match random.Next(1, 100) with
-    | x when 1 <= x && x <= percentChanceForMiddleName -> firstName + " " + makeFirstName random gender data
-    | _                                                -> firstName
+    match random.Next(0, 100) with
+    | x when 0 <= x && x < percentChanceForMiddleName ->
+        let rec loop () =
+            let middleName = makeFirstName random gender data
+
+            match middleName with
+            | m when m = firstName -> loop()
+            | _                    -> firstName + " " + middleName
+
+        loop ()
+    | _ -> firstName
 
 let generateLastName (random: Random) (gender: Gender) (data: PersonData) =
     match data.LastNames <> null && 0 < data.LastNames.Length with

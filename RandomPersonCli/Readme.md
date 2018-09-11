@@ -10,22 +10,57 @@ It can also validate SSNs.
 ## Usage
 
 ```
-dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])] [-n (Danish|Dutch|Finnish|Icelandic|Norwegian|Swedish)] [-a (n)]
-                           [-f (CSV|JSON|XML)] [--caf (true|false)] [-o (path)] [-s (path)]
+NAME
+
+    RandomPersonCli - generate random personal information
+
+SYNOPSIS
+
+dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])]
+                           [-n (Danish|Dutch|Finnish|Icelandic|Norwegian|Swedish)]
+                           [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]
+                           [-o (path)] [-s (path)]
+
+DESCRIPTION
+
+    RandomPersonCli will generate random personal information, such as name,
+    address, SSN, gender, email and so on. It has various modes, can generate
+    information for different countries and write to CSV, XML and JSON files,
+    as well as straight to the console.
+
+OPTIONS
+
+-m
+    Mode. Either I (interactive), L (list), T (templated list) or
+    V (validation). Validation mode can take SSN as optional input, otherwise it's
+    using interactive validation.
+
+-n
+    Nationality. Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish.
+    Used in List or Template mode.
+
+-a
+    Amount. Number of people to generate in List or Template mode.
+
+-f
+    File format. File format to use when printing to file in List mode.
+    Will print to the console if not specified.
+
+--caf
+    Print to both console and file at the same time if true. Only used when -f
+    is specified. False is default.
+
+-o
+    Output file path. Path to output file when printing to file in List mode.
+
+-s
+    Settings file path. Path to the settings file if non-default file is used.
 
 
--m: Mode. Either I (interactive), L (list), T (templated list) or V (validation). Validation mode can take SSN as
-    optional input, otherwise it's using interactive validation.
--n: Nationality. Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish. Used in List or Template mode.
--a: Amount. Number of people to generate in List or Template mode.
--f: File format. File format to use when printing to file in List mode. Will print to the console if not specified.
---caf: Print to both console and file at the same time if true. Only used when -f is specified. False is default.
--o: Output file path. Path to output file when printing to file in List mode.
--s: Settings file path. Path to the settings file if non-default file is used.
-
-Default: Interactive mode.
-         If List or Template mode: 10 people, Norwegian nationality.
-         If Validation mode with SSN supplied as argument: Norwegian nationality.
+Default:
+    Interactive mode.
+    If List or Template mode: 10 people, Norwegian nationality.
+    If Validation mode with SSN supplied as argument: Norwegian nationality.
 
 The options are case-sensitive.
 ```
