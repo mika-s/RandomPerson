@@ -7,19 +7,31 @@ open Util
 type ``isOdd should`` () =
 
     [<TestMethod>]
-    member __.``return an odd number`` () =
+    member __.``return true given an odd number`` () =
         let number = 201
         let result = isOdd number
-        Assert.IsTrue((number % 2 <> 0) = result)
+        Assert.IsTrue(result)
+
+    [<TestMethod>]
+    member __.``return false given an even number`` () =
+        let number = 200
+        let result = isOdd number
+        Assert.IsFalse(result)
 
 [<TestClass>]
 type ``isEven should`` () =
 
     [<TestMethod>]
-    member __.``return an even number`` () =
+    member __.``return true given an even number`` () =
         let number = 200
         let result = isEven number
-        Assert.IsTrue((number % 2 = 0) = result)
+        Assert.IsTrue(result)
+
+    [<TestMethod>]
+    member __.``return false given an odd number`` () =
+        let number = 201
+        let result = isEven number
+        Assert.IsFalse(result)
 
 [<TestClass>]
 type ``randomIntBetween should`` () =

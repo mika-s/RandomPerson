@@ -30,31 +30,31 @@ DESCRIPTION
 
 OPTIONS
 
--m
-    Mode. Either I (interactive), L (list), T (templated list) or
-    V (validation). Validation mode can take SSN as optional input, otherwise it's
-    using interactive validation.
+-m, --mode
+    Mode. Either I (interactive), L (list), T (templated list) or V (validation).
+    Validation mode can take SSN as optional input, otherwise it's using
+    interactive validation.
 
--n
-    Nationality. Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish.
+-n, --nationality
+    Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish.
     Used in List or Template mode.
 
--a
-    Amount. Number of people to generate in List or Template mode.
+-a, --amount
+    Number of people to generate in List or Template mode.
 
--f
-    File format. File format to use when printing to file in List mode.
+-f, --filetype
+    File format to use when printing to file in List mode.
     Will print to the console if not specified.
 
 --caf
     Print to both console and file at the same time if true. Only used when -f
     is specified. False is default.
 
--o
-    Output file path. Path to output file when printing to file in List mode.
+-o, --output
+    Path to output file when printing to file in List mode.
 
--s
-    Settings file path. Path to the settings file if non-default file is used.
+-s, --settings
+    Path to the settings file if non-default file is used.
 
 
 Default:

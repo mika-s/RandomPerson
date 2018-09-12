@@ -48,31 +48,31 @@ let printUsage () =
     printfn ""
     printfn "OPTIONS"
     printfn ""
-    printfn "-m"
-    printfn "    Mode. Either I (interactive), L (list), T (templated list) or"
-    printfn "    V (validation). Validation mode can take SSN as optional input, otherwise it's"
-    printfn "    using interactive validation."
+    printfn "-m, --mode"
+    printfn "    Either I (interactive), L (list), T (templated list) or V (validation)."
+    printfn "    Validation mode can take SSN as optional input, otherwise it's using"
+    printfn "    interactive validation."
     printfn ""
-    printfn "-n"
-    printfn "    Nationality. Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish."
+    printfn "-n, --nationality"
+    printfn "    Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish."
     printfn "    Used in List or Template mode."
     printfn ""
-    printfn "-a"
-    printfn "    Amount. Number of people to generate in List or Template mode."
+    printfn "-a, --amount"
+    printfn "    Number of people to generate in List or Template mode."
     printfn ""
-    printfn "-f"
-    printfn "    File format. File format to use when printing to file in List mode."
+    printfn "-f, --filetype"
+    printfn "    File format to use when printing to file in List mode."
     printfn "    Will print to the console if not specified."
     printfn ""
     printfn "--caf"
     printfn "    Print to both console and file at the same time if true. Only used when -f"
     printfn "    is specified. False is default."
     printfn ""
-    printfn "-o"
-    printfn "    Output file path. Path to output file when printing to file in List mode."
+    printfn "-o, --output"
+    printfn "    Path to output file when printing to file in List mode."
     printfn ""
-    printfn "-s"
-    printfn "    Settings file path. Path to the settings file if non-default file is used."
+    printfn "-s, --settings"
+    printfn "    Path to the settings file if non-default file is used."
     printfn ""
     printfn ""
     printfn "Default:"
@@ -85,10 +85,10 @@ let printUsage () =
 let rec parseArgs (args: list<string>) (options: options) =
     match args with
     | [] -> options
-    | "-h"::xs ->
+    | "-h"::xs | "--help"::xs ->
         printUsage ()
         Environment.Exit 1; parseArgs xs options
-    | "-m"::xs ->
+    | "-m"::xs | "--mode"::xs ->
         match xs with
         | "I"::xss ->
             let newOptions = { options with mode = Mode.Interactive }
@@ -116,7 +116,7 @@ let rec parseArgs (args: list<string>) (options: options) =
         | _ ->
             eprintf "-m flag needs either I (interactive mode), L (list mode), T (template mode) or V (validation mode)\n"
             parseArgs xs options
-    | "-n"::xs ->
+    | "-n"::xs | "--nationality"::xs ->
         match xs with
         | "Danish"::xss ->
             let newOptions = { options with nationality = Nationality.Danish }
@@ -139,13 +139,13 @@ let rec parseArgs (args: list<string>) (options: options) =
         | _ ->
             invalidArg "-n flag" "needs either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish after it\n"
             parseArgs xs options
-    | "-a"::xs ->
+    | "-a"::xs | "--amount"::xs ->
         match xs with
         | (Int i)::xss ->
             let newOptions = { options with amount = i }
             parseArgs xss newOptions
         | _ -> invalidArg "-a flag" "needs a number after it\n"
-    | "-f"::xs ->
+    | "-f"::xs | "--filetype"::xs ->
         match xs with
         | "CSV"::xss ->
             let newOptions = { options with outputType = OutputType.File; fileFormat = FileFormat.CSV }
@@ -166,13 +166,13 @@ let rec parseArgs (args: list<string>) (options: options) =
             let newOptions = { options with outputType = OutputType.ConsoleAndFile }
             parseArgs xss newOptions
         | _ -> invalidArg "--caf flag" "needs either true or false after it\n"
-    | "-o"::xs ->
+    | "-o"::xs | "--output"::xs ->
         match xs with
         | (Filename fn)::xss ->
             let newOptions = { options with outputFilePath = fn }
             parseArgs xss newOptions
         | _ -> invalidArg "-o flag" "needs a file path after it\n"
-    | "-s"::xs ->
+    | "-s"::xs | "--settings"::xs ->
         match xs with
         | (Filename fn)::xss ->
             let newOptions = { options with settingsFilePath = fn }
