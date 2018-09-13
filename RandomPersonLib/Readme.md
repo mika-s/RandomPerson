@@ -214,10 +214,12 @@ This will create a [GUID](https://en.wikipedia.org/wiki/Universally_unique_ident
 `format` is an optional argument to format the GUID. Please see the offical [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.guid.tostring).
 
 <br />
-`#{Date(now)}` <br />
-`#{Date(now, dateformat)}` <br />
+`#{Date('now')}` <br />
+`#{Date('now', dateformat)}` <br />
+`#{Date('now', dateformat, culture)}` <br />
 `#{Date(X)}` <br />
 `#{Date(X, dateformat)}` <br />
+`#{Date(X, dateformat, culture)}` <br />
 <br />
 `#{Random(int, min, max)}` <br />
 `#{Random(int, min, step, max)}` <br />

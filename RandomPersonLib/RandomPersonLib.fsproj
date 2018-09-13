@@ -113,6 +113,7 @@
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />
     <Compile Include="Validate.fs" />
+    <Compile Include="Templateprint\SpecialDateReplaces.fs" />
     <Compile Include="Templateprint\SpecialBirthDateReplaces.fs" />
     <Compile Include="Templateprint\SpecialGenderReplaces.fs" />
     <Compile Include="Templateprint\SpecialGuidReplaces.fs" />

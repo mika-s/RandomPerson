@@ -166,6 +166,14 @@ Capitalize: #{City.Capitalize()}
 Misc functions:
 ---------------
 
+Date now:                           #{Date('now')}
+Date now with format:               #{Date('now', 'dd MMM yyyy')}
+Date now with format and culture:   #{Date('now', 'dd/MM/yy', 'se-SE')}
+Date 10 days ago:                   #{Date(-10)}
+Date 10 days ago with format:       #{Date(-10, 'MM/dd/yyyy')}
+Date 10 days into future with       #{Date(10,'MM/dd/yyyy','en-US')}
+    format and culture:      
+
 GUID:       #{GUID()}
 GUID (N):   #{GUID('N')}
 GUID (D):   #{GUID('D')}
