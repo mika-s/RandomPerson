@@ -14,6 +14,7 @@
   <ItemGroup>
     <Compile Include="TestData.fs" />
     <Compile Include="Lib\TemplatePrint\SpecialBirthDateReplaces.fs" />
+    <Compile Include="Lib\TemplatePrint\SpecialDateReplaces.fs" />
     <Compile Include="Lib\TemplatePrint\SpecialGenderReplaces.fs" />
     <Compile Include="Lib\TemplatePrint\SpecialGuidReplaces.fs" />
     <Compile Include="Lib\TemplatePrint\OrdinaryReplaces.fs" />

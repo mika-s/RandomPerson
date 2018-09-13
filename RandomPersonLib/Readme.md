@@ -4,7 +4,7 @@
 
 This is a .NET library that creates random personal data. It is originally
 written in F# but can also be used with C# and other .NET languages. The
-library uses .NET Standard and can therefore be used with .NET Framework
+library uses .NET Standard and can, therefore, be used with .NET Framework
 and .NET Core.
 
 It can create people with the following generated data:
@@ -14,7 +14,7 @@ It can create people with the following generated data:
 - Address (Address 1, 2, postal code and city)
 - Nationality
 - Gender
-- Birth date
+- Birthdate
 - SSN
 - Email
 - Password
@@ -26,9 +26,9 @@ for the following countries:
 - Denmark
 - Finland
 - Iceland
+- Netherlands
 - Norway
 - Sweden
-- The Netherlands
 
 The data is generated using real-life data from the mentioned countries.
 The SSNs that are generated are also real, unless specified to be false.
@@ -57,7 +57,7 @@ foreach (var person in people)
 
 #### Example 2
 
-Create an option object and set a few of them to true. Generate one
+Create an option object and set two options to true. Generate a
 Person and print the mobile phone number to the console.
 
 ```cs
@@ -95,10 +95,10 @@ Generate one Danish person and print his/hers name.
 ```fs
 let randomPerson = RandomPerson()
 
-let printPersonsName (person: Person) = printfn "Name: %s %s" person.FirstName personLastName
+let printPersonName (person: Person) = printfn "Name: %s %s" person.FirstName person.LastName
 
 randomPerson.CreatePerson(Nationality.Danish)
-|> printPersonsName
+|> printPersonName
 ```
 
 #### Example 2
@@ -149,8 +149,12 @@ or
 *CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) -> string list*
 
 Creates a list of strings. Nationality is an enum. options is an optional object with
-options. Default settings are used if options is not provided. The string will follow
-the format of *outputString* and replace the following variables with generated values:
+options. Default settings are used if options is not provided.
+
+#### Ordinary template variables
+
+The string will follow the format of *outputString* and replace the following
+variables with generated values:
 
 `#{SSN}` <br />
 `#{Email}` <br />
@@ -167,17 +171,15 @@ the format of *outputString* and replace the following variables with generated 
 `#{MobilePhone}` <br />
 `#{HomePhone}`
 
-The following methods can be chained to the variable replacements:
-
-`ToLower()`: All lowercaps. <br />
-`ToUpper()`: All uppercaps. <br />
-`Capitalize()`: First letter uppercase, rest lowercase.
+##### Special rules for Gender
 
 You can change the gender values if you don't want them to be "Male" or "Female":
 
 `#{Gender('Mann', 'Kvinne')}`
 
 The male string is the first argument to `Gender` and the female string is the second argument.
+
+##### Special rules for Birthdate
 
 You can also change the birthdate values to a given date format:
 
@@ -189,23 +191,17 @@ The culture info can be passed as an optional second parameter. The current cult
 used if a culture is not provided. The culture info has to be in exactly the same format
 as in the documentation linked to above.
 
-*Example 1:*
+#### Special template functions and variables
 
-`outputString = "First name: #{FirstName}\nLast name: #{LastName}"`
+##### Formatting
 
-could generate
+The following methods can be chained to the variable replacements:
 
-`"First name: Test\nLast name: Person"`
+`ToLower()`: All lowercaps. <br />
+`ToUpper()`: All uppercaps. <br />
+`Capitalize()`: First letter uppercase, rest lowercase.
 
-*Example 2:*
-
-`outputString = "Address: #{Address1.ToUpper()}"`
-
-could generate
-
-`"Address: TEST STREET 213"`
-
-The following functions are also available:
+##### GUID
 
 `#{GUID()}` <br />
 `#{GUID(format)}` <br />
@@ -213,14 +209,21 @@ The following functions are also available:
 This will create a [GUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 `format` is an optional argument to format the GUID. Please see the offical [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.guid.tostring).
 
-<br />
+##### Date
+
 `#{Date('now')}` <br />
 `#{Date('now', dateformat)}` <br />
 `#{Date('now', dateformat, culture)}` <br />
 `#{Date(X)}` <br />
 `#{Date(X, dateformat)}` <br />
 `#{Date(X, dateformat, culture)}` <br />
-<br />
+
+Inserts the current date when using 'now'. A number, X, can also be provided to add or substract
+number of days from the current date. dateformat and culture is like for BirthDate and has
+to follow the official Microsoft documentation.
+
+##### Random integers, floats and element in list
+
 `#{Random(int, min, max)}` <br />
 `#{Random(int, min, step, max)}` <br />
 `#{Random(float, min, max)}` <br />
@@ -228,13 +231,6 @@ This will create a [GUID](https://en.wikipedia.org/wiki/Universally_unique_ident
 `#{Random(float:X, min, max)}` <br />
 `#{Random(float:X, min, step, max)}` <br />
 `#{Random(switch, 'one', 'two', ...)}` <br />
-<br />
-`#{Random(nd_int, mean, std)}` <br />
-`#{Random(nd_int, mean, std, rounding)}` <br />
-`#{Random(nd_float, mean, std)}` <br />
-`#{Random(nd_float, mean, std, rounding)}` <br />
-`#{Random(nd_float:X, mean, std)}` <br />
-`#{Random(nd_float:X, mean, std, rounding)}` <br />
 
 For `int` and `float`:
 A random number is generated with the arguments as settings. Type is either int
@@ -250,22 +246,57 @@ For `switch`:
 One of the values in the list, after "switch", are chosen randomly. Use single quotes
 around the arguments that should be picked randomly.
 
-For `nd_int` and `nd_float`:
+
+##### Random integers and floats, normal distributed
+
+`#{Random(nd_int, mean, std)}` <br />
+`#{Random(nd_int, mean, std, rounding)}` <br />
+`#{Random(nd_float, mean, std)}` <br />
+`#{Random(nd_float, mean, std, rounding)}` <br />
+`#{Random(nd_float:X, mean, std)}` <br />
+`#{Random(nd_float:X, mean, std, rounding)}` <br />
+
 A random number, either int or float, is generated using [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 The mean and standard deviation have to be provided as arguments. The rounding is an optional argument that
 can be used to round the generated number.
 
 The number after `:` defines the amount of numbers after the decimal. Default is 3 numbers. This is optional.
 
-Example for int:
+#### Examples
+
+*Example:*
+
+`outputString = "First name: #{FirstName}\nLast name: #{LastName}"`
+
+could generate
+
+`"First name: Test\nLast name: Person"`
+
+*Example:*
+
+`outputString = "Address: #{Address1.ToUpper()}"`
+
+could generate
+
+`"Address: TEST STREET 213"`
+
+*Example:*
+
+`outputString = "Ten days ago: #{Date(-10, 'dd-MM-yyyy')}"`
+
+could generate
+
+`"Ten days ago: 03-09-2018"`
+
+*Example for random int:*
 
 `#{Random(int, 0, 2)}`
 
-Example for float:
+*Example for random float:*
 
 `#{Random(float, 18.0, 60.0)}` or `#{Random(float:2, 18.0, 60.0)}`
 
-Example for switch:
+*Example for switch:*
 
 `#{Random(switch, 'true', 'false')}`
 

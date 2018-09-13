@@ -1,8 +1,8 @@
 ﻿module SpecialDateReplaces
 
 open System
-open System.Text.RegularExpressions
 open System.Globalization
+open System.Text.RegularExpressions
 
 let nowWithoutFormatAndCulture (_: Match) =
     DateTime.Now.ToString("yyyy-MM-dd")
@@ -17,25 +17,19 @@ let nowWithFormatAndCulture (matching: Match) =
     DateTime.Now.ToString(format, CultureInfo.CreateSpecificCulture(culture))
 
 let daysWithoutFormatAndCulture (matching: Match) =
-    let daysDiff = matching.Groups.[1].Value
-    let timediff = TimeSpan.FromDays(float daysDiff)
-    let date     = DateTime.Now.Add(timediff)
-    date.ToString()
+    let days = matching.Groups.[1].Value
+    DateTime.Now.AddDays(float days).ToString("yyyy-MM-dd")
 
 let daysWithFormat (matching: Match) =
-    let daysDiff = matching.Groups.[1].Value
-    let format   = matching.Groups.[2].Value
-    let timediff = TimeSpan.FromDays(float daysDiff)
-    let date     = DateTime.Now.Add(timediff)
-    date.ToString(format)
+    let days   = matching.Groups.[1].Value
+    let format = matching.Groups.[2].Value
+    DateTime.Now.AddDays(float days).ToString(format)
 
 let daysWithFormatAndCulture (matching: Match) =
-    let daysDiff = matching.Groups.[1].Value
-    let format   = matching.Groups.[2].Value
-    let culture  = matching.Groups.[3].Value
-    let timediff = TimeSpan.FromDays(float daysDiff)
-    let date = DateTime.Now.Add(timediff)
-    date.ToString(format, CultureInfo.CreateSpecificCulture(culture))
+    let days    = matching.Groups.[1].Value
+    let format  = matching.Groups.[2].Value
+    let culture = matching.Groups.[3].Value
+    DateTime.Now.AddDays(float days).ToString(format, CultureInfo.CreateSpecificCulture(culture))
 
 let replace (replaceFunction: Match -> string) (regex: Regex) (remaining: string) =
     let matching = regex.Match remaining
