@@ -1,7 +1,10 @@
 {
   "Misc": {
     "CountryNameEnglish": "Sweden",
-    "CountryNameNative": "Sverige"
+    "CountryNameNative": "Sverige",
+    "CountryCode2": "SE",
+    "CountryCode3": "SWE",
+    "CountryNumber": "752"
   },
   "Phone": {
     "CountryCode": 46,

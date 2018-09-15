@@ -18,6 +18,9 @@ let getMiscDetails () =
         CountryNameNative = "Norge";
         CountryNameNativeAlternative1 = "Noreg";
         CountryNameNativeAlternative2 = "Norga";
+        CountryCode2 = "NO";
+        CountryCode3 = "NOR";
+        CountryNumber = "578";
     }
 
 let getPhoneDetails () =

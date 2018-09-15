@@ -15,6 +15,15 @@ type MiscData = {
 
     [<field : DataMember(Name="CountryNameNativeAlternative2")>]
     CountryNameNativeAlternative2 : string
+
+    [<field : DataMember(Name="CountryCode2")>]
+    CountryCode2 : string
+
+    [<field : DataMember(Name="CountryCode3")>]
+    CountryCode3 : string
+
+    [<field : DataMember(Name="CountryNumber")>]
+    CountryNumber : string
 }
 
 [<DataContract>]

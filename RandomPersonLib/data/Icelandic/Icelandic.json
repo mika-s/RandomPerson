@@ -1,7 +1,10 @@
 {
   "Misc": {
     "CountryNameEnglish": "Iceland",
-    "CountryNameNative": "Ísland"
+    "CountryNameNative": "Ísland",
+    "CountryCode2": "IS",
+    "CountryCode3": "ISL",
+    "CountryNumber": "352"
   },
   "Phone": {
     "CountryCode": 354,

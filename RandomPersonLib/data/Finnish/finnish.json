@@ -1,7 +1,10 @@
 {
   "Misc": {
     "CountryNameEnglish": "Finland",
-    "CountryNameNative": "Suomi"
+    "CountryNameNative": "Suomi",
+    "CountryCode2": "FI",
+    "CountryCode3": "FIN",
+    "CountryNumber": "246"
   },
   "Phone": {
     "CountryCode": 358,

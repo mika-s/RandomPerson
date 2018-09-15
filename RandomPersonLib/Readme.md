@@ -169,7 +169,14 @@ variables with generated values:
 `#{BirthDate}` <br />
 `#{Gender}` <br />
 `#{MobilePhone}` <br />
-`#{HomePhone}`
+`#{HomePhone}` <br />
+`#{CountryNameEnglish}` <br />
+`#{CountryNameNative}` <br />
+`#{CountryNameNativeAlternative1}` <br />
+`#{CountryNameNativeAlternative2}` <br />
+`#{CountryCode2}` <br />
+`#{CountryCode3}` <br />
+`#{CountryNumber}`
 
 ##### Special rules for Gender
 

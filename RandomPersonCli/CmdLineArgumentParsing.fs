@@ -27,6 +27,8 @@ let defaultOptions = {
     ssn = String.Empty
 }
 
+let printVersion () = printfn "Version: 1.6.0.0"
+
 let printUsage () =
     printfn "NAME"
     printfn ""
@@ -85,6 +87,9 @@ let printUsage () =
 let rec parseArgs (args: list<string>) (options: options) =
     match args with
     | [] -> options
+    | "-v"::xs | "--version"::xs ->
+        printVersion ()
+        Environment.Exit 1; parseArgs xs options
     | "-h"::xs | "--help"::xs ->
         printUsage ()
         Environment.Exit 1; parseArgs xs options

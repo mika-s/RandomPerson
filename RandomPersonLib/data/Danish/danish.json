@@ -1,7 +1,10 @@
 {
   "Misc": {
     "CountryNameEnglish": "Denmark",
-    "CountryNameNative": "Danmark"
+    "CountryNameNative": "Danmark",
+    "CountryCode2": "DK",
+    "CountryCode3": "DNK",
+    "CountryNumber": "208"
   },
   "Phone": {
     "CountryCode": 45,

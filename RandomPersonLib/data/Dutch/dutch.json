@@ -3,7 +3,10 @@
     "CountryNameEnglish": "The Netherlands",
     "CountryNameNative": "Nederland",
     "CountryNameNativeAlternative1": "Netherlands",
-    "CountryNameNativeAlternative2": "Holland"
+    "CountryNameNativeAlternative2": "Holland",
+    "CountryCode2": "NL",
+    "CountryCode3": "NLD",
+    "CountryNumber": "528"
   },
   "Phone": {
     "CountryCode": 31,

@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PreserveCompilationContext>false</PreserveCompilationContext>
-    <AssemblyVersion>1.5.0.0</AssemblyVersion>
-    <FileVersion>1.5.0.0</FileVersion>
+    <AssemblyVersion>1.6.0.0</AssemblyVersion>
+    <FileVersion>1.6.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/mika-s/RandomPerson/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <Authors>Mika Sundland</Authors>
     <Company>Mika Sundland</Company>
-    <Version>1.5.0</Version>
+    <Version>1.6.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
