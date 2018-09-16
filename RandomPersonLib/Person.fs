@@ -54,22 +54,28 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
                                            languageFiles.generalData.Misc.CountryNameNativeAlternative1 else ""
     let countryNameNativeAlternative2 = if languageFiles.generalData.Misc.CountryNameNativeAlternative2 <> null then
                                            languageFiles.generalData.Misc.CountryNameNativeAlternative2 else ""
+    let countryCode2  = languageFiles.generalData.Misc.CountryCode2
+    let countryCode3  = languageFiles.generalData.Misc.CountryCode3
+    let countryNumber = languageFiles.generalData.Misc.CountryNumber
 
-    member this.Gender = gender
-    member this.FirstName = firstName
-    member this.LastName = lastName
-    member this.Address1 = address1
-    member this.Address2 = address2
-    member this.PostalCode = postalCode
-    member this.City = city
-    member this.Nationality = nationality
-    member this.BirthDate = birthDate
-    member this.SSN = ssn
-    member this.Email = email
-    member this.Password = password
-    member this.MobilePhone = mobilePhone
-    member this.HomePhone = homePhone
-    member this.CountryNameEnglish = countryNameEnglish
-    member this.CountryNameNative = countryNameNative
-    member this.CountryNameNativeAlternative1 = countryNameNativeAlternative1
-    member this.CountryNameNativeAlternative2 = countryNameNativeAlternative2
+    member __.Gender = gender
+    member __.FirstName = firstName
+    member __.LastName = lastName
+    member __.Address1 = address1
+    member __.Address2 = address2
+    member __.PostalCode = postalCode
+    member __.City = city
+    member __.Nationality = nationality
+    member __.BirthDate = birthDate
+    member __.SSN = ssn
+    member __.Email = email
+    member __.Password = password
+    member __.MobilePhone = mobilePhone
+    member __.HomePhone = homePhone
+    member __.CountryNameEnglish = countryNameEnglish
+    member __.CountryNameNative = countryNameNative
+    member __.CountryNameNativeAlternative1 = countryNameNativeAlternative1
+    member __.CountryNameNativeAlternative2 = countryNameNativeAlternative2
+    member __.CountryCode2  = countryCode2
+    member __.CountryCode3  = countryCode3
+    member __.CountryNumber = countryNumber

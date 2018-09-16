@@ -1,4 +1,4 @@
-﻿module SpecialGuidReplaces
+﻿module internal SpecialGuidReplaces
 
 open System
 open System.Text.RegularExpressions

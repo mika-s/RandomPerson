@@ -15,10 +15,10 @@ do()
 type IRandomPerson =
     abstract member CreatePerson: Nationality -> Person
     abstract member CreatePerson: Nationality * RandomPersonOptions -> Person
-    abstract member CreatePersonList: int * Nationality -> Person seq
-    abstract member CreatePersonList: int * Nationality * RandomPersonOptions -> Person seq
-    abstract member CreatePersonTemplatedList: int * Nationality * string -> string seq
-    abstract member CreatePersonTemplatedList: int * Nationality * string * RandomPersonOptions -> string seq
+    abstract member CreatePeople: int * Nationality -> Person seq
+    abstract member CreatePeople: int * Nationality * RandomPersonOptions -> Person seq
+    abstract member CreatePeopleTemplated: int * Nationality * string -> string seq
+    abstract member CreatePeopleTemplated: int * Nationality * string * RandomPersonOptions -> string seq
     abstract member ValidateSSN: Nationality * string -> bool
 
 /// A service class for generating random persons or validating SSNs.
@@ -40,29 +40,29 @@ type RandomPerson() =
     member this.CreatePerson (nationality: Nationality) = this.CreatePerson (nationality, defaultOptions)
 
     /// Create a Person object given a nationality and an options object.
-    member this.CreatePerson (nationality: Nationality, options: RandomPersonOptions) =
+    member __.CreatePerson (nationality: Nationality, options: RandomPersonOptions) =
         let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         createPerson(nationality, options, random)
 
     /// Create a list of Person objects given a nationality.
-    member this.CreatePersonList (amount: int, nationality: Nationality) = this.CreatePersonList (amount, nationality, defaultOptions)
+    member this.CreatePeople (amount: int, nationality: Nationality) = this.CreatePeople (amount, nationality, defaultOptions)
 
     /// Create a list of Person objects given a nationality and an options object.
-    member this.CreatePersonList (amount: int, nationality: Nationality, options: RandomPersonOptions)  =
+    member __.CreatePeople (amount: int, nationality: Nationality, options: RandomPersonOptions)  =
         let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         [ 1 .. amount ] |> List.map (fun _ -> createPerson(nationality, options, random))
 
     /// Create a list of strings given a template string where certain values will be replaced.
-    member this.CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string) =
-        this.CreatePersonTemplatedList (amount, nationality, outputString, defaultOptions)
+    member this.CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string) =
+        this.CreatePeopleTemplated (amount, nationality, outputString, defaultOptions)
 
     /// Create a list of strings given a template string where certain values will be replaced.
-    member this.CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) =
+    member __.CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) =
         let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         [ 1 .. amount ] |> List.map (fun _ -> createPerson(nationality, options, random)) |> List.map (printForTemplateMode outputString)
         
     /// Validate an SSN for a given nationality.
-    member this.ValidateSSN (nationality: Nationality, ssn: string) =
+    member __.ValidateSSN (nationality: Nationality, ssn: string) =
         match nationality with
         | Nationality.Danish    -> validateDK ssn
         | Nationality.Dutch     -> validateNL ssn
@@ -83,20 +83,20 @@ type RandomPerson() =
             this.CreatePerson (nationality, options)
 
         /// Create a list of Person objects given a nationality.
-        member this.CreatePersonList (amount: int, nationality: Nationality) =
-            this.CreatePersonList (amount, nationality) |> List.toSeq
+        member this.CreatePeople (amount: int, nationality: Nationality) =
+            this.CreatePeople (amount, nationality) |> List.toSeq
 
         /// Create a list of Person objects given a nationality.
-        member this.CreatePersonList (amount: int, nationality: Nationality, options: RandomPersonOptions) =
-            this.CreatePersonList (amount, nationality, options) |> List.toSeq
+        member this.CreatePeople (amount: int, nationality: Nationality, options: RandomPersonOptions) =
+            this.CreatePeople (amount, nationality, options) |> List.toSeq
 
         /// Create a list of strings given a template string where certain values will be replaced.
-        member this.CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string) =
-            this.CreatePersonTemplatedList (amount, nationality, outputString) |> List.toSeq
+        member this.CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string) =
+            this.CreatePeopleTemplated (amount, nationality, outputString) |> List.toSeq
 
         /// Create a list of strings given a template string where certain values will be replaced.
-        member this.CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) =
-            this.CreatePersonTemplatedList (amount, nationality, outputString, options) |> List.toSeq
+        member this.CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) =
+            this.CreatePeopleTemplated (amount, nationality, outputString, options) |> List.toSeq
 
         /// Validate an SSN for a given nationality.
         member this.ValidateSSN (nationality: Nationality, ssn: string) =

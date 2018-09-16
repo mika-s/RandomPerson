@@ -48,12 +48,4 @@ let validateMode (ssn: string) (nationality: Nationality) =
                 mainloop ()
 
         mainloop()
-    | _ ->
-        match nationality with
-        | Nationality.Danish    -> lib.ValidateSSN(Nationality.Danish,    ssn) |> printfn "%b"
-        | Nationality.Dutch     -> lib.ValidateSSN(Nationality.Dutch,     ssn) |> printfn "%b"
-        | Nationality.Finnish   -> lib.ValidateSSN(Nationality.Finnish,   ssn) |> printfn "%b"
-        | Nationality.Icelandic -> lib.ValidateSSN(Nationality.Icelandic, ssn) |> printfn "%b"
-        | Nationality.Norwegian -> lib.ValidateSSN(Nationality.Norwegian, ssn) |> printfn "%b"
-        | Nationality.Swedish   -> lib.ValidateSSN(Nationality.Swedish,   ssn) |> printfn "%b"
-        | _ -> invalidArg "nationality" "Illegal nationality."
+    | _ -> lib.ValidateSSN(nationality, ssn) |> printfn "%b"

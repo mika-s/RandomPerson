@@ -13,14 +13,15 @@ let listMode (settingsFilePath: string) (amount: int) (nationality: Nationality)
     let options = genericOptionsToRandomPersonOptions i.settings.ListMode.Options
 
     match outputType with
-    | OutputType.Console -> lib.CreatePersonList(amount, nationality, options)
+    | OutputType.Console -> lib.CreatePeople(amount, nationality, options)
                             |> printToConsole i
-    | OutputType.File    -> lib.CreatePersonList(amount, nationality, options)
+    | OutputType.File    -> lib.CreatePeople(amount, nationality, options)
                             |> List.toArray
                             |> printToFile fileFormat outputFilePath i.settings.ListMode
     | OutputType.ConsoleAndFile ->
-                            let people = lib.CreatePersonList(amount, nationality, options)
+                            let people = lib.CreatePeople(amount, nationality, options)
                             printToConsole i people
+
                             people
                             |> List.toArray
                             |> printToFile fileFormat outputFilePath i.settings.ListMode

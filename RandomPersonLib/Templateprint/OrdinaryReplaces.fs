@@ -1,4 +1,4 @@
-﻿module OrdinaryReplaces
+﻿module internal OrdinaryReplaces
 
 open System
 open RandomPersonLib
@@ -46,6 +46,9 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
             "CountryNameNative", box person.CountryNameNative;
             "CountryNameNativeAlt1", box person.CountryNameNativeAlternative1;
             "CountryNameNativeAlt2", box person.CountryNameNativeAlternative2;
+            "CountryCode2", box person.CountryCode2;
+            "CountryCode3", box person.CountryCode3;
+            "CountryNumber", box person.CountryNumber;
         ]
 
     originalOutput

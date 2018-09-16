@@ -1,4 +1,4 @@
-﻿module SpecialDateReplaces
+﻿module internal SpecialDateReplaces
 
 open System
 open System.Globalization

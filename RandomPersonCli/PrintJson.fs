@@ -63,6 +63,15 @@ type PersonSerializable = {
 
     [<JsonProperty("CountryNameNativeAlternative2")>]
     CountryNameNativeAlternative2 : string
+
+    [<JsonProperty("CountryCode2")>]
+    CountryCode2 : string
+
+    [<JsonProperty("CountryCode3")>]
+    CountryCode3 : string
+
+    [<JsonProperty("CountryNumber")>]
+    CountryNumber : string
 }
 
 let createPersonSerializable (person: Person) =
@@ -85,6 +94,9 @@ let createPersonSerializable (person: Person) =
         CountryNameNative = person.CountryNameNative;
         CountryNameNativeAlternative1 = person.CountryNameNativeAlternative1;
         CountryNameNativeAlternative2 = person.CountryNameNativeAlternative2;
+        CountryCode2 = person.CountryCode2;
+        CountryCode3 = person.CountryCode3;
+        CountryNumber = person.CountryNumber;
     }
 
 let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =

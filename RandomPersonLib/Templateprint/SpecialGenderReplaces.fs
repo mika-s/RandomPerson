@@ -1,4 +1,4 @@
-﻿module SpecialGenderReplaces
+﻿module internal SpecialGenderReplaces
 
 open System.Text.RegularExpressions
 open RandomPersonLib

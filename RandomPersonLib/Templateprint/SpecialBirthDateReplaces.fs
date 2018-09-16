@@ -1,8 +1,8 @@
-﻿module SpecialBirthDateReplaces
+﻿module internal SpecialBirthDateReplaces
 
 open System
-open System.Text.RegularExpressions
 open System.Globalization
+open System.Text.RegularExpressions
 
 let replaceWithoutCulture (regex: Regex) (birthDate: DateTime) (remaining: string) =
     let matching = regex.Match remaining
@@ -28,7 +28,6 @@ let performSpecialBirthDateReplaces (birthDate: DateTime) (stringToDoReplaces: s
     let birthDateWithCultureRegex = Regex "#{BirthDate\(\s?'([dfFghHKmMstyz ,\/-]+)'\s?,\s?'([a-zA-Z-]+)'\s?\)}"
 
     let rec loop (remaining: string) =
-
         let modified = remaining
                        |> replaceWithoutCulture birthDateRegex            birthDate
                        |> replaceWithCulture    birthDateWithCultureRegex birthDate

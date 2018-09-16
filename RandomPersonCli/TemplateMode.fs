@@ -9,5 +9,5 @@ let templateMode (settingsFilePath: string) (amount: int) (nationality: National
     let lib = RandomPerson()
     let options = genericOptionsToRandomPersonOptions i.settings.TemplateMode.Options
 
-    lib.CreatePersonTemplatedList(amount, nationality, i.settings.TemplateMode.Print.Output, options)
+    lib.CreatePeopleTemplated(amount, nationality, i.settings.TemplateMode.Print.Output, options)
     |> List.iter (printfn "%s")

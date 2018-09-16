@@ -49,7 +49,7 @@ Generate an IEnumerable of people and print to the console.
 ```cs
 IRandomPerson randomPerson = new RandomPerson();
 
-var people = randomPerson.CreatePersonList(100, Nationality.Danish);
+var people = randomPerson.CreatePeople(100, Nationality.Danish);
 
 foreach (var person in people)
     Console.WriteLine(person.FirstName);
@@ -111,7 +111,7 @@ let randomPerson = RandomPerson()
 let amount = 15
 let nationality = Nationality.Swedish
 
-let people = randomPerson.CreatePersonList(amount, nationality)
+let people = randomPerson.CreatePeople(amount, nationality)
 ```
 
 ## API
@@ -128,25 +128,25 @@ Creates a random person given a nationality. The return value is a Person object
 with the random data. Nationality is an enum. options is an optional object with
 options. Default settings are used if options is not provided.
 
-### CreatePersonList ()
+### CreatePeople ()
 
-*CreatePersonList (amount: int, nationality: Nationality) -> Person list*
+*CreatePeople (amount: int, nationality: Nationality) -> Person list*
 
 or
 
-*CreatePersonList (amount: int, nationality: Nationality, options: RandomPersonOptions) -> Person list*
+*CreatePeople (amount: int, nationality: Nationality, options: RandomPersonOptions) -> Person list*
 
 Creates a list of random people given a nationality. The return value is a Person object
 with the random data. Nationality is an enum. options is an optional object with
 options. Default settings are used if options is not provided.
 
-### CreatePersonTemplatedList () =
+### CreatePeopleTemplated () =
 
-*CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string) -> string list*
+*CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string) -> string list*
 
 or
 
-*CreatePersonTemplatedList (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) -> string list*
+*CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) -> string list*
 
 Creates a list of strings. Nationality is an enum. options is an optional object with
 options. Default settings are used if options is not provided.

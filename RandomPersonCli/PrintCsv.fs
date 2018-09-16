@@ -26,6 +26,9 @@ let personToString (printSettings: genericPrintSettings) (person: Person) =
     if printSettings.CountryNameNative             then bprintf sb "%s" (person.CountryNameNative + ",")                |> ignore
     if printSettings.CountryNameNativeAlternative1 then bprintf sb "%s" (person.CountryNameNativeAlternative1 + ",")    |> ignore
     if printSettings.CountryNameNativeAlternative2 then bprintf sb "%s" (person.CountryNameNativeAlternative2 + ",")    |> ignore
+    if printSettings.CountryCode2                  then bprintf sb "%s" (person.CountryCode2 + ",")                     |> ignore
+    if printSettings.CountryCode3                  then bprintf sb "%s" (person.CountryCode3 + ",")                     |> ignore
+    if printSettings.CountryNumber                 then bprintf sb "%s" (person.CountryNumber + ",")                    |> ignore
 
     sb.Remove(sb.Length - 1, 1) |> ignore
 
@@ -51,6 +54,9 @@ let createHeader (printSettings: genericPrintSettings) =
     if printSettings.CountryNameNative             then bprintf sb "%s" ("CountryNameNative,")             |> ignore
     if printSettings.CountryNameNativeAlternative1 then bprintf sb "%s" ("CountryNameNativeAlternative1,") |> ignore
     if printSettings.CountryNameNativeAlternative2 then bprintf sb "%s" ("CountryNameNativeAlternative2,") |> ignore
+    if printSettings.CountryCode2                  then bprintf sb "%s" ("CountryCode2,")                  |> ignore
+    if printSettings.CountryCode3                  then bprintf sb "%s" ("CountryCode3,")                  |> ignore
+    if printSettings.CountryNumber                 then bprintf sb "%s" ("CountryNumber,")                 |> ignore
 
     match sb.Length with
     | length when 1 < length -> sb.Remove(sb.Length - 1, 1) |> ignore

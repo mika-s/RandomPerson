@@ -1,4 +1,4 @@
-﻿module RandomReplaces
+﻿module internal RandomReplaces
 
 open System
 open System.Text.RegularExpressions

@@ -8,9 +8,9 @@ open PersonData
 open Util
 
 type PlainTestClass (firstname: string, lastname: string, isMarried: bool) =
-    member this.Firstname = firstname
-    member this.Lastname = lastname
-    member this.IsMarried = isMarried
+    member __.Firstname = firstname
+    member __.Lastname = lastname
+    member __.IsMarried = isMarried
 
 let getMiscDetails () =
     {

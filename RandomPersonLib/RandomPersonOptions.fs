@@ -1,5 +1,6 @@
 ﻿namespace RandomPersonLib
 
+/// A subclass used by RandomPersonOptions, containing birthdate options.
 type BirthDateOptions (setYearManually: bool, setUsingAge: bool, low: int, high: int) = 
     new () = BirthDateOptions(false, false, 1920, 2000)
 
@@ -8,12 +9,14 @@ type BirthDateOptions (setYearManually: bool, setUsingAge: bool, low: int, high:
     member val Low = low with get, set
     member val High = high with get, set
 
+/// A subclass used by RandomPersonOptions, containing randomness options.
 type RandomnessOptions (manualSeed: bool, seed: int) = 
     new () = RandomnessOptions(false, 1)
 
     member val ManualSeed = manualSeed with get, set
     member val Seed = seed with get, set
 
+/// The options class for the RandomPerson library.
 type RandomPersonOptions (
                           anonymizeSSN: bool,
                           under18: bool,
