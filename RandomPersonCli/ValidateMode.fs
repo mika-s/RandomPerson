@@ -2,6 +2,7 @@
 
 open System
 open RandomPersonLib
+open CliUtil
 
 let validate (lib: RandomPerson) (nationality: Nationality) =
     let rec loop () = 
@@ -14,17 +15,6 @@ let validate (lib: RandomPerson) (nationality: Nationality) =
         | _         -> lib.ValidateSSN(nationality, readSSN) |> printfn "%b" |> loop
 
     loop ()
-
-let printHelp () =
-    printfn "\nUsage:"
-    printfn "Danish: d"
-    printfn "Dutch: D"
-    printfn "Finnish: f"
-    printfn "Icelandic: i"
-    printfn "Norwegian: n"
-    printfn "Swedish: s"
-    printfn "Go back: b"
-    printfn "Quit: q\n\n"
 
 let validateMode (ssn: string) (nationality: Nationality) =
     let lib = RandomPerson()

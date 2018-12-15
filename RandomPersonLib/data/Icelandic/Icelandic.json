@@ -4,7 +4,8 @@
     "CountryNameNative": "Ísland",
     "CountryCode2": "IS",
     "CountryCode3": "ISL",
-    "CountryNumber": "352"
+    "CountryNumber": "352",
+    "TLD": "is"
   },
   "Phone": {
     "CountryCode": 354,

@@ -116,6 +116,7 @@ let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
 let printToJson (people: Person[]) (outputFilePath: string) (settings: listModeSettings)  =
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "json")
     let jsonPrintSettings = createJsonSerializerSettings settings.PrintOptions.JsonPrintType settings.PrintOptions.JsonPrettyPrint
-    let toSerialize = people |> Array.map(createPersonSerializable)
-
-    writeDataToJsonFile<PersonSerializable[]> filenameWithFixedFileEnding toSerialize jsonPrintSettings
+    
+    people
+    |> Array.map(createPersonSerializable)
+    |> writeToJsonFile<PersonSerializable[]> filenameWithFixedFileEnding jsonPrintSettings

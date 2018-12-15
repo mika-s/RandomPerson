@@ -164,11 +164,24 @@ type ``lowercase should`` () =
 type ``capitalize should`` () =
 
     [<TestMethod>]
-    member __.``return "Sadf" when given "SAdF"`` () =
-        let result = capitalize "SAdF"
+    member __.``return "Sadf" when given "sadf"`` () =
+        let result = capitalize "sadf"
         Assert.AreEqual("Sadf", result)
 
     [<TestMethod>]
-    member __.``return "Town" when given "TOWN"`` () =
-        let result = capitalize "TOWN"
+    member __.``return "ToWN" when given "toWN"`` () =
+        let result = capitalize "toWN"
+        Assert.AreEqual("ToWN", result)
+
+[<TestClass>]
+type ``firstUppercaseRestLowercase should`` () =
+
+    [<TestMethod>]
+    member __.``return "Sadf" when given "saDF"`` () =
+        let result = firstUppercaseRestLowercase "saDF"
+        Assert.AreEqual("Sadf", result)
+
+    [<TestMethod>]
+    member __.``return "Town" when given "toWN"`` () =
+        let result = firstUppercaseRestLowercase "toWN"
         Assert.AreEqual("Town", result)

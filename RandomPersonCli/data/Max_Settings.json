@@ -165,14 +165,17 @@ Country (native language, alternative 2): #{CountryNameNativeAlt2}
 CountryCode2:              #{CountryCode2}
 CountryCode3:              #{CountryCode3}
 CountryNumber:             #{CountryNumber}
+TLD:                       #{TLD}
 
 ---------------------
 Formatting functions:
 ---------------------
 
-ToLower:    #{FirstName.ToLower()}
-ToUpper:    #{FirstName.ToUpper()}
-Capitalize: #{City.Capitalize()}
+ToLower:                #{FirstName.ToLower()}
+ToUpper:                #{FirstName.ToUpper()}
+FirstToUpperRestLower:  #{City.FirstToUpperRestLower()}
+Capitalize:             #{Email.Capitalize()}
+Uncapitalize:           #{Nationality.Uncapitalize()}
 
 ---------------
 Misc functions:

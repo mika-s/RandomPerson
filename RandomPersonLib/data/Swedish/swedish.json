@@ -4,7 +4,8 @@
     "CountryNameNative": "Sverige",
     "CountryCode2": "SE",
     "CountryCode3": "SWE",
-    "CountryNumber": "752"
+    "CountryNumber": "752",
+    "TLD": "se"
   },
   "Phone": {
     "CountryCode": 46,

@@ -21,6 +21,7 @@ let getMiscDetails () =
         CountryCode2 = "NO";
         CountryCode3 = "NOR";
         CountryNumber = "578";
+        TLD = "no";
     }
 
 let getPhoneDetails () =

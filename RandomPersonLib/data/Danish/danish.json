@@ -4,7 +4,8 @@
     "CountryNameNative": "Danmark",
     "CountryCode2": "DK",
     "CountryCode3": "DNK",
-    "CountryNumber": "208"
+    "CountryNumber": "208",
+    "TLD": "dk"
   },
   "Phone": {
     "CountryCode": 45,

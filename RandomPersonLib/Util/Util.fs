@@ -11,17 +11,20 @@ let intFromChar (x: char) = int(Char.GetNumericValue x)
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
 let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 
-let uppercase (str: string) = str.ToUpper()
-let lowercase (str: string) = str.ToLower()
+let uppercase (str: string) = str.ToUpperInvariant()
+let lowercase (str: string) = str.ToLowerInvariant()
 
 let capitalize (str: string) =
-    match str.Length with
-    | length when 1 < length ->
-        let lowered = str.Substring(1, str.Length - 1).ToLower()
-        let firstCapitalized = str.[0].ToString().ToUpper()
-        let result = String.Concat(firstCapitalized, lowered)
-        result
-    | _ -> String.Empty
+    if str.Length = 0 then str
+    else uppercase str.[0..0] + str.[ 1 .. str.Length - 1 ]
+
+let uncapitalize (str: string) =
+    if str.Length = 0 then str
+    else lowercase str.[0..0] + str.[ 1 .. str.Length - 1 ]
+
+let firstUppercaseRestLowercase (str: string) =
+    if str.Length = 0 then str
+    else uppercase str.[0..0] + lowercase str.[ 1 .. str.Length - 1 ]
 
 let randomIntBetween (min: int) (max: int) = Random().Next(min, max + 1)
 let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetween 0 ((max - min) / step)) * step + min

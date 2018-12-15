@@ -57,6 +57,7 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
     let countryCode2  = languageFiles.generalData.Misc.CountryCode2
     let countryCode3  = languageFiles.generalData.Misc.CountryCode3
     let countryNumber = languageFiles.generalData.Misc.CountryNumber
+    let tld = languageFiles.generalData.Misc.TLD
 
     member __.Gender = gender
     member __.FirstName = firstName
@@ -79,3 +80,4 @@ type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles:
     member __.CountryCode2  = countryCode2
     member __.CountryCode3  = countryCode3
     member __.CountryNumber = countryNumber
+    member __.TLD = tld

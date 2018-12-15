@@ -56,7 +56,7 @@
     <Content Include="data\Icelandic\Streets in Iceland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Icelandic\Icelandic.json">
+    <Content Include="data\Icelandic\icelandic.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Norwegian\norwegian.json">

@@ -12,4 +12,5 @@ let printToXml (people: Person[]) (outputFilePath: string) (settings: listModeSe
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "xml")
     let xmlPrintSettings = createXmlSerializerSettings settings.PrintOptions.XmlPrettyPrint
 
-    writeDataToXmlFile<Person[]> filenameWithFixedFileEnding people xmlPrintSettings
+    people
+    |> writeToXmlFile<Person[]> filenameWithFixedFileEnding xmlPrintSettings

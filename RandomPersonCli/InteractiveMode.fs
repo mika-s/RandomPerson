@@ -2,19 +2,13 @@
 
 open System
 open RandomPersonLib
+open CliUtil
 open PrintToConsole
 open ReadInputFiles
 open Settings
 
 let interactiveMode (settingsFilePath: string) =
-    printfn "Usage:"
-    printfn "Danish:    d"
-    printfn "Dutch:     D"
-    printfn "Finnish:   f"
-    printfn "Iceland:   i"
-    printfn "Norwegian: n"
-    printfn "Swedish:   s"
-    printfn "Quit: q\n\n"
+    printHelp ()
 
     let i = readInputFiles settingsFilePath
     let lib = RandomPerson()

@@ -24,6 +24,9 @@ type MiscData = {
 
     [<field : DataMember(Name="CountryNumber")>]
     CountryNumber : string
+
+    [<field : DataMember(Name="TLD")>]
+    TLD : string
 }
 
 [<DataContract>]

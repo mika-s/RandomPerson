@@ -12,9 +12,12 @@ let ordinaryReplacer (valueBoxed: obj) =
     | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString("yyyy-MM-dd")
     | _ -> invalidOp "Error in ordinaryReplacer"
 
-let toLowerReplacer    (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> lowercase
-let toUpperReplacer    (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> uppercase
-let capitalizeReplacer (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> capitalize
+let toLowerReplacer      (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> lowercase
+let toUpperReplacer      (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> uppercase
+let firstUppercaseRestLowercaseReplacer (valueBoxed: obj) =
+    valueBoxed |> ordinaryReplacer |> firstUppercaseRestLowercase
+let capitalizeReplacer   (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> capitalize
+let uncapitalizeReplacer (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> uncapitalize
 
 let replacer (mapping: (string * obj) list) (replaceFunc: obj -> string) (strFormat: string) (str: string) =
     let folder (acc: string) (y: string * obj) =
@@ -49,10 +52,13 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
             "CountryCode2", box person.CountryCode2;
             "CountryCode3", box person.CountryCode3;
             "CountryNumber", box person.CountryNumber;
+            "TLD", box person.TLD;
         ]
 
     originalOutput
-    |> replacer mapping ordinaryReplacer   "#{{{0}}}"
-    |> replacer mapping toLowerReplacer    "#{{{0}.ToLower()}}"
-    |> replacer mapping toUpperReplacer    "#{{{0}.ToUpper()}}"
-    |> replacer mapping capitalizeReplacer "#{{{0}.Capitalize()}}"
+    |> replacer mapping ordinaryReplacer                    "#{{{0}}}"
+    |> replacer mapping toLowerReplacer                     "#{{{0}.ToLower()}}"
+    |> replacer mapping toUpperReplacer                     "#{{{0}.ToUpper()}}"
+    |> replacer mapping firstUppercaseRestLowercaseReplacer "#{{{0}.FirstToUpperRestLower()}}"
+    |> replacer mapping capitalizeReplacer                  "#{{{0}.Capitalize()}}"
+    |> replacer mapping uncapitalizeReplacer                "#{{{0}.Uncapitalize()}}"

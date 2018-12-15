@@ -13,14 +13,14 @@ let readDataFromJsonFile<'T> (filename: string) =
     let readJson = File.ReadAllText(filename)
     JsonConvert.DeserializeObject<'T>(readJson);
 
-let writeDataToJsonFile<'T> (filename: string) (objToWrite: obj) (jsonSerializerSettings: JsonSerializerSettings) = 
+let writeToJsonFile<'T> (filename: string) (jsonSerializerSettings: JsonSerializerSettings) (objToWrite: obj) = 
     let output = JsonConvert.SerializeObject(objToWrite, jsonSerializerSettings)
                  |> Encoding.UTF8.GetBytes
 
     use fs = new FileStream(filename, FileMode.Create, FileAccess.Write)
     fs.Write(output, 0, output.Length)
 
-let writeDataToXmlFile<'T> (filename: string) (objToWrite: obj) (xmlSerializerSettings: XmlWriterSettings) = 
+let writeToXmlFile<'T> (filename: string) (xmlSerializerSettings: XmlWriterSettings) (objToWrite: obj) = 
     let serializer = DataContractSerializer(typedefof<'T>)
     
     use xw = XmlWriter.Create(filename, xmlSerializerSettings)
@@ -42,3 +42,14 @@ let (|CmdLineArgument|_|) (str: string) =
     match str.[0] with
     | '-' -> Some(str)
     | _   -> None
+
+let printHelp () =
+    printfn "\nUsage:"
+    printfn "Danish: d"
+    printfn "Dutch: D"
+    printfn "Finnish: f"
+    printfn "Icelandic: i"
+    printfn "Norwegian: n"
+    printfn "Swedish: s"
+    printfn "Go back: b"
+    printfn "Quit: q\n\n"

@@ -4,7 +4,8 @@
     "CountryNameNative": "Suomi",
     "CountryCode2": "FI",
     "CountryCode3": "FIN",
-    "CountryNumber": "246"
+    "CountryNumber": "246",
+    "TLD": "fi"
   },
   "Phone": {
     "CountryCode": 358,
