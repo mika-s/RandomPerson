@@ -26,7 +26,7 @@ let replacer (mapping: (string * obj) list) (replaceFunc: obj -> string) (strFor
 
         acc.Replace(String.Format(strFormat, fst y), value)
 
-    List.fold folder str mapping
+    (str, mapping) ||> List.fold folder 
 
 let performOrdinaryReplaces (person: Person) (originalOutput: string) =
     let mapping = 

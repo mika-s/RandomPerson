@@ -1,10 +1,7 @@
 ﻿module internal RandomReplaces
 
-open System
 open System.Text.RegularExpressions
 open Util
-
-let random = Random()
 
 let randomInt (matching: Match) =
     let min = int matching.Groups.[1].Value

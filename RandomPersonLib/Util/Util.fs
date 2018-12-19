@@ -26,10 +26,12 @@ let firstUppercaseRestLowercase (str: string) =
     if str.Length = 0 then str
     else uppercase str.[0..0] + lowercase str.[ 1 .. str.Length - 1 ]
 
-let randomIntBetween (min: int) (max: int) = Random().Next(min, max + 1)
+let randomForTemplateMode = Random()
+
+let randomIntBetween (min: int) (max: int) = randomForTemplateMode.Next(min, max + 1)
 let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetween 0 ((max - min) / step)) * step + min
 
-let randomFloatBetween (min: float) (max: float) = Random().NextDouble() * (max - min) + min
+let randomFloatBetween (min: float) (max: float) = randomForTemplateMode.NextDouble() * (max - min) + min
 let randomFloatBetweenWithStep (min: float) (step: float) (max: float) = (float (randomIntBetween 0 (int ((max - min) / step))))  * step + min
 
 let randomUppercaseLetter (random: Random) =
@@ -38,9 +40,8 @@ let randomUppercaseLetter (random: Random) =
     alphabet.[randomNumber]
 
 let boxMullerTransform () =
-    let random = Random()
-    let u1 = random.NextDouble()
-    let u2 = random.NextDouble()
+    let u1 = randomForTemplateMode.NextDouble()
+    let u2 = randomForTemplateMode.NextDouble()
     let z0 = sqrt(-2.0 * log u1) * cos(2.0 * Math.PI * u2)
     let z1 = sqrt(-2.0 * log u1) * sin(2.0 * Math.PI * u2)
 
