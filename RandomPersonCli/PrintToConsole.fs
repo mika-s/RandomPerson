@@ -24,6 +24,10 @@ let isPrintingMoreThanOneLine (print: genericPrintSettings) =
     + b2i print.CountryNameNative
     + b2i print.CountryNameNativeAlternative1
     + b2i print.CountryNameNativeAlternative2
+    + b2i print.CountryCode2
+    + b2i print.CountryCode3
+    + b2i print.CountryNumber
+    + b2i print.TLD
         > 1
 
 let printToScreen (isPrinting: bool) (isLabel: bool) (label: string) (output: string) =
@@ -54,6 +58,7 @@ let printPerson (print: genericPrintSettings) (person: Person) =
     printToScreen print.CountryCode2                   print.Label "CountryCode2"  person.CountryCode2
     printToScreen print.CountryCode3                   print.Label "CountryCode3"  person.CountryCode3
     printToScreen print.CountryNumber                  print.Label "CountryNumber" person.CountryNumber
+    printToScreen print.TLD                            print.Label "TLD"           person.TLD
 
     if isPrintingMoreThanOneLine (print) then printfn ""
 

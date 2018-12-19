@@ -34,6 +34,8 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 * Password
 * Mobile phone
 * Home phone
+* Country names, codes, number.
+* TLD
 
 The data is based on real values from the mentioned countries. I.e. the SSN, telephone numbers, etc.
 will be valid. SSN can be chosen to be fake.

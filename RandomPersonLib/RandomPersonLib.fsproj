@@ -120,6 +120,7 @@
     <Compile Include="Templateprint\OrdinaryReplaces.fs" />
     <Compile Include="Templateprint\RandomReplaces.fs" />
     <Compile Include="Templateprint\TemplatePrint.fs" />
+    <Compile Include="RandomPersonLib.fsi" />
     <Compile Include="RandomPersonLib.fs" />
     <None Include="Readme.md">
       <Link>ReadmeLib.md</Link>

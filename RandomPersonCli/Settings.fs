@@ -72,12 +72,27 @@ type genericPrintSettings = {
     
     [<field : DataMember(Name="CountryNumber")>]
     CountryNumber : bool
+
+    [<field : DataMember(Name="TLD")>]
+    TLD : bool
 }
 
 [<DataContract>]
 type printOptionsSettings = {
-    [<field : DataMember(Name="JsonPrintType")>]
-    JsonPrintType : string
+    [<field : DataMember(Name="CsvDateFormat")>]
+    CsvDateFormat : string
+
+    [<field : DataMember(Name="CsvSetGenderManually")>]
+    CsvSetGenderManually : bool
+    
+    [<field : DataMember(Name="CsvGenderMale")>]
+    CsvGenderMale : string
+
+    [<field : DataMember(Name="CsvGenderFemale")>]
+    CsvGenderFemale : string
+
+    [<field : DataMember(Name="JsonDateType")>]
+    JsonDateType : string
 
     [<field : DataMember(Name="JsonPrettyPrint")>]
     JsonPrettyPrint : bool

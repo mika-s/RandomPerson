@@ -72,6 +72,9 @@ type PersonSerializable = {
 
     [<JsonProperty("CountryNumber")>]
     CountryNumber : string
+
+    [<JsonProperty("TLD")>]
+    TLD : string
 }
 
 let createPersonSerializable (person: Person) =
@@ -97,6 +100,7 @@ let createPersonSerializable (person: Person) =
         CountryCode2 = person.CountryCode2;
         CountryCode3 = person.CountryCode3;
         CountryNumber = person.CountryNumber;
+        TLD = person.TLD;
     }
 
 let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
@@ -115,7 +119,7 @@ let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
 
 let printToJson (people: Person[]) (outputFilePath: string) (settings: listModeSettings)  =
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "json")
-    let jsonPrintSettings = createJsonSerializerSettings settings.PrintOptions.JsonPrintType settings.PrintOptions.JsonPrettyPrint
+    let jsonPrintSettings = createJsonSerializerSettings settings.PrintOptions.JsonDateType settings.PrintOptions.JsonPrettyPrint
     
     people
     |> Array.map(createPersonSerializable)

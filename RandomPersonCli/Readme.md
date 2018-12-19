@@ -171,13 +171,29 @@ The seed to use with the random function in .NET. Only used when `ManualSeed = t
 
 ```json
 "PrintOptions": {
-    "JsonPrintType": "ISO",
+    "CsvDateFormat": "dd-MM-yyyy",
+    "CsvGenderMale": "Man",
+    "CsvGenderFemale": "Woman",
+    "JsonDateTimeType": "ISO",
     "JsonPrettyPrint": true,
     "XmlPrettyPrint": false
 }
 ```
 
-#### JsonPrintType
+#### CsvDateFormat
+Is used to determine how dates should be printed when printing to a file in List mode,
+when format is set to CSV. This mainly affects the birthdate. The format has to follow the
+.NET documentation.
+
+#### CsvGenderMale
+The string that is printed for males as Gender when printing to a file in List mode,
+when format is set to CSV.
+
+#### CsvGenderFemale
+The string that is printed for females as Gender when printing to a file in List mode,
+when format is set to CSV.
+
+#### JsonDateType
 Is used to determine the JSON output format when printing to a file in
 List mode, when format is set to JSON. This mainly affects the birthdate, as this can be
 in several different formats. Legal values are: "Microsoft" and "ISO".

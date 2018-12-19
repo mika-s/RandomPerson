@@ -40,7 +40,8 @@
       "CountryNameNativeAlternative2": false,
       "CountryCode2": false,
       "CountryCode3": false,
-      "CountryNumber": false
+      "CountryNumber": false,
+      "TLD": false
     }
   },
   "ListMode": {
@@ -63,7 +64,11 @@
       }
     },
     "PrintOptions": {
-      "JsonPrintType": "ISO",
+      "CsvDateFormat": "dd-MM-yyyy",
+      "CsvSetGenderManually": true,
+      "CsvGenderMale": "Man",
+      "CsvGenderFemale": "Woman",
+      "JsonDateTimeType": "ISO",
       "JsonPrettyPrint": true,
       "XmlPrettyPrint": false
     },
@@ -89,7 +94,8 @@
       "CountryNameNativeAlternative2": false,
       "CountryCode2": false,
       "CountryCode3": false,
-      "CountryNumber": false
+      "CountryNumber": false,
+      "TLD": false
     },
     "FilePrint": {
       "Label": true,
@@ -113,7 +119,8 @@
       "CountryNameNativeAlternative2": false,
       "CountryCode2": false,
       "CountryCode3": false,
-      "CountryNumber": false
+      "CountryNumber": false,
+      "TLD": false
     }
   },
   "TemplateMode": {

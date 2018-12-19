@@ -32,6 +32,7 @@ type ``createHeader should`` () =
             CountryCode2 = false;
             CountryCode3 = false;
             CountryNumber = false;
+            TLD = false;
         }
 
         let header = createHeader genericPrintSettings
@@ -63,6 +64,7 @@ type ``createHeader should`` () =
             CountryCode2 = false;
             CountryCode3 = false;
             CountryNumber = false;
+            TLD = false;
         }
 
         let header = createHeader genericPrintSettings
@@ -94,6 +96,7 @@ type ``createHeader should`` () =
             CountryCode2 = false;
             CountryCode3 = false;
             CountryNumber = false;
+            TLD = false;
         }
 
         let header = createHeader genericPrintSettings
@@ -125,6 +128,7 @@ type ``createHeader should`` () =
             CountryCode2 = false;
             CountryCode3 = false;
             CountryNumber = false;
+            TLD = false;
         }
 
         let header = createHeader genericPrintSettings

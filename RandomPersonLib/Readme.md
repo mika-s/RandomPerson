@@ -20,7 +20,7 @@ It can create people with the following generated data:
 - Password
 - Mobile phone
 - Home phone
-- Country names and number
+- Country names, codes and number
 - TLD
 
 for the following countries:
