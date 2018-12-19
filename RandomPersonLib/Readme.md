@@ -20,6 +20,8 @@ It can create people with the following generated data:
 - Password
 - Mobile phone
 - Home phone
+- Country names and number
+- TLD
 
 for the following countries:
 
@@ -39,7 +41,7 @@ The library can also validate SSNs for the countries listed above.
 
 ### In C#
 
-Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.2 to the references
+Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.4 to the references
 using NuGet.
 
 #### Example 1
@@ -176,7 +178,8 @@ variables with generated values:
 `#{CountryNameNativeAlternative2}` <br />
 `#{CountryCode2}` <br />
 `#{CountryCode3}` <br />
-`#{CountryNumber}`
+`#{CountryNumber}` <br />
+`#{TLD}`
 
 ##### Special rules for Gender
 
@@ -206,7 +209,9 @@ The following methods can be chained to the variable replacements:
 
 `ToLower()`: All lowercaps. <br />
 `ToUpper()`: All uppercaps. <br />
-`Capitalize()`: First letter uppercase, rest lowercase.
+`FirstToUpperRestLower()`: First letter lowercase, rest lowercase. <br />
+`Capitalize()`: First letter uppercase, rest unchanged. <br />
+`Uncapitalize()`: First letter lowercase, rest unchanged.
 
 ##### GUID
 
