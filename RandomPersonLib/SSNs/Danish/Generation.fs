@@ -69,10 +69,7 @@ let generateChecksumWithModulusControl (birthdate: DateTime) (individualNumber: 
 
     sprintf "%d" cs
 
-let generateChecksumWithoutModulusControl (random: Random) =
-    let cs = random.Next(1, 10)
-
-    sprintf "%d" cs
+let generateChecksumWithoutModulusControl (random: Random) = random.Next(1, 10) |> sprintf "%d"
 
 let generateDanishChecksum (random: Random) (birthdate: DateTime) (individualNumber: string)  =
     match () with
@@ -83,7 +80,7 @@ let isLegalChecksum (gender: Gender) (checksum: int) =
     (gender = Gender.Male   && isOdd  checksum) ||
     (gender = Gender.Female && isEven checksum)
 
-let anonymizeSSN (ssn: string) = incrementNumberInString ssn 8
+let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
 
 let generateDanishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (isAnonymizingSSN: bool) =
     let day = birthdate.Day.ToString("D2")

@@ -30,8 +30,7 @@ open System
 open RandomPersonLib
 open Util
 
-let getIndividualNumber (random: Random) =
-    random.Next(000, 999)
+let getIndividualNumber (random: Random) = random.Next(000, 999)
 
 let getIndividualNumberMale (random: Random) =
     let rec loop () = 
@@ -64,8 +63,7 @@ let sumTheDigits (product: int) =
 
     intFromChar productAsString.[0] + intFromChar productAsString.[1]
 
-let luhn (w: int) (nAsChar: char) =
-    let n = intFromChar nAsChar
+let luhn (w: int) (n: int) =
     let product = n * w
 
     match product with
@@ -73,22 +71,15 @@ let luhn (w: int) (nAsChar: char) =
     | _              -> product
 
 let generateSwedishChecksum (numbersStr: string) =
-    let weight = [| 2; 1; 2; 1; 2; 1; 2; 1; 2 |];
-    let numbers = numbersStr.ToCharArray ()
+    let weight = [| 2; 1; 2; 1; 2; 1; 2; 1; 2 |]
+    let numbers = intArrayFromString numbersStr
 
-    let mapped = Array.map2(luhn) weight numbers
-    let sum = mapped |> Array.sum
-    let sumStr = sprintf "%d" sum
-    let lastDigit = intFromChar sumStr.[sumStr.Length - 1]
-    let tenMinusLastDigit = 10 - lastDigit
-    let tenMinusLastDigitAsStr = sprintf "%d" tenMinusLastDigit
-    let lastDigitOfDifference = tenMinusLastDigitAsStr.[tenMinusLastDigitAsStr.Length - 1]
-    let cs = intFromChar lastDigitOfDifference
+    let sum = (weight, numbers) ||> Array.map2 luhn |> Array.sum |> sprintf "%d"
+    let tenMinusLastDigit = 10 - intFromChar sum.[sum.Length - 1] |> sprintf "%d"
 
-    sprintf "%d" cs
+    string(tenMinusLastDigit.[tenMinusLastDigit.Length - 1])
 
-let anonymizeSSN (ssn: string) =
-    incrementNumberInString ssn 8
+let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
 
 let generateSwedishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (isAnonymizingSSN: bool) =
     let day   = birthdate.Day  .ToString("D2")

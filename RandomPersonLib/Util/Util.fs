@@ -5,12 +5,16 @@ open System.IO
 open System.Runtime.Serialization.Json
 open System.Text
 
+let modulus (x: int) (y: int) = y % x
 let isOdd  (x: int) = x % 2 <> 0
 let isEven (x: int) = x % 2 =  0
-let intFromChar (x: char) = int(Char.GetNumericValue x)
+let intFromChar (x: char) = x |> Char.GetNumericValue |> int
+let intArrayFromString (numbersStr: string) = numbersStr |> Seq.toArray |> Array.map intFromChar
+let stringAsChar (str: string) = str.[0]
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
 let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 
+let inline toCharArray (str: string) = str.ToCharArray()
 let uppercase (str: string) = str.ToUpperInvariant()
 let lowercase (str: string) = str.ToLowerInvariant()
 
@@ -33,6 +37,9 @@ let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetwe
 
 let randomFloatBetween (min: float) (max: float) = randomForTemplateMode.NextDouble() * (max - min) + min
 let randomFloatBetweenWithStep (min: float) (step: float) (max: float) = (float (randomIntBetween 0 (int ((max - min) / step))))  * step + min
+
+let generateRandomNumberString (random: Random) (amount: int) (min: int) (max: int) =
+    ("", [1 .. amount]) ||> List.fold (fun state _ -> state + sprintf "%d" (random.Next(min, max)))
 
 let randomUppercaseLetter (random: Random) =
     let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -66,7 +73,7 @@ let readDataFromJsonFile<'T> (filename: string) =
 
 let (|Equals|_|) arg x = if (arg = x) then Some() else None
 
-let incrementNumberInString (input: string) (digit: int) =
+let incrementAtPosition (digit: int) (input: string) =
     let digitInInput = intFromChar input.[digit]
     let incremented = ((digitInInput + 1) % 10).ToString ()
     input.Remove(digit, 1).Insert(digit, incremented)

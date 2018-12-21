@@ -71,7 +71,7 @@ let generateNorwegianChecksum (birthdate: DateTime) (individualNumber: string) =
     | ( _, 11) -> sprintf "%d%d" cs1  0
     | ( _,  _) -> sprintf "%d%d" cs1 cs2
 
-let anonymizeSSN (ssn: string) = incrementNumberInString ssn 7
+let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 7
 
 let generateNorwegianSSN (random: Random) (birthdate: DateTime) (gender: Gender) (isAnonymizingSSN: bool) =
     let rec loop () = 

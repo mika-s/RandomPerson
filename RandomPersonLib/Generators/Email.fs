@@ -39,5 +39,4 @@ let generateEmailAddress (random: Random) (emailAddresses: string[]) (firstName:
                                   .Replace("þ", "th")
                                   .Replace("ð", "d")
                                   
-
     cleanLocalpart + "@" + domain

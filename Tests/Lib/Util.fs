@@ -100,24 +100,24 @@ type ``intFromChar should`` () =
         Assert.AreEqual(5, number)
 
 [<TestClass>]
-type ``incrementNumberInString should`` () =
+type ``incrementAtPosition should`` () =
 
     [<TestMethod>]
     member __.``return "1234" given "1233" and index 3`` () =
         let input = "1233"
-        let incremented = incrementNumberInString input 3
+        let incremented = input |> incrementAtPosition 3
         Assert.AreEqual("1234", incremented)
 
     [<TestMethod>]
     member __.``return "1234" given "1134" and index 1`` () =
         let input = "1134"
-        let incremented = incrementNumberInString input 1
+        let incremented = input |> incrementAtPosition 1
         Assert.AreEqual("1234", incremented)
 
     [<TestMethod>]
     member __.``return "1230" given "1239" and index 3`` () =
         let input = "1239"
-        let incremented = incrementNumberInString input 3
+        let incremented = input |> incrementAtPosition 3
         Assert.AreEqual("1230", incremented)
 
 [<TestClass>]

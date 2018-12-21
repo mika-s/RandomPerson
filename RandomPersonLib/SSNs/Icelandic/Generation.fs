@@ -15,8 +15,7 @@ open System
 open IcelandicSSNParameters
 open Util
 
-let generateIcelandicIndividualNumber (random: Random) =
-    random.Next(20, 100).ToString()
+let generateIcelandicIndividualNumber (random: Random) = random.Next(20, 100) |> sprintf "%d"
     
 let generateIcelandicChecksum (birthdate: DateTime) (individualNumber: string) =
     let d1 = Convert.ToInt32(birthdate.Day   .ToString("D2").Substring(0, 1))
@@ -41,7 +40,7 @@ let getCenturyNumber (year: int) =
     | () when 2000 <= year && year <= 2099 -> "0"
     | _ -> invalidArg "year" "Illegal year."    
 
-let anonymizeSSN (ssn: string) = incrementNumberInString ssn 8
+let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
 
 let generateIcelandicSSN (random: Random) (birthdate: DateTime) (isAnonymizingSSN: bool) =
     let rec loop () = 

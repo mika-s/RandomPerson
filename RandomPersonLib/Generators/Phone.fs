@@ -1,15 +1,12 @@
 ﻿module internal Phone
 
 open System
+open Util
 
-let replaceCharWithRandomNumber (random: Random) (inputChar: char) =
+let replaceCharWithRandomNumber (random: Random) (replaceChar: char) (inputChar: char) =
     match inputChar with
-    | c when c = 'x' ->
-        let asInt = random.Next(1, 10)
-        let asString = sprintf "%d" asInt
-        let asChar = asString.[0]
-        asChar
-    | _              -> inputChar
+    | c when c = replaceChar -> random.Next(1, 10) |> sprintf "%d" |> stringAsChar
+    | _                      -> inputChar
 
 let addTheCountryCode (countryCode: int) (originalPhoneNumber: string) =
     sprintf "+%d %s" countryCode originalPhoneNumber
@@ -20,22 +17,20 @@ let addTheTrunkPrefix (trunkPrefix: string) (originalPhoneNumber: string) =
 let removeTheHyphens (originalPhoneNumber: string) = originalPhoneNumber.Replace("-", "")
 let removeTheSpace   (originalPhoneNumber: string) = originalPhoneNumber.Replace(" ", "")
 
-let modifyPhoneNumber (originalPhoneNumber: string) (countryCode: int) (trunkPrefix: string) (addCountryCode: bool) (removeHyphen: bool) (removeSpace: bool) =
+let modifyPhoneNumber (countryCode: int) (trunkPrefix: string) (addCountryCode: bool) (removeHyphen: bool) (removeSpace: bool) (originalPhoneNumber: string) =
     match addCountryCode, removeHyphen, removeSpace with
-    | (true, true, true)    -> addTheCountryCode countryCode originalPhoneNumber |> removeTheHyphens |> removeTheSpace
-    | (true, true, false)   -> addTheCountryCode countryCode originalPhoneNumber |> removeTheHyphens
-    | (true, false, false)  -> addTheCountryCode countryCode originalPhoneNumber
-    | (false, true, true)   -> addTheTrunkPrefix trunkPrefix originalPhoneNumber |> removeTheHyphens |> removeTheSpace
-    | (false, true, false)  -> addTheTrunkPrefix trunkPrefix originalPhoneNumber |> removeTheHyphens
-    | (false, false, true)  -> addTheTrunkPrefix trunkPrefix originalPhoneNumber |> removeTheSpace
-    | (true, false, true)   -> addTheCountryCode countryCode originalPhoneNumber |> removeTheSpace
-    | (false, false, false) -> addTheTrunkPrefix trunkPrefix originalPhoneNumber
+    | (true, true, true)    -> originalPhoneNumber |> addTheCountryCode countryCode |> removeTheHyphens |> removeTheSpace
+    | (true, true, false)   -> originalPhoneNumber |> addTheCountryCode countryCode |> removeTheHyphens
+    | (true, false, false)  -> originalPhoneNumber |> addTheCountryCode countryCode 
+    | (false, true, true)   -> originalPhoneNumber |> addTheTrunkPrefix trunkPrefix |> removeTheHyphens |> removeTheSpace
+    | (false, true, false)  -> originalPhoneNumber |> addTheTrunkPrefix trunkPrefix |> removeTheHyphens
+    | (false, false, true)  -> originalPhoneNumber |> addTheTrunkPrefix trunkPrefix |> removeTheSpace
+    | (true, false, true)   -> originalPhoneNumber |> addTheCountryCode countryCode |> removeTheSpace
+    | (false, false, false) -> originalPhoneNumber |> addTheTrunkPrefix trunkPrefix 
 
 let generatePhone (random: Random) (countryCode: int) (trunkPrefix: string) (ranges: string[]) (addCountryCode: bool)  (removeHyphen: bool) (removeSpace: bool) = 
-    let randomNumber = random.Next(ranges.Length)
-    let pickedRange = ranges.[randomNumber]
-    let asChars = pickedRange.ToCharArray()
-    let replaced = Array.map (replaceCharWithRandomNumber random) asChars
-    let asString = System.String(replaced)
-
-    modifyPhoneNumber asString countryCode trunkPrefix addCountryCode removeHyphen removeSpace
+    ranges.[random.Next(ranges.Length)]
+    |> toCharArray
+    |> Array.map (replaceCharWithRandomNumber random 'x')
+    |> String
+    |> modifyPhoneNumber countryCode trunkPrefix addCountryCode removeHyphen removeSpace

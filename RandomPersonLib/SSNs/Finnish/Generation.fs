@@ -21,7 +21,6 @@ open System
 open RandomPersonLib
 open FinnishSSNParameters
 open Util
-open System.Diagnostics
 
 let generateCenturySign (year: int) =
     match () with
@@ -30,11 +29,7 @@ let generateCenturySign (year: int) =
     | () when 2000 <= year && year <= 2099 -> "A"
     | _ -> invalidArg "year" "Illegal year."
 
-let getIndividualNumber (random: Random) =
-    let min = 002
-    let max = 899
-
-    random.Next(min, max)
+let getIndividualNumber (random: Random) = random.Next(002, 899)
 
 let getIndividualNumberMale (random: Random) =
     let rec loop () = 
@@ -79,7 +74,7 @@ let generateFinnishChecksum (birthdate: DateTime) (individualNumber: string) =
 
 let anonymizeSSN (ssn: string) =
     let rec loop (initialSSN: string) =
-        let incrementedSSN = incrementNumberInString initialSSN 8
+        let incrementedSSN = initialSSN |> incrementAtPosition 8
         let individualNumber = incrementedSSN.Substring(IndividualNumberStart, IndividualNumberLength)
 
         match individualNumber with
