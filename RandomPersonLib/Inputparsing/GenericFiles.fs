@@ -1,5 +1,6 @@
 ﻿module GenericFiles
 
-type genericFiles = {
+[<NoEquality;NoComparison>]
+type GenericFiles = {
     passwords: string[]
 }

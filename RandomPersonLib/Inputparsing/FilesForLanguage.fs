@@ -3,7 +3,8 @@
 open PersonData
 open PostalCodeAndCity
 
-type filesForLanguage = {
+[<NoEquality;NoComparison>]
+type FilesForLanguage = {
     generalData: PersonData
     addresses1: string[]
     postalCodesAndCities: PostalCodeAndCity[]

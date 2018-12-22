@@ -5,7 +5,7 @@ open CliUtil
 open Settings
 open ReadInputFiles
 
-let isPrintingMoreThanOneLine (print: genericPrintSettings) =
+let isPrintingMoreThanOneLine (print: GenericPrintSettings) =
     b2i print.FirstName
     + b2i print.LastName
     + b2i print.SSN
@@ -36,7 +36,7 @@ let printToScreen (isPrinting: bool) (isLabel: bool) (label: string) (output: st
     | (true, false) -> printfn "%s" output            |> ignore
     | _             -> ()                             |> ignore
 
-let printPerson (print: genericPrintSettings) (person: Person) =
+let printPerson (print: GenericPrintSettings) (person: Person) =
     printToScreen print.FirstName                      print.Label "First name"    person.FirstName
     printToScreen print.LastName                       print.Label "Last name"     person.LastName
     printToScreen print.SSN                            print.Label "SSN"           person.SSN
@@ -62,5 +62,5 @@ let printPerson (print: genericPrintSettings) (person: Person) =
 
     if isPrintingMoreThanOneLine (print) then printfn ""
 
-let printToConsole (i: inputFiles) (people: Person list) =
+let printToConsole (i: InputFiles) (people: Person list) =
     people |> List.iter (fun (person: Person) -> printPerson i.settings.ListMode.ConsolePrint person)

@@ -5,7 +5,7 @@ open RandomPersonLib
 open CliEnums
 open CliUtil
 
-type options = {
+type Options = {
     mode: Mode
     amount: int                 // In ListMode and TemplateMode
     nationality: Nationality    // In ListMode and TemplateMode
@@ -27,7 +27,7 @@ let defaultOptions = {
     ssn = String.Empty
 }
 
-let printVersion () = printfn "Version: 1.7.0.0"
+let printVersion () = printfn "Version: 1.8.0.0"
 
 let printUsage () =
     printfn "NAME"
@@ -84,7 +84,7 @@ let printUsage () =
     printfn ""
     printfn "The options are case-sensitive."
 
-let rec parseArgs (args: list<string>) (options: options) =
+let rec parseArgs (args: list<string>) (options: Options) =
     match args with
     | [] -> options
     | "-v"::xs | "--version"::xs ->

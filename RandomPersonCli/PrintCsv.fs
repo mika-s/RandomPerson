@@ -6,7 +6,7 @@ open Microsoft.FSharp.Core.Printf
 open RandomPersonLib
 open Settings
 
-let personToString (printSettings: genericPrintSettings) (printOptions: printOptionsSettings) (person: Person) =
+let personToString (printSettings: GenericPrintSettings) (printOptions: PrintOptionsSettings) (person: Person) =
     let birthDate = person.BirthDate.ToString(printOptions.CsvDateFormat)
 
     let gender = match printOptions.CsvSetGenderManually with
@@ -45,7 +45,7 @@ let personToString (printSettings: genericPrintSettings) (printOptions: printOpt
 
     sb.ToString()
 
-let createHeader (printSettings: genericPrintSettings) =
+let createHeader (printSettings: GenericPrintSettings) =
     let sb = StringBuilder()
     if printSettings.FirstName                     then bprintf sb "%s" ("FirstName,")                     |> ignore
     if printSettings.LastName                      then bprintf sb "%s" ("LastName,")                      |> ignore
@@ -77,7 +77,7 @@ let createHeader (printSettings: genericPrintSettings) =
     let header = sb.ToString ()
     [| header |]
 
-let printToCsv (people: Person[]) (outputFilePath: string) (printSettings: genericPrintSettings) (printOptions: printOptionsSettings) =
+let printToCsv (people: Person[]) (outputFilePath: string) (printSettings: GenericPrintSettings) (printOptions: PrintOptionsSettings) =
     let header = createHeader printSettings
     let printableWithoutHeader = people |> Array.map(personToString printSettings printOptions)
     let printableWithHeader = Array.concat [ header; printableWithoutHeader ]

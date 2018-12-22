@@ -9,14 +9,15 @@ open PostalCodeAndCityGen
 open PersonData
 open Util
 
-type inputFiles = {
-    generic:   genericFiles
-    danish:    filesForLanguage
-    dutch:     filesForLanguage
-    finnish:   filesForLanguage
-    icelandic: filesForLanguage
-    norwegian: filesForLanguage
-    swedish:   filesForLanguage
+[<NoEquality;NoComparison>]
+type InputFiles = {
+    generic:   GenericFiles
+    danish:    FilesForLanguage
+    dutch:     FilesForLanguage
+    finnish:   FilesForLanguage
+    icelandic: FilesForLanguage
+    norwegian: FilesForLanguage
+    swedish:   FilesForLanguage
 }
 
 let readInputFiles () =

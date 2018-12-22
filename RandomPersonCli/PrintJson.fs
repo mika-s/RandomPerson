@@ -7,6 +7,7 @@ open RandomPersonLib
 open CliUtil
 open Settings
 
+[<NoEquality;NoComparison>]
 type PersonSerializable = {
     [<JsonProperty("FirstName")>]
     FirstName : string
@@ -17,8 +18,7 @@ type PersonSerializable = {
     [<JsonProperty("SSN")>]
     SSN : string
 
-    [<JsonProperty("Nationality")>]
-    [<JsonConverter(typedefof<StringEnumConverter>)>]
+    [<JsonProperty("Nationality");JsonConverter(typedefof<StringEnumConverter>)>]
     Nationality: Nationality
 
     [<JsonProperty("Address1")>]
@@ -36,8 +36,7 @@ type PersonSerializable = {
     [<JsonProperty("BirthDate")>]
     BirthDate : DateTime
 
-    [<JsonProperty("Gender")>]
-    [<JsonConverter(typedefof<StringEnumConverter>)>]
+    [<JsonProperty("Gender");JsonConverter(typedefof<StringEnumConverter>)>]
     Gender : Gender
 
     [<JsonProperty("Email")>]
@@ -117,7 +116,7 @@ let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
        JsonSerializerSettings (DateFormatHandling = DateFormatHandling.IsoDateFormat)
     | _                  -> invalidArg "jsonPrintType, isFormatted" "Illegal JSON print type, isFormatted pair."
 
-let printToJson (people: Person[]) (outputFilePath: string) (settings: listModeSettings)  =
+let printToJson (people: Person[]) (outputFilePath: string) (settings: ListModeSettings)  =
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "json")
     let jsonPrintSettings = createJsonSerializerSettings settings.PrintOptions.JsonDateType settings.PrintOptions.JsonPrettyPrint
     

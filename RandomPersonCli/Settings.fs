@@ -5,8 +5,8 @@ open System.Runtime.Serialization
 open RandomPersonLib
 open CliUtil
 
-[<DataContract>]
-type genericPrintSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type GenericPrintSettings = {
     [<field : DataMember(Name="Label")>]
     Label : bool
 
@@ -77,8 +77,8 @@ type genericPrintSettings = {
     TLD : bool
 }
 
-[<DataContract>]
-type printOptionsSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type PrintOptionsSettings = {
     [<field : DataMember(Name="CsvDateFormat")>]
     CsvDateFormat : string
 
@@ -101,13 +101,13 @@ type printOptionsSettings = {
     XmlPrettyPrint : bool 
 }
 
-[<DataContract>]
-type templatePrintSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type TemplatePrintSettings = {
     [<field : DataMember(Name="Output")>]
     Output : string
 }
 
-[<DataContract>]
+[<DataContract;NoEquality;NoComparison>]
 type birthDateOptionsSettings = {
     [<field : DataMember(Name="SetYearManually")>]
     SetYearManually : Nullable<bool>
@@ -122,8 +122,8 @@ type birthDateOptionsSettings = {
     High : Nullable<int>
 }
 
-[<DataContract>]
-type randomnessOptionsSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type RandomnessOptionsSettings = {
     [<field : DataMember(Name="ManualSeed")>]
     ManualSeed : Nullable<bool>
 
@@ -131,8 +131,8 @@ type randomnessOptionsSettings = {
     Seed : Nullable<int>
 }
 
-[<DataContract>]
-type genericOptionsSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type GenericOptionsSettings = {
     [<field : DataMember(Name="AnonymizeSSN")>]
     AnonymizeSSN : Nullable<bool>
 
@@ -155,55 +155,55 @@ type genericOptionsSettings = {
     BirthDate : birthDateOptionsSettings
 
     [<field : DataMember(Name="Randomness")>]
-    Randomness : randomnessOptionsSettings
+    Randomness : RandomnessOptionsSettings
 }
 
-[<DataContract>]
-type interactiveModeSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type InteractiveModeSettings = {
     [<field : DataMember(Name="Options")>]
-    Options : genericOptionsSettings
+    Options : GenericOptionsSettings
 
     [<field : DataMember(Name="ConsolePrint")>]
-    ConsolePrint : genericPrintSettings
+    ConsolePrint : GenericPrintSettings
 }
 
-[<DataContract>]
-type listModeSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type ListModeSettings = {
     [<field : DataMember(Name="Options")>]
-    Options : genericOptionsSettings
+    Options : GenericOptionsSettings
 
     [<field : DataMember(Name="PrintOptions")>]
-    PrintOptions : printOptionsSettings
+    PrintOptions : PrintOptionsSettings
 
     [<field : DataMember(Name="ConsolePrint")>]
-    ConsolePrint : genericPrintSettings
+    ConsolePrint : GenericPrintSettings
 
     [<field : DataMember(Name="FilePrint")>]
-    FilePrint : genericPrintSettings
+    FilePrint : GenericPrintSettings
 }
 
-[<DataContract>]
-type templateModeSettings = {
+[<DataContract;NoEquality;NoComparison>]
+type TemplateModeSettings = {
     [<field : DataMember(Name="Options")>]
-    Options : genericOptionsSettings
+    Options : GenericOptionsSettings
 
     [<field : DataMember(Name="Print")>]
-    Print : templatePrintSettings
+    Print : TemplatePrintSettings
 }
 
-[<DataContract>]
+[<DataContract;NoEquality;NoComparison>]
 type Settings = {
     [<field : DataMember(Name="InteractiveMode")>]
-    InteractiveMode: interactiveModeSettings
+    InteractiveMode: InteractiveModeSettings
 
     [<field : DataMember(Name="ListMode")>]
-    ListMode: listModeSettings
+    ListMode: ListModeSettings
 
     [<field : DataMember(Name="TemplateMode")>]
-    TemplateMode: templateModeSettings
+    TemplateMode: TemplateModeSettings
 }
 
-let genericOptionsToRandomPersonOptions (genericOptions: genericOptionsSettings) =
+let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings) =
     let defaultAnonymizeSSN = false
     let defaultUnder18 = false
     let defaultAddCountryCodeToPhoneNumber = false

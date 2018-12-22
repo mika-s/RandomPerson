@@ -14,7 +14,8 @@ open FilesForLanguage
 open GenericFiles
 
 /// A class representing a randomly generated person.
-type Person(nationality: Nationality, genericFiles: genericFiles, languageFiles: filesForLanguage, options: RandomPersonOptions, random: Random) =
+[<NoEquality;NoComparison>]
+type Person(nationality: Nationality, genericFiles: GenericFiles, languageFiles: FilesForLanguage, options: RandomPersonOptions, random: Random) =
     let isAnonymizingSSN = options.AnonymizeSSN
     let isAllowingUnder18 = options.Under18
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN

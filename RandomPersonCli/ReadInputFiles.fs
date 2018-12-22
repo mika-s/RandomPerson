@@ -3,7 +3,8 @@
 open Settings
 open CliUtil
 
-type inputFiles = {
+[<NoEquality;NoComparison>]
+type InputFiles = {
     settings: Settings;
 }
 
@@ -34,10 +35,12 @@ let assertSettings (settings: Settings) =
     settings.ListMode.Options.BirthDate        |> assertDates
     settings.TemplateMode.Options.BirthDate    |> assertDates
 
-let readInputFiles (settingsFilePath: string) = 
-    let settings = readDataFromJsonFile<Settings> settingsFilePath
-    assertSettings settings |> ignore
+    settings
 
+let createInputFiles (settings: Settings) =
     {
         settings = settings;
     }
+
+let readInputFiles (settingsFilePath: string) = 
+    settingsFilePath |> readDataFromJsonFile<Settings> |> assertSettings |> createInputFiles

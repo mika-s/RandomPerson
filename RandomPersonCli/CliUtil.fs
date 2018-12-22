@@ -10,8 +10,7 @@ open Newtonsoft.Json
 let b2i (b: bool) = if b = true then 1 else 0
 
 let readDataFromJsonFile<'T> (filename: string) =
-    let readJson = File.ReadAllText(filename)
-    JsonConvert.DeserializeObject<'T>(readJson);
+    filename |> File.ReadAllText |> JsonConvert.DeserializeObject<'T>
 
 let writeToJsonFile<'T> (filename: string) (jsonSerializerSettings: JsonSerializerSettings) (objToWrite: obj) = 
     let output = JsonConvert.SerializeObject(objToWrite, jsonSerializerSettings)

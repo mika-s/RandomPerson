@@ -2,7 +2,7 @@
 
 open System.Runtime.Serialization
 
-[<DataContract>]
+[<DataContract;NoEquality;NoComparison>]
 type MiscData = {
     [<field : DataMember(Name="CountryNameEnglish")>]
     CountryNameEnglish : string
@@ -29,13 +29,13 @@ type MiscData = {
     TLD : string
 }
 
-[<DataContract>]
+[<DataContract;NoEquality;NoComparison>]
 type MobileData = {
-        [<field : DataMember(Name="Patterns")>]
-        Patterns: string[]
+    [<field : DataMember(Name="Patterns")>]
+    Patterns: string[]
 }
 
-[<DataContract>]
+[<DataContract;NoEquality;NoComparison>]
 type PhoneData = {
     [<field : DataMember(Name="CountryCode")>]
     CountryCode : int
@@ -50,7 +50,7 @@ type PhoneData = {
     Home : MobileData
 }
 
-[<DataContract>]
+[<DataContract;NoEquality;NoComparison>]
 type PersonData = {
     [<field : DataMember(Name="Misc")>]
     Misc : MiscData
