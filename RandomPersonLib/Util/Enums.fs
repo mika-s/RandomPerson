@@ -13,3 +13,4 @@ type Country =
 | Netherlands = 4
 | Norway      = 5
 | Sweden      = 6
+| USA         = 7

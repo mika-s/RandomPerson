@@ -24,6 +24,30 @@ The following sources are used for the data that is used to generate random pers
 - [Postal codes and cities in Finland](https://www.posti.fi/business/help-and-support/postal-code-services/postal-code-files.html) ([also this](http://www.posti.fi/webpcode/))
 - [Telephone numbers in Finland](https://en.wikipedia.org/wiki/Telephone_numbers_in_Finland)
 
+## Iceland
+
+- [Icelandic SSN rules](https://www.skra.is/english/individuals/me-and-my-family/my-registration/id-numbers/)
+- [Icelandic names](https://www.island.is/mannanofn/leit-ad-nafni/)
+- [Icelandic patronyms](https://en.ja.is/)
+- [Streets in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
+- [Postal codes and cities in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
+
+Regex for extracting patronyms from yellow pages: `^.*?(\w+dóttir).*$` and  `^.*?(\w+son).*$`<br />
+Replace with (with Notepad++): `\1`
+
+## Netherlands
+
+- [Dutch firstnames](https://www.meertens.knaw.nl/nvb/topnamen/land/Nederland/2014)
+- [Dutch lastnames](https://github.com/digitalheir/family-names-in-the-netherlands)
+- [Telephone numbers in The Netherlands](https://en.wikipedia.org/wiki/Telephone_numbers_in_the_Netherlands)
+- [Postal codes in The Netherlands](https://en.wikipedia.org/wiki/Postal_codes_in_the_Netherlands)
+- [List of postal codes in The Netherlands](http://download.geonames.org/export/zip/NL.zip)
+- [List of addresses in The Netherlands](http://download.geonames.org/export/dump/NL.zip)
+
+The list of Dutch postal codes, cities and addresses is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
+
+www.geonames.org
+
 ## Norway
 
 - [Norwegian names](https://www.ssb.no/navn)
@@ -42,30 +66,6 @@ The following sources are used for the data that is used to generate random pers
 The list of Swedish postal codes and cities is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
 
 www.geonames.org
-
-## The Netherlands
-
-- [Dutch firstnames](https://www.meertens.knaw.nl/nvb/topnamen/land/Nederland/2014)
-- [Dutch lastnames](https://github.com/digitalheir/family-names-in-the-netherlands)
-- [Telephone numbers in The Netherlands](https://en.wikipedia.org/wiki/Telephone_numbers_in_the_Netherlands)
-- [Postal codes in The Netherlands](https://en.wikipedia.org/wiki/Postal_codes_in_the_Netherlands)
-- [List of postal codes in The Netherlands](http://download.geonames.org/export/zip/NL.zip)
-- [List of addresses in The Netherlands](http://download.geonames.org/export/dump/NL.zip)
-
-The list of Dutch postal codes, cities and addresses is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
-
-www.geonames.org
-
-## Iceland
-
-- [Icelandic SSN rules](https://www.skra.is/english/individuals/me-and-my-family/my-registration/id-numbers/)
-- [Icelandic names](https://www.island.is/mannanofn/leit-ad-nafni/)
-- [Icelandic patronyms](https://en.ja.is/)
-- [Streets in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
-- [Postal codes and cities in Iceland](https://www.postur.is/en/about-us/post-offices/post-codes/data-files/)
-
-Regex for extracting patronyms from yellow pages: `^.*?(\w+dóttir).*$` and  `^.*?(\w+son).*$`<br />
-Replace with (with Notepad++): `\1`
 
 # Misc
 

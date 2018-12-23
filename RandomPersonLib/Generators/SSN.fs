@@ -17,6 +17,7 @@ let generateSSN (random: Random) (country: Country) (birthdate : DateTime) (gend
               | Country.Netherlands -> generateDutchSSN     random                  isAnonymizingSSN
               | Country.Norway      -> generateNorwegianSSN random birthdate gender isAnonymizingSSN
               | Country.Sweden      -> generateSwedishSSN   random birthdate gender isAnonymizingSSN
+              | Country.USA         -> generateSwedishSSN   random birthdate gender isAnonymizingSSN
               | _ -> invalidArg "country" "Illegal country."
 
     match isRemovingHypensFromSSN with

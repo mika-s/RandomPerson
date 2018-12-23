@@ -15,6 +15,7 @@ let stringToPostalCodeAndCity (country: Country) (line: string)   =
     | Country.Netherlands -> PostalCodeAndCity(split.[1], split.[2])
     | Country.Norway      -> PostalCodeAndCity(split.[0], split.[1])
     | Country.Sweden      -> PostalCodeAndCity(split.[1], split.[2])
+    | Country.USA         -> PostalCodeAndCity(split.[1], split.[2])
     | _ -> invalidArg "country" "Illegal country."
 
 let generatePostalCodeAndCity (random: Random) (postalCodeAndCities: PostalCodeAndCity[]) (country: Country) = 

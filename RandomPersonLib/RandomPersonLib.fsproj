@@ -17,16 +17,35 @@
   <ItemGroup>
     <Compile Include="Util\Enums.fs" />
     <Compile Include="Util\Util.fs" />
+
     <Content Include="data\Generic\passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Denmark\danish.json">
+    <Content Include="data\Denmark\denmark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Denmark\DK.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Denmark\Gader i København.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Finland\Streets in Finland.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Finland\FI.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Finland\finland.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Iceland\postnumer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Iceland\Streets in Iceland.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\Iceland\iceland.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Netherlands\Addresses in NL.txt">
@@ -38,28 +57,10 @@
     <Content Include="data\Netherlands\License for last names.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Netherlands\dutch.json">
+    <Content Include="data\Netherlands\netherlands.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Finland\Streets in Finland.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\Finland\FI.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\Finland\finnish.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\Iceland\postnumer.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\Iceland\Streets in Iceland.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\Iceland\icelandic.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\Norway\norwegian.json">
+    <Content Include="data\Norway\norway.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Norway\Postnummerregister-ansi.txt">
@@ -68,7 +69,7 @@
     <Content Include="data\Norway\Gater i Oslo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Sweden\swedish.json">
+    <Content Include="data\Sweden\sweden.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\Sweden\SE.txt">
@@ -77,26 +78,32 @@
     <Content Include="data\Sweden\Gator i Stockholm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\USA\usa.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Datacontracts\PersonData.fs" />
     <Compile Include="SSNs\Common\Validation.fs" />
-    <Compile Include="SSNs\Danish\Parameters.fs" />
-    <Compile Include="SSNs\Danish\Generation.fs" />
-    <Compile Include="SSNs\Danish\Validation.fs" />
-    <Compile Include="SSNs\Dutch\Parameters.fs" />
-    <Compile Include="SSNs\Dutch\Generation.fs" />
-    <Compile Include="SSNs\Dutch\Validation.fs" />
-    <Compile Include="SSNs\Icelandic\Parameters.fs" />
-    <Compile Include="SSNs\Icelandic\Generation.fs" />
-    <Compile Include="SSNs\Icelandic\Validation.fs" />
-    <Compile Include="SSNs\Finnish\Parameters.fs" />
-    <Compile Include="SSNs\Finnish\Generation.fs" />
-    <Compile Include="SSNs\Finnish\Validation.fs" />
-    <Compile Include="SSNs\Norwegian\Parameters.fs" />
-    <Compile Include="SSNs\Norwegian\Generation.fs" />
-    <Compile Include="SSNs\Norwegian\Validation.fs" />
-    <Compile Include="SSNs\Swedish\Parameters.fs" />
-    <Compile Include="SSNs\Swedish\Generation.fs" />
-    <Compile Include="SSNs\Swedish\Validation.fs" />
+    <Compile Include="SSNs\Denmark\Parameters.fs" />
+    <Compile Include="SSNs\Denmark\Generation.fs" />
+    <Compile Include="SSNs\Denmark\Validation.fs" />
+    <Compile Include="SSNs\Iceland\Parameters.fs" />
+    <Compile Include="SSNs\Iceland\Generation.fs" />
+    <Compile Include="SSNs\Iceland\Validation.fs" />
+    <Compile Include="SSNs\Finland\Parameters.fs" />
+    <Compile Include="SSNs\Finland\Generation.fs" />
+    <Compile Include="SSNs\Finland\Validation.fs" />
+    <Compile Include="SSNs\Netherlands\Parameters.fs" />
+    <Compile Include="SSNs\Netherlands\Generation.fs" />
+    <Compile Include="SSNs\Netherlands\Validation.fs" />
+    <Compile Include="SSNs\Norway\Parameters.fs" />
+    <Compile Include="SSNs\Norway\Generation.fs" />
+    <Compile Include="SSNs\Norway\Validation.fs" />
+    <Compile Include="SSNs\Sweden\Parameters.fs" />
+    <Compile Include="SSNs\Sweden\Generation.fs" />
+    <Compile Include="SSNs\Sweden\Validation.fs" />
+    <Compile Include="SSNs\USA\Parameters.fs" />
+    <Compile Include="SSNs\USA\Generation.fs" />
+    <Compile Include="SSNs\USA\Validation.fs" />
     <Compile Include="PostalCodeAndCity.fs" />
     <Compile Include="RandomPersonOptions.fs" />
     <Compile Include="Generators\Password.fs" />
@@ -108,7 +115,7 @@
     <Compile Include="Generators\Gender.fs" />
     <Compile Include="Generators\Name.fs" />
     <Compile Include="Generators\SSN.fs" />
-    <Compile Include="Inputparsing\FilesForCountry.fs" />
+    <Compile Include="Inputparsing\CountryFiles.fs" />
     <Compile Include="Inputparsing\GenericFiles.fs" />
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />
