@@ -12,11 +12,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Danish male`` () =
-        let nationality = Nationality.Danish
+        let country = Country.Denmark
         let birthdate = DateTime(1933, 7, 31)
         let gender = Gender.Male
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -35,11 +35,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Danish female`` () =
-        let nationality = Nationality.Danish
+        let country = Country.Denmark
         let birthdate = DateTime(1962, 2, 3)
         let gender = Gender.Female
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -58,11 +58,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Dutch person`` () =
-        let nationality = Nationality.Dutch
+        let country = Country.Netherlands
         let birthdate = DateTime(1962, 2, 3)
         let gender = Gender.Female
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let individualNumber = Convert.ToInt32(ssn.Substring(DutchSSNParameters.IndividualNumberStart,
                                                              DutchSSNParameters.IndividualNumberLength))
@@ -74,11 +74,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Finnish male`` () =
-        let nationality = Nationality.Finnish
+        let country = Country.Finland
         let birthdate = DateTime(1925, 8, 7)
         let gender = Gender.Male
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -101,11 +101,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Finnish female`` () =
-        let nationality = Nationality.Finnish
+        let country = Country.Finland
         let birthdate = DateTime(1977, 2, 15)
         let gender = Gender.Female
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -128,11 +128,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Icelandic male`` () =
-        let nationality = Nationality.Icelandic
+        let country = Country.Iceland
         let birthdate = DateTime(1945, 10, 28)
         let gender = Gender.Male
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -152,11 +152,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Icelandic female`` () =
-        let nationality = Nationality.Icelandic
+        let country = Country.Iceland
         let birthdate = DateTime(1912, 1, 2)
         let gender = Gender.Female
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -176,11 +176,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Norwegian male`` () =
-        let nationality = Nationality.Norwegian
+        let country = Country.Norway
         let birthdate = DateTime(1954, 3, 21)
         let gender = Gender.Male
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -199,11 +199,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Norwegian female`` () =
-        let nationality = Nationality.Norwegian
+        let country = Country.Norway
         let birthdate = DateTime(1990, 5, 14)
         let gender = Gender.Female
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -222,11 +222,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Swedish male`` () =
-        let nationality = Nationality.Swedish
+        let country = Country.Sweden
         let birthdate = DateTime(1952, 12, 25)
         let gender = Gender.Male
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let y = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
@@ -246,11 +246,11 @@ type ``generateSSN should`` () =
 
     [<TestMethod>]
     member __.``return a correct SSN for Swedish female`` () =
-        let nationality = Nationality.Swedish
+        let country = Country.Sweden
         let birthdate = DateTime(1982, 11, 30)
         let gender = Gender.Female
         let random = getRandom false 100
-        let ssn = generateSSN random nationality birthdate gender false false
+        let ssn = generateSSN random country birthdate gender false false
 
         let y = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)

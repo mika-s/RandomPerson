@@ -237,8 +237,8 @@ type ``generateFinnishSSN should`` () =
         let ssnFake = generateFinnishSSN random birthdate gender true
 
         let randomPerson = RandomPerson()
-        let isRealValidating = randomPerson.ValidateSSN(Nationality.Finnish, ssnReal)
-        let isFakeValidating = randomPerson.ValidateSSN(Nationality.Finnish, ssnFake)
+        let isRealValidating = randomPerson.ValidateSSN(Country.Finland, ssnReal)
+        let isFakeValidating = randomPerson.ValidateSSN(Country.Finland, ssnFake)
 
         let d = ssnFake.Substring(0, 2)
         let m = ssnFake.Substring(2, 2)

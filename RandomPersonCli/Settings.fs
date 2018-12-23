@@ -19,8 +19,8 @@ type GenericPrintSettings = {
     [<field : DataMember(Name="SSN")>]
     SSN : bool
 
-    [<field : DataMember(Name="Nationality")>]
-    Nationality : bool
+    [<field : DataMember(Name="Country")>]
+    Country : bool
 
     [<field : DataMember(Name="Address1")>]
     Address1 : bool

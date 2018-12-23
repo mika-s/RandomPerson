@@ -23,7 +23,7 @@
         "FirstName": true,
         "LastName": true,
         "SSN": true,
-        "Nationality": true,
+        "Country": true,
         "Address1": true,
         "Address2": false,
         "PostalCode": true,
@@ -77,7 +77,7 @@
         "FirstName": true,
         "LastName": true,
         "SSN": true,
-        "Nationality": false,
+        "Country": false,
         "Address1": true,
         "Address2": false,
         "PostalCode": true,
@@ -102,7 +102,7 @@
         "FirstName": true,
         "LastName": true,
         "SSN": true,
-        "Nationality": true,
+        "Country": true,
         "Address1": true,
         "Address2": true,
         "PostalCode": true,
@@ -151,7 +151,7 @@ Personal information:
 SSN:                       #{SSN}
 Firstname:                 #{FirstName}
 Lastname:                  #{LastName}
-Nationality:               #{Nationality}
+Country:                   #{Country}
 Address1:                  #{Address1}
 Address2:                  #{Address2}
 PostalCode:                #{PostalCode}
@@ -182,7 +182,7 @@ ToLower:                #{FirstName.ToLower()}
 ToUpper:                #{FirstName.ToUpper()}
 FirstToUpperRestLower:  #{City.FirstToUpperRestLower()}
 Capitalize:             #{Email.Capitalize()}
-Uncapitalize:           #{Nationality.Uncapitalize()}
+Uncapitalize:           #{Country.Uncapitalize()}
 
 ---------------
 Misc functions:

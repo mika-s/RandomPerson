@@ -10,55 +10,55 @@ open Gender
 open Birthdate
 open Password
 open Phone
-open FilesForLanguage
+open FilesForCountry
 open GenericFiles
 
 /// A class representing a randomly generated person.
 [<NoEquality;NoComparison>]
-type Person(nationality: Nationality, genericFiles: GenericFiles, languageFiles: FilesForLanguage, options: RandomPersonOptions, random: Random) =
+type Person(country: Country, genericFiles: GenericFiles, countryFiles: FilesForCountry, options: RandomPersonOptions, random: Random) =
     let isAnonymizingSSN = options.AnonymizeSSN
     let isAllowingUnder18 = options.Under18
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN
     
-    let postalCodeAndCity = generatePostalCodeAndCity random languageFiles.postalCodesAndCities nationality
+    let postalCodeAndCity = generatePostalCodeAndCity random countryFiles.postalCodesAndCities country
 
     let gender = generateGender random
-    let firstName = generateFirstName random gender languageFiles.generalData
-    let lastName  = generateLastName  random gender languageFiles.generalData 
-    let address1 = generateAddress1 random languageFiles.addresses1
+    let firstName = generateFirstName random gender countryFiles.generalData
+    let lastName  = generateLastName  random gender countryFiles.generalData 
+    let address1 = generateAddress1 random countryFiles.addresses1
     let address2 = generateAddress2 ()
     let postalCode = postalCodeAndCity.PostalCode
     let city = postalCodeAndCity.City
     let birthDate = generateBirthDate random isAllowingUnder18 options.BirthDate
-    let ssn = generateSSN random nationality birthDate gender isAnonymizingSSN isRemovingHypensFromSSN
-    let email = generateEmailAddress random languageFiles.generalData.EmailEndings firstName lastName birthDate
+    let ssn = generateSSN random country birthDate gender isAnonymizingSSN isRemovingHypensFromSSN
+    let email = generateEmailAddress random countryFiles.generalData.EmailEndings firstName lastName birthDate
     let password = generatePassword random genericFiles.passwords firstName lastName birthDate
     let mobilePhone = generatePhone
                             random
-                            languageFiles.generalData.Phone.CountryCode
-                            languageFiles.generalData.Phone.TrunkPrefix
-                            languageFiles.generalData.Phone.Mobile.Patterns
+                            countryFiles.generalData.Phone.CountryCode
+                            countryFiles.generalData.Phone.TrunkPrefix
+                            countryFiles.generalData.Phone.Mobile.Patterns
                             options.AddCountryCodeToPhoneNumber
                             options.RemoveHyphenFromPhoneNumber
                             options.RemoveSpaceFromPhoneNumber
     let homePhone = generatePhone
                             random
-                            languageFiles.generalData.Phone.CountryCode
-                            languageFiles.generalData.Phone.TrunkPrefix
-                            languageFiles.generalData.Phone.Home.Patterns
+                            countryFiles.generalData.Phone.CountryCode
+                            countryFiles.generalData.Phone.TrunkPrefix
+                            countryFiles.generalData.Phone.Home.Patterns
                             options.AddCountryCodeToPhoneNumber
                             options.RemoveHyphenFromPhoneNumber
                             options.RemoveSpaceFromPhoneNumber
-    let countryNameEnglish = languageFiles.generalData.Misc.CountryNameEnglish
-    let countryNameNative = languageFiles.generalData.Misc.CountryNameNative
-    let countryNameNativeAlternative1 = if languageFiles.generalData.Misc.CountryNameNativeAlternative1 <> null then
-                                           languageFiles.generalData.Misc.CountryNameNativeAlternative1 else ""
-    let countryNameNativeAlternative2 = if languageFiles.generalData.Misc.CountryNameNativeAlternative2 <> null then
-                                           languageFiles.generalData.Misc.CountryNameNativeAlternative2 else ""
-    let countryCode2  = languageFiles.generalData.Misc.CountryCode2
-    let countryCode3  = languageFiles.generalData.Misc.CountryCode3
-    let countryNumber = languageFiles.generalData.Misc.CountryNumber
-    let tld = languageFiles.generalData.Misc.TLD
+    let countryNameEnglish = countryFiles.generalData.Misc.CountryNameEnglish
+    let countryNameNative = countryFiles.generalData.Misc.CountryNameNative
+    let countryNameNativeAlternative1 = if countryFiles.generalData.Misc.CountryNameNativeAlternative1 <> null then
+                                           countryFiles.generalData.Misc.CountryNameNativeAlternative1 else ""
+    let countryNameNativeAlternative2 = if countryFiles.generalData.Misc.CountryNameNativeAlternative2 <> null then
+                                           countryFiles.generalData.Misc.CountryNameNativeAlternative2 else ""
+    let countryCode2  = countryFiles.generalData.Misc.CountryCode2
+    let countryCode3  = countryFiles.generalData.Misc.CountryCode3
+    let countryNumber = countryFiles.generalData.Misc.CountryNumber
+    let tld = countryFiles.generalData.Misc.TLD
 
     member __.Gender = gender
     member __.FirstName = firstName
@@ -67,7 +67,7 @@ type Person(nationality: Nationality, genericFiles: GenericFiles, languageFiles:
     member __.Address2 = address2
     member __.PostalCode = postalCode
     member __.City = city
-    member __.Nationality = nationality
+    member __.Country = country
     member __.BirthDate = birthDate
     member __.SSN = ssn
     member __.Email = email

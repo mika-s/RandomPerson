@@ -18,12 +18,12 @@ let interactiveMode (settingsFilePath: string) =
         if Console.KeyAvailable then
             match Console.ReadKey(true).KeyChar with
             | 'q' -> ()
-            | 'd' -> lib.CreatePerson(Nationality.Danish,    options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | 'D' -> lib.CreatePerson(Nationality.Dutch,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | 'f' -> lib.CreatePerson(Nationality.Finnish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | 'i' -> lib.CreatePerson(Nationality.Icelandic, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | 'n' -> lib.CreatePerson(Nationality.Norwegian, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
-            | 's' -> lib.CreatePerson(Nationality.Swedish,   options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'd' -> lib.CreatePerson(Country.Denmark,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'f' -> lib.CreatePerson(Country.Finland,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'i' -> lib.CreatePerson(Country.Iceland,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'N' -> lib.CreatePerson(Country.Netherlands, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'n' -> lib.CreatePerson(Country.Norway,      options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 's' -> lib.CreatePerson(Country.Sweden,      options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | _ -> mainloop()
         else
             mainloop()

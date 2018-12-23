@@ -3,7 +3,7 @@
 open System.IO
 open System.Text
 open RandomPersonLib
-open FilesForLanguage
+open FilesForCountry
 open GenericFiles
 open PostalCodeAndCityGen
 open PersonData
@@ -11,13 +11,13 @@ open Util
 
 [<NoEquality;NoComparison>]
 type InputFiles = {
-    generic:   GenericFiles
-    danish:    FilesForLanguage
-    dutch:     FilesForLanguage
-    finnish:   FilesForLanguage
-    icelandic: FilesForLanguage
-    norwegian: FilesForLanguage
-    swedish:   FilesForLanguage
+    generic:     GenericFiles
+    denmark:     FilesForCountry
+    finland:     FilesForCountry
+    iceland:     FilesForCountry
+    netherlands: FilesForCountry
+    norway:      FilesForCountry
+    sweden:      FilesForCountry
 }
 
 let readInputFiles () =
@@ -25,54 +25,54 @@ let readInputFiles () =
         passwords           = File.ReadAllLines("data/Generic/passwords.txt", Encoding.UTF8);
     }
 
-    let danish = {
-        generalData          = readDataFromJsonFile<PersonData> "data/Danish/danish.json";
-        addresses1           = File.ReadAllLines("data/Danish/Gader i København.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Danish/DK.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Nationality.Danish);
+    let denmark = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Denmark/danish.json";
+        addresses1           = File.ReadAllLines("data/Denmark/Gader i København.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Denmark/DK.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.Denmark);
     }
 
-    let dutch = {
-        generalData          = readDataFromJsonFile<PersonData> "data/Dutch/dutch.json";
-        addresses1           = File.ReadAllLines("data/Dutch/Addresses in NL.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Dutch/NL.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Nationality.Dutch);
+    let finland = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Finland/finnish.json";
+        addresses1           = File.ReadAllLines("data/Finland/Streets in Finland.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Finland/FI.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.Finland);
     }
 
-    let finnish = {
-        generalData          = readDataFromJsonFile<PersonData> "data/Finnish/finnish.json";
-        addresses1           = File.ReadAllLines("data/Finnish/Streets in Finland.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Finnish/FI.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Nationality.Finnish);
+    let iceland = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Iceland/icelandic.json";
+        addresses1           = File.ReadAllLines("data/Iceland/Streets in Iceland.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Iceland/postnumer.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.Iceland);
     }
 
-    let icelandic = {
-        generalData          = readDataFromJsonFile<PersonData> "data/Icelandic/icelandic.json";
-        addresses1           = File.ReadAllLines("data/Icelandic/Streets in Iceland.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Icelandic/postnumer.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Nationality.Icelandic);
+    let netherlands = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Netherlands/dutch.json";
+        addresses1           = File.ReadAllLines("data/Netherlands/Addresses in NL.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Netherlands/NL.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.Netherlands);
     }
 
-    let norwegian = {
-        generalData          = readDataFromJsonFile<PersonData> "data/Norwegian/norwegian.json";
-        addresses1           = File.ReadAllLines("data/Norwegian/Gater i Oslo.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Norwegian/Postnummerregister-ansi.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Nationality.Norwegian);
+    let norway = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Norway/norwegian.json";
+        addresses1           = File.ReadAllLines("data/Norway/Gater i Oslo.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Norway/Postnummerregister-ansi.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.Norway);
     }
 
-    let swedish = {
-        generalData          = readDataFromJsonFile<PersonData> "data/Swedish/swedish.json";
-        addresses1           = File.ReadAllLines("data/Swedish/Gator i Stockholm.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Swedish/SE.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Nationality.Swedish);
+    let sweden = {
+        generalData          = readDataFromJsonFile<PersonData> "data/Sweden/swedish.json";
+        addresses1           = File.ReadAllLines("data/Sweden/Gator i Stockholm.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/Sweden/SE.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.Sweden);
     }
 
     {
         generic = generic;
-        danish = danish;
-        dutch = dutch;
-        finnish = finnish;
-        icelandic = icelandic;
-        norwegian = norwegian;
-        swedish = swedish;
+        denmark = denmark;
+        finland = finland;
+        iceland = iceland;
+        netherlands = netherlands;
+        norway = norway;
+        sweden = sweden;
     }

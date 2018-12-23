@@ -78,5 +78,4 @@ Various tools that have been used to clean the data:
 
 ## Other things
 
-Save all data files as UTF8 without BOM. Notepad++ can be used
-to convert to this encoding.
+Save all data files as UTF8 without BOM. Notepad++ can be used to convert to this encoding.

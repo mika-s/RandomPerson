@@ -6,10 +6,10 @@ open Util
 
 let ordinaryReplacer (valueBoxed: obj) =
     match valueBoxed.GetType() with
-    | x when x = typedefof<string>      -> string (unbox valueBoxed)
-    | x when x = typedefof<Gender>      -> (valueBoxed :?> Gender).ToString()
-    | x when x = typedefof<Nationality> -> (valueBoxed :?> Nationality).ToString()
-    | x when x = typedefof<DateTime>    -> (valueBoxed :?> DateTime).ToString("yyyy-MM-dd")
+    | x when x = typedefof<string>   -> string (unbox valueBoxed)
+    | x when x = typedefof<Gender>   -> (valueBoxed :?> Gender).ToString()
+    | x when x = typedefof<Country>  -> (valueBoxed :?> Country).ToString()
+    | x when x = typedefof<DateTime> -> (valueBoxed :?> DateTime).ToString("yyyy-MM-dd")
     | _ -> invalidOp "Error in ordinaryReplacer"
 
 let toLowerReplacer      (valueBoxed: obj) = valueBoxed |> ordinaryReplacer |> lowercase
@@ -40,7 +40,7 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
             "Address2", box person.Address2;
             "PostalCode", box person.PostalCode;
             "City", box person.City;
-            "Nationality", box person.Nationality;
+            "Country", box person.Country;
             "BirthDate", box person.BirthDate;
             "Gender", box person.Gender;
             "MobilePhone", box person.MobilePhone;

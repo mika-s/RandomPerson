@@ -26,17 +26,17 @@ let main argv =
         | Mode.List        -> listMode
                                   options.settingsFilePath
                                   options.amount
-                                  options.nationality
+                                  options.country
                                   options.outputType
                                   options.fileFormat
                                   options.outputFilePath
         | Mode.Template    -> templateMode
                                   options.settingsFilePath
                                   options.amount
-                                  options.nationality
+                                  options.country
         | Mode.Validation  -> validateMode
                                   options.ssn
-                                  options.nationality
+                                  options.country
         | _ -> invalidArg "options.mode" "That mode does not exist."
     
         0

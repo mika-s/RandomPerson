@@ -3,7 +3,7 @@
 ## Introduction
 
 RandomPersonCli is a CLI tool that uses RandomPersonLib.
-It generates random persons for a given nationality.
+It generates random persons for a given country.
 
 It can also validate SSNs.
 
@@ -17,7 +17,7 @@ NAME
 SYNOPSIS
 
 dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])]
-                           [-n (Danish|Dutch|Finnish|Icelandic|Norwegian|Swedish)]
+                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden)]
                            [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]
                            [-o (path)] [-s (path)]
 
@@ -35,8 +35,8 @@ OPTIONS
     Validation mode can take SSN as optional input, otherwise it's using
     interactive validation.
 
--n, --nationality
-    Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish.
+-c, --country
+    Either Denmark, Finland, Iceland, Netherlands, Norway or Sweden.
     Used in List or Template mode.
 
 -a, --amount
@@ -59,8 +59,8 @@ OPTIONS
 
 Default:
     Interactive mode.
-    If List or Template mode: 10 people, Norwegian nationality.
-    If Validation mode with SSN supplied as argument: Norwegian nationality.
+    If List or Template mode: 10 people, Norway as country.
+    If Validation mode with SSN supplied as argument: Norway as country.
 
 The options are case-sensitive.
 ```
@@ -75,15 +75,15 @@ Open in interactive mode:
 
 Generate 100 Swedish persons:
 
-```dotnet RandomPersonCli -m L -n Swedish -a 100```
+```dotnet RandomPersonCli -m L -c Sweden -a 100```
 
 Generate 50 Danish persons, print to JSON file called test_people.json:
 
-```dotnet RandomPersonCli -m L -n Danish -a 50 -f JSON -o test_people.json```
+```dotnet RandomPersonCli -m L -c Denmark -a 50 -f JSON -o test_people.json```
 
 Generate 200 Norwegian persons in Template mode (template string read from Settings.json):
 
-```dotnet RandomPersonCli -m T -n Norwegian -a 200```
+```dotnet RandomPersonCli -m T -c Norway -a 200```
 
 ## Options in Settings.json
 

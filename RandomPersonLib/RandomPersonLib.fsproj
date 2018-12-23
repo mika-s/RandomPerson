@@ -20,61 +20,61 @@
     <Content Include="data\Generic\passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Danish\danish.json">
+    <Content Include="data\Denmark\danish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Danish\DK.txt">
+    <Content Include="data\Denmark\DK.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Danish\Gader i København.txt">
+    <Content Include="data\Denmark\Gader i København.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Dutch\Addresses in NL.txt">
+    <Content Include="data\Netherlands\Addresses in NL.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Dutch\NL.txt">
+    <Content Include="data\Netherlands\NL.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Dutch\License for last names.txt">
+    <Content Include="data\Netherlands\License for last names.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Dutch\dutch.json">
+    <Content Include="data\Netherlands\dutch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Finnish\Streets in Finland.txt">
+    <Content Include="data\Finland\Streets in Finland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Finnish\FI.txt">
+    <Content Include="data\Finland\FI.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Finnish\finnish.json">
+    <Content Include="data\Finland\finnish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Icelandic\postnumer.txt">
+    <Content Include="data\Iceland\postnumer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Icelandic\Streets in Iceland.txt">
+    <Content Include="data\Iceland\Streets in Iceland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Icelandic\icelandic.json">
+    <Content Include="data\Iceland\icelandic.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Norwegian\norwegian.json">
+    <Content Include="data\Norway\norwegian.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Norwegian\Postnummerregister-ansi.txt">
+    <Content Include="data\Norway\Postnummerregister-ansi.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Norwegian\Gater i Oslo.txt">
+    <Content Include="data\Norway\Gater i Oslo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Swedish\swedish.json">
+    <Content Include="data\Sweden\swedish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Swedish\SE.txt">
+    <Content Include="data\Sweden\SE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Swedish\Gator i Stockholm.txt">
+    <Content Include="data\Sweden\Gator i Stockholm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="Datacontracts\PersonData.fs" />
@@ -108,7 +108,7 @@
     <Compile Include="Generators\Gender.fs" />
     <Compile Include="Generators\Name.fs" />
     <Compile Include="Generators\SSN.fs" />
-    <Compile Include="Inputparsing\FilesForLanguage.fs" />
+    <Compile Include="Inputparsing\FilesForCountry.fs" />
     <Compile Include="Inputparsing\GenericFiles.fs" />
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />

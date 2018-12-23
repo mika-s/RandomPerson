@@ -18,8 +18,8 @@ type PersonSerializable = {
     [<JsonProperty("SSN")>]
     SSN : string
 
-    [<JsonProperty("Nationality");JsonConverter(typedefof<StringEnumConverter>)>]
-    Nationality: Nationality
+    [<JsonProperty("Country");JsonConverter(typedefof<StringEnumConverter>)>]
+    Country: Country
 
     [<JsonProperty("Address1")>]
     Address1 : string
@@ -81,7 +81,7 @@ let createPersonSerializable (person: Person) =
         FirstName = person.FirstName;
         LastName = person.LastName;
         SSN = person.SSN;
-        Nationality = person.Nationality;
+        Country = person.Country;
         Address1 = person.Address1;
         Address2 = person.Address2;
         PostalCode = person.PostalCode;

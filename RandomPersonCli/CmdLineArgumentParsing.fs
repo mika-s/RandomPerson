@@ -8,7 +8,7 @@ open CliUtil
 type Options = {
     mode: Mode
     amount: int                 // In ListMode and TemplateMode
-    nationality: Nationality    // In ListMode and TemplateMode
+    country: Country            // In ListMode and TemplateMode
     outputType: OutputType      // In ListMode
     fileFormat: FileFormat      // In ListMode
     outputFilePath: string      // In ListMode
@@ -19,7 +19,7 @@ type Options = {
 let defaultOptions = {
     mode = Mode.Interactive
     amount = 10
-    nationality = Nationality.Norwegian
+    country = Country.Norway
     outputType = OutputType.Console
     fileFormat = FileFormat.CSV
     outputFilePath = "output.?"
@@ -37,7 +37,7 @@ let printUsage () =
     printfn "SYNOPSIS"
     printfn ""
     printfn "dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])]"
-    printfn "                           [-n (Danish|Dutch|Finnish|Icelandic|Norwegian|Swedish)]"
+    printfn "                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden)]"
     printfn "                           [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]"
     printfn "                           [-o (path)] [-s (path)]"
     printfn ""
@@ -55,8 +55,8 @@ let printUsage () =
     printfn "    Validation mode can take SSN as optional input, otherwise it's using"
     printfn "    interactive validation."
     printfn ""
-    printfn "-n, --nationality"
-    printfn "    Either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish."
+    printfn "-c, --country"
+    printfn "    Either Denmark, Finland, Iceland, Netherlands, Norway or Sweden."
     printfn "    Used in List or Template mode."
     printfn ""
     printfn "-a, --amount"
@@ -79,8 +79,8 @@ let printUsage () =
     printfn ""
     printfn "Default:"
     printfn "    Interactive mode."
-    printfn "    If List or Template mode: 10 people, Norwegian nationality."
-    printfn "    If Validation mode with SSN supplied as argument: Norwegian nationality."
+    printfn "    If List or Template mode: 10 people, Norway as country."
+    printfn "    If Validation mode with SSN supplied as argument: Norway as country."
     printfn ""
     printfn "The options are case-sensitive."
 
@@ -121,28 +121,28 @@ let rec parseArgs (args: list<string>) (options: Options) =
         | _ ->
             eprintf "-m flag needs either I (interactive mode), L (list mode), T (template mode) or V (validation mode)\n"
             parseArgs xs options
-    | "-n"::xs | "--nationality"::xs ->
+    | "-c"::xs | "--country"::xs ->
         match xs with
-        | "Danish"::xss ->
-            let newOptions = { options with nationality = Nationality.Danish }
+        | "Denmark"::xss ->
+            let newOptions = { options with country = Country.Denmark }
             parseArgs xss newOptions
-        | "Dutch"::xss ->
-            let newOptions = { options with nationality = Nationality.Dutch }
+        | "Finland"::xss ->
+            let newOptions = { options with country = Country.Finland }
             parseArgs xss newOptions
-        | "Finnish"::xss ->
-            let newOptions = { options with nationality = Nationality.Finnish }
+        | "Iceland"::xss ->
+            let newOptions = { options with country = Country.Iceland }
             parseArgs xss newOptions
-        | "Icelandic"::xss ->
-            let newOptions = { options with nationality = Nationality.Icelandic }
+        | "Netherlands"::xss ->
+            let newOptions = { options with country = Country.Netherlands }
             parseArgs xss newOptions
-        | "Norwegian"::xss ->
-            let newOptions = { options with nationality = Nationality.Norwegian }
+        | "Norway"::xss ->
+            let newOptions = { options with country = Country.Norway }
             parseArgs xss newOptions
-        | "Swedish"::xss ->
-            let newOptions = { options with nationality = Nationality.Swedish }
+        | "Sweden"::xss ->
+            let newOptions = { options with country = Country.Sweden }
             parseArgs xss newOptions
         | _ ->
-            invalidArg "-n flag" "needs either Danish, Dutch, Finnish, Icelandic, Norwegian or Swedish after it\n"
+            invalidArg "-c flag" "needs either Denmark, Finland, Iceland, Netherlands, Norway or Sweden after it\n"
             parseArgs xs options
     | "-a"::xs | "--amount"::xs ->
         match xs with

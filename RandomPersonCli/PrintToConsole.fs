@@ -9,7 +9,7 @@ let isPrintingMoreThanOneLine (print: GenericPrintSettings) =
     b2i print.FirstName
     + b2i print.LastName
     + b2i print.SSN
-    + b2i print.Nationality
+    + b2i print.Country
     + b2i print.BirthDate
     + b2i print.Gender
     + b2i print.Address1
@@ -40,7 +40,7 @@ let printPerson (print: GenericPrintSettings) (person: Person) =
     printToScreen print.FirstName                      print.Label "First name"    person.FirstName
     printToScreen print.LastName                       print.Label "Last name"     person.LastName
     printToScreen print.SSN                            print.Label "SSN"           person.SSN
-    printToScreen print.Nationality                    print.Label "Nationality"  (person.Nationality.ToString())
+    printToScreen print.Country                        print.Label "Country"  (person.Country.ToString())
     printToScreen print.BirthDate                      print.Label "Birthdate"    (person.BirthDate.ToString("yyyy-MM-dd"))
     printToScreen print.Gender                         print.Label "Gender"       (person.Gender.ToString())
     printToScreen print.Address1                       print.Label "Address 1"     person.Address1

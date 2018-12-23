@@ -5,11 +5,11 @@ type Gender =
 | Male   = 1
 | Female = 2
 
-/// Enum representing a person's nationality.
-type Nationality =
-| Danish    = 1
-| Dutch     = 2
-| Finnish   = 3
-| Icelandic = 4
-| Norwegian = 5
-| Swedish   = 6
+/// Enum representing a person's country.
+type Country =
+| Denmark     = 1
+| Finland     = 2
+| Iceland     = 3
+| Netherlands = 4
+| Norway      = 5
+| Sweden      = 6

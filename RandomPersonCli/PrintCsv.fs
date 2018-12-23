@@ -27,7 +27,7 @@ let personToString (printSettings: GenericPrintSettings) (printOptions: PrintOpt
     if printSettings.BirthDate                     then bprintf sb "%s" (birthDate + ",")                            |> ignore
     if printSettings.Gender                        then bprintf sb "%s" (gender + ",")                               |> ignore
     if printSettings.SSN                           then bprintf sb "%s" (person.SSN + ",")                           |> ignore
-    if printSettings.Nationality                   then bprintf sb "%s" (person.Nationality.ToString() + ",")        |> ignore
+    if printSettings.Country                       then bprintf sb "%s" (person.Country.ToString() + ",")            |> ignore
     if printSettings.Email                         then bprintf sb "%s" (person.Email + ",")                         |> ignore
     if printSettings.Password                      then bprintf sb "%s" (person.Password + ",")                      |> ignore
     if printSettings.MobilePhone                   then bprintf sb "%s" (person.MobilePhone + ",")                   |> ignore
@@ -56,7 +56,7 @@ let createHeader (printSettings: GenericPrintSettings) =
     if printSettings.BirthDate                     then bprintf sb "%s" ("BirthDate,")                     |> ignore
     if printSettings.Gender                        then bprintf sb "%s" ("Gender,")                        |> ignore
     if printSettings.SSN                           then bprintf sb "%s" ("SSN,")                           |> ignore
-    if printSettings.Nationality                   then bprintf sb "%s" ("Nationality,")                   |> ignore
+    if printSettings.Country                       then bprintf sb "%s" ("Country,")                       |> ignore
     if printSettings.Email                         then bprintf sb "%s" ("Email,")                         |> ignore
     if printSettings.Password                      then bprintf sb "%s" ("Password,")                      |> ignore
     if printSettings.MobilePhone                   then bprintf sb "%s" ("MobilePhone,")                   |> ignore

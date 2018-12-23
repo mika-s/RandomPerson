@@ -12,7 +12,7 @@ It can create people with the following generated data:
 - First name
 - Last name
 - Address (Address 1, 2, postal code and city)
-- Nationality
+- Country
 - Gender
 - Birthdate
 - SSN
@@ -51,7 +51,7 @@ Generate an IEnumerable of people and print to the console.
 ```cs
 IRandomPerson randomPerson = new RandomPerson();
 
-var people = randomPerson.CreatePeople(100, Nationality.Danish);
+var people = randomPerson.CreatePeople(100, Country.Denmark);
 
 foreach (var person in people)
     Console.WriteLine(person.FirstName);
@@ -71,7 +71,7 @@ RandomPersonOptions options = new RandomPersonOptions
     RemoveSpaceFromPhoneNumber = true
 };
 
-Person person = randomPerson.CreatePerson(Nationality.Norwegian, options);
+Person person = randomPerson.CreatePerson(Country.Norway, options);
 
 Console.WriteLine(person.MobilePhone);
 ```
@@ -83,7 +83,7 @@ Validate an SSN for a Swedish person.
 ```cs
 IRandomPerson randomPerson = new RandomPerson();
 
-bool isLegalSSN = randomPerson.ValidateSSN(Nationality.Swedish, "950204-12345");
+bool isLegalSSN = randomPerson.ValidateSSN(Country.Sweden, "950204-12345");
 
 Console.WriteLine(isLegalSSN);
 ```
@@ -99,7 +99,7 @@ let randomPerson = RandomPerson()
 
 let printPersonName (person: Person) = printfn "Name: %s %s" person.FirstName person.LastName
 
-randomPerson.CreatePerson(Nationality.Danish)
+randomPerson.CreatePerson(Country.Denmark)
 |> printPersonName
 ```
 
@@ -111,46 +111,46 @@ Generate a list of 15 Swedish people.
 let randomPerson = RandomPerson()
 
 let amount = 15
-let nationality = Nationality.Swedish
+let country = Country.Sweden
 
-let people = randomPerson.CreatePeople(amount, nationality)
+let people = randomPerson.CreatePeople(amount, country)
 ```
 
 ## API
 
 ### CreatePerson ()
 
-*CreatePerson (nationality: Nationality) -> Person*
+*CreatePerson (country: Country) -> Person*
 
 or
 
-*CreatePerson (nationality: Nationality, options: RandomPersonOptions) -> Person*
+*CreatePerson (country: Country, options: RandomPersonOptions) -> Person*
 
-Creates a random person given a nationality. The return value is a Person object
-with the random data. Nationality is an enum. options is an optional object with
+Creates a random person given a country. The return value is a Person object
+with the random data. Country is an enum. options is an optional object with
 options. Default settings are used if options is not provided.
 
 ### CreatePeople ()
 
-*CreatePeople (amount: int, nationality: Nationality) -> Person list*
+*CreatePeople (amount: int, country: Country) -> Person list*
 
 or
 
-*CreatePeople (amount: int, nationality: Nationality, options: RandomPersonOptions) -> Person list*
+*CreatePeople (amount: int, country: Country, options: RandomPersonOptions) -> Person list*
 
-Creates a list of random people given a nationality. The return value is a Person object
-with the random data. Nationality is an enum. options is an optional object with
+Creates a list of random people given a country. The return value is a Person object
+with the random data. Country is an enum. options is an optional object with
 options. Default settings are used if options is not provided.
 
 ### CreatePeopleTemplated () =
 
-*CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string) -> string list*
+*CreatePeopleTemplated (amount: int, country: Country, outputString: string) -> string list*
 
 or
 
-*CreatePeopleTemplated (amount: int, nationality: Nationality, outputString: string, options: RandomPersonOptions) -> string list*
+*CreatePeopleTemplated (amount: int, country: Country, outputString: string, options: RandomPersonOptions) -> string list*
 
-Creates a list of strings. Nationality is an enum. options is an optional object with
+Creates a list of strings. Country is an enum. options is an optional object with
 options. Default settings are used if options is not provided.
 
 #### Ordinary template variables
@@ -167,7 +167,7 @@ variables with generated values:
 `#{Address2}` <br />
 `#{PostalCode}` <br />
 `#{City}` <br />
-`#{Nationality}` <br />
+`#{Country}` <br />
 `#{BirthDate}` <br />
 `#{Gender}` <br />
 `#{MobilePhone}` <br />
@@ -316,9 +316,9 @@ There is a 50/50 chance of generating either true or false.
 
 ### ValidateSSN ()
 
-*ValidateSSN (nationality: Nationality, ssn: string) -> bool*
+*ValidateSSN (country: Country, ssn: string) -> bool*
 
-Validates an SSN given a nationality and an SSN.
+Validates an SSN given a country and an SSN.
 
 ### Options
 

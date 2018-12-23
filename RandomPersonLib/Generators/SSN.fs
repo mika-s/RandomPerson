@@ -9,15 +9,15 @@ open IcelandicSSNGeneration
 open NorwegianSSNGeneration
 open SwedishSSNGeneration
 
-let generateSSN (random: Random) (nationality: Nationality) (birthdate : DateTime) (gender: Gender) (isAnonymizingSSN: bool) (isRemovingHypensFromSSN: bool) =
-    let ssn = match nationality with
-              | Nationality.Danish    -> generateDanishSSN    random birthdate gender isAnonymizingSSN
-              | Nationality.Dutch     -> generateDutchSSN     random                  isAnonymizingSSN
-              | Nationality.Finnish   -> generateFinnishSSN   random birthdate gender isAnonymizingSSN
-              | Nationality.Icelandic -> generateIcelandicSSN random birthdate        isAnonymizingSSN
-              | Nationality.Norwegian -> generateNorwegianSSN random birthdate gender isAnonymizingSSN
-              | Nationality.Swedish   -> generateSwedishSSN   random birthdate gender isAnonymizingSSN
-              | _ -> invalidArg "nationality" "Illegal nationality."
+let generateSSN (random: Random) (country: Country) (birthdate : DateTime) (gender: Gender) (isAnonymizingSSN: bool) (isRemovingHypensFromSSN: bool) =
+    let ssn = match country with
+              | Country.Denmark     -> generateDanishSSN    random birthdate gender isAnonymizingSSN
+              | Country.Finland     -> generateFinnishSSN   random birthdate gender isAnonymizingSSN
+              | Country.Iceland     -> generateIcelandicSSN random birthdate        isAnonymizingSSN
+              | Country.Netherlands -> generateDutchSSN     random                  isAnonymizingSSN
+              | Country.Norway      -> generateNorwegianSSN random birthdate gender isAnonymizingSSN
+              | Country.Sweden      -> generateSwedishSSN   random birthdate gender isAnonymizingSSN
+              | _ -> invalidArg "country" "Illegal country."
 
     match isRemovingHypensFromSSN with
     | true  -> ssn.Replace("-", "")

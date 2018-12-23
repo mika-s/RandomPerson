@@ -36,7 +36,7 @@ type ``parseArgs should`` () =
 
         let expectedOptions = { 
             defaultOptions with mode = Mode.List;
-                                nationality = Nationality.Swedish;
+                                country = Country.Sweden;
                                 amount = 20;
                                 fileFormat = FileFormat.XML;
                                 outputType = OutputType.File;
@@ -52,7 +52,7 @@ type ``parseArgs should`` () =
 
         let expectedOptions = { 
             defaultOptions with mode = Mode.Validation;
-                                nationality = Nationality.Swedish;
+                                country = Country.Sweden;
                                 ssn = "980401-3911";
         }
 

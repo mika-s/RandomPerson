@@ -2,7 +2,7 @@
 
 open RandomPersonLib
 open PostalCodeAndCity
-open FilesForLanguage
+open FilesForCountry
 open GenericFiles
 open PersonData
 open Util
@@ -45,7 +45,7 @@ let getTestPerson () =
         passwords = getPasswords ();
     }
 
-    let langugageFiles = {
+    let countryFiles = {
         generalData = {
                         Misc = getMiscDetails ();
                         Phone = getPhoneDetails ();
@@ -62,4 +62,4 @@ let getTestPerson () =
 
     let random = getRandom false 100
 
-    Person(Nationality.Norwegian, genericFiles, langugageFiles, options, random)
+    Person(Country.Norway, genericFiles, countryFiles, options, random)
