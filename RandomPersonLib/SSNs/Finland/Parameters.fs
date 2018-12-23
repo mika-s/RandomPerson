@@ -1,4 +1,4 @@
-﻿module internal FinnishSSNParameters
+﻿module internal FinlandSSNParameters
 
 [<Literal>]
 let SsnLength = 11

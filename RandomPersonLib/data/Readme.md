@@ -67,6 +67,14 @@ The list of Swedish postal codes and cities is under the [Creative Commons Attri
 
 www.geonames.org
 
+## USA
+
+- [American names](https://www.ssb.no/navn)
+- [Syntax for SSNs](https://en.wikipedia.org/wiki/Social_Security_number)
+- [Streets in Oslo](http://www.norskegater.com/Oslo/)
+- [Postal codes and cities in USA](https://data.norge.no/data/posten-norge/postnummer-i-norge)
+- [North American Numbering Plan](https://en.wikipedia.org/wiki/North_American_Numbering_Plan)
+
 # Misc
 
 ## Tools

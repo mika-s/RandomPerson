@@ -1,11 +1,11 @@
-﻿module internal DanishSSNValidation
+﻿module internal DenmarkSSNValidation
 
 open System
 open System.Globalization
 open System.Text.RegularExpressions
 open CommonValidation
-open DanishSSNGeneration
-open DanishSSNParameters
+open DenmarkSSNGeneration
+open DenmarkSSNParameters
 open Util
 
 let (|DanishSSN|_|) (potentialSSN: string) =

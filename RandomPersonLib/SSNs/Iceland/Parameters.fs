@@ -1,4 +1,4 @@
-﻿module IcelandicSSNParameters
+﻿module IcelandSSNParameters
 
 [<Literal>]
 let SsnLength = 11

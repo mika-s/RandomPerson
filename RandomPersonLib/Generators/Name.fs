@@ -13,10 +13,15 @@ let makeFirstName (random: Random) (gender: Gender) (data: PersonData) =
     | Gender.Female -> data.FemaleFirstNames.[randomNoFemaleFirstName]
     | _ -> invalidArg "gender" "Illegal gender."
 
-let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
-    let firstName = makeFirstName random gender data
+let maybeAddMiddlename (random: Random) (gender: Gender) (data: PersonData) (firstName: string)  =
+    let numberOfFirstNames = match gender with
+                             | Gender.Male   -> data.MaleFirstNames.Length
+                             | Gender.Female -> data.FemaleFirstNames.Length
+                             | _ -> invalidArg "gender" "Illegal gender."
 
-    let percentChanceForMiddleName = 25
+    let percentChanceForMiddleName = match numberOfFirstNames with
+                                     | 1 -> 0
+                                     | _ -> 25
 
     match random.Next(0, 100) with
     | x when 0 <= x && x < percentChanceForMiddleName ->
@@ -29,6 +34,9 @@ let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
 
         loop ()
     | _ -> firstName
+
+let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
+    makeFirstName random gender data |> maybeAddMiddlename random gender data
 
 let generateLastName (random: Random) (gender: Gender) (data: PersonData) =
     match data.LastNames <> null && 0 < data.LastNames.Length with

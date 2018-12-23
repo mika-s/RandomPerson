@@ -4,8 +4,8 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
-open IcelandicSSNParameters
-open IcelandicSSNGeneration
+open IcelandSSNParameters
+open IcelandSSNGeneration
 
 [<TestClass>]
 type ``generateIcelandicIndividualNumber should`` () =

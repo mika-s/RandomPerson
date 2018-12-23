@@ -2,7 +2,7 @@
 
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
-open FinnishSSNValidation
+open FinlandSSNValidation
 
 [<TestClass>]
 type ``validateFinnishSSN should`` () =

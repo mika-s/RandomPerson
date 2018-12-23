@@ -1,4 +1,4 @@
-﻿module internal NorwegianSSNGeneration
+﻿module internal NorwaySSNGeneration
 
 (*
     DDMMYYXXXCC
@@ -15,7 +15,7 @@
 
 open System
 open RandomPersonLib
-open NorwegianSSNParameters
+open NorwaySSNParameters
 open Util
 
 let getIndividualNumber (random: Random) (year: int) =

@@ -31,6 +31,7 @@ for the following countries:
 - Netherlands
 - Norway
 - Sweden
+- USA
 
 The data is generated using real-life data from the mentioned countries.
 The SSNs that are generated are also real, unless specified to be false.

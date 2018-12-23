@@ -32,9 +32,12 @@ let isPrintingMoreThanOneLine (print: GenericPrintSettings) =
 
 let printToScreen (isPrinting: bool) (isLabel: bool) (label: string) (output: string) =
     match isPrinting, isLabel with
-    | (true, true)  -> printfn "%s:\t%s" label output |> ignore
-    | (true, false) -> printfn "%s" output            |> ignore
-    | _             -> ()                             |> ignore
+    | (true, true)  ->
+        match label.Length < 7 with
+        | true  -> printfn "%s:\t\t%s" label output |> ignore
+        | false -> printfn "%s:\t%s" label output   |> ignore
+    | (true, false) -> printfn "%s" output          |> ignore
+    | _             -> ()                           |> ignore
 
 let printPerson (print: GenericPrintSettings) (person: Person) =
     printToScreen print.FirstName                      print.Label "First name"    person.FirstName

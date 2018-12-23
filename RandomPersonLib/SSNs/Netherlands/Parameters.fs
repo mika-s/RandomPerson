@@ -1,4 +1,4 @@
-﻿module internal DutchSSNParameters
+﻿module internal NetherlandsSSNParameters
 
 [<Literal>]
 let SsnLength = 9

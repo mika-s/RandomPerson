@@ -1,4 +1,4 @@
-﻿module internal NorwegianSSNParameters
+﻿module internal NorwaySSNParameters
 
 [<Literal>]
 let SsnLength = 11

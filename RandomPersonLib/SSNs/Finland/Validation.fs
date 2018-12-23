@@ -1,11 +1,11 @@
-﻿module internal FinnishSSNValidation
+﻿module internal FinlandSSNValidation
 
 open System
 open System.Globalization
 open System.Text.RegularExpressions
 open CommonValidation
-open FinnishSSNGeneration
-open FinnishSSNParameters
+open FinlandSSNGeneration
+open FinlandSSNParameters
 open Util
 
 let (|FinnishSSN|_|) (potentialSSN: string) =

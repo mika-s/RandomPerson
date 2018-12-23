@@ -1,4 +1,4 @@
-﻿module internal DanishSSNGeneration
+﻿module internal DenmarkSSNGeneration
 
 (*
     DDMMYY-CXXY

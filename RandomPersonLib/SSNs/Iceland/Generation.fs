@@ -1,4 +1,4 @@
-﻿module IcelandicSSNGeneration
+﻿module IcelandSSNGeneration
 
 (*
     DDMMYY-XXCY
@@ -12,7 +12,7 @@
 *)
 
 open System
-open IcelandicSSNParameters
+open IcelandSSNParameters
 open Util
 
 let generateIcelandicIndividualNumber (random: Random) = random.Next(20, 100) |> sprintf "%d"

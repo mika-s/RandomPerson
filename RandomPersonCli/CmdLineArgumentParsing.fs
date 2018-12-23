@@ -37,7 +37,7 @@ let printUsage () =
     printfn "SYNOPSIS"
     printfn ""
     printfn "dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])]"
-    printfn "                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden)]"
+    printfn "                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden|USA)]"
     printfn "                           [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]"
     printfn "                           [-o (path)] [-s (path)]"
     printfn ""
@@ -56,7 +56,7 @@ let printUsage () =
     printfn "    interactive validation."
     printfn ""
     printfn "-c, --country"
-    printfn "    Either Denmark, Finland, Iceland, Netherlands, Norway or Sweden."
+    printfn "    Either Denmark, Finland, Iceland, Netherlands, Norway, Sweden or USA."
     printfn "    Used in List or Template mode."
     printfn ""
     printfn "-a, --amount"
@@ -141,8 +141,11 @@ let rec parseArgs (args: list<string>) (options: Options) =
         | "Sweden"::xss ->
             let newOptions = { options with country = Country.Sweden }
             parseArgs xss newOptions
+        | "USA"::xss ->
+            let newOptions = { options with country = Country.USA }
+            parseArgs xss newOptions
         | _ ->
-            invalidArg "-c flag" "needs either Denmark, Finland, Iceland, Netherlands, Norway or Sweden after it\n"
+            invalidArg "-c flag" "needs either Denmark, Finland, Iceland, Netherlands, Norway, Sweden or USA after it\n"
             parseArgs xs options
     | "-a"::xs | "--amount"::xs ->
         match xs with

@@ -2,7 +2,7 @@
 
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
-open DanishSSNValidation
+open DenmarkSSNValidation
 
 [<TestClass>]
 type ``validateDanishSSN should`` () =

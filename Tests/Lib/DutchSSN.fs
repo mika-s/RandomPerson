@@ -4,8 +4,8 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
-open DutchSSNParameters
-open DutchSSNGeneration
+open NetherlandsSSNParameters
+open NetherlandsSSNGeneration
 
 [<TestClass>]
 type ``generateDutchIndividualNumber should`` () =

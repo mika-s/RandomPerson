@@ -1,4 +1,4 @@
-﻿module internal SwedishSSNParameters
+﻿module internal SwedenSSNParameters
 
 type ssnParams = {
     SsnLength: int

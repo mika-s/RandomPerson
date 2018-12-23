@@ -34,6 +34,7 @@ type RandomPerson() =
         | Country.Netherlands -> Person(country, i.generic, i.netherlands, options, random)
         | Country.Norway      -> Person(country, i.generic, i.norway,      options, random)
         | Country.Sweden      -> Person(country, i.generic, i.sweden,      options, random)
+        | Country.USA         -> Person(country, i.generic, i.usa,         options, random)
         | _ -> invalidArg "country" "Illegal country."
 
     /// <summary>Create a Person object given a country.</summary>
@@ -94,6 +95,7 @@ type RandomPerson() =
         | Country.Netherlands -> validateNL ssn
         | Country.Norway      -> validateNO ssn
         | Country.Sweden      -> validateSE ssn
+        | Country.USA         -> validateUS ssn
         | _ -> invalidArg "country" "Illegal country."
 
     interface IRandomPerson with

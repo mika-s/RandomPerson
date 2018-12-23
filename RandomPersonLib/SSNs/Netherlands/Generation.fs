@@ -1,4 +1,4 @@
-﻿module internal DutchSSNGeneration
+﻿module internal NetherlandsSSNGeneration
 
 (*
     XXXXXXXXC

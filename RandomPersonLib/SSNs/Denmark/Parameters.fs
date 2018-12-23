@@ -1,4 +1,4 @@
-﻿module internal DanishSSNParameters
+﻿module internal DenmarkSSNParameters
 
 [<Literal>]
 let SsnLength = 11

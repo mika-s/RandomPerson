@@ -4,8 +4,8 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
-open NorwegianSSNParameters
-open NorwegianSSNGeneration
+open NorwaySSNParameters
+open NorwaySSNGeneration
 
 [<TestClass>]
 type ``norwegianGetIndividualNumber should`` () =

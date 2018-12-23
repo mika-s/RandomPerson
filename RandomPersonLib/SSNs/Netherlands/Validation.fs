@@ -1,9 +1,9 @@
-﻿module internal DutchSSNValidation
+﻿module internal NetherlandsSSNValidation
 
 open System.Text.RegularExpressions
 open CommonValidation
-open DutchSSNGeneration
-open DutchSSNParameters
+open NetherlandsSSNGeneration
+open NetherlandsSSNParameters
 open Util
 
 let (|DutchSSN|_|) (potentialSSN: string) =

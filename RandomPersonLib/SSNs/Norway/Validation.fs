@@ -1,11 +1,11 @@
-﻿module internal NorwegianSSNValidation
+﻿module internal NorwaySSNValidation
 
 open System
 open System.Globalization
 open System.Text.RegularExpressions
 open CommonValidation
-open NorwegianSSNGeneration
-open NorwegianSSNParameters
+open NorwaySSNGeneration
+open NorwaySSNParameters
 open Util
 
 let (|NorwegianSSN|_|) (potentialSSN: string) =

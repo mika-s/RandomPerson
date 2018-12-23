@@ -1,11 +1,12 @@
 ﻿module internal Validate
 
-open DanishSSNValidation
-open DutchSSNValidation
-open FinnishSSNValidation
-open IcelandicSSNValidation
-open NorwegianSSNValidation
-open SwedishSSNValidation
+open DenmarkSSNValidation
+open FinlandSSNValidation
+open IcelandSSNValidation
+open NetherlandsSSNValidation
+open NorwaySSNValidation
+open SwedenSSNValidation
+open UsaSSNValidation
 
 let validateDK (ssn: string) =
     match ssn with
@@ -30,6 +31,11 @@ let validateNL (ssn: string) =
 let validateNO (ssn: string) =
     match ssn with
     | NorwegianSSN ssn -> validateNorwegianSSN ssn
+    | _ -> false
+
+let validateUS (ssn: string) =
+    match ssn with
+    | AmericanSSN ssn -> validateAmericanSSN ssn
     | _ -> false
 
 let validateSE (ssn: string) =

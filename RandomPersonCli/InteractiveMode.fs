@@ -24,6 +24,7 @@ let interactiveMode (settingsFilePath: string) =
             | 'N' -> lib.CreatePerson(Country.Netherlands, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | 'n' -> lib.CreatePerson(Country.Norway,      options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | 's' -> lib.CreatePerson(Country.Sweden,      options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'u' -> lib.CreatePerson(Country.USA,         options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | _ -> mainloop()
         else
             mainloop()

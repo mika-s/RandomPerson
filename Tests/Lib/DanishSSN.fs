@@ -4,8 +4,8 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
-open DanishSSNParameters
-open DanishSSNGeneration
+open DenmarkSSNParameters
+open DenmarkSSNGeneration
 
 [<TestClass>]
 type ``numberFor1937to1999 should`` () =

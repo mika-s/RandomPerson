@@ -1,4 +1,4 @@
-﻿module internal FinnishSSNGeneration
+﻿module internal FinlandSSNGeneration
 
 (*
     DDMMYYCZZZQ
@@ -19,7 +19,7 @@
 
 open System
 open RandomPersonLib
-open FinnishSSNParameters
+open FinlandSSNParameters
 open Util
 
 let generateCenturySign (year: int) =

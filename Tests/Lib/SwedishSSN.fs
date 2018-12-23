@@ -4,7 +4,7 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
-open SwedishSSNGeneration
+open SwedenSSNGeneration
 
 [<TestClass>]
 type ``swedishGetIndividualNumber should`` () =

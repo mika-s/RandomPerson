@@ -1,11 +1,11 @@
-﻿module IcelandicSSNValidation
+﻿module IcelandSSNValidation
 
 open System
 open System.Globalization
 open System.Text.RegularExpressions
 open CommonValidation
-open IcelandicSSNGeneration
-open IcelandicSSNParameters
+open IcelandSSNGeneration
+open IcelandSSNParameters
 open Util
 
 let (|IcelandicSSN|_|) (potentialSSN: string) =

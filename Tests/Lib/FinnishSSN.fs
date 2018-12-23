@@ -5,8 +5,8 @@ open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
-open FinnishSSNParameters
-open FinnishSSNGeneration
+open FinlandSSNParameters
+open FinlandSSNGeneration
 
 [<TestClass>]
 type ``finnishGetIndividualNumber should`` () =

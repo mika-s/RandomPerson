@@ -1,10 +1,10 @@
-﻿module internal SwedishSSNValidation
+﻿module internal SwedenSSNValidation
 
 open System
 open System.Globalization
 open System.Text.RegularExpressions
-open SwedishSSNGeneration
-open SwedishSSNParameters
+open SwedenSSNGeneration
+open SwedenSSNParameters
 open Util
 
 let (|SwedishSSNOld|SwedishSSNNew|NotSSN|) (potentialSSN: string) =

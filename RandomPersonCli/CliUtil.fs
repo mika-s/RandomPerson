@@ -44,11 +44,12 @@ let (|CmdLineArgument|_|) (str: string) =
 
 let printHelp () =
     printfn "\nUsage:"
-    printfn "Danish: d"
-    printfn "Dutch: D"
-    printfn "Finnish: f"
-    printfn "Icelandic: i"
-    printfn "Norwegian: n"
-    printfn "Swedish: s"
+    printfn "Denmark: d"
+    printfn "Finland: f"
+    printfn "Iceland: i"
+    printfn "Netherlands: N"
+    printfn "Norway: n"
+    printfn "Sweden: s"
+    printfn "USA: u"
     printfn "Go back: b"
     printfn "Quit: q\n\n"

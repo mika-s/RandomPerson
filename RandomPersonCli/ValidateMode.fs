@@ -33,6 +33,7 @@ let validateMode (ssn: string) (country: Country) =
                 | 'N' -> validate lib Country.Netherlands |> printHelp |> mainloop
                 | 'n' -> validate lib Country.Norway      |> printHelp |> mainloop
                 | 's' -> validate lib Country.Sweden      |> printHelp |> mainloop
+                | 'u' -> validate lib Country.USA         |> printHelp |> mainloop
                 | _ -> mainloop()
             else
                 mainloop ()
