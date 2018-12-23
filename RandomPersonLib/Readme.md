@@ -358,9 +358,9 @@ If this is et to true, the SSNs that are generated will not include hyphens (for
 usually include them). E.g. XXXXXX-YYYY becomes XXXXXXYYYY. If this is set to false, the
 SSNs can contain hyphens.
 
-#### "BirthDateOptions.SetYearManually": boolean
+#### "BirthDateOptions.SetYearRangeManually": boolean
 
-`SetYearManually` is set to true if the birthdate should be between two different years than
+`SetYearRangeManually` is set to true if the birthdate should be between two different years than
 the default values (which is between 1920 and now minus 18 years ago (or now if Under18 is true)).
 The two different years are set in `Low` and `High`. This setting overrides `Under18`.
 
@@ -371,14 +371,14 @@ years in general.
 
 #### "BirthDateOptions.Low": int
 
-`Low`: Smallest year that the random person can be born in, if `SetYearManually` is set to true
+`Low`: Smallest year that the random person can be born in, if `SetYearRangeManually` is set to true
 and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the lowest age of
 the randomly generated person. E.g. `Low = 1900` means the random person can only be born after
 1900, when `SetUsingAge = true`.
 
 #### "BirthDateOptions.High": int
 
-`High`: largest year that the random person can be born in, if `SetYearManually` is set to true
+`High`: largest year that the random person can be born in, if `SetYearRangeManually` is set to true
 and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the largest age of
 the randomly generated person. E.g. `High = 2000` means the random person can only be born before
 1900, when `SetUsingAge = true`.

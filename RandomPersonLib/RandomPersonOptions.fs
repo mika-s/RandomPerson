@@ -2,10 +2,10 @@
 
 /// A subclass used by RandomPersonOptions, containing birthdate options.
 [<NoEquality;NoComparison>]
-type BirthDateOptions (setYearManually: bool, setUsingAge: bool, low: int, high: int) = 
+type BirthDateOptions (setYearRangeManually: bool, setUsingAge: bool, low: int, high: int) = 
     new () = BirthDateOptions(false, false, 1920, 2000)
 
-    member val SetYearManually = setYearManually with get, set
+    member val SetYearRangeManually = setYearRangeManually with get, set
     member val SetUsingAge = setUsingAge with get, set
     member val Low = low with get, set
     member val High = high with get, set

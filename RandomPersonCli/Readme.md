@@ -96,7 +96,7 @@ Generate 200 Norwegian persons in Template mode (template string read from Setti
     "RemoveSpaceFromPhoneNumber": true,
     "RemoveHyphenFromSSN": false,
     "BirthDate": {
-        "SetYearManually": false,
+        "SetYearRangeManually": false,
         "SetUsingAge": false,
         "Low": 1900,
         "High": 2000
@@ -115,7 +115,7 @@ Set it to false to generate real SSNs.
 
 #### Under18
 Is set to true if people under 18 years old should be generated (as well as over 18).
-Set it to false to generate over-18s only. This setting is only active if `SetYearManually` is
+Set it to false to generate over-18s only. This setting is only active if `SetYearRangeManually` is
 false.
 
 #### AddCountryCodeToPhoneNumber
@@ -136,7 +136,7 @@ that usually include this (e.g. Swedish and Danish).
 
 ### In BirthDate
 
-#### SetYearManually
+#### SetYearRangeManually
 Is set to true if the birthdate should be between two different years than
 the default values (which is between 1920 and now minus 18 years ago (or now if Under18 is true)).
 The two different years are set in `Low` and `High`. This setting overrides `Under18`.
@@ -146,13 +146,13 @@ Is set to true if the `Low` and `High` values should be years of age instead of
 years in general.
 
 #### Low
-Smallest year that the random person can be born in, if `SetYearManually` is set to true
+Smallest year that the random person can be born in, if `SetYearRangeManually` is set to true
 and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the lowest age of
 the randomly generated person. E.g. `Low = 1900` means the random person can only be born after
 1900, when `SetUsingAge = true`.
 
 #### High
-Largest year that the random person can be born in, if `SetYearManually` is set to true
+Largest year that the random person can be born in, if `SetYearRangeManually` is set to true
 and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the largest age of
 the randomly generated person. E.g. `High = 2000` means the random person can only be born before
 1900, when `SetUsingAge = true`.

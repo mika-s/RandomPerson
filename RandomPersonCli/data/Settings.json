@@ -8,7 +8,7 @@
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": false,
       "BirthDate": {
-        "SetYearManually": false,
+        "SetYearRangeManually": false,
         "SetUsingAge": false,
         "Low": 1900,
         "High": 2000
@@ -53,7 +53,7 @@
       "RemoveSpaceFromPhoneNumber": true,
       "RemoveHyphenFromSSN": false,
       "BirthDate": {
-        "SetYearManually": false,
+        "SetYearRangeManually": false,
         "SetUsingAge": false,
         "Low": 1900,
         "High": 2000
@@ -132,7 +132,7 @@
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": true,
       "BirthDate": {
-        "SetYearManually": false,
+        "SetYearRangeManually": false,
         "SetUsingAge": false,
         "Low": 1900,
         "High": 2000

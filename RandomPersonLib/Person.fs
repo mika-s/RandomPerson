@@ -10,12 +10,12 @@ open Gender
 open Birthdate
 open Password
 open Phone
-open FilesForCountry
+open CountryFiles
 open GenericFiles
 
 /// A class representing a randomly generated person.
 [<NoEquality;NoComparison>]
-type Person(country: Country, genericFiles: GenericFiles, countryFiles: FilesForCountry, options: RandomPersonOptions, random: Random) =
+type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryFiles, options: RandomPersonOptions, random: Random) =
     let isAnonymizingSSN = options.AnonymizeSSN
     let isAllowingUnder18 = options.Under18
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN

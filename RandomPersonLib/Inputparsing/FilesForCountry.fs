@@ -1,10 +1,10 @@
-﻿module FilesForCountry
+﻿module CountryFiles
 
 open PersonData
 open PostalCodeAndCity
 
 [<NoEquality;NoComparison>]
-type FilesForCountry = {
+type CountryFiles = {
     generalData: PersonData
     addresses1: string[]
     postalCodesAndCities: PostalCodeAndCity[]

@@ -9,7 +9,7 @@ type InputFiles = {
 }
 
 let assertDates (bdo: birthDateOptionsSettings) =
-    match bdo.SetYearManually.HasValue && bdo.SetYearManually.Value, bdo.SetUsingAge.HasValue && bdo.SetUsingAge.Value with
+    match bdo.SetYearRangeManually.HasValue && bdo.SetYearRangeManually.Value, bdo.SetUsingAge.HasValue && bdo.SetUsingAge.Value with
     | (true, true) ->
         match bdo.Low.Value, bdo.High.Value with
         | (l, _) when l <= 1

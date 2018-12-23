@@ -3,7 +3,7 @@
 open System.IO
 open System.Text
 open RandomPersonLib
-open FilesForCountry
+open CountryFiles
 open GenericFiles
 open PostalCodeAndCityGen
 open PersonData
@@ -12,12 +12,12 @@ open Util
 [<NoEquality;NoComparison>]
 type InputFiles = {
     generic:     GenericFiles
-    denmark:     FilesForCountry
-    finland:     FilesForCountry
-    iceland:     FilesForCountry
-    netherlands: FilesForCountry
-    norway:      FilesForCountry
-    sweden:      FilesForCountry
+    denmark:     CountryFiles
+    finland:     CountryFiles
+    iceland:     CountryFiles
+    netherlands: CountryFiles
+    norway:      CountryFiles
+    sweden:      CountryFiles
 }
 
 let readInputFiles () =

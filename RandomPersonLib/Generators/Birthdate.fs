@@ -5,14 +5,14 @@ open RandomPersonLib
 
 let generateBirthDate (random: Random) (isAllowingUnder18: bool) (birthDateOptions: BirthDateOptions)=
     let maxLegalBirthDate = 
-        match (isAllowingUnder18, birthDateOptions.SetYearManually, birthDateOptions.SetUsingAge) with
+        match (isAllowingUnder18, birthDateOptions.SetYearRangeManually, birthDateOptions.SetUsingAge) with
         | (  _  ,  true, false) -> DateTime(birthDateOptions.High, 1, 1)
         | (  _  ,  true,  true) -> DateTime.Now.Subtract(TimeSpan(365 * birthDateOptions.Low, 0, 0, 0))
         | ( true, false,   _  ) -> DateTime.Today
         | (false, false,   _  ) -> DateTime.Today.Subtract(TimeSpan.FromDays(365.0*18.5))
 
     let minLegalBirthDate = 
-        match (isAllowingUnder18, birthDateOptions.SetYearManually, birthDateOptions.SetUsingAge) with
+        match (isAllowingUnder18, birthDateOptions.SetYearRangeManually, birthDateOptions.SetUsingAge) with
         | (  _  ,  true, false) -> DateTime(birthDateOptions.Low, 1, 1)
         | (  _  ,  true,  true) -> DateTime.Now.Subtract(TimeSpan(365 * birthDateOptions.High, 0, 0, 0))
         | ( true, false,   _  ) -> DateTime.Today

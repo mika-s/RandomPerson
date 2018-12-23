@@ -109,8 +109,8 @@ type TemplatePrintSettings = {
 
 [<DataContract;NoEquality;NoComparison>]
 type birthDateOptionsSettings = {
-    [<field : DataMember(Name="SetYearManually")>]
-    SetYearManually : Nullable<bool>
+    [<field : DataMember(Name="SetYearRangeManually")>]
+    SetYearRangeManually : Nullable<bool>
 
     [<field : DataMember(Name="SetUsingAge")>]
     SetUsingAge : Nullable<bool>
@@ -210,25 +210,25 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultRemoveHyphenFromPhoneNumber = false
     let defaultRemoveSpaceFromPhoneNumber  = false
     let defaultRemoveHyphenFromSSN = false
-    let defaultSetYearManually = false
+    let defaultSetYearRangeManually = false
     let defaultSetUsingAge = false
     let defaultBirthDateLow = 1920
     let defaultBirthDateHigh = 2000
     let defaultManualSeed = false
     let defaultSeed = 1
 
-    let finalAnonymizeSSN                = nullCoalesce genericOptions.AnonymizeSSN                  defaultAnonymizeSSN
-    let finalUnder18                     = nullCoalesce genericOptions.Under18                       defaultUnder18
-    let finalAddCountryCodeToPhoneNumber = nullCoalesce genericOptions.AddCountryCodeToPhoneNumber   defaultAddCountryCodeToPhoneNumber
-    let finalRemoveHyphenFromPhoneNumber = nullCoalesce genericOptions.RemoveHyphenFromPhoneNumber   defaultRemoveHyphenFromPhoneNumber
-    let finalRemoveSpaceFromPhoneNumber  = nullCoalesce genericOptions.RemoveSpaceFromPhoneNumber    defaultRemoveSpaceFromPhoneNumber
-    let finalRemoveHyphenFromSSN         = nullCoalesce genericOptions.RemoveHyphenFromSSN           defaultRemoveHyphenFromSSN
-    let finalSetYearManually             = nullCoalesce genericOptions.BirthDate.SetYearManually     defaultSetYearManually
-    let finalSetUsingAge                 = nullCoalesce genericOptions.BirthDate.SetUsingAge         defaultSetUsingAge
-    let finalBirthDateLow                = nullCoalesce genericOptions.BirthDate.Low                 defaultBirthDateLow
-    let finalBirthDateHigh               = nullCoalesce genericOptions.BirthDate.High                defaultBirthDateHigh
-    let finalManualSeed                  = nullCoalesce genericOptions.Randomness.ManualSeed         defaultManualSeed
-    let finalSeed                        = nullCoalesce genericOptions.Randomness.Seed               defaultSeed
+    let finalAnonymizeSSN                = nullCoalesce genericOptions.AnonymizeSSN                   defaultAnonymizeSSN
+    let finalUnder18                     = nullCoalesce genericOptions.Under18                        defaultUnder18
+    let finalAddCountryCodeToPhoneNumber = nullCoalesce genericOptions.AddCountryCodeToPhoneNumber    defaultAddCountryCodeToPhoneNumber
+    let finalRemoveHyphenFromPhoneNumber = nullCoalesce genericOptions.RemoveHyphenFromPhoneNumber    defaultRemoveHyphenFromPhoneNumber
+    let finalRemoveSpaceFromPhoneNumber  = nullCoalesce genericOptions.RemoveSpaceFromPhoneNumber     defaultRemoveSpaceFromPhoneNumber
+    let finalRemoveHyphenFromSSN         = nullCoalesce genericOptions.RemoveHyphenFromSSN            defaultRemoveHyphenFromSSN
+    let finalSetYearRangeManually        = nullCoalesce genericOptions.BirthDate.SetYearRangeManually defaultSetYearRangeManually
+    let finalSetUsingAge                 = nullCoalesce genericOptions.BirthDate.SetUsingAge          defaultSetUsingAge
+    let finalBirthDateLow                = nullCoalesce genericOptions.BirthDate.Low                  defaultBirthDateLow
+    let finalBirthDateHigh               = nullCoalesce genericOptions.BirthDate.High                 defaultBirthDateHigh
+    let finalManualSeed                  = nullCoalesce genericOptions.Randomness.ManualSeed          defaultManualSeed
+    let finalSeed                        = nullCoalesce genericOptions.Randomness.Seed                defaultSeed
 
     let randomPersonOptions =
         RandomPersonOptions(
@@ -240,7 +240,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
             finalRemoveHyphenFromSSN
         )
 
-    randomPersonOptions.BirthDate  <- BirthDateOptions(finalSetYearManually, finalSetUsingAge, finalBirthDateLow, finalBirthDateHigh)
+    randomPersonOptions.BirthDate  <- BirthDateOptions(finalSetYearRangeManually, finalSetUsingAge, finalBirthDateLow, finalBirthDateHigh)
     randomPersonOptions.Randomness <- RandomnessOptions(finalManualSeed, finalSeed)
 
     randomPersonOptions

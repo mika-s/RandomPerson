@@ -30,7 +30,7 @@ type ``parseArgs should`` () =
 
     [<TestMethod>]
     member __.``return a record with parsed command line arguments 3`` () =
-        let args = [ "-m"; "L"; "-n"; "Swedish"; "-a"; "20"; "-f"; "XML" ]
+        let args = [ "-m"; "L"; "-c"; "Sweden"; "-a"; "20"; "-f"; "XML" ]
 
         let options = parseArgs args defaultOptions
 
@@ -46,7 +46,7 @@ type ``parseArgs should`` () =
 
     [<TestMethod>]
     member __.``return a record with parsed command line arguments 4`` () =
-        let args = [ "-m"; "V"; "980401-3911"; "-n"; "Swedish"; ]
+        let args = [ "-m"; "V"; "980401-3911"; "-c"; "Sweden"; ]
 
         let options = parseArgs args defaultOptions
 
