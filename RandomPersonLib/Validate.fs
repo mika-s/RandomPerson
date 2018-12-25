@@ -10,36 +10,36 @@ open UsaSSNValidation
 
 let validateDK (ssn: string) =
     match ssn with
-    | DanishSSN readSSN -> validateDanishSSN readSSN
+    | SSNForDenmark readSSN -> validateSSNForDenmark readSSN
     | _ -> false
 
 let validateFI (ssn: string) =
     match ssn with
-    | FinnishSSN readSSN -> validateFinnishSSN readSSN
+    | SSNForFinland readSSN -> validateSSNForFinland readSSN
     | _ -> false
 
 let validateIC (ssn: string) =
     match ssn with
-    | IcelandicSSN readSSN -> validateIcelandicSSN readSSN
+    | SSNForIceland readSSN -> validateSSNForIceland readSSN
     | _ -> false
 
 let validateNL (ssn: string) =
     match ssn with
-    | DutchSSN readSSN -> validateDutchSSN readSSN
+    | SSNForNetherlands readSSN -> validateSSNForNetherlands readSSN
     | _ -> false
 
 let validateNO (ssn: string) =
     match ssn with
-    | NorwegianSSN ssn -> validateNorwegianSSN ssn
+    | SSNForNorway ssn -> validateSSNForNorway ssn
     | _ -> false
 
 let validateUS (ssn: string) =
     match ssn with
-    | AmericanSSN ssn -> validateAmericanSSN ssn
+    | SSNForUSA ssn -> validateSSNForUSA ssn
     | _ -> false
 
 let validateSE (ssn: string) =
     match ssn with
-    | SwedishSSNOld -> validateSwedishSSN ssn false
-    | SwedishSSNNew -> validateSwedishSSN ssn true
+    | OldSSNForSweden -> validateSSNForSweden ssn false
+    | NewSSNForSweden -> validateSSNForSweden ssn true
     | NotSSN        -> false

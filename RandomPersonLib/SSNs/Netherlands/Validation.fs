@@ -6,7 +6,7 @@ open NetherlandsSSNGeneration
 open NetherlandsSSNParameters
 open Util
 
-let (|DutchSSN|_|) (potentialSSN: string) =
+let (|SSNForNetherlands|_|) (potentialSSN: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{9}$")
 
     match regexMatch.Success with
@@ -22,7 +22,7 @@ let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
     | Equals cs -> Some(cs)
     | _         -> None
 
-let validateDutchSSN (ssn: string) =
+let validateSSNForNetherlands (ssn: string) =
     match ssn with
     | HasCorrectLength SsnLength ssn potentialSSN ->
         match potentialSSN with

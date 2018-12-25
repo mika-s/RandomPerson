@@ -8,7 +8,7 @@ open DenmarkSSNGeneration
 open DenmarkSSNParameters
 open Util
 
-let (|DanishSSN|_|) (potentialSSN: string) =
+let (|SSNForDenmark|_|) (potentialSSN: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
 
     match regexMatch.Success with
@@ -26,7 +26,7 @@ let (|HasCorrectChecksum|_|) (random: Random) (csFromSSN: string) (ssn: string) 
     | Equals cs -> Some(cs)
     | _         -> None
 
-let validateDanishSSN (ssn: string) =
+let validateSSNForDenmark (ssn: string) =
     let random = getRandom false 100
 
     match ssn with

@@ -8,7 +8,7 @@ open FinlandSSNGeneration
 open FinlandSSNParameters
 open Util
 
-let (|FinnishSSN|_|) (potentialSSN: string) =
+let (|SSNForFinland|_|) (potentialSSN: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{6}(-|\+|A)\d{3}[\dA-Y]$")
 
     match regexMatch.Success with
@@ -26,7 +26,7 @@ let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
     | Equals cs -> Some(cs)
     | _         -> None
 
-let validateFinnishSSN (ssn: string) = 
+let validateSSNForFinland (ssn: string) = 
     match ssn with
     | HasCorrectLength SsnLength ssn potentialSSN ->
         match potentialSSN with

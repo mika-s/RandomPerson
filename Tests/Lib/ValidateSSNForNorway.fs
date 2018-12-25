@@ -5,29 +5,29 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 open NorwaySSNValidation
 
 [<TestClass>]
-type ``validateNorwegianSSN should`` () =
+type ``validateSSNForNorway should`` () =
 
     [<TestMethod>]
     member __.``return false for "12121212345"`` () =
-        let isReal = validateNorwegianSSN "12121212345"
+        let isReal = validateSSNForNorway "12121212345"
         Assert.IsFalse(isReal)
 
     [<TestMethod>]
     member __.``return true for "23071053008"`` () =
-        let isReal = validateNorwegianSSN "23071053008"
+        let isReal = validateSSNForNorway "23071053008"
         Assert.IsTrue(isReal)
 
     [<TestMethod>]
     member __.``return true for "15092913888"`` () =
-        let isReal = validateNorwegianSSN "15092913888"
+        let isReal = validateSSNForNorway "15092913888"
         Assert.IsTrue(isReal)
 
     [<TestMethod>]
     member __.``return true for "31031005542"`` () =
-        let isReal = validateNorwegianSSN "31031005542"
+        let isReal = validateSSNForNorway "31031005542"
         Assert.IsTrue(isReal)
 
     [<TestMethod>]
     member __.``return false for "11031005542"`` () =
-        let isReal = validateNorwegianSSN "11031005542"
+        let isReal = validateSSNForNorway "11031005542"
         Assert.IsFalse(isReal)
