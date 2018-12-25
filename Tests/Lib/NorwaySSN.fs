@@ -8,7 +8,7 @@ open NorwaySSNParameters
 open NorwaySSNGeneration
 
 [<TestClass>]
-type ``norwegianGetIndividualNumber should`` () =
+type ``getIndividualNumber for Norwegian SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -34,7 +34,7 @@ type ``norwegianGetIndividualNumber should`` () =
         getIndividualNumber random 20000 |> ignore
 
 [<TestClass>]
-type ``norwegianGetIndividualNumberMale should`` () =
+type ``getIndividualNumberMale for Norwegian SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -54,7 +54,7 @@ type ``norwegianGetIndividualNumberMale should`` () =
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 999)
 
 [<TestClass>]
-type ``norwegianGetIndividualNumberFemale should`` () =
+type ``getIndividualNumberFemale for Norwegian SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -75,18 +75,18 @@ type ``norwegianGetIndividualNumberFemale should`` () =
 
 
 [<TestClass>]
-type ``generateNorwegianIndividualNumber should`` () =
+type ``generateIndividualNumber for Norwegian SSNs should`` () =
 
     let random = getRandom false 100
 
     [<TestMethod>]
     member __.``return an odd number when male`` () =
-        let individualNumber = generateNorwegianIndividualNumber random 1967 Gender.Male
-        let individualNumberAsInt = Convert.ToInt32(individualNumber)
+        let individualNumber = generateIndividualNumber random 1967 Gender.Male
+        let individualNumberAsInt = int individualNumber
         Assert.IsTrue(isOdd individualNumberAsInt)
 
 [<TestClass>]
-type ``generateNorwegianChecksum should`` () =
+type ``generateChecksum for Norwegian SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -94,21 +94,21 @@ type ``generateNorwegianChecksum should`` () =
     member __.``return a correct checksum for 04128533988`` () =
         let birthdate = DateTime(1985, 12, 04)
         let individualNumber = "339"
-        let checksum = generateNorwegianChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("88", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 09035702757`` () =
         let birthdate = DateTime(1957, 03, 09)
         let individualNumber = "027"
-        let checksum = generateNorwegianChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("57", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 18028211372`` () =
         let birthdate = DateTime(1982, 02, 18)
         let individualNumber = "113"
-        let checksum = generateNorwegianChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("72", checksum)
 
 [<TestClass>]
@@ -149,8 +149,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("04", d)
@@ -169,8 +169,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("06", d)
@@ -189,8 +189,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("15", d)
@@ -209,8 +209,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("01", d)
@@ -234,8 +234,8 @@ type ``generateNorwegianSSN should`` () =
         let d = ssnFake.Substring(0, 2)
         let m = ssnFake.Substring(2, 2)
         let y = ssnFake.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssnFake.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssnFake.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

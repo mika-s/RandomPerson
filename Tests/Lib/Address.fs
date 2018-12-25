@@ -14,11 +14,12 @@ type ``generateAddress1 should`` () =
 
     [<TestMethod>]
     member __.``return a random value from addresses and add a number between 1 and 50`` () =
+        let miscData = getMiscData ()
         let addresses = getAddresses1 ()
-        let address1 = generateAddress1 random addresses
+        let address1 = generateAddress1 random addresses miscData
 
         let numberRegex = Regex "(\d{1}|\d{2})$"
-        let numberMatch = numberRegex.Match address1
+        let numberMatch = numberRegex.Match address1 
 
         match numberMatch.Success with
         | true  -> Assert.IsTrue(0 < int numberMatch.Value && int numberMatch.Value < 50)

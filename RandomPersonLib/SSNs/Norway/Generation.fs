@@ -45,22 +45,22 @@ let getIndividualNumberFemale (random: Random) (year: int) =
 
     loop ()
 
-let generateNorwegianIndividualNumber (random: Random) (year: int) (gender: Gender) =
+let generateIndividualNumber (random: Random) (year: int) (gender: Gender) =
     match gender with
     | Gender.Male   -> (getIndividualNumberMale   random year).ToString("D3")
     | Gender.Female -> (getIndividualNumberFemale random year).ToString("D3")
     | _ -> invalidArg "gender" "Illegal gender."
     
-let generateNorwegianChecksum (birthdate: DateTime) (individualNumber: string) =
-    let d1 = Convert.ToInt32(birthdate.Day   .ToString("D2").Substring(0, 1))
-    let d2 = Convert.ToInt32(birthdate.Day   .ToString("D2").Substring(1, 1))
-    let m1 = Convert.ToInt32(birthdate.Month .ToString("D2").Substring(0, 1))
-    let m2 = Convert.ToInt32(birthdate.Month .ToString("D2").Substring(1, 1))
-    let y1 = Convert.ToInt32(birthdate.Year  .ToString("D2").Substring(2, 1))
-    let y2 = Convert.ToInt32(birthdate.Year  .ToString("D4").Substring(3, 1))
-    let i1 = Convert.ToInt32(individualNumber               .Substring(0, 1))
-    let i2 = Convert.ToInt32(individualNumber               .Substring(1, 1))
-    let i3 = Convert.ToInt32(individualNumber               .Substring(2, 1))
+let generateChecksum (birthdate: DateTime) (individualNumber: string) =
+    let d1 = int (birthdate.Day   .ToString("D2").Substring(0, 1))
+    let d2 = int (birthdate.Day   .ToString("D2").Substring(1, 1))
+    let m1 = int (birthdate.Month .ToString("D2").Substring(0, 1))
+    let m2 = int (birthdate.Month .ToString("D2").Substring(1, 1))
+    let y1 = int (birthdate.Year  .ToString("D2").Substring(2, 1))
+    let y2 = int (birthdate.Year  .ToString("D4").Substring(3, 1))
+    let i1 = int (individualNumber               .Substring(0, 1))
+    let i2 = int (individualNumber               .Substring(1, 1))
+    let i3 = int (individualNumber               .Substring(2, 1))
 
     let cs1 = 11 - ((3 * d1 + 7 * d2 + 6 * m1 + 1 * m2 + 8 * y1 + 9 * y2 + 4 * i1 + 5 * i2 + 2 * i3) % 11)
     let cs2 = 11 - ((5 * d1 + 4 * d2 + 3 * m1 + 2 * m2 + 7 * y1 + 6 * y2 + 5 * i1 + 4 * i2 + 3 * i3 + 2 * cs1) % 11)
@@ -80,8 +80,8 @@ let generateNorwegianSSN (random: Random) (birthdate: DateTime) (gender: Gender)
         let year  = birthdate.Year .ToString("D4").Substring(2)
         let date = sprintf "%s%s%s" day month year
 
-        let individualNumber = generateNorwegianIndividualNumber random birthdate.Year gender
-        let checksum = generateNorwegianChecksum birthdate individualNumber
+        let individualNumber = generateIndividualNumber random birthdate.Year gender
+        let checksum = generateChecksum birthdate individualNumber
 
         if checksum.Length = ChecksumLength then 
             let ssn = sprintf "%s%s%s" date individualNumber checksum

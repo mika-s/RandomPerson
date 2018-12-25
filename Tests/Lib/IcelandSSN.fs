@@ -8,31 +8,31 @@ open IcelandSSNParameters
 open IcelandSSNGeneration
 
 [<TestClass>]
-type ``generateIcelandicIndividualNumber should`` () =
+type ``generateIndividualNumber for Icelandic SSNs should`` () =
 
     let random = getRandom false 100
 
     [<TestMethod>]
     member __.``return between 20 and 99`` () =
-        let individualNumber = Convert.ToInt32(generateIcelandicIndividualNumber random)
+        let individualNumber = int (generateIndividualNumber random)
         Assert.IsTrue(20 <= individualNumber && individualNumber <= 99)
         Assert.IsFalse(individualNumber > 1000) // negative test
 
 [<TestClass>]
-type ``generateIcelandicChecksum should`` () =
+type ``generateChecksum should`` () =
 
     [<TestMethod>]
     member __.``return a correct checksum for 310896-2099`` () =
         let birthdate = DateTime(1996, 08, 31)
         let individualNumber = "20"
-        let checksum = generateIcelandicChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("9", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 211085-8439`` () =
         let birthdate = DateTime(1985, 10, 21)
         let individualNumber = "84"
-        let checksum = generateIcelandicChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("3", checksum)
 
 [<TestClass>]
@@ -73,8 +73,8 @@ type ``generateIcelandicSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("31", d)
@@ -91,8 +91,8 @@ type ``generateIcelandicSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("06", d)
@@ -109,8 +109,8 @@ type ``generateIcelandicSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("15", d)
@@ -127,8 +127,8 @@ type ``generateIcelandicSSN should`` () =
         let d = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("01", d)
@@ -150,8 +150,8 @@ type ``generateIcelandicSSN should`` () =
         let d = ssnFake.Substring(0, 2)
         let m = ssnFake.Substring(2, 2)
         let y = ssnFake.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssnFake.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssnFake.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

@@ -20,7 +20,7 @@ let (|HasCorrectChecksum|_|) (random: Random) (csFromSSN: string) (ssn: string) 
     let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
     let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
 
-    let cs = generateDanishChecksum random birthDate individualNumber
+    let cs = generateChecksum random birthDate individualNumber
 
     match csFromSSN with
     | Equals cs -> Some(cs)

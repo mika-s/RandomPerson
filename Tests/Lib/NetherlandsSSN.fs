@@ -1,6 +1,5 @@
 ﻿namespace Tests
 
-open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
@@ -8,23 +7,23 @@ open NetherlandsSSNParameters
 open NetherlandsSSNGeneration
 
 [<TestClass>]
-type ``generateDutchIndividualNumber should`` () =
+type ``generateIndividualNumber for Dutch SSNs should`` () =
 
     let random = getRandom false 100
 
     [<TestMethod>]
     member __.``return a number between 000000000 and 999999999`` () =
-        let individualNumber = generateDutchIndividualNumber random
-        let individualNumberAsInt = Convert.ToInt32 individualNumber
+        let individualNumber = generateIndividualNumber random
+        let individualNumberAsInt = int individualNumber
         Assert.IsTrue(0 <= individualNumberAsInt && individualNumberAsInt <= 99999999)
  
 [<TestClass>]
-type ``generateDutchChecksum should`` () =
+type ``generateChecksum for Dutch SSNs should`` () =
 
     [<TestMethod>]
     member __.``return a correct checksum for 269740533`` () =
         let individualNumber = "26974053"
-        let checksum = generateDutchChecksum individualNumber
+        let checksum = generateChecksum individualNumber
         Assert.AreEqual("3", checksum)
 
 
@@ -69,8 +68,8 @@ type ``generateDutchSSN should`` () =
  
         let ssn = generateDutchSSN random false
 
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 99999999)
@@ -86,8 +85,8 @@ type ``generateDutchSSN should`` () =
         let isRealValidating = randomPerson.ValidateSSN(Country.Netherlands, ssnReal)
         let isFakeValidating = randomPerson.ValidateSSN(Country.Netherlands, ssnFake)
 
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssnFake.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = int (ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
+        let checksum = int (ssnFake.Substring(ChecksumStart, ChecksumLength))
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

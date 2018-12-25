@@ -5,7 +5,8 @@
     "CountryCode2": "IS",
     "CountryCode3": "ISL",
     "CountryNumber": "352",
-    "TLD": "is"
+    "TLD": "is",
+    "AddressNumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 354,
@@ -30,7 +31,8 @@
     "example.com",
     "yahoo.com",
     "msn.com",
-    "outlook.com"
+    "outlook.com",
+    "icloud.com"
   ],
   "MaleFirstNames": [
     "Aage",

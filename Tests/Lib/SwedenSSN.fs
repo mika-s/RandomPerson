@@ -7,7 +7,7 @@ open Util
 open SwedenSSNGeneration
 
 [<TestClass>]
-type ``swedishGetIndividualNumber should`` () =
+type ``getIndividualNumber for Swedish SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -28,7 +28,7 @@ type ``swedishGetIndividualNumber should`` () =
         Assert.IsTrue(0 <= individualNumber && individualNumber < 999)
 
 [<TestClass>]
-type ``swedishGetIndividualNumberMale should`` () =
+type ``getIndividualNumberMale for Swedish SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -48,7 +48,7 @@ type ``swedishGetIndividualNumberMale should`` () =
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 999)
 
 [<TestClass>]
-type ``swedishGetIndividualNumberFemale should`` () =
+type ``getIndividualNumberFemale for Swedish SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -69,29 +69,29 @@ type ``swedishGetIndividualNumberFemale should`` () =
 
 
 [<TestClass>]
-type ``generateSwedishIndividualNumber should`` () =
+type ``generateSwedishIndividualNumber for Swedish SSNs should`` () =
 
     let random = getRandom false 100
 
     [<TestMethod>]
     member __.``return an odd number when male`` () =
-        let individualNumber = generateSwedishIndividualNumber random Gender.Male
-        let individualNumberAsInt = Convert.ToInt32(individualNumber)
+        let individualNumber = generateIndividualNumber random Gender.Male
+        let individualNumberAsInt = int (individualNumber)
         Assert.IsTrue(isOdd individualNumberAsInt)
 
 [<TestClass>]
-type ``generateSwedishChecksum should`` () =
+type ``generateChecksum for Swedish SSNs should`` () =
 
     [<TestMethod>]
     member __.``return a correct checksum for 811228`` () =
         let numbersStr = "811228987"
-        let checksum = generateSwedishChecksum numbersStr
+        let checksum = generateChecksum numbersStr
         Assert.AreEqual("4", checksum)
 
     [<TestMethod>]
     member __.``Should return a correct checksum for 670919`` () =
         let numbersStr = "670919953"
-        let checksum = generateSwedishChecksum numbersStr
+        let checksum = generateChecksum numbersStr
         Assert.AreEqual("0", checksum)
 
 [<TestClass>]
@@ -132,8 +132,8 @@ type ``generateSwedishSSN should`` () =
         let y = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let d = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(10, 1))
+        let individualNumber = int (ssn.Substring(7, 3))
+        let checksum = int (ssn.Substring(10, 1))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("04", d)
@@ -152,8 +152,8 @@ type ``generateSwedishSSN should`` () =
         let y = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let d = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(10, 1))
+        let individualNumber = int (ssn.Substring(7, 3))
+        let checksum = int (ssn.Substring(10, 1))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("06", d)
@@ -172,8 +172,8 @@ type ``generateSwedishSSN should`` () =
         let y = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let d = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(10, 1))
+        let individualNumber = int (ssn.Substring(7, 3))
+        let checksum = int (ssn.Substring(10, 1))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("15", d)
@@ -192,8 +192,8 @@ type ``generateSwedishSSN should`` () =
         let y = ssn.Substring(0, 2)
         let m = ssn.Substring(2, 2)
         let d = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(7, 3))
-        let checksum = Convert.ToInt32(ssn.Substring(10, 1))
+        let individualNumber = int (ssn.Substring(7, 3))
+        let checksum = int (ssn.Substring(10, 1))
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("01", d)
@@ -217,8 +217,8 @@ type ``generateSwedishSSN should`` () =
         let y = ssnFake.Substring(0, 2)
         let m = ssnFake.Substring(2, 2)
         let d = ssnFake.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(7, 3))
-        let checksum = Convert.ToInt32(ssnFake.Substring(10, 1))
+        let individualNumber = int (ssnFake.Substring(7, 3))
+        let checksum = int (ssnFake.Substring(10, 1))
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

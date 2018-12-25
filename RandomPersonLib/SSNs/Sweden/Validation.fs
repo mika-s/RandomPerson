@@ -40,7 +40,7 @@ let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (p: ssnParams) (_
 
     let individualNumber = ssn.Substring(p.IndividualNumberStart, p.IndividualNumberLength)
 
-    let cs = generateSwedishChecksum (birthDate + individualNumber)
+    let cs = generateChecksum (birthDate + individualNumber)
 
     match csFromSSN with
     | Equals cs -> Some(cs)

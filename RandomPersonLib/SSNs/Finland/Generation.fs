@@ -51,22 +51,21 @@ let getIndividualNumberFemale (random: Random) =
 
     loop ()
 
-let generateFinnishIndividualNumber (random: Random) (gender: Gender) =
+let generateIndividualNumber (random: Random) (gender: Gender) =
     match gender with
     | Gender.Male   -> (getIndividualNumberMale   random).ToString("D3")
     | Gender.Female -> (getIndividualNumberFemale random).ToString("D3")
     | _ -> invalidArg "gender" "Illegal gender."
 
-let generateFinnishChecksum (birthdate: DateTime) (individualNumber: string) =
+let generateChecksum (birthdate: DateTime) (individualNumber: string) =
     let d = birthdate.Day.ToString("D2")
     let m = birthdate.Month.ToString("D2")
     let y = birthdate.Year.ToString("D2").Substring(2, 2)
-    let asString = sprintf "%s%s%s%s" d m y individualNumber
-    let asInt = Convert.ToInt64(asString)
+    let ssnWithoutChecksum = sprintf "%s%s%s%s" d m y individualNumber |> int64
 
-    let forAbove10 = "0123456789ABCDEFHJKLMNPRSTUVWXY".ToCharArray()
+    let forAbove10 = "0123456789ABCDEFHJKLMNPRSTUVWXY" |> toCharArray
 
-    let mod31 = Convert.ToInt32(asInt % Convert.ToInt64(31))
+    let mod31 = int (ssnWithoutChecksum % int64 31)
 
     match mod31 with
     | x when x < 10 -> sprintf "%d" mod31
@@ -90,9 +89,9 @@ let generateFinnishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (
         let year  = birthdate.Year .ToString("D4").Substring(2)
         let date = sprintf "%s%s%s" day month year
 
-        let individualNumber = generateFinnishIndividualNumber random gender
+        let individualNumber = generateIndividualNumber random gender
         let centurySign = generateCenturySign birthdate.Year
-        let checksum = generateFinnishChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
 
         if checksum.Length = ChecksumLength then 
             let ssn = sprintf "%s%s%s%s" date centurySign individualNumber checksum

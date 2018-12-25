@@ -16,7 +16,7 @@ let (|DutchSSN|_|) (potentialSSN: string) =
 let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
     let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
 
-    let cs = generateDutchChecksum individualNumber
+    let cs = generateChecksum individualNumber
 
     match csFromSSN with
     | Equals cs -> Some(cs)

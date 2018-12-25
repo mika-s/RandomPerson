@@ -7,7 +7,8 @@
     "CountryCode2": "NL",
     "CountryCode3": "NLD",
     "CountryNumber": "528",
-    "TLD": "nl"
+    "TLD": "nl",
+    "AddressNumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 31,
@@ -39,7 +40,8 @@
     "example.com",
     "yahoo.com",
     "msn.com",
-    "outlook.com"
+    "outlook.com",
+    "icloud.com"
   ],
   "MaleFirstNames": [
     "Daan",

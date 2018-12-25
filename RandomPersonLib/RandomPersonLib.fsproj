@@ -78,6 +78,12 @@
     <Content Include="data\Sweden\Gator i Stockholm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\USA\Streets in Sullivan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\USA\US.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\USA\usa.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

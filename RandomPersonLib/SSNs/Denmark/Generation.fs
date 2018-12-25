@@ -47,19 +47,19 @@ let getCenturyNumber (random: Random) (year: int) =
     | () when 2037 <= year && year <  2057 -> random.Next(5, 8)
     | _ -> invalidArg "year" "Illegal year."
 
-let generateDanishIndividualNumber (random: Random) (century: int) =
+let generateIndividualNumber (random: Random) (century: int) =
     sprintf "%d%s" century (random.Next(0, 100).ToString("D2"))
     
 let generateChecksumWithModulusControl (birthdate: DateTime) (individualNumber: string) =
-    let d1 = Convert.ToInt32(birthdate.Day.ToString("D2").Substring(0, 1))
-    let d2 = Convert.ToInt32(birthdate.Day.ToString("D2").Substring(1, 1))
-    let m1 = Convert.ToInt32(birthdate.Month.ToString("D2").Substring(0, 1))
-    let m2 = Convert.ToInt32(birthdate.Month.ToString("D2").Substring(1, 1))
-    let y1 = Convert.ToInt32(birthdate.Year.ToString("D2").Substring(2, 1))
-    let y2 = Convert.ToInt32(birthdate.Year.ToString("D4").Substring(3, 1))
-    let i1 = Convert.ToInt32(individualNumber.Substring(0, 1))
-    let i2 = Convert.ToInt32(individualNumber.Substring(1, 1))
-    let i3 = Convert.ToInt32(individualNumber.Substring(2, 1))
+    let d1 = int (birthdate.Day.ToString("D2").Substring(0, 1))
+    let d2 = int (birthdate.Day.ToString("D2").Substring(1, 1))
+    let m1 = int (birthdate.Month.ToString("D2").Substring(0, 1))
+    let m2 = int (birthdate.Month.ToString("D2").Substring(1, 1))
+    let y1 = int (birthdate.Year.ToString("D2").Substring(2, 1))
+    let y2 = int (birthdate.Year.ToString("D4").Substring(3, 1))
+    let i1 = int (individualNumber.Substring(0, 1))
+    let i2 = int (individualNumber.Substring(1, 1))
+    let i3 = int (individualNumber.Substring(2, 1))
 
     let modulus = (4 * d1 + 3 * d2 + 2 * m1 + 7 * m2 + 6 * y1 + 5 * y2 + 4 * i1 + 3 * i2 + 2 * i3) % 11
 
@@ -71,7 +71,7 @@ let generateChecksumWithModulusControl (birthdate: DateTime) (individualNumber: 
 
 let generateChecksumWithoutModulusControl (random: Random) = random.Next(1, 10) |> sprintf "%d"
 
-let generateDanishChecksum (random: Random) (birthdate: DateTime) (individualNumber: string)  =
+let generateChecksum (random: Random) (birthdate: DateTime) (individualNumber: string)  =
     match () with
     | () when 2007 <= birthdate.Year && 10 <= birthdate.Month -> generateChecksumWithoutModulusControl random
     | _                                                       -> generateChecksumWithModulusControl birthdate individualNumber
@@ -91,10 +91,10 @@ let generateDanishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (i
     let century = getCenturyNumber random birthdate.Year
 
     let rec loop () =
-        let individualNumber = generateDanishIndividualNumber random century
-        let checksum = generateDanishChecksum random birthdate individualNumber
+        let individualNumber = generateIndividualNumber random century
+        let checksum = generateChecksum random birthdate individualNumber
     
-        if checksum.Length <> 2 && isLegalChecksum gender (Convert.ToInt32(checksum)) then
+        if checksum.Length <> 2 && isLegalChecksum gender (int checksum) then
             let ssn = sprintf "%s-%s%s" date individualNumber checksum
             match isAnonymizingSSN with
             | true  -> anonymizeSSN ssn 

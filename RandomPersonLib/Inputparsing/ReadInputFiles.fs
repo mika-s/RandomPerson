@@ -70,9 +70,9 @@ let readInputFiles () =
 
     let usa = {
         generalData          = readDataFromJsonFile<PersonData> "data/USA/usa.json";
-        addresses1           = File.ReadAllLines("data/Sweden/Gator i Stockholm.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Sweden/SE.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Sweden);
+        addresses1           = File.ReadAllLines("data/USA/Streets in Sullivan.txt", Encoding.UTF8);
+        postalCodesAndCities = File.ReadAllLines("data/USA/US.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeAndCity Country.USA);
     }
 
     {

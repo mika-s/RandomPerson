@@ -15,17 +15,17 @@ open System
 open IcelandSSNParameters
 open Util
 
-let generateIcelandicIndividualNumber (random: Random) = random.Next(20, 100) |> sprintf "%d"
+let generateIndividualNumber (random: Random) = random.Next(20, 100) |> sprintf "%d"
     
-let generateIcelandicChecksum (birthdate: DateTime) (individualNumber: string) =
-    let d1 = Convert.ToInt32(birthdate.Day   .ToString("D2").Substring(0, 1))
-    let d2 = Convert.ToInt32(birthdate.Day   .ToString("D2").Substring(1, 1))
-    let m1 = Convert.ToInt32(birthdate.Month .ToString("D2").Substring(0, 1))
-    let m2 = Convert.ToInt32(birthdate.Month .ToString("D2").Substring(1, 1))
-    let y1 = Convert.ToInt32(birthdate.Year  .ToString("D2").Substring(2, 1))
-    let y2 = Convert.ToInt32(birthdate.Year  .ToString("D4").Substring(3, 1))
-    let i1 = Convert.ToInt32(individualNumber               .Substring(0, 1))
-    let i2 = Convert.ToInt32(individualNumber               .Substring(1, 1))
+let generateChecksum (birthdate: DateTime) (individualNumber: string) =
+    let d1 = int (birthdate.Day   .ToString("D2").Substring(0, 1))
+    let d2 = int (birthdate.Day   .ToString("D2").Substring(1, 1))
+    let m1 = int (birthdate.Month .ToString("D2").Substring(0, 1))
+    let m2 = int (birthdate.Month .ToString("D2").Substring(1, 1))
+    let y1 = int (birthdate.Year  .ToString("D2").Substring(2, 1))
+    let y2 = int (birthdate.Year  .ToString("D4").Substring(3, 1))
+    let i1 = int (individualNumber               .Substring(0, 1))
+    let i2 = int (individualNumber               .Substring(1, 1))
 
     let cs = 11 - ((3 * d1 + 2 * d2 + 7 * m1 + 6 * m2 + 5 * y1 + 4 * y2 + 3 * i1 + 2 * i2) % 11)
 
@@ -49,8 +49,8 @@ let generateIcelandicSSN (random: Random) (birthdate: DateTime) (isAnonymizingSS
         let year  = birthdate.Year .ToString("D4").Substring(2)
         let date = sprintf "%s%s%s" day month year
 
-        let individualNumber = generateIcelandicIndividualNumber random
-        let checksum = generateIcelandicChecksum birthdate individualNumber
+        let individualNumber = generateIndividualNumber random
+        let checksum = generateChecksum birthdate individualNumber
         let centuryNumber = getCenturyNumber birthdate.Year
 
         if checksum.Length = ChecksumLength then 

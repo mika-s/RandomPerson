@@ -5,7 +5,8 @@
     "CountryCode2": "FI",
     "CountryCode3": "FIN",
     "CountryNumber": "246",
-    "TLD": "fi"
+    "TLD": "fi",
+    "AddressNumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 358,
@@ -75,7 +76,8 @@
     "msn.com",
     "outlook.com",
     "telia.fi",
-    "jippii.fi"
+    "jippii.fi",
+    "icloud.com"
   ],
   "MaleFirstNames": [
     "Juhani",

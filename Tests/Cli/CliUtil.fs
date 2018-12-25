@@ -45,7 +45,7 @@ type ``|Filename|_| should`` () =
     member __.``match with Filename when input string is larger "test,txt"`` () =
         let isMatch = match "test.txt" with
                       | Filename _ -> true
-                      | _           -> false
+                      | _          -> false
 
         Assert.IsTrue(isMatch)
 
@@ -53,7 +53,7 @@ type ``|Filename|_| should`` () =
     member __.``not match with Filename when input string is empty`` () =
         let isMatch = match "" with
                       | Filename _ -> true
-                      | _           -> false
+                      | _          -> false
 
         Assert.IsFalse(isMatch)
 

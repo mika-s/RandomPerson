@@ -77,8 +77,8 @@ type ``generateDanishIndividualNumber should`` () =
 
     [<TestMethod>]
     member __.``return a number between 100 and 200 when century number is 1`` () =
-        let individualNumber = generateDanishIndividualNumber random 1
-        let individualNumberAsInt = Convert.ToInt32 individualNumber
+        let individualNumber = generateIndividualNumber random 1
+        let individualNumberAsInt = int individualNumber
         Assert.IsTrue(100 <= individualNumberAsInt && individualNumberAsInt < 200)
 
 [<TestClass>]
@@ -90,21 +90,21 @@ type ``generateDanishChecksum should`` () =
     member __.``return a correct checksum for 041285-3040`` () =
         let birthdate = DateTime(1985, 12, 04)
         let individualNumber = "304"
-        let checksum = generateDanishChecksum random birthdate individualNumber
+        let checksum = generateChecksum random birthdate individualNumber
         Assert.AreEqual("0", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 090357-6855`` () =
         let birthdate = DateTime(1957, 03, 09)
         let individualNumber = "685"
-        let checksum = generateDanishChecksum random birthdate individualNumber
+        let checksum = generateChecksum random birthdate individualNumber
         Assert.AreEqual("5", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 180282-1804`` () =
         let birthdate = DateTime(1982, 02, 18)
         let individualNumber = "180"
-        let checksum = generateDanishChecksum random birthdate individualNumber
+        let checksum = generateChecksum random birthdate individualNumber
         Assert.AreEqual("4", checksum)
 
 [<TestClass>]
@@ -142,11 +142,11 @@ type ``generateDanishSSN should`` () =
         let gender = Gender.Male
         let ssn = generateDanishSSN random birthdate gender false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("04", d)
@@ -162,11 +162,11 @@ type ``generateDanishSSN should`` () =
         let gender = Gender.Male
         let ssn = generateDanishSSN random birthdate gender false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(ChecksumStart, ChecksumLength))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("06", d)
@@ -182,11 +182,11 @@ type ``generateDanishSSN should`` () =
         let gender = Gender.Female
         let ssn = generateDanishSSN random birthdate gender false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(10, 1))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("15", d)
@@ -202,11 +202,11 @@ type ``generateDanishSSN should`` () =
         let gender = Gender.Female
         let ssn = generateDanishSSN random birthdate gender false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(10, 1))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.AreEqual("01", d)
@@ -227,11 +227,11 @@ type ``generateDanishSSN should`` () =
         let isRealValidating = randomPerson.ValidateSSN(Country.Denmark, ssnReal)
         let isFakeValidating = randomPerson.ValidateSSN(Country.Denmark, ssnFake)
 
-        let d = ssnFake.Substring(0, 2)
-        let m = ssnFake.Substring(2, 2)
-        let y = ssnFake.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssnFake.Substring(ChecksumStart, ChecksumLength))
+        let d = ssnFake |> substring 0 2
+        let m = ssnFake |> substring 2 2
+        let y = ssnFake |> substring 4 2
+        let individualNumber = ssnFake |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum =         ssnFake |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

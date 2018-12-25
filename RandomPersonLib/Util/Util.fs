@@ -11,6 +11,7 @@ let isEven (x: int) = x % 2 =  0
 let intFromChar (x: char) = x |> Char.GetNumericValue |> int
 let intArrayFromString (numbersStr: string) = numbersStr |> Seq.toArray |> Array.map intFromChar
 let stringAsChar (str: string) = str.[0]
+let substring (startIndex: int) (length: int) (str: string) = str.Substring(startIndex, length)
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
 let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 

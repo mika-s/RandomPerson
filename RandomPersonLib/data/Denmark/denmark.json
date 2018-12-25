@@ -5,7 +5,8 @@
     "CountryCode2": "DK",
     "CountryCode3": "DNK",
     "CountryNumber": "208",
-    "TLD": "dk"
+    "TLD": "dk",
+    "AddressNumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 45,
@@ -88,7 +89,8 @@
     "yahoo.com",
     "yahoo.dk",
     "msn.com",
-    "outlook.com"
+    "outlook.com",
+    "icloud.com"
   ],
   "MaleFirstNames": [
     "Christian",

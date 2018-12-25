@@ -27,6 +27,9 @@ type MiscData = {
 
     [<field : DataMember(Name="TLD")>]
     TLD : string
+
+    [<field : DataMember(Name="AddressNumberLocation")>]
+    AddressNumberLocation : string
 }
 
 [<DataContract;NoEquality;NoComparison>]

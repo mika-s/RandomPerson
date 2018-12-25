@@ -21,7 +21,7 @@ let (|HasCorrectChecksum|_|) (ssn: string) (rest: string) (_: string) =
     let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
     let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
 
-    let cs = generateIcelandicChecksum birthDate individualNumber
+    let cs = generateChecksum birthDate individualNumber
 
     match csFromSSN with
     | Equals cs -> Some(rest.[1].ToString())

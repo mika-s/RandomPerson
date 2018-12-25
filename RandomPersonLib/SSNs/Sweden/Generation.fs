@@ -52,7 +52,7 @@ let getIndividualNumberFemale (random: Random) =
 
     loop ()
 
-let generateSwedishIndividualNumber (random: Random) (gender: Gender) =
+let generateIndividualNumber (random: Random) (gender: Gender) =
     match gender with
     | Gender.Male   -> (getIndividualNumberMale   random).ToString("D3")
     | Gender.Female -> (getIndividualNumberFemale random).ToString("D3")
@@ -70,7 +70,7 @@ let luhn (w: int) (n: int) =
     | p when p >= 10 -> sumTheDigits product
     | _              -> product
 
-let generateSwedishChecksum (numbersStr: string) =
+let generateChecksum (numbersStr: string) =
     let weight = [| 2; 1; 2; 1; 2; 1; 2; 1; 2 |]
     let numbers = intArrayFromString numbersStr
 
@@ -85,11 +85,11 @@ let generateSwedishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (
     let day   = birthdate.Day  .ToString("D2")
     let month = birthdate.Month.ToString("D2")
     let year  = birthdate.Year .ToString("D4").Substring(2)
-    let date = sprintf "%s%s%s" year month day
+    let date  = sprintf "%s%s%s" year month day
     
-    let individualNumber = generateSwedishIndividualNumber random gender
+    let individualNumber = generateIndividualNumber random gender
     let numbers = sprintf "%s%s" date individualNumber
-    let checksum = generateSwedishChecksum numbers
+    let checksum = generateChecksum numbers
 
     let ssn = sprintf "%s-%s%s" date individualNumber checksum
     match isAnonymizingSSN with

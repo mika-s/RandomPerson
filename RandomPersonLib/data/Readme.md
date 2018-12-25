@@ -7,6 +7,7 @@ The following sources are used for the data that is used to generate random pers
 - [Password list](https://github.com/danielmiessler/SecLists/blob/master/Passwords/darkweb2017-top1000.txt)
 - [National conventions for writing telephone numbers](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers)
 - [Country codes and numbers in ISO-3166-1](https://en.wikipedia.org/wiki/ISO_3166-1)
+- [Most popular email domains](https://email-verify.my-addr.com/list-of-most-popular-email-domains.php)
 
 ## Denmark
 
@@ -69,10 +70,11 @@ www.geonames.org
 
 ## USA
 
-- [American names](https://www.ssb.no/navn)
+- [American names](https://names.mongabay.com/)
 - [Syntax for SSNs](https://en.wikipedia.org/wiki/Social_Security_number)
-- [Streets in Oslo](http://www.norskegater.com/Oslo/)
-- [Postal codes and cities in USA](https://data.norge.no/data/posten-norge/postnummer-i-norge)
+- [Address format in USA](https://en.wikipedia.org/wiki/Address#United_States)
+- [Streets in USA](http://results.openaddresses.io/)
+- [Postal codes and cities in USA](http://download.geonames.org/export/zip/US.zip)
 - [North American Numbering Plan](https://en.wikipedia.org/wiki/North_American_Numbering_Plan)
 
 # Misc

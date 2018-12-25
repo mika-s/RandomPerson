@@ -9,7 +9,7 @@ open FinlandSSNParameters
 open FinlandSSNGeneration
 
 [<TestClass>]
-type ``finnishGetIndividualNumber should`` () =
+type ``getIndividualNumber for Finnish SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -20,7 +20,7 @@ type ``finnishGetIndividualNumber should`` () =
         Assert.IsFalse(individualNumber > 1000) // negative test
 
 [<TestClass>]
-type ``finnishGetIndividualNumberMale should`` () =
+type ``getIndividualNumberMale for Finnish SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -40,7 +40,7 @@ type ``finnishGetIndividualNumberMale should`` () =
         Assert.IsTrue(002 <= individualNumber && individualNumber <= 899)
 
 [<TestClass>]
-type ``finnishGetIndividualNumberFemale should`` () =
+type ``getIndividualNumberFemale for Finnish SSNs should`` () =
 
     let random = getRandom false 100
 
@@ -61,52 +61,52 @@ type ``finnishGetIndividualNumberFemale should`` () =
 
 
 [<TestClass>]
-type ``generateFinnishIndividualNumber should`` () =
+type ``generateIndividualNumber for Finnish SSNs should`` () =
 
     let random = getRandom false 100
 
     [<TestMethod>]
     member __.``return an odd number when male`` () =
-        let individualNumber = generateFinnishIndividualNumber random Gender.Male
-        let individualNumberAsInt = Convert.ToInt32(individualNumber)
+        let individualNumber = generateIndividualNumber random Gender.Male
+        let individualNumberAsInt = int individualNumber
         Assert.IsTrue(isOdd individualNumberAsInt)
 
 [<TestClass>]
-type ``generateFinnishChecksum should`` () =
+type ``generateChecksum for Finnish SSNs should`` () =
 
     [<TestMethod>]
     member __.``return a correct checksum for 311280-888Y`` () =
         let birthdate = DateTime(1980, 12, 31)
         let individualNumber = "888"
-        let checksum = generateFinnishChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("Y", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 241134-008C`` () =
         let birthdate = DateTime(1934, 11, 24)
         let individualNumber = "008"
-        let checksum = generateFinnishChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("C", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 311280-999J`` () =
         let birthdate = DateTime(1980, 12, 31)
         let individualNumber = "999"
-        let checksum = generateFinnishChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("J", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 131052-308T`` () =
         let birthdate = DateTime(1952, 10, 13)
         let individualNumber = "308"
-        let checksum = generateFinnishChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("T", checksum)
 
     [<TestMethod>]
     member __.``return a correct checksum for 290296-7808`` () =
         let birthdate = DateTime(1996, 02, 29)
         let individualNumber = "780"
-        let checksum = generateFinnishChecksum birthdate individualNumber
+        let checksum = generateChecksum birthdate individualNumber
         Assert.AreEqual("8", checksum)
 
 [<TestClass>]
@@ -151,7 +151,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -173,7 +173,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, 1)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -195,7 +195,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
         Assert.AreEqual(SsnLength, ssn.Length)
@@ -217,7 +217,7 @@ type ``generateFinnishSSN should`` () =
         let m = ssn.Substring(2, 2)
         let y = ssn.Substring(4, 2)
         let centurySign = ssn.[CenturySignStart]
-        let individualNumber = Convert.ToInt32(ssn.Substring(IndividualNumberStart, IndividualNumberLength))
+        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = ssn.Substring(ChecksumStart, ChecksumLength)
 
         Assert.AreEqual(SsnLength, ssn.Length)

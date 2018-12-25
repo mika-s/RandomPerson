@@ -5,7 +5,8 @@
     "CountryCode2": "SE",
     "CountryCode3": "SWE",
     "CountryNumber": "752",
-    "TLD": "se"
+    "TLD": "se",
+    "AddressNumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 46,
@@ -291,7 +292,12 @@
   "EmailEndings": [
     "gmail.com",
     "hotmail.com",
-    "example.com"
+    "example.com",
+    "icloud.com",
+    "live.com",
+    "msn.com",
+    "outlook.com",
+    "yahoo.com"
   ],
   "MaleFirstNames": [
     "Karl",

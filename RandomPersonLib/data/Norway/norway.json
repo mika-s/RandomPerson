@@ -7,7 +7,8 @@
     "CountryCode2": "NO",
     "CountryCode3": "NOR",
     "CountryNumber": "578",
-    "TLD": "no"
+    "TLD": "no",
+    "AddressNumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 47,
@@ -52,7 +53,8 @@
     "ebnett.no",
     "msn.com",
     "outlook.com",
-    "vikenfiber.no"
+    "vikenfiber.no",
+    "icloud.com"
   ],
   "MaleFirstNames": [
     "Aaron",
