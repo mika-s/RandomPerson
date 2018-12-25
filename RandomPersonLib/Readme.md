@@ -11,7 +11,7 @@ It can create people with the following generated data:
 
 - First name
 - Last name
-- Address (Address 1, 2, postal code and city)
+- Address (Address 1, 2, postal code, city and state)
 - Country
 - Gender
 - Birthdate

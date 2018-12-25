@@ -41,7 +41,7 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 The data is based on real values from the mentioned countries. I.e. the SSN, telephone numbers, etc.
 will be valid. SSN can be chosen to be fake.
 
-![List mode for Norwegian](./Assets/Images/list%20mode%20-%20norwegian.png)
+![List mode for Norwegian](./Assets/Images/list%20mode%20-%20usa.png)
 
 ### Output to file
 

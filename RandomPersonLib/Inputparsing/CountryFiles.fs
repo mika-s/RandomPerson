@@ -1,11 +1,11 @@
 ﻿module CountryFiles
 
 open PersonData
-open PostalCodeAndCity
+open PostalCodeCityState
 
 [<NoEquality;NoComparison>]
 type CountryFiles = {
     generalData: PersonData
     addresses1: string[]
-    postalCodesAndCities: PostalCodeAndCity[]
+    postalCodeCityStates: PostalCodeCityState[]
 }

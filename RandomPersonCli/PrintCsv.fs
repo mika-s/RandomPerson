@@ -24,6 +24,7 @@ let personToString (printSettings: GenericPrintSettings) (printOptions: PrintOpt
     if printSettings.Address2                      then bprintf sb "%s" (person.Address2 + ",")                      |> ignore
     if printSettings.PostalCode                    then bprintf sb "%s" (person.PostalCode + ",")                    |> ignore
     if printSettings.City                          then bprintf sb "%s" (person.City + ",")                          |> ignore
+    if printSettings.State                         then bprintf sb "%s" (person.State + ",")                         |> ignore
     if printSettings.BirthDate                     then bprintf sb "%s" (birthDate + ",")                            |> ignore
     if printSettings.Gender                        then bprintf sb "%s" (gender + ",")                               |> ignore
     if printSettings.SSN                           then bprintf sb "%s" (person.SSN + ",")                           |> ignore
@@ -53,6 +54,7 @@ let createHeader (printSettings: GenericPrintSettings) =
     if printSettings.Address2                      then bprintf sb "%s" ("Address2,")                      |> ignore
     if printSettings.PostalCode                    then bprintf sb "%s" ("PostalCode,")                    |> ignore
     if printSettings.City                          then bprintf sb "%s" ("City,")                          |> ignore
+    if printSettings.State                         then bprintf sb "%s" ("State,")                         |> ignore
     if printSettings.BirthDate                     then bprintf sb "%s" ("BirthDate,")                     |> ignore
     if printSettings.Gender                        then bprintf sb "%s" ("Gender,")                        |> ignore
     if printSettings.SSN                           then bprintf sb "%s" ("SSN,")                           |> ignore

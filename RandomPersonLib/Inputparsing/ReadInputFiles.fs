@@ -5,7 +5,7 @@ open System.Text
 open RandomPersonLib
 open CountryFiles
 open GenericFiles
-open PostalCodeAndCityGen
+open PostalCodeCityStatesGen
 open PersonData
 open Util
 
@@ -23,56 +23,56 @@ type InputFiles = {
 
 let readInputFiles () =
     let generic = {
-        passwords           = File.ReadAllLines("data/Generic/passwords.txt", Encoding.UTF8);
+        passwords             = File.ReadAllLines("data/Generic/passwords.txt", Encoding.UTF8);
     }
 
     let denmark = {
         generalData          = readDataFromJsonFile<PersonData> "data/Denmark/denmark.json";
         addresses1           = File.ReadAllLines("data/Denmark/Gader i København.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Denmark/DK.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Denmark);
+        postalCodeCityStates = File.ReadAllLines("data/Denmark/DK.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.Denmark);
     }
 
     let finland = {
         generalData          = readDataFromJsonFile<PersonData> "data/Finland/finland.json";
         addresses1           = File.ReadAllLines("data/Finland/Streets in Finland.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Finland/FI.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Finland);
+        postalCodeCityStates = File.ReadAllLines("data/Finland/FI.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.Finland);
     }
 
     let iceland = {
         generalData          = readDataFromJsonFile<PersonData> "data/Iceland/iceland.json";
         addresses1           = File.ReadAllLines("data/Iceland/Streets in Iceland.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Iceland/postnumer.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Iceland);
+        postalCodeCityStates = File.ReadAllLines("data/Iceland/postnumer.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.Iceland);
     }
 
     let netherlands = {
         generalData          = readDataFromJsonFile<PersonData> "data/Netherlands/netherlands.json";
         addresses1           = File.ReadAllLines("data/Netherlands/Addresses in NL.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Netherlands/NL.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Netherlands);
+        postalCodeCityStates = File.ReadAllLines("data/Netherlands/NL.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.Netherlands);
     }
 
     let norway = {
         generalData          = readDataFromJsonFile<PersonData> "data/Norway/norway.json";
         addresses1           = File.ReadAllLines("data/Norway/Gater i Oslo.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Norway/Postnummerregister-ansi.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Norway);
+        postalCodeCityStates = File.ReadAllLines("data/Norway/Postnummerregister-ansi.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.Norway);
     }
 
     let sweden = {
         generalData          = readDataFromJsonFile<PersonData> "data/Sweden/sweden.json";
         addresses1           = File.ReadAllLines("data/Sweden/Gator i Stockholm.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/Sweden/SE.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.Sweden);
+        postalCodeCityStates = File.ReadAllLines("data/Sweden/SE.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.Sweden);
     }
 
     let usa = {
         generalData          = readDataFromJsonFile<PersonData> "data/USA/usa.json";
         addresses1           = File.ReadAllLines("data/USA/Streets in Sullivan.txt", Encoding.UTF8);
-        postalCodesAndCities = File.ReadAllLines("data/USA/US.txt", Encoding.UTF8)
-                               |> Array.map(stringToPostalCodeAndCity Country.USA);
+        postalCodeCityStates = File.ReadAllLines("data/USA/US.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.USA);
     }
 
     {

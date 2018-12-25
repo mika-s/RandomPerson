@@ -114,7 +114,7 @@
     <Compile Include="RandomPersonOptions.fs" />
     <Compile Include="Generators\Password.fs" />
     <Compile Include="Generators\Phone.fs" />
-    <Compile Include="Generators\PostalCodeAndCity.fs" />
+    <Compile Include="Generators\PostalCodeCityState.fs" />
     <Compile Include="Generators\Address.fs" />
     <Compile Include="Generators\Birthdate.fs" />
     <Compile Include="Generators\Email.fs" />

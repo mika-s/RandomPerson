@@ -34,6 +34,9 @@ type GenericPrintSettings = {
     [<field : DataMember(Name="City")>]
     City : bool
 
+    [<field : DataMember(Name="State")>]
+    State : bool
+
     [<field : DataMember(Name="BirthDate")>]
     BirthDate : bool
 

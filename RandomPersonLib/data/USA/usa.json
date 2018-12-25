@@ -7,8 +7,10 @@
     "CountryCode2": "US",
     "CountryCode3": "USA",
     "CountryNumber": "840",
-    "TLD": "us",
-    "AddressNumberLocation": "Before"
+    "TLD": "us"
+  },
+  "Address": {
+    "NumberLocation": "Before"
   },
   "Phone": {
     "CountryCode": 1,

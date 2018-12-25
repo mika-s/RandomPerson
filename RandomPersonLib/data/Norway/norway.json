@@ -7,8 +7,10 @@
     "CountryCode2": "NO",
     "CountryCode3": "NOR",
     "CountryNumber": "578",
-    "TLD": "no",
-    "AddressNumberLocation": "After"
+    "TLD": "no"
+  },
+  "Address": {
+    "NumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 47,

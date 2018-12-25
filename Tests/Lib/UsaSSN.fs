@@ -48,9 +48,9 @@ type ``anonymizeSSN for American SSNs should`` () =
     [<TestMethod>]
     member __.``return either 4, 5, 6, 7, 8, 9`` () =
         let oldSsn = "234-28-1234"
-        let newSsn = anonymizeSSN random oldSsn
+        let newSsn = anonymizeSSN oldSsn
         let splitNewSsn = newSsn.Split('-')
-        Assert.AreNotEqual(splitNewSsn.[0], "234")
+        Assert.AreEqual(splitNewSsn.[0], "000")
         Assert.AreEqual(splitNewSsn.[1], "28")
         Assert.AreEqual(splitNewSsn.[2], "1234")
 

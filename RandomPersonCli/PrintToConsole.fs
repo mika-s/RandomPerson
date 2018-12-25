@@ -16,6 +16,7 @@ let isPrintingMoreThanOneLine (print: GenericPrintSettings) =
     + b2i print.Address2
     + b2i print.PostalCode
     + b2i print.City
+    + b2i print.State
     + b2i print.Email
     + b2i print.Password
     + b2i print.MobilePhone
@@ -35,7 +36,7 @@ let printToScreen (isPrinting: bool) (isLabel: bool) (label: string) (output: st
     | (true, true)  ->
         match label.Length < 7 with
         | true  -> printfn "%s:\t\t%s" label output |> ignore
-        | false -> printfn "%s:\t%s" label output   |> ignore
+        | false -> printfn "%s:\t%s"   label output |> ignore
     | (true, false) -> printfn "%s" output          |> ignore
     | _             -> ()                           |> ignore
 
@@ -43,13 +44,14 @@ let printPerson (print: GenericPrintSettings) (person: Person) =
     printToScreen print.FirstName                      print.Label "First name"    person.FirstName
     printToScreen print.LastName                       print.Label "Last name"     person.LastName
     printToScreen print.SSN                            print.Label "SSN"           person.SSN
-    printToScreen print.Country                        print.Label "Country"  (person.Country.ToString())
+    printToScreen print.Country                        print.Label "Country"      (person.Country.ToString())
     printToScreen print.BirthDate                      print.Label "Birthdate"    (person.BirthDate.ToString("yyyy-MM-dd"))
     printToScreen print.Gender                         print.Label "Gender"       (person.Gender.ToString())
     printToScreen print.Address1                       print.Label "Address 1"     person.Address1
     printToScreen print.Address2                       print.Label "Address 2"     person.Address2
     printToScreen print.PostalCode                     print.Label "Postal code"   person.PostalCode
     printToScreen print.City                           print.Label "City"          person.City
+    printToScreen print.State                          print.Label "State"         person.State
     printToScreen print.Email                          print.Label "Email"         person.Email
     printToScreen print.Password                       print.Label "Password"      person.Password
     printToScreen print.MobilePhone                    print.Label "Mobile phone"  person.MobilePhone

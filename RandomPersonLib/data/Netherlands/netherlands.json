@@ -7,8 +7,10 @@
     "CountryCode2": "NL",
     "CountryCode3": "NLD",
     "CountryNumber": "528",
-    "TLD": "nl",
-    "AddressNumberLocation": "After"
+    "TLD": "nl"
+  },
+  "Address": {
+    "NumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 31,

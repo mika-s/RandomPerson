@@ -5,8 +5,10 @@
     "CountryCode2": "DK",
     "CountryCode3": "DNK",
     "CountryNumber": "208",
-    "TLD": "dk",
-    "AddressNumberLocation": "After"
+    "TLD": "dk"
+  },
+  "Address": {
+    "NumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 45,

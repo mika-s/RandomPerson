@@ -1,4 +1,4 @@
-﻿module Password
+﻿module internal Password
 
 open System
 

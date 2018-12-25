@@ -3,7 +3,7 @@
 open System
 open SSN
 open Address
-open PostalCodeAndCityGen
+open PostalCodeCityStatesGen
 open Name
 open Email
 open Gender
@@ -20,15 +20,16 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     let isAllowingUnder18 = options.Under18
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN
     
-    let postalCodeAndCity = generatePostalCodeAndCity random countryFiles.postalCodesAndCities country
+    let postalCodeCityState = generatePostalCodeCityState random countryFiles.postalCodeCityStates country
 
     let gender = generateGender random
     let firstName = generateFirstName random gender countryFiles.generalData
     let lastName  = generateLastName  random gender countryFiles.generalData 
     let address1 = generateAddress1 random countryFiles.addresses1 countryFiles.generalData
     let address2 = generateAddress2 ()
-    let postalCode = postalCodeAndCity.PostalCode
-    let city = postalCodeAndCity.City
+    let postalCode = postalCodeCityState.PostalCode
+    let city = postalCodeCityState.City
+    let state = postalCodeCityState.State
     let birthDate = generateBirthDate random isAllowingUnder18 options.BirthDate
     let ssn = generateSSN random country birthDate gender isAnonymizingSSN isRemovingHypensFromSSN
     let email = generateEmailAddress random countryFiles.generalData.EmailEndings firstName lastName birthDate
@@ -67,6 +68,7 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     member __.Address2 = address2
     member __.PostalCode = postalCode
     member __.City = city
+    member __.State = state
     member __.Country = country
     member __.BirthDate = birthDate
     member __.SSN = ssn

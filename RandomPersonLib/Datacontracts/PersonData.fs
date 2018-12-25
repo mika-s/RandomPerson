@@ -27,9 +27,12 @@ type MiscData = {
 
     [<field : DataMember(Name="TLD")>]
     TLD : string
+}
 
-    [<field : DataMember(Name="AddressNumberLocation")>]
-    AddressNumberLocation : string
+[<DataContract;NoEquality;NoComparison>]
+type AddressData = {
+    [<field : DataMember(Name="NumberLocation")>]
+    NumberLocation : string
 }
 
 [<DataContract;NoEquality;NoComparison>]
@@ -57,6 +60,9 @@ type PhoneData = {
 type PersonData = {
     [<field : DataMember(Name="Misc")>]
     Misc : MiscData
+
+    [<field : DataMember(Name="Address")>]
+    Address : AddressData
 
     [<field : DataMember(Name="Phone")>]
     Phone : PhoneData

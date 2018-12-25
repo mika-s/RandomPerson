@@ -33,6 +33,9 @@ type PersonSerializable = {
     [<JsonProperty("City")>]
     City : string
 
+    [<JsonProperty("State")>]
+    State : string
+
     [<JsonProperty("BirthDate")>]
     BirthDate : DateTime
 
@@ -86,6 +89,7 @@ let createPersonSerializable (person: Person) =
         Address2 = person.Address2;
         PostalCode = person.PostalCode;
         City = person.City;
+        State = person.State;
         BirthDate = person.BirthDate;
         Gender = person.Gender;
         Email = person.Email;

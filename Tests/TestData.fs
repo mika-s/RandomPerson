@@ -1,16 +1,11 @@
 ﻿module TestData
 
 open RandomPersonLib
-open PostalCodeAndCity
+open PostalCodeCityState
 open CountryFiles
 open GenericFiles
 open PersonData
 open Util
-
-type PlainTestClass (firstname: string, lastname: string, isMarried: bool) =
-    member __.Firstname = firstname
-    member __.Lastname = lastname
-    member __.IsMarried = isMarried
 
 let getMiscDetails () =
     {
@@ -22,7 +17,11 @@ let getMiscDetails () =
         CountryCode3 = "NOR";
         CountryNumber = "578";
         TLD = "no";
-        AddressNumberLocation = "After";
+    }
+
+let getAddressDetails () =
+    {
+        NumberLocation = "After";
     }
 
 let getPhoneDetails () =
@@ -40,6 +39,7 @@ let getEmailAddresseses () = [| "gmail.com"; "hotmail.com"; "msn.com" |]
 let getMiscData () =
     {
         Misc = getMiscDetails ();
+        Address = getAddressDetails ();
         Phone = getPhoneDetails ();
         EmailEndings = getEmailAddresseses ();
         MaleFirstNames = [| "Nicolas" |];
@@ -61,7 +61,7 @@ let getTestPerson () =
     let countryFiles = {
         generalData = getMiscData ()
         addresses1 = getAddresses1 ()
-        postalCodesAndCities = [| PostalCodeAndCity("0001", "OSLO") |];
+        postalCodeCityStates = [| PostalCodeCityState("0001", "OSLO", "") |];
     }
 
     let random = getRandom false 100

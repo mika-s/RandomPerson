@@ -5,8 +5,10 @@
     "CountryCode2": "IS",
     "CountryCode3": "ISL",
     "CountryNumber": "352",
-    "TLD": "is",
-    "AddressNumberLocation": "After"
+    "TLD": "is"
+  },
+  "Address": {
+    "NumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 354,

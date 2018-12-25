@@ -5,8 +5,10 @@
     "CountryCode2": "FI",
     "CountryCode3": "FIN",
     "CountryNumber": "246",
-    "TLD": "fi",
-    "AddressNumberLocation": "After"
+    "TLD": "fi"
+  },
+  "Address": {
+    "NumberLocation": "After"
   },
   "Phone": {
     "CountryCode": 358,

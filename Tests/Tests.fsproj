@@ -22,7 +22,7 @@
     <Compile Include="Lib\Address.fs" />
     <Compile Include="Lib\Password.fs" />
     <Compile Include="Lib\Email.fs" />
-    <Compile Include="Lib\PostalCodeAndCity.fs" />
+    <Compile Include="Lib\PostalCodeCityState.fs" />
     <Compile Include="Lib\Util.fs" />
     <Compile Include="Lib\SSN.fs" />
     <Compile Include="Lib\DenmarkSSN.fs" />

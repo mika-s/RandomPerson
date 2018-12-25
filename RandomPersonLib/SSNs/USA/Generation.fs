@@ -29,8 +29,7 @@ let generateGroupNumber (random: Random) = random.Next(01, 99).ToString("D2")
 
 let generateSerialNumber (random: Random) = random.Next(0001, 9999).ToString("D4")
 
-let anonymizeSSN (random: Random) (ssn: string) =
-    random.Next(900, 999).ToString("D3") + ssn.[ 3 .. ssn.Length - 1 ]
+let anonymizeSSN (ssn: string) = "000" + ssn.[ 3 .. ssn.Length - 1 ]
 
 let generateAmericanSSN (random: Random) (isAnonymizingSSN: bool) =
     let areaNumber   = generateAreaNumber random
@@ -39,5 +38,5 @@ let generateAmericanSSN (random: Random) (isAnonymizingSSN: bool) =
     let ssn = sprintf "%s-%s-%s" areaNumber groupNumber serialNumber
 
     match isAnonymizingSSN with
-    | true  -> anonymizeSSN random ssn 
+    | true  -> anonymizeSSN ssn 
     | false -> ssn
