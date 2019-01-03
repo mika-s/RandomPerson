@@ -81,9 +81,9 @@ type ``generateDutchSSN should`` () =
         let ssnReal = generateDutchSSN random false
         let ssnFake = generateDutchSSN random true
 
-        let randomPerson = RandomPerson()
-        let isRealValidating = randomPerson.ValidateSSN(Country.Netherlands, ssnReal)
-        let isFakeValidating = randomPerson.ValidateSSN(Country.Netherlands, ssnFake)
+        let validatePerson = ValidatePerson()
+        let isRealValidating = validatePerson.ValidateSSN(Country.Netherlands, ssnReal)
+        let isFakeValidating = validatePerson.ValidateSSN(Country.Netherlands, ssnFake)
 
         let individualNumber = int (ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
         let checksum = int (ssnFake.Substring(ChecksumStart, ChecksumLength))

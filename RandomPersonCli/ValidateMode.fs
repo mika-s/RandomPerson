@@ -4,7 +4,7 @@ open System
 open RandomPersonLib
 open CliUtil
 
-let validate (lib: RandomPerson) (country: Country) =
+let validate (lib: ValidatePerson) (country: Country) =
     let rec loop () = 
         printf "SSN: "
         let readSSN = Console.ReadLine ()
@@ -17,7 +17,7 @@ let validate (lib: RandomPerson) (country: Country) =
     loop ()
 
 let validateMode (ssn: string) (country: Country) =
-    let lib = RandomPerson()
+    let lib = ValidatePerson()
 
     match ssn with
     | "" ->

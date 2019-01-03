@@ -27,7 +27,7 @@ let defaultOptions = {
     ssn = String.Empty
 }
 
-let printVersion () = printfn "Version: 1.8.0.0"
+let printVersion () = printfn "Version: 1.9.0.0"
 
 let printUsage () =
     printfn "NAME"

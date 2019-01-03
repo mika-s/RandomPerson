@@ -4,6 +4,7 @@ open System
 open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open SpecialBirthDateReplaces
+open System.Globalization
 
 [<TestClass>]
 type ``replaceWithoutCulture should`` () =
@@ -15,14 +16,14 @@ type ``replaceWithoutCulture should`` () =
         let birthDate = DateTime(1977, 5, 17)
         let replacedBirthDate = replaceWithoutCulture birthDateRegex birthDate "#{BirthDate('ddMMyy')}"
 
-        Assert.AreEqual("170577", replacedBirthDate)
+        Assert.AreEqual(birthDate.ToString("ddMMyy"), replacedBirthDate)
 
     [<TestMethod>]
     member __.``replace #{BirthDate('yyyy-MM-dd')} in a string with the birthdate in yyyy-MM-dd format`` () =
         let birthDate = DateTime(1965, 3, 21)
         let replacedBirthDate = replaceWithoutCulture birthDateRegex birthDate "#{BirthDate('yyyy-MM-dd')}"
 
-        Assert.AreEqual("1965-03-21", replacedBirthDate)
+        Assert.AreEqual(birthDate.ToString("yyyy-MM-dd"), replacedBirthDate)
 
 [<TestClass>]
 type ``replaceWithCulture should`` () =
@@ -34,14 +35,14 @@ type ``replaceWithCulture should`` () =
         let birthDate = DateTime(1977, 5, 17)
         let replacedBirthDate = replaceWithCulture birthDateWithCultureRegex birthDate "#{BirthDate('MMM', 'da-DK')}"
 
-        Assert.AreEqual("maj", replacedBirthDate)
+        Assert.AreEqual(birthDate.ToString("MMM", CultureInfo.CreateSpecificCulture("da-DK")), replacedBirthDate)
 
     [<TestMethod>]
     member __.``replace #{BirthDate('MMM, ddd')} in a string with the birthdate in Danish MMM, ddd format`` () =
         let birthDate = DateTime(1965, 2, 21)
         let replacedBirthDate = replaceWithCulture birthDateWithCultureRegex birthDate "#{BirthDate('MMM, ddd', 'da-DK')}"
 
-        Assert.AreEqual("feb, sø", replacedBirthDate)
+        Assert.AreEqual(birthDate.ToString("MMM, ddd", CultureInfo.CreateSpecificCulture("da-DK")), replacedBirthDate)
 
 [<TestClass>]
 type ``performSpecialBirthDateReplaces should`` () =
@@ -57,7 +58,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("110397", birthDatePart)
+        Assert.AreEqual(birthDate.ToString("ddMMyy"), birthDatePart)
 
     [<TestMethod>]
     member __.``find and replace #{BirthDate('MMMM dd yyyy')} in a string with the birthdate on MMMM dd yyyy format`` () =
@@ -70,7 +71,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDatePart = returnString.Split(',').[0].Split(':').[1].Trim()
 
         Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("December 01 1987", birthDatePart)
+        Assert.AreEqual(birthDate.ToString("MMMM dd yyyy"), birthDatePart)
 
     [<TestMethod>]
     member __.``find and replace #{BirthDate('MM-dd-yy')} in a string with the birthdate on MM-dd-yy format`` () =
@@ -83,7 +84,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("07-23-52", birthDatePart)
+        Assert.AreEqual(birthDate.ToString("MM-dd-yy"), birthDatePart)
 
     [<TestMethod>]
     member __.``find and replace #{BirthDate('dd-MMMM-yyyy', 'fi-FI')} in a string with the birthdate on Finnish dd-MMMM-yyyy format`` () =
@@ -96,4 +97,4 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Birthdate: ", firstPart)
-        Assert.AreEqual("11-tammikuuta-1947", birthDatePart)
+        Assert.AreEqual(birthDate.ToString("dd-MMMM-yyyy", CultureInfo.CreateSpecificCulture("fi-FI")), birthDatePart)

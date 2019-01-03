@@ -19,6 +19,9 @@ type IRandomPerson =
     abstract member CreatePeople: int * Country * RandomPersonOptions -> Person seq
     abstract member CreatePeopleTemplated: int * Country * string -> string seq
     abstract member CreatePeopleTemplated: int * Country * string * RandomPersonOptions -> string seq
+
+/// <summary>Interface for ValidatePerson for use with C#.</summary>
+type IValidatePerson =
     abstract member ValidateSSN: Country * string -> bool
 
 /// <summary>A service class for generating random persons or validating SSNs.</summary>
@@ -82,21 +85,6 @@ type RandomPerson() =
     member __.CreatePeopleTemplated (amount: int, country: Country, outputString: string, options: RandomPersonOptions) =
         let random = getRandom options.Randomness.ManualSeed options.Randomness.Seed
         [ 1 .. amount ] |> List.map (fun _ -> createPerson(country, options, random)) |> List.map (printForTemplateMode outputString)
-        
-    /// <summary>Validate an SSN for a given country.</summary>
-    /// <param name="country">The country of the person to validate SSN for.</param>
-    /// <param name="ssn">The SSN to validate.</param>
-    /// <returns>true if valid SSN, false otherwise.</returns>
-    member __.ValidateSSN (country: Country, ssn: string) =
-        match country with
-        | Country.Denmark     -> validateDK ssn
-        | Country.Finland     -> validateFI ssn
-        | Country.Iceland     -> validateIC ssn
-        | Country.Netherlands -> validateNL ssn
-        | Country.Norway      -> validateNO ssn
-        | Country.Sweden      -> validateSE ssn
-        | Country.USA         -> validateUS ssn
-        | _ -> invalidArg "country" "Illegal country."
 
     interface IRandomPerson with
         
@@ -144,6 +132,25 @@ type RandomPerson() =
         /// <returns>An IEnumerable of strings containing random data.</returns>
         member this.CreatePeopleTemplated (amount: int, country: Country, outputString: string, options: RandomPersonOptions) =
             this.CreatePeopleTemplated (amount, country, outputString, options) |> List.toSeq
+
+/// <summary>A service class for validating SSNs.</summary>
+type ValidatePerson() =
+    /// <summary>Validate an SSN for a given country.</summary>
+    /// <param name="country">The country of the person to validate SSN for.</param>
+    /// <param name="ssn">The SSN to validate.</param>
+    /// <returns>true if valid SSN, false otherwise.</returns>
+    member __.ValidateSSN (country: Country, ssn: string) =
+        match country with
+        | Country.Denmark     -> validateDK ssn
+        | Country.Finland     -> validateFI ssn
+        | Country.Iceland     -> validateIC ssn
+        | Country.Netherlands -> validateNL ssn
+        | Country.Norway      -> validateNO ssn
+        | Country.Sweden      -> validateSE ssn
+        | Country.USA         -> validateUS ssn
+        | _ -> invalidArg "country" "Illegal country."
+
+    interface IValidatePerson with
 
         /// <summary>Validate an SSN for a given country.</summary>
         /// <param name="country">The country of the person to validate SSN for.</param>

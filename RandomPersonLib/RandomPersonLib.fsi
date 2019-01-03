@@ -8,6 +8,9 @@ type IRandomPerson =
     abstract member CreatePeople: int * Country * RandomPersonOptions -> Person seq
     abstract member CreatePeopleTemplated: int * Country * string -> string seq
     abstract member CreatePeopleTemplated: int * Country * string * RandomPersonOptions -> string seq
+
+[<Interface>]
+type IValidatePerson =
     abstract member ValidateSSN: Country * string -> bool
 
 type RandomPerson =
@@ -18,6 +21,11 @@ type RandomPerson =
     member CreatePeople: int * Country * RandomPersonOptions -> Person list
     member CreatePeopleTemplated: int * Country * string -> string list
     member CreatePeopleTemplated: int * Country * string * RandomPersonOptions -> string list
-    member ValidateSSN: Country * string -> bool
 
     interface IRandomPerson
+
+type ValidatePerson =
+    new : unit -> ValidatePerson
+    member ValidateSSN: Country * string -> bool
+
+    interface IValidatePerson
