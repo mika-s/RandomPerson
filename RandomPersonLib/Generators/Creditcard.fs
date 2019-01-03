@@ -2,6 +2,7 @@
 
 open System
 open Util
+open ChecksumAlgorithms
 
 type CardIssuer = VISA | MasterCard
 
@@ -16,32 +17,10 @@ let generatePAN (random: Random) (removeHyphenFromPAN: bool) =
 
     let generateIndividualNumbers (amount: int) = generateRandomNumberString random amount 0 10
 
-    let sumTheDigits (product: int) =
-        let productAsString = sprintf "%d" product
-
-        intFromChar productAsString.[0] + intFromChar productAsString.[1]
-
-    let luhn (w: int) (nAsChar: char) =
-        let n = intFromChar nAsChar
-        let product = n * w
-
-        match product with
-        | p when p >= 10 -> sumTheDigits product
-        | _              -> product
-
     let generateChecksum (bin: string) (individualNumbers: string) =
-        let weight = [| 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2 |];
-        let numbers = (bin + individualNumbers).ToCharArray ()
-
-        let mapped = Array.map2(luhn) weight numbers
-        let sum = mapped |> Array.sum |> sprintf "%d"
-        let lastDigit = intFromChar sum.[sum.Length - 1]
-        let tenMinusLastDigit = 10 - lastDigit
-        let tenMinusLastDigitAsStr = sprintf "%d" tenMinusLastDigit
-        let lastDigitOfDifference = tenMinusLastDigitAsStr.[tenMinusLastDigitAsStr.Length - 1]
-        let cs = intFromChar lastDigitOfDifference
-
-        sprintf "%d" cs
+        let numbers = bin + individualNumbers
+        let weights = [| 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2 |];
+        luhn numbers weights
 
     let bin = generateBIN random MasterCard
     let individualNumbers = generateIndividualNumbers 9

@@ -17,6 +17,7 @@
   <ItemGroup>
     <Compile Include="Util\Enums.fs" />
     <Compile Include="Util\Util.fs" />
+    <Compile Include="Util\ChecksumAlgorithms.fs" />
 
     <Content Include="data\Generic\passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

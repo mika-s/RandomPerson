@@ -28,6 +28,7 @@
 
 open System
 open RandomPersonLib
+open ChecksumAlgorithms
 open Util
 
 let getIndividualNumber (random: Random) = random.Next(000, 999)
@@ -58,26 +59,9 @@ let generateIndividualNumber (random: Random) (gender: Gender) =
     | Gender.Female -> (getIndividualNumberFemale random).ToString("D3")
     | _ -> invalidArg "gender" "Illegal gender."
 
-let sumTheDigits (product: int) =
-    let productAsString = sprintf "%d" product
-
-    intFromChar productAsString.[0] + intFromChar productAsString.[1]
-
-let luhn (w: int) (n: int) =
-    let product = n * w
-
-    match product with
-    | p when p >= 10 -> sumTheDigits product
-    | _              -> product
-
-let generateChecksum (numbersStr: string) =
-    let weight = [| 2; 1; 2; 1; 2; 1; 2; 1; 2 |]
-    let numbers = intArrayFromString numbersStr
-
-    let sum = (weight, numbers) ||> Array.map2 luhn |> Array.sum |> sprintf "%d"
-    let tenMinusLastDigit = 10 - intFromChar sum.[sum.Length - 1] |> sprintf "%d"
-
-    string(tenMinusLastDigit.[tenMinusLastDigit.Length - 1])
+let generateChecksum (numbers: string) =
+    let weights = [| 2; 1; 2; 1; 2; 1; 2; 1; 2 |]
+    luhn numbers weights
 
 let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
 
