@@ -54,6 +54,18 @@ type PersonSerializable = {
     [<JsonProperty("HomePhone")>]
     HomePhone : string
 
+    [<JsonProperty("PIN")>]
+    PIN : string
+
+    [<JsonProperty("PAN")>]
+    PAN : string
+
+    [<JsonProperty("Expiry")>]
+    Expiry : string
+
+    [<JsonProperty("CVV")>]
+    CVV : string
+
     [<JsonProperty("CountryNameEnglish")>]
     CountryNameEnglish : string
 
@@ -96,6 +108,10 @@ let createPersonSerializable (person: Person) =
         Password = person.Password;
         MobilePhone = person.MobilePhone;
         HomePhone = person.HomePhone;
+        PIN = person.PIN;
+        PAN = person.PAN;
+        Expiry = person.Expiry;
+        CVV = person.CVV;
         CountryNameEnglish = person.CountryNameEnglish;
         CountryNameNative = person.CountryNameNative;
         CountryNameNativeAlternative1 = person.CountryNameNativeAlternative1;

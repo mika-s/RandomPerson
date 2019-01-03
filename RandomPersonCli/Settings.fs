@@ -54,6 +54,18 @@ type GenericPrintSettings = {
 
     [<field : DataMember(Name="HomePhone")>]
     HomePhone : bool
+
+    [<field : DataMember(Name="PIN")>]
+    PIN : bool
+
+    [<field : DataMember(Name="PAN")>]
+    PAN : bool
+
+    [<field : DataMember(Name="Expiry")>]
+    Expiry : bool
+
+    [<field : DataMember(Name="CVV")>]
+    CVV : bool
     
     [<field : DataMember(Name="CountryNameEnglish")>]
     CountryNameEnglish : bool
@@ -111,7 +123,7 @@ type TemplatePrintSettings = {
 }
 
 [<DataContract;NoEquality;NoComparison>]
-type birthDateOptionsSettings = {
+type BirthDateOptionsSettings = {
     [<field : DataMember(Name="SetYearRangeManually")>]
     SetYearRangeManually : Nullable<bool>
 
@@ -154,8 +166,11 @@ type GenericOptionsSettings = {
     [<field : DataMember(Name="RemoveHyphenFromSSN")>]
     RemoveHyphenFromSSN : Nullable<bool>
 
+    [<field : DataMember(Name="RemoveHyphenFromPAN")>]
+    RemoveHyphenFromPAN : Nullable<bool>
+
     [<field : DataMember(Name="BirthDate")>]
-    BirthDate : birthDateOptionsSettings
+    BirthDate : BirthDateOptionsSettings
 
     [<field : DataMember(Name="Randomness")>]
     Randomness : RandomnessOptionsSettings
@@ -213,6 +228,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultRemoveHyphenFromPhoneNumber = false
     let defaultRemoveSpaceFromPhoneNumber  = false
     let defaultRemoveHyphenFromSSN = false
+    let defaultRemoveHyphenFromPAN = false
     let defaultSetYearRangeManually = false
     let defaultSetUsingAge = false
     let defaultBirthDateLow = 1920
@@ -226,6 +242,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalRemoveHyphenFromPhoneNumber = nullCoalesce genericOptions.RemoveHyphenFromPhoneNumber    defaultRemoveHyphenFromPhoneNumber
     let finalRemoveSpaceFromPhoneNumber  = nullCoalesce genericOptions.RemoveSpaceFromPhoneNumber     defaultRemoveSpaceFromPhoneNumber
     let finalRemoveHyphenFromSSN         = nullCoalesce genericOptions.RemoveHyphenFromSSN            defaultRemoveHyphenFromSSN
+    let finalRemoveHyphenFromPAN         = nullCoalesce genericOptions.RemoveHyphenFromPAN            defaultRemoveHyphenFromPAN
     let finalSetYearRangeManually        = nullCoalesce genericOptions.BirthDate.SetYearRangeManually defaultSetYearRangeManually
     let finalSetUsingAge                 = nullCoalesce genericOptions.BirthDate.SetUsingAge          defaultSetUsingAge
     let finalBirthDateLow                = nullCoalesce genericOptions.BirthDate.Low                  defaultBirthDateLow
@@ -240,7 +257,8 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
             finalAddCountryCodeToPhoneNumber,
             finalRemoveHyphenFromPhoneNumber,
             finalRemoveSpaceFromPhoneNumber,
-            finalRemoveHyphenFromSSN
+            finalRemoveHyphenFromSSN,
+            finalRemoveHyphenFromPAN
         )
 
     randomPersonOptions.BirthDate  <- BirthDateOptions(finalSetYearRangeManually, finalSetUsingAge, finalBirthDateLow, finalBirthDateHigh)

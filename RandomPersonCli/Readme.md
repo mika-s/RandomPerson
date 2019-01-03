@@ -5,7 +5,7 @@
 RandomPersonCli is a CLI tool that uses RandomPersonLib.
 It generates random persons for a given country.
 
-It can also validate SSNs.
+It can also validate SSNs and credit card PANs.
 
 ## Usage
 

@@ -3,6 +3,7 @@
 open System
 open SSN
 open Address
+open Creditcard
 open PostalCodeCityStatesGen
 open Name
 open Email
@@ -50,6 +51,10 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
                             options.AddCountryCodeToPhoneNumber
                             options.RemoveHyphenFromPhoneNumber
                             options.RemoveSpaceFromPhoneNumber
+    let pin = generatePIN random 4
+    let pan = generatePAN random options.RemoveHyphenFromPAN
+    let expiry = generateExpiry random 4
+    let cvv = generateCVV ()
     let countryNameEnglish = countryFiles.generalData.Misc.CountryNameEnglish
     let countryNameNative = countryFiles.generalData.Misc.CountryNameNative
     let countryNameNativeAlternative1 = if countryFiles.generalData.Misc.CountryNameNativeAlternative1 <> null then
@@ -76,6 +81,10 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     member __.Password = password
     member __.MobilePhone = mobilePhone
     member __.HomePhone = homePhone
+    member __.PIN = pin
+    member __.PAN = pan
+    member __.Expiry = expiry
+    member __.CVV = cvv
     member __.CountryNameEnglish = countryNameEnglish
     member __.CountryNameNative = countryNameNative
     member __.CountryNameNativeAlternative1 = countryNameNativeAlternative1

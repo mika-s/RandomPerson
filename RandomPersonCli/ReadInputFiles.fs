@@ -8,7 +8,7 @@ type InputFiles = {
     settings: Settings;
 }
 
-let assertDates (bdo: birthDateOptionsSettings) =
+let assertDates (bdo: BirthDateOptionsSettings) =
     match bdo.SetYearRangeManually.HasValue && bdo.SetYearRangeManually.Value, bdo.SetUsingAge.HasValue && bdo.SetUsingAge.Value with
     | (true, true) ->
         match bdo.Low.Value, bdo.High.Value with

@@ -45,6 +45,10 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
             "Gender", box person.Gender;
             "MobilePhone", box person.MobilePhone;
             "HomePhone", box person.HomePhone;
+            "PIN", box person.PIN;
+            "PAN", box person.PAN;
+            "Expiry", box person.Expiry;
+            "CVV", box person.CVV;
             "CountryNameEnglish", box person.CountryNameEnglish;
             "CountryNameNative", box person.CountryNameNative;
             "CountryNameNativeAlt1", box person.CountryNameNativeAlternative1;

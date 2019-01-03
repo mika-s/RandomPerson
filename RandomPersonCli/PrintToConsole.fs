@@ -21,6 +21,10 @@ let isPrintingMoreThanOneLine (print: GenericPrintSettings) =
     + b2i print.Password
     + b2i print.MobilePhone
     + b2i print.HomePhone
+    + b2i print.PIN
+    + b2i print.PAN
+    + b2i print.Expiry
+    + b2i print.CVV
     + b2i print.CountryNameEnglish
     + b2i print.CountryNameNative
     + b2i print.CountryNameNativeAlternative1
@@ -56,6 +60,10 @@ let printPerson (print: GenericPrintSettings) (person: Person) =
     printToScreen print.Password                       print.Label "Password"      person.Password
     printToScreen print.MobilePhone                    print.Label "Mobile phone"  person.MobilePhone
     printToScreen print.HomePhone                      print.Label "Home phone"    person.HomePhone
+    printToScreen print.PIN                            print.Label "PIN"           person.PIN
+    printToScreen print.PAN                            print.Label "PAN"           person.PAN
+    printToScreen print.Expiry                         print.Label "Expiry"        person.Expiry
+    printToScreen print.CVV                            print.Label "CVV"           person.CVV
     printToScreen print.CountryNameEnglish             print.Label "Country"       person.CountryNameEnglish
     printToScreen print.CountryNameNative              print.Label "Country"       person.CountryNameNative
     printToScreen print.CountryNameNativeAlternative1  print.Label "Country"       person.CountryNameNativeAlternative1

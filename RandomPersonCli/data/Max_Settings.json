@@ -7,6 +7,7 @@
         "RemoveHyphenFromPhoneNumber": true,
         "RemoveSpaceFromPhoneNumber": true,
         "RemoveHyphenFromSSN": true,
+		"RemoveHyphenFromPAN": true,
         "BirthDate": {
           "SetYearRangeManually": true,
           "SetUsingAge": false,
@@ -35,6 +36,10 @@
         "Password": true,
         "MobilePhone": true,
         "HomePhone": true,
+        "PIN": true,
+        "PAN": true,
+        "Expiry": true,
+        "CVV": true,
         "CountryNameEnglish": true,
         "CountryNameNative": true,
         "CountryNameNativeAlternative1": true,
@@ -53,6 +58,7 @@
         "RemoveHyphenFromPhoneNumber": true,
         "RemoveSpaceFromPhoneNumber": true,
         "RemoveHyphenFromSSN": true,
+		"RemoveHyphenFromPAN": true,
         "BirthDate": {
           "SetYearRangeManually": true,
           "SetUsingAge": false,
@@ -90,6 +96,10 @@
         "Password": true,
         "MobilePhone": true,
         "HomePhone": true,
+        "PIN": true,
+        "PAN": true,
+        "Expiry": true,
+        "CVV": true,
         "CountryNameEnglish": true,
         "CountryNameNative": true,
         "CountryNameNativeAlternative1": true,
@@ -116,6 +126,10 @@
         "Password": true,
         "MobilePhone": true,
         "HomePhone": true,
+        "PIN": true,
+        "PAN": true,
+        "Expiry": true,
+        "CVV": true,
         "CountryNameEnglish": true,
         "CountryNameNative": true,
         "CountryNameNativeAlternative1": true,
@@ -134,6 +148,7 @@
         "RemoveHyphenFromPhoneNumber": false,
         "RemoveSpaceFromPhoneNumber": false,
         "RemoveHyphenFromSSN": true,
+		"RemoveHyphenFromPAN": false,
         "BirthDate": {
           "SetYearRangeManually": true,
           "SetUsingAge": false,
@@ -168,6 +183,10 @@ Email:                     #{Email}
 Password:                  #{Password}
 MobilePhone:               #{MobilePhone}
 HomePhone:                 #{HomePhone}
+PIN:                       #{PIN}
+PAN:                       #{PAN}
+Expiry:                    #{Expiry}
+CVV:                       #{CVV}
 Country (English):         #{CountryNameEnglish}
 Country (native language): #{CountryNameNative}
 Country (native language, alternative 1): #{CountryNameNativeAlt1}

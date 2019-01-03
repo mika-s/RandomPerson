@@ -33,6 +33,10 @@ let personToString (printSettings: GenericPrintSettings) (printOptions: PrintOpt
     if printSettings.Password                      then bprintf sb "%s" (person.Password + ",")                      |> ignore
     if printSettings.MobilePhone                   then bprintf sb "%s" (person.MobilePhone + ",")                   |> ignore
     if printSettings.HomePhone                     then bprintf sb "%s" (person.HomePhone + ",")                     |> ignore
+    if printSettings.PIN                           then bprintf sb "%s" (person.PIN + ",")                           |> ignore
+    if printSettings.PAN                           then bprintf sb "%s" (person.PAN + ",")                           |> ignore
+    if printSettings.Expiry                        then bprintf sb "%s" (person.Expiry + ",")                        |> ignore
+    if printSettings.CVV                           then bprintf sb "%s" (person.CVV + ",")                           |> ignore
     if printSettings.CountryNameEnglish            then bprintf sb "%s" (person.CountryNameEnglish + ",")            |> ignore
     if printSettings.CountryNameNative             then bprintf sb "%s" (person.CountryNameNative + ",")             |> ignore
     if printSettings.CountryNameNativeAlternative1 then bprintf sb "%s" (person.CountryNameNativeAlternative1 + ",") |> ignore
@@ -63,6 +67,10 @@ let createHeader (printSettings: GenericPrintSettings) =
     if printSettings.Password                      then bprintf sb "%s" ("Password,")                      |> ignore
     if printSettings.MobilePhone                   then bprintf sb "%s" ("MobilePhone,")                   |> ignore
     if printSettings.HomePhone                     then bprintf sb "%s" ("HomePhone,")                     |> ignore
+    if printSettings.PIN                           then bprintf sb "%s" ("PIN,")                           |> ignore
+    if printSettings.PAN                           then bprintf sb "%s" ("PAN,")                           |> ignore
+    if printSettings.Expiry                        then bprintf sb "%s" ("Expiry,")                        |> ignore
+    if printSettings.CVV                           then bprintf sb "%s" ("CVV,")                           |> ignore
     if printSettings.CountryNameEnglish            then bprintf sb "%s" ("CountryNameEnglish,")            |> ignore
     if printSettings.CountryNameNative             then bprintf sb "%s" ("CountryNameNative,")             |> ignore
     if printSettings.CountryNameNativeAlternative1 then bprintf sb "%s" ("CountryNameNativeAlternative1,") |> ignore

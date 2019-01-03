@@ -27,7 +27,7 @@ type IValidatePerson =
 /// <summary>A service class for generating random persons or validating SSNs.</summary>
 type RandomPerson() =
     let i = readInputFiles ()
-    let defaultOptions = RandomPersonOptions(false, false, false, false, false, false)
+    let defaultOptions = RandomPersonOptions(false, false, false, false, false, false, false)
 
     let createPerson (country: Country, options: RandomPersonOptions, random: Random) =
         match country with

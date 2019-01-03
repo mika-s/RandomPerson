@@ -112,6 +112,7 @@
     <Compile Include="SSNs\USA\Validation.fs" />
     <Compile Include="PostalCodeAndCity.fs" />
     <Compile Include="RandomPersonOptions.fs" />
+    <Compile Include="Generators\Creditcard.fs" />
     <Compile Include="Generators\Password.fs" />
     <Compile Include="Generators\Phone.fs" />
     <Compile Include="Generators\PostalCodeCityState.fs" />

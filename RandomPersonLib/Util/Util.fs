@@ -5,13 +5,16 @@ open System.IO
 open System.Runtime.Serialization.Json
 open System.Text
 
+let randomForUtil = Random()
+
 let modulus (x: int) (y: int) = y % x
 let isOdd  (x: int) = x % 2 <> 0
 let isEven (x: int) = x % 2 =  0
 let intFromChar (x: char) = x |> Char.GetNumericValue |> int
 let intArrayFromString (numbersStr: string) = numbersStr |> Seq.toArray |> Array.map intFromChar
 let stringAsChar (str: string) = str.[0]
-let substring (startIndex: int) (length: int) (str: string) = str.Substring(startIndex, length)
+let substring (startIndex: int) (length: int)   (str: string) = str.Substring(startIndex, length)
+let insert    (startIndex: int) (value: string) (str: string) = str.Insert(startIndex, value)
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
 let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 
@@ -31,12 +34,10 @@ let firstUppercaseRestLowercase (str: string) =
     if str.Length = 0 then str
     else uppercase str.[0..0] + lowercase str.[ 1 .. str.Length - 1 ]
 
-let randomForTemplateMode = Random()
-
-let randomIntBetween (min: int) (max: int) = randomForTemplateMode.Next(min, max + 1)
+let randomIntBetween (min: int) (max: int) = randomForUtil.Next(min, max + 1)
 let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetween 0 ((max - min) / step)) * step + min
 
-let randomFloatBetween (min: float) (max: float) = randomForTemplateMode.NextDouble() * (max - min) + min
+let randomFloatBetween (min: float) (max: float) = randomForUtil.NextDouble() * (max - min) + min
 let randomFloatBetweenWithStep (min: float) (step: float) (max: float) = (float (randomIntBetween 0 (int ((max - min) / step))))  * step + min
 
 let generateRandomNumberString (random: Random) (amount: int) (min: int) (max: int) =
@@ -48,8 +49,8 @@ let randomUppercaseLetter (random: Random) =
     alphabet.[randomNumber]
 
 let boxMullerTransform () =
-    let u1 = randomForTemplateMode.NextDouble()
-    let u2 = randomForTemplateMode.NextDouble()
+    let u1 = randomForUtil.NextDouble()
+    let u2 = randomForUtil.NextDouble()
     let z0 = sqrt(-2.0 * log u1) * cos(2.0 * Math.PI * u2)
     let z1 = sqrt(-2.0 * log u1) * sin(2.0 * Math.PI * u2)
 

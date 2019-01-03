@@ -26,19 +26,20 @@ type RandomPersonOptions (
                           addCountryCodeToPhoneNumber: bool,
                           removeHyphenFromPhoneNumber: bool,
                           removeSpaceFromPhoneNumber: bool,
-                          removeHyphenFromSSN: bool
+                          removeHyphenFromSSN: bool,
+                          removeHyphenFromPAN: bool
                          ) =
 
     let birthDate  = BirthDateOptions()
     let randomness = RandomnessOptions()
 
-    new () = RandomPersonOptions(false, false, false, false, false, false)
+    new () = RandomPersonOptions(false, false, false, false, false, false, false)
 
     new (anonymizeSSN: bool)
-        = RandomPersonOptions(anonymizeSSN, false, false, false, false, false)
+        = RandomPersonOptions(anonymizeSSN, false, false, false, false, false, false)
 
     new (anonymizeSSN: bool, under18: bool)
-        = RandomPersonOptions(anonymizeSSN, under18, false, false, false, false)
+        = RandomPersonOptions(anonymizeSSN, under18, false, false, false, false, false)
 
     member val AnonymizeSSN = anonymizeSSN with get, set
     member val Under18 = under18 with get, set
@@ -46,5 +47,6 @@ type RandomPersonOptions (
     member val RemoveHyphenFromPhoneNumber = removeHyphenFromPhoneNumber with get, set
     member val RemoveSpaceFromPhoneNumber = removeSpaceFromPhoneNumber with get, set
     member val RemoveHyphenFromSSN = removeHyphenFromSSN with get, set
+    member val RemoveHyphenFromPAN = removeHyphenFromPAN with get, set
     member val BirthDate = birthDate with get, set
     member val Randomness = randomness with get, set

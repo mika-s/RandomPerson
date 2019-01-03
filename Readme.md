@@ -35,6 +35,7 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 * Password
 * Mobile phone
 * Home phone
+* Credit card details (PAN, PIN, expiry and CVV)
 * Country names, codes, number.
 * TLD
 

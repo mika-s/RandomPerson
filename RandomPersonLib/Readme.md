@@ -20,6 +20,7 @@ It can create people with the following generated data:
 - Password
 - Mobile phone
 - Home phone
+- Credit card details (PAN, PIN, expiry and CVV)
 - Country names, codes and number
 - TLD
 
@@ -36,7 +37,8 @@ for the following countries:
 The data is generated using real-life data from the mentioned countries.
 The SSNs that are generated are also real, unless specified to be false.
 
-The library can also validate SSNs for the countries listed above.
+The library can validate SSNs for the countries listed above and credit
+card numbers.
 
 ## How to use RandomPersonLib
 
@@ -82,9 +84,9 @@ Console.WriteLine(person.MobilePhone);
 Validate an SSN for a Swedish person.
 
 ```cs
-IRandomPerson randomPerson = new RandomPerson();
+IValidatePerson validatePerson = new ValidatePerson();
 
-bool isLegalSSN = randomPerson.ValidateSSN(Country.Sweden, "950204-12345");
+bool isLegalSSN = validatePerson.ValidateSSN(Country.Sweden, "950204-12345");
 
 Console.WriteLine(isLegalSSN);
 ```
