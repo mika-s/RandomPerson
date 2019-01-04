@@ -22,25 +22,24 @@ let main argv =
         let options = parseArgs args defaultOptions
 
         match options.mode with
-        | Mode.Interactive -> interactiveMode
-                                  options.settingsFilePath
-        | Mode.List        -> listMode
-                                  options.settingsFilePath
-                                  options.amount
-                                  options.country
-                                  options.outputType
-                                  options.fileFormat
-                                  options.outputFilePath
-        | Mode.Template    -> templateMode
-                                  options.settingsFilePath
-                                  options.amount
-                                  options.country
-        | Mode.ValidatePAN  -> validatePANMode
-                                  options.pan
-        | Mode.ValidateSSN  -> validateSSNMode
-                                  options.ssn
-                                  options.country
-        | _ -> invalidArg "options.mode" "That mode does not exist."
+        | Interactive -> interactiveMode
+                            options.settingsFilePath
+        | List        -> listMode
+                            options.settingsFilePath
+                            options.amount
+                            options.country
+                            options.outputType
+                            options.fileFormat
+                            options.outputFilePath
+        | Template    -> templateMode
+                            options.settingsFilePath
+                            options.amount
+                            options.country
+        | ValidatePAN  -> validatePANMode
+                            options.pan
+        | ValidateSSN  -> validateSSNMode
+                            options.ssn
+                            options.country
     
         0
     with

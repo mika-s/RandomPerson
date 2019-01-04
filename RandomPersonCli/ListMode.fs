@@ -13,16 +13,15 @@ let listMode (settingsFilePath: string) (amount: int) (country: Country) (output
     let options = genericOptionsToRandomPersonOptions i.settings.ListMode.Options
 
     match outputType with
-    | OutputType.Console -> lib.CreatePeople(amount, country, options)
-                            |> printToConsole i
-    | OutputType.File    -> lib.CreatePeople(amount, country, options)
-                            |> List.toArray
-                            |> printToFile fileFormat outputFilePath i.settings.ListMode
-    | OutputType.ConsoleAndFile ->
-                            let people = lib.CreatePeople(amount, country, options)
-                            printToConsole i people
+    | Console -> lib.CreatePeople(amount, country, options)
+                 |> printToConsole i
+    | File    -> lib.CreatePeople(amount, country, options)
+                 |> List.toArray
+                 |> printToFile fileFormat outputFilePath i.settings.ListMode
+    | ConsoleAndFile ->
+        let people = lib.CreatePeople(amount, country, options)
+        printToConsole i people
 
-                            people
-                            |> List.toArray
-                            |> printToFile fileFormat outputFilePath i.settings.ListMode
-    | _ -> invalidArg "outputType" "Illegal output type."
+        people
+        |> List.toArray
+        |> printToFile fileFormat outputFilePath i.settings.ListMode

@@ -2,7 +2,7 @@
 
 open System
 open RandomPersonLib
-open Util
+open StringUtil
 
 let ordinaryReplacer (valueBoxed: obj) =
     match valueBoxed.GetType() with

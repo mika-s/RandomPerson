@@ -2,6 +2,9 @@
 
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open Util
+open MathUtil
+open RandomUtil
+open StringUtil
 
 [<TestClass>]
 type ``isOdd should`` () =

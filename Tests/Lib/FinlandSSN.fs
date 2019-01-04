@@ -5,6 +5,7 @@ open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
+open MathUtil
 open FinlandSSNParameters
 open FinlandSSNGeneration
 

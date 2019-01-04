@@ -4,6 +4,7 @@ open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
+open MathUtil
 open SwedenSSNGeneration
 
 [<TestClass>]

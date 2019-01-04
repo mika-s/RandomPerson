@@ -1,11 +1,11 @@
 ﻿module internal ValidatePAN
 
-open Util
+open StringUtil
 open Creditcard
 open System.Text.RegularExpressions
 
 let validatePAN (rawPan: string) =
-    let pan = rawPan |> trim |> removeChars "-" |> removeChars " "
+    let pan = rawPan |> trim |> removeChar "-" |> removeChar " "
 
     let panRegex = Regex "^\d{16}$"
     let regexMatch = panRegex.Match pan

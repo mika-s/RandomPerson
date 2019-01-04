@@ -3,7 +3,7 @@
 open System
 open RandomPersonLib
 open PostalCodeCityState
-open Util
+open RandomUtil
 
 let stringToPostalCodeCityState (country: Country) (line: string)   =
     let split = line.Split '\t'

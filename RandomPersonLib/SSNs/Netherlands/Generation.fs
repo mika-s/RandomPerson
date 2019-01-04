@@ -15,6 +15,8 @@
 
 open System
 open Util
+open MathUtil
+open RandomUtil
 
 let generateIndividualNumber (random: Random) = generateRandomNumberString random 8 0 10
 

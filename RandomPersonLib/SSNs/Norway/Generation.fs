@@ -17,6 +17,7 @@ open System
 open RandomPersonLib
 open NorwaySSNParameters
 open Util
+open MathUtil
 
 let getIndividualNumber (random: Random) (year: int) =
     match () with

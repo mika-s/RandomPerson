@@ -30,6 +30,7 @@ open System
 open RandomPersonLib
 open ChecksumAlgorithms
 open Util
+open MathUtil
 
 let getIndividualNumber (random: Random) = random.Next(000, 999)
 

@@ -18,11 +18,11 @@ type Options = {
 }
 
 let defaultOptions = {
-    mode = Mode.Interactive
+    mode = Interactive
     amount = 10
     country = Country.Norway
-    outputType = OutputType.Console
-    fileFormat = FileFormat.CSV
+    outputType = Console
+    fileFormat = CSV
     outputFilePath = "output.?"
     settingsFilePath = "data/Settings.json"
     ssn = String.Empty
@@ -99,41 +99,41 @@ let rec parseArgs (args: list<string>) (options: Options) =
     | "-m"::xs | "--mode"::xs ->
         match xs with
         | "I"::xss ->
-            let newOptions = { options with mode = Mode.Interactive }
+            let newOptions = { options with mode = Interactive }
             parseArgs xss newOptions
         | "L"::xss ->
-            let newOptions = { options with mode = Mode.List }
+            let newOptions = { options with mode = List }
             parseArgs xss newOptions
         | "T"::xss ->
-            let newOptions = { options with mode = Mode.Template }
+            let newOptions = { options with mode = Template }
             parseArgs xss newOptions
         | "VS"::xss ->
             match xss.Length with
             | length when 0 < length ->
                 match xss with
                 | (CmdLineArgument _)::_ ->
-                    let newOptions = { options with mode = Mode.ValidateSSN }
+                    let newOptions = { options with mode = ValidateSSN }
                     parseArgs xss newOptions
                 | _ ->
-                    let newOptions = { options with mode = Mode.ValidateSSN; ssn = xss.[0] }
+                    let newOptions = { options with mode = ValidateSSN; ssn = xss.[0] }
                     let xsss = List.skip 1 xss
                     parseArgs xsss newOptions
             | _ ->
-                let newOptions = { options with mode = Mode.ValidateSSN }
+                let newOptions = { options with mode = ValidateSSN }
                 parseArgs xss newOptions
         | "VP"::xss ->
             match xss.Length with
             | length when 0 < length ->
                 match xss with
                 | (CmdLineArgument _)::_ ->
-                    let newOptions = { options with mode = Mode.ValidatePAN }
+                    let newOptions = { options with mode = ValidatePAN }
                     parseArgs xss newOptions
                 | _ ->
-                    let newOptions = { options with mode = Mode.ValidatePAN; pan = xss.[0] }
+                    let newOptions = { options with mode = ValidatePAN; pan = xss.[0] }
                     let xsss = List.skip 1 xss
                     parseArgs xsss newOptions
             | _ ->
-                let newOptions = { options with mode = Mode.ValidatePAN }
+                let newOptions = { options with mode = ValidatePAN }
                 parseArgs xss newOptions
         | _ ->
             eprintf "-m flag needs either I (interactive mode), L (list mode), T (template mode), VP (validate PAN mode) or VS (validate SSN mode)\n"
@@ -173,22 +173,22 @@ let rec parseArgs (args: list<string>) (options: Options) =
     | "-f"::xs | "--filetype"::xs ->
         match xs with
         | "CSV"::xss ->
-            let newOptions = { options with outputType = OutputType.File; fileFormat = FileFormat.CSV }
+            let newOptions = { options with outputType = File; fileFormat = CSV }
             parseArgs xss newOptions
         | "JSON"::xss ->
-            let newOptions = { options with outputType = OutputType.File; fileFormat = FileFormat.JSON }
+            let newOptions = { options with outputType = File; fileFormat = JSON }
             parseArgs xss newOptions
         | "XML"::xss ->
-            let newOptions = { options with outputType = OutputType.File; fileFormat = FileFormat.XML }
+            let newOptions = { options with outputType = File; fileFormat = XML }
             parseArgs xss newOptions
         | _ -> invalidArg "-f flag" "needs either CSV, JSON or XML after it\n"
     | "--caf"::xs ->
         match xs with
         | "true"::xss ->
-            let newOptions = { options with outputType = OutputType.ConsoleAndFile  }
+            let newOptions = { options with outputType = ConsoleAndFile  }
             parseArgs xss newOptions
         | "false"::xss ->
-            let newOptions = { options with outputType = OutputType.ConsoleAndFile }
+            let newOptions = { options with outputType = ConsoleAndFile }
             parseArgs xss newOptions
         | _ -> invalidArg "--caf flag" "needs either true or false after it\n"
     | "-o"::xs | "--output"::xs ->

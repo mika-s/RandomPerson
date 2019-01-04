@@ -2,7 +2,7 @@
 
 open System.Text.RegularExpressions
 open UsaSSNParameters
-open Util
+open StringUtil
 
 let (|SSNForUSA|_|) (potentialSSN: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{3}-\d{2}-\d{4}$")

@@ -20,6 +20,7 @@
 open System
 open RandomPersonLib
 open Util
+open MathUtil
 
 let numberFor1937to1999 (random: Random) = 
     let number = random.Next(0, 100)

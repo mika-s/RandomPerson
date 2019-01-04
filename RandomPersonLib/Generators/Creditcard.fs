@@ -1,7 +1,8 @@
 ﻿module internal Creditcard
 
 open System
-open Util
+open RandomUtil
+open StringUtil
 open ChecksumAlgorithms
 
 type CardIssuer = VISA | MasterCard

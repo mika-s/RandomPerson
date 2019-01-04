@@ -14,7 +14,7 @@ type ``parseArgs should`` () =
 
         let options = parseArgs args defaultOptions
 
-        let expectedOptions = { defaultOptions with mode = Mode.ValidateSSN }
+        let expectedOptions = { defaultOptions with mode = ValidateSSN }
 
         Assert.AreEqual(options, expectedOptions)
 
@@ -24,7 +24,7 @@ type ``parseArgs should`` () =
 
         let options = parseArgs args defaultOptions
 
-        let expectedOptions = { defaultOptions with mode = Mode.Template; amount = 100 }
+        let expectedOptions = { defaultOptions with mode = Template; amount = 100 }
 
         Assert.AreEqual(options, expectedOptions)
 
@@ -35,11 +35,11 @@ type ``parseArgs should`` () =
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.List;
+            defaultOptions with mode = List;
                                 country = Country.Sweden;
                                 amount = 20;
-                                fileFormat = FileFormat.XML;
-                                outputType = OutputType.File;
+                                fileFormat = XML;
+                                outputType = File;
         }
 
         Assert.AreEqual(options, expectedOptions)
@@ -51,7 +51,7 @@ type ``parseArgs should`` () =
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.ValidateSSN;
+            defaultOptions with mode = ValidateSSN;
                                 country = Country.Sweden;
                                 ssn = "980401-3911";
         }
@@ -65,7 +65,7 @@ type ``parseArgs should`` () =
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.ValidateSSN;
+            defaultOptions with mode = ValidateSSN;
         }
 
         Assert.AreEqual(options, expectedOptions)
@@ -77,7 +77,7 @@ type ``parseArgs should`` () =
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.ValidatePAN;
+            defaultOptions with mode = ValidatePAN;
         }
 
         Assert.AreEqual(options, expectedOptions)
@@ -89,7 +89,7 @@ type ``parseArgs should`` () =
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.ValidatePAN;
+            defaultOptions with mode = ValidatePAN;
                                 pan = "5555555555554446";
         }
 

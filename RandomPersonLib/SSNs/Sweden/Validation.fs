@@ -6,6 +6,7 @@ open System.Text.RegularExpressions
 open SwedenSSNGeneration
 open SwedenSSNParameters
 open Util
+open StringUtil
 
 let (|OldSSNForSweden|NewSSNForSweden|NotSSN|) (potentialSSN: string) =
     let regexMatchOld = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
