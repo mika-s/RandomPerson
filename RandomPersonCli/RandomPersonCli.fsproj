@@ -36,7 +36,8 @@
     <Compile Include="ListMode.fs" />
     <Compile Include="InteractiveMode.fs" />
     <Compile Include="TemplateMode.fs" />
-    <Compile Include="ValidateMode.fs" />
+    <Compile Include="ValidatePANMode.fs" />
+    <Compile Include="ValidateSSNMode.fs" />
     <Compile Include="Program.fs" />
     <None Include="Readme.md">
       <Link>ReadmeCli.md</Link>

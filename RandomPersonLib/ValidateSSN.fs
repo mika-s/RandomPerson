@@ -1,4 +1,4 @@
-﻿module internal Validate
+﻿module internal ValidateSSN
 
 open DenmarkSSNValidation
 open FinlandSSNValidation

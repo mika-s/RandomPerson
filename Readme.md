@@ -80,6 +80,6 @@ RandomPerson has options for:
 - Anonymization of SSNs.
 - Output format for phone numbers (e.g. with country code or not) and SSNs.
 
-### Validate SSNs
+### Validate PANs and SSNs
 
-RandomPerson can validate SSNs for the countries listed above.
+RandomPerson can validate PAN for credit cards and SSNs for the countries listed above.

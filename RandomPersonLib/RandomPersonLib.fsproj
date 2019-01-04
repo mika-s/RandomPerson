@@ -127,7 +127,8 @@
     <Compile Include="Inputparsing\GenericFiles.fs" />
     <Compile Include="Inputparsing\ReadInputFiles.fs" />
     <Compile Include="Person.fs" />
-    <Compile Include="Validate.fs" />
+    <Compile Include="ValidatePAN.fs" />
+    <Compile Include="ValidateSSN.fs" />
     <Compile Include="Templateprint\SpecialDateReplaces.fs" />
     <Compile Include="Templateprint\SpecialBirthDateReplaces.fs" />
     <Compile Include="Templateprint\SpecialGenderReplaces.fs" />

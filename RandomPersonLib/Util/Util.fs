@@ -15,6 +15,9 @@ let intArrayFromString (numbersStr: string) = numbersStr |> Seq.toArray |> Array
 let stringAsChar (str: string) = str.[0]
 let substring (startIndex: int) (length: int)   (str: string) = str.Substring(startIndex, length)
 let insert    (startIndex: int) (value: string) (str: string) = str.Insert(startIndex, value)
+let inline trim (str: string) = str.Trim()
+let inline removeChars (charToRemove: string) (str: string) = str.Replace(charToRemove, String.Empty)
+let lastChar (str: string) = str |> substring (str.Length - 1) 1
 let roundToNearest (rounding: float) (x: float) = Math.Round(x / rounding) * rounding
 let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 

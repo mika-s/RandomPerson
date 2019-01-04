@@ -5,7 +5,8 @@ open CliEnums
 open InteractiveMode
 open ListMode
 open TemplateMode
-open ValidateMode
+open ValidatePANMode
+open ValidateSSNMode
 
 [<assembly: InternalsVisibleTo("Tests")>]
 do()
@@ -34,7 +35,9 @@ let main argv =
                                   options.settingsFilePath
                                   options.amount
                                   options.country
-        | Mode.Validation  -> validateMode
+        | Mode.ValidatePAN  -> validatePANMode
+                                  options.pan
+        | Mode.ValidateSSN  -> validateSSNMode
                                   options.ssn
                                   options.country
         | _ -> invalidArg "options.mode" "That mode does not exist."

@@ -4,7 +4,8 @@ type Mode =
 | Interactive = 0
 | List        = 1
 | Template    = 2
-| Validation  = 3
+| ValidateSSN = 3
+| ValidatePAN = 4
 
 type OutputType =
 | Console        = 0

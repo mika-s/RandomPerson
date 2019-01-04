@@ -1,4 +1,4 @@
-﻿module internal ValidateMode
+﻿module internal ValidateSSNMode
 
 open System
 open RandomPersonLib
@@ -16,7 +16,7 @@ let validate (lib: ValidatePerson) (country: Country) =
 
     loop ()
 
-let validateMode (ssn: string) (country: Country) =
+let validateSSNMode (ssn: string) (country: Country) =
     let lib = ValidatePerson()
 
     match ssn with

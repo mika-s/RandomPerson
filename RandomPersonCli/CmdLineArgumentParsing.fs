@@ -7,13 +7,14 @@ open CliUtil
 
 type Options = {
     mode: Mode
-    amount: int                 // In ListMode and TemplateMode
-    country: Country            // In ListMode and TemplateMode
-    outputType: OutputType      // In ListMode
-    fileFormat: FileFormat      // In ListMode
-    outputFilePath: string      // In ListMode
+    amount: int                 // In List mode and Template mode
+    country: Country            // In List mode and Template mode
+    outputType: OutputType      // In List mode
+    fileFormat: FileFormat      // In List mode
+    outputFilePath: string      // In List mode
     settingsFilePath: string
-    ssn: string                 // In ValidationMode
+    ssn: string                 // In Validate SSN mode
+    pan: string                 // In Validate PAN mode
 }
 
 let defaultOptions = {
@@ -25,6 +26,7 @@ let defaultOptions = {
     outputFilePath = "output.?"
     settingsFilePath = "data/Settings.json"
     ssn = String.Empty
+    pan = String.Empty
 }
 
 let printVersion () = printfn "Version: 1.9.0.0"
@@ -36,7 +38,7 @@ let printUsage () =
     printfn ""
     printfn "SYNOPSIS"
     printfn ""
-    printfn "dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])]"
+    printfn "dotnet RandomPersonCli.dll [-m (I|L|T|VP [<PAN>]|VS [<SSN>])]"
     printfn "                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden|USA)]"
     printfn "                           [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]"
     printfn "                           [-o (path)] [-s (path)]"
@@ -51,9 +53,10 @@ let printUsage () =
     printfn "OPTIONS"
     printfn ""
     printfn "-m, --mode"
-    printfn "    Either I (interactive), L (list), T (templated list) or V (validation)."
-    printfn "    Validation mode can take SSN as optional input, otherwise it's using"
-    printfn "    interactive validation."
+    printfn "    Either I (interactive), L (list), T (templated list), VS (validate SSN) or"
+    printfn "    VP (validate PAN). Validate PAN mode can take PAN as optional input,"
+    printfn "    otherwise it's using interactive validation. Validate SSN mode can take SSN"
+    printfn "    as optional input, otherwise it's using interactive validation."
     printfn ""
     printfn "-c, --country"
     printfn "    Either Denmark, Finland, Iceland, Netherlands, Norway, Sweden or USA."
@@ -104,22 +107,36 @@ let rec parseArgs (args: list<string>) (options: Options) =
         | "T"::xss ->
             let newOptions = { options with mode = Mode.Template }
             parseArgs xss newOptions
-        | "V"::xss ->
+        | "VS"::xss ->
             match xss.Length with
             | length when 0 < length ->
                 match xss with
                 | (CmdLineArgument _)::_ ->
-                    let newOptions = { options with mode = Mode.Validation }
+                    let newOptions = { options with mode = Mode.ValidateSSN }
                     parseArgs xss newOptions
                 | _ ->
-                    let newOptions = { options with mode = Mode.Validation; ssn = xss.[0] }
+                    let newOptions = { options with mode = Mode.ValidateSSN; ssn = xss.[0] }
                     let xsss = List.skip 1 xss
                     parseArgs xsss newOptions
             | _ ->
-                let newOptions = { options with mode = Mode.Validation }
+                let newOptions = { options with mode = Mode.ValidateSSN }
+                parseArgs xss newOptions
+        | "VP"::xss ->
+            match xss.Length with
+            | length when 0 < length ->
+                match xss with
+                | (CmdLineArgument _)::_ ->
+                    let newOptions = { options with mode = Mode.ValidatePAN }
+                    parseArgs xss newOptions
+                | _ ->
+                    let newOptions = { options with mode = Mode.ValidatePAN; pan = xss.[0] }
+                    let xsss = List.skip 1 xss
+                    parseArgs xsss newOptions
+            | _ ->
+                let newOptions = { options with mode = Mode.ValidatePAN }
                 parseArgs xss newOptions
         | _ ->
-            eprintf "-m flag needs either I (interactive mode), L (list mode), T (template mode) or V (validation mode)\n"
+            eprintf "-m flag needs either I (interactive mode), L (list mode), T (template mode), VP (validate PAN mode) or VS (validate SSN mode)\n"
             parseArgs xs options
     | "-c"::xs | "--country"::xs ->
         match xs with

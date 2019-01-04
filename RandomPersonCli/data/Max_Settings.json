@@ -148,7 +148,7 @@
         "RemoveHyphenFromPhoneNumber": false,
         "RemoveSpaceFromPhoneNumber": false,
         "RemoveHyphenFromSSN": true,
-		"RemoveHyphenFromPAN": false,
+		"RemoveHyphenFromPAN": true,
         "BirthDate": {
           "SetYearRangeManually": true,
           "SetUsingAge": false,

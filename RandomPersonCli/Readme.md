@@ -5,7 +5,7 @@
 RandomPersonCli is a CLI tool that uses RandomPersonLib.
 It generates random persons for a given country.
 
-It can also validate SSNs and credit card PANs.
+It can also validate SSNs and creditcard PANs.
 
 ## Usage
 
@@ -16,7 +16,7 @@ NAME
 
 SYNOPSIS
 
-dotnet RandomPersonCli.dll [-m (I|L|T|V [<SSN>])]
+dotnet RandomPersonCli.dll [-m (I|L|T|VP [<PAN>]|VS [<SSN>])]
                            [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden|USA)]
                            [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]
                            [-o (path)] [-s (path)]
@@ -31,9 +31,10 @@ DESCRIPTION
 OPTIONS
 
 -m, --mode
-    Mode. Either I (interactive), L (list), T (templated list) or V (validation).
-    Validation mode can take SSN as optional input, otherwise it's using
-    interactive validation.
+    Either I (interactive), L (list), T (templated list), VS (validate SSN) or
+    VP (validate PAN). Validate PAN mode can take PAN as optional input,
+    otherwise it's using interactive validation. Validate SSN mode can take SSN
+    as optional input, otherwise it's using interactive validation.
 
 -c, --country
     Either Denmark, Finland, Iceland, Netherlands, Norway, Sweden or USA.

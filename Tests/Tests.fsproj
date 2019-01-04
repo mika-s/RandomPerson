@@ -33,6 +33,7 @@
     <Compile Include="Lib\SwedenSSN.fs" />
     <Compile Include="Lib\UsaSSN.fs" />
     <Compile Include="Lib\CommonValidation.fs" />
+    <Compile Include="Lib\ValidatePAN.fs" />
     <Compile Include="Lib\ValidateSSNForDenmark.fs" />
     <Compile Include="Lib\ValidateSSNForFinland.fs" />
     <Compile Include="Lib\ValidateSSNForIceland.fs" />

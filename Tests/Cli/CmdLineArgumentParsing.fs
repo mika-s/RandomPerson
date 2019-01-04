@@ -10,11 +10,11 @@ type ``parseArgs should`` () =
 
     [<TestMethod>]
     member __.``return a record with parsed command line arguments 1`` () =
-        let args = [ "-m"; "V" ]
+        let args = [ "-m"; "VS" ]
 
         let options = parseArgs args defaultOptions
 
-        let expectedOptions = { defaultOptions with mode = Mode.Validation }
+        let expectedOptions = { defaultOptions with mode = Mode.ValidateSSN }
 
         Assert.AreEqual(options, expectedOptions)
 
@@ -46,12 +46,12 @@ type ``parseArgs should`` () =
 
     [<TestMethod>]
     member __.``return a record with parsed command line arguments 4`` () =
-        let args = [ "-m"; "V"; "980401-3911"; "-c"; "Sweden"; ]
+        let args = [ "-m"; "VS"; "980401-3911"; "-c"; "Sweden"; ]
 
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.Validation;
+            defaultOptions with mode = Mode.ValidateSSN;
                                 country = Country.Sweden;
                                 ssn = "980401-3911";
         }
@@ -60,12 +60,37 @@ type ``parseArgs should`` () =
 
     [<TestMethod>]
     member __.``return a record with parsed command line arguments 5`` () =
-        let args = [ "-m"; "V"; ]
+        let args = [ "-m"; "VS"; ]
 
         let options = parseArgs args defaultOptions
 
         let expectedOptions = { 
-            defaultOptions with mode = Mode.Validation;
+            defaultOptions with mode = Mode.ValidateSSN;
+        }
+
+        Assert.AreEqual(options, expectedOptions)
+
+    [<TestMethod>]
+    member __.``return a record with parsed command line arguments 6`` () =
+        let args = [ "-m"; "VP"; ]
+
+        let options = parseArgs args defaultOptions
+
+        let expectedOptions = { 
+            defaultOptions with mode = Mode.ValidatePAN;
+        }
+
+        Assert.AreEqual(options, expectedOptions)
+
+    [<TestMethod>]
+    member __.``return a record with parsed command line arguments 7`` () =
+        let args = [ "-m"; "VP"; "5555555555554446" ]
+
+        let options = parseArgs args defaultOptions
+
+        let expectedOptions = { 
+            defaultOptions with mode = Mode.ValidatePAN;
+                                pan = "5555555555554446";
         }
 
         Assert.AreEqual(options, expectedOptions)

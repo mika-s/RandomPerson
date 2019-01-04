@@ -4,7 +4,8 @@ open System
 open System.Runtime.CompilerServices
 open RandomPersonLib
 open ReadInputFiles
-open Validate
+open ValidatePAN
+open ValidateSSN
 open TemplatePrint
 open Util
 
@@ -22,6 +23,7 @@ type IRandomPerson =
 
 /// <summary>Interface for ValidatePerson for use with C#.</summary>
 type IValidatePerson =
+    abstract member ValidatePAN: string -> bool
     abstract member ValidateSSN: Country * string -> bool
 
 /// <summary>A service class for generating random persons or validating SSNs.</summary>
@@ -133,8 +135,15 @@ type RandomPerson() =
         member this.CreatePeopleTemplated (amount: int, country: Country, outputString: string, options: RandomPersonOptions) =
             this.CreatePeopleTemplated (amount, country, outputString, options) |> List.toSeq
 
-/// <summary>A service class for validating SSNs.</summary>
+/// <summary>A service class for validating PANs and SSNs.</summary>
 type ValidatePerson() =
+
+    /// <summary>Validate a primary account number (PAN) for a credit card.</summary>
+    /// <param name="pan">The PAN to validate.</param>
+    /// <returns>true if valid PAN, false otherwise.</returns>
+    member __.ValidatePAN (pan: string) =
+        validatePAN pan
+
     /// <summary>Validate an SSN for a given country.</summary>
     /// <param name="country">The country of the person to validate SSN for.</param>
     /// <param name="ssn">The SSN to validate.</param>
@@ -151,6 +160,12 @@ type ValidatePerson() =
         | _ -> invalidArg "country" "Illegal country."
 
     interface IValidatePerson with
+
+        /// <summary>Validate a primary account number (PAN) for a credit card.</summary>
+        /// <param name="pan">The PAN to validate.</param>
+        /// <returns>true if valid PAN, false otherwise.</returns>
+        member this.ValidatePAN (pan: string) =
+            this.ValidatePAN (pan)
 
         /// <summary>Validate an SSN for a given country.</summary>
         /// <param name="country">The country of the person to validate SSN for.</param>

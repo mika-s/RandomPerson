@@ -54,7 +54,7 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     let pin = generatePIN random 4
     let pan = generatePAN random options.RemoveHyphenFromPAN
     let expiry = generateExpiry random 4
-    let cvv = generateCVV ()
+    let cvv = generateCVV random
     let countryNameEnglish = countryFiles.generalData.Misc.CountryNameEnglish
     let countryNameNative = countryFiles.generalData.Misc.CountryNameNative
     let countryNameNativeAlternative1 = if countryFiles.generalData.Misc.CountryNameNativeAlternative1 <> null then

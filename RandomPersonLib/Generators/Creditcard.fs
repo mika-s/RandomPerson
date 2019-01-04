@@ -6,6 +6,10 @@ open ChecksumAlgorithms
 
 type CardIssuer = VISA | MasterCard
 
+let generateChecksum (numbers: string) =
+    let weights = [| 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2 |];
+    luhn numbers weights
+
 let generatePAN (random: Random) (removeHyphenFromPAN: bool) =
     let addHyphensToPAN (panWithoutHyphens: string) =
         panWithoutHyphens |> insert 4 "-" |> insert 9 "-" |> insert 14 "-"
@@ -17,14 +21,9 @@ let generatePAN (random: Random) (removeHyphenFromPAN: bool) =
 
     let generateIndividualNumbers (amount: int) = generateRandomNumberString random amount 0 10
 
-    let generateChecksum (bin: string) (individualNumbers: string) =
-        let numbers = bin + individualNumbers
-        let weights = [| 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2 |];
-        luhn numbers weights
-
     let bin = generateBIN random MasterCard
     let individualNumbers = generateIndividualNumbers 9
-    let checksum = generateChecksum bin individualNumbers
+    let checksum = generateChecksum (bin + individualNumbers)
 
     let panWithoutHyphens = sprintf "%s%s%s" bin individualNumbers checksum
 
@@ -43,5 +42,4 @@ let generateExpiry (random: Random) (yearsIntoFuture: int) =
 
     sprintf "%s/%s" month year
 
-let generateCVV () =
-    "123"
+let generateCVV (random: Random) = generateRandomNumberString random 3 0 10

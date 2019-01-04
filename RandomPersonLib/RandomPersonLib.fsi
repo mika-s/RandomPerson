@@ -11,6 +11,7 @@ type IRandomPerson =
 
 [<Interface>]
 type IValidatePerson =
+    abstract member ValidatePAN: string -> bool
     abstract member ValidateSSN: Country * string -> bool
 
 type RandomPerson =
@@ -26,6 +27,7 @@ type RandomPerson =
 
 type ValidatePerson =
     new : unit -> ValidatePerson
+    member ValidatePAN: string -> bool
     member ValidateSSN: Country * string -> bool
 
     interface IValidatePerson
