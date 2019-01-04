@@ -4,26 +4,44 @@ open System
 open RandomUtil
 open StringUtil
 open ChecksumAlgorithms
+open RandomPersonLib
 
-type CardIssuer = VISA | MasterCard
+let buildWeightsArray (length: int) =
+    List.toArray<int> [ for x in 0 .. length - 1 do yield if x % 2 = 0 then 2 else 1 ]
 
 let generateChecksum (numbers: string) =
-    let weights = [| 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2; 1; 2 |];
+    let weights = buildWeightsArray numbers.Length
     luhn numbers weights
 
-let generatePAN (random: Random) (removeHyphenFromPAN: bool) =
+let generatePAN (random: Random) (issuer: CardIssuer) (removeHyphenFromPAN: bool) =
     let addHyphensToPAN (panWithoutHyphens: string) =
         panWithoutHyphens |> insert 4 "-" |> insert 9 "-" |> insert 14 "-"
 
     let generateBIN (random: Random) (issuer: CardIssuer) =
         match issuer with
-        | VISA       -> "4" + generateRandomNumberString random 5 0 10
-        | MasterCard -> generateRandomNumberString random 1 51 55 + generateRandomNumberString random 4 0 10
+        | CardIssuer.AmericanExpress ->
+            match random.Next(0, 2) with
+            | 0 -> "34" + generateRandomNumberString random 4 0 10
+            | _ -> "37" + generateRandomNumberString random 4 0 10
+        | CardIssuer.Discover ->
+            match random.Next(0, 3) with
+            | 0 -> "6011" + generateRandomNumberString random 2 0 10
+            | 1 ->   "64" + generateRandomNumberString random 4 0 10
+            | _ ->   "65" + generateRandomNumberString random 4 0 10
+        | CardIssuer.Visa       -> "4" + generateRandomNumberString random 5 0 10
+        | CardIssuer.MasterCard -> generateRandomNumberString random 1 51 55 + generateRandomNumberString random 4 0 10
+        | _ -> raise (NotImplementedException("Card issuer " + issuer.ToString() + " not implemented."))
 
-    let generateIndividualNumbers (amount: int) = generateRandomNumberString random amount 0 10
-
-    let bin = generateBIN random MasterCard
-    let individualNumbers = generateIndividualNumbers 9
+    let generateIndividualNumbers (issuer: CardIssuer) =
+        match issuer with
+        | CardIssuer.AmericanExpress -> generateRandomNumberString random 8 0 10
+        | CardIssuer.Discover        -> generateRandomNumberString random 8 0 10
+        | CardIssuer.Visa            -> generateRandomNumberString random 9 0 10
+        | CardIssuer.MasterCard      -> generateRandomNumberString random 9 0 10
+        | _ -> raise (NotImplementedException("Card issuer " + issuer.ToString() + " not implemented."))
+    
+    let bin = generateBIN random issuer
+    let individualNumbers = generateIndividualNumbers issuer
     let checksum = generateChecksum (bin + individualNumbers)
 
     let panWithoutHyphens = sprintf "%s%s%s" bin individualNumbers checksum

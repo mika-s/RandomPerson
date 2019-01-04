@@ -14,3 +14,11 @@ type Country =
 | Norway      = 5
 | Sweden      = 6
 | USA         = 7
+
+/// Enum representing a person's creditcard issuer.
+type CardIssuer =
+| AmericanExpress = 1
+| DinersClub      = 2
+| Discover        = 3
+| MasterCard      = 4
+| Visa            = 5

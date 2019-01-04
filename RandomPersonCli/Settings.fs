@@ -123,6 +123,15 @@ type TemplatePrintSettings = {
 }
 
 [<DataContract;NoEquality;NoComparison>]
+type CreditcardOptionsSettings = {
+    [<field : DataMember(Name="CardIssuer")>]
+    CardIssuer : string
+
+    [<field : DataMember(Name="PinLength")>]
+    PinLength : Nullable<int>
+}
+
+[<DataContract;NoEquality;NoComparison>]
 type BirthDateOptionsSettings = {
     [<field : DataMember(Name="SetYearRangeManually")>]
     SetYearRangeManually : Nullable<bool>
@@ -168,6 +177,9 @@ type GenericOptionsSettings = {
 
     [<field : DataMember(Name="RemoveHyphenFromPAN")>]
     RemoveHyphenFromPAN : Nullable<bool>
+
+    [<field : DataMember(Name="Creditcard")>]
+    Creditcard : CreditcardOptionsSettings
 
     [<field : DataMember(Name="BirthDate")>]
     BirthDate : BirthDateOptionsSettings
@@ -229,6 +241,8 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultRemoveSpaceFromPhoneNumber  = false
     let defaultRemoveHyphenFromSSN = false
     let defaultRemoveHyphenFromPAN = false
+    let defaultCardIssuer = "Visa"
+    let defaultPinLength = 4
     let defaultSetYearRangeManually = false
     let defaultSetUsingAge = false
     let defaultBirthDateLow = 1920
@@ -243,6 +257,11 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalRemoveSpaceFromPhoneNumber  = nullCoalesce genericOptions.RemoveSpaceFromPhoneNumber     defaultRemoveSpaceFromPhoneNumber
     let finalRemoveHyphenFromSSN         = nullCoalesce genericOptions.RemoveHyphenFromSSN            defaultRemoveHyphenFromSSN
     let finalRemoveHyphenFromPAN         = nullCoalesce genericOptions.RemoveHyphenFromPAN            defaultRemoveHyphenFromPAN
+    let finalCardIssuer                  = if not (String.IsNullOrEmpty genericOptions.Creditcard.CardIssuer) then
+                                               Enum.Parse(genericOptions.Creditcard.CardIssuer)
+                                           else
+                                               Enum.Parse(defaultCardIssuer)
+    let finalPinLength                   = nullCoalesce genericOptions.Creditcard.PinLength           defaultPinLength
     let finalSetYearRangeManually        = nullCoalesce genericOptions.BirthDate.SetYearRangeManually defaultSetYearRangeManually
     let finalSetUsingAge                 = nullCoalesce genericOptions.BirthDate.SetUsingAge          defaultSetUsingAge
     let finalBirthDateLow                = nullCoalesce genericOptions.BirthDate.Low                  defaultBirthDateLow
@@ -261,7 +280,8 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
             finalRemoveHyphenFromPAN
         )
 
+    randomPersonOptions.Creditcard <- CreditcardOptions(finalCardIssuer, finalPinLength)
     randomPersonOptions.BirthDate  <- BirthDateOptions(finalSetYearRangeManually, finalSetUsingAge, finalBirthDateLow, finalBirthDateHigh)
     randomPersonOptions.Randomness <- RandomnessOptions(finalManualSeed, finalSeed)
-
+    
     randomPersonOptions

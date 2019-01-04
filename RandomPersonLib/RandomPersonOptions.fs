@@ -18,6 +18,14 @@ type RandomnessOptions (manualSeed: bool, seed: int) =
     member val ManualSeed = manualSeed with get, set
     member val Seed = seed with get, set
 
+/// A subclass used by RandomPersonOptions, containing creditcard options.
+[<NoEquality;NoComparison>]
+type CreditcardOptions (cardIssuer: CardIssuer, pinLength: int) = 
+    new () = CreditcardOptions(CardIssuer.Visa, 4)
+
+    member val CardIssuer = cardIssuer with get, set
+    member val PinLength = pinLength with get, set
+
 /// The options class for the RandomPerson library.
 [<NoEquality;NoComparison>]
 type RandomPersonOptions (
@@ -32,6 +40,7 @@ type RandomPersonOptions (
 
     let birthDate  = BirthDateOptions()
     let randomness = RandomnessOptions()
+    let creditcard = CreditcardOptions()
 
     new () = RandomPersonOptions(false, false, false, false, false, false, false)
 
@@ -48,5 +57,6 @@ type RandomPersonOptions (
     member val RemoveSpaceFromPhoneNumber = removeSpaceFromPhoneNumber with get, set
     member val RemoveHyphenFromSSN = removeHyphenFromSSN with get, set
     member val RemoveHyphenFromPAN = removeHyphenFromPAN with get, set
+    member val Creditcard = creditcard with get, set
     member val BirthDate = birthDate with get, set
     member val Randomness = randomness with get, set

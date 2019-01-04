@@ -8,6 +8,10 @@
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": false,
 	  "RemoveHyphenFromPAN": false,
+	  "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
       "BirthDate": {
         "SetYearRangeManually": false,
         "SetUsingAge": false,
@@ -59,6 +63,10 @@
       "RemoveSpaceFromPhoneNumber": true,
       "RemoveHyphenFromSSN": false,
 	  "RemoveHyphenFromPAN": false,
+	  "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
       "BirthDate": {
         "SetYearRangeManually": false,
         "SetUsingAge": false,
@@ -149,6 +157,10 @@
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": true,
 	  "RemoveHyphenFromPAN": false,
+	  "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
       "BirthDate": {
         "SetYearRangeManually": false,
         "SetUsingAge": false,

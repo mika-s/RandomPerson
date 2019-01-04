@@ -8,6 +8,11 @@ type InputFiles = {
     settings: Settings;
 }
 
+let assertCreditcard (ccos: CreditcardOptionsSettings) =
+    match ccos.CardIssuer with
+    | "AmericanExpress" | "DinersClub" | "Discovery" | "MasterCard" | "Visa" -> 1 |> ignore
+    | _ -> invalidArg "CardIssuer" ("'" + ccos.CardIssuer + "' is not a legal value.")
+
 let assertDates (bdo: BirthDateOptionsSettings) =
     match bdo.SetYearRangeManually.HasValue && bdo.SetYearRangeManually.Value, bdo.SetUsingAge.HasValue && bdo.SetUsingAge.Value with
     | (true, true) ->
@@ -31,9 +36,13 @@ let assertDates (bdo: BirthDateOptionsSettings) =
     | (false, _) -> 1 |> ignore
 
 let assertSettings (settings: Settings) =
-    settings.InteractiveMode.Options.BirthDate |> assertDates
-    settings.ListMode.Options.BirthDate        |> assertDates
-    settings.TemplateMode.Options.BirthDate    |> assertDates
+    settings.InteractiveMode.Options.Creditcard |> assertCreditcard
+    settings.ListMode.Options.Creditcard        |> assertCreditcard
+    settings.TemplateMode.Options.Creditcard    |> assertCreditcard
+
+    settings.InteractiveMode.Options.BirthDate  |> assertDates
+    settings.ListMode.Options.BirthDate         |> assertDates
+    settings.TemplateMode.Options.BirthDate     |> assertDates
 
     settings
 
