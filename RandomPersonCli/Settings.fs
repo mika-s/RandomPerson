@@ -175,8 +175,8 @@ type GenericOptionsSettings = {
     [<field : DataMember(Name="RemoveHyphenFromSSN")>]
     RemoveHyphenFromSSN : Nullable<bool>
 
-    [<field : DataMember(Name="RemoveHyphenFromPAN")>]
-    RemoveHyphenFromPAN : Nullable<bool>
+    [<field : DataMember(Name="RemoveSpacesFromPAN")>]
+    RemoveSpacesFromPAN : Nullable<bool>
 
     [<field : DataMember(Name="Creditcard")>]
     Creditcard : CreditcardOptionsSettings
@@ -240,7 +240,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultRemoveHyphenFromPhoneNumber = false
     let defaultRemoveSpaceFromPhoneNumber  = false
     let defaultRemoveHyphenFromSSN = false
-    let defaultRemoveHyphenFromPAN = false
+    let defaultRemoveSpacesFromPAN = false
     let defaultCardIssuer = "Visa"
     let defaultPinLength = 4
     let defaultSetYearRangeManually = false
@@ -256,7 +256,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalRemoveHyphenFromPhoneNumber = nullCoalesce genericOptions.RemoveHyphenFromPhoneNumber    defaultRemoveHyphenFromPhoneNumber
     let finalRemoveSpaceFromPhoneNumber  = nullCoalesce genericOptions.RemoveSpaceFromPhoneNumber     defaultRemoveSpaceFromPhoneNumber
     let finalRemoveHyphenFromSSN         = nullCoalesce genericOptions.RemoveHyphenFromSSN            defaultRemoveHyphenFromSSN
-    let finalRemoveHyphenFromPAN         = nullCoalesce genericOptions.RemoveHyphenFromPAN            defaultRemoveHyphenFromPAN
+    let finalRemoveSpacesFromPAN         = nullCoalesce genericOptions.RemoveSpacesFromPAN            defaultRemoveSpacesFromPAN
     let finalCardIssuer                  = if not (String.IsNullOrEmpty genericOptions.Creditcard.CardIssuer) then
                                                Enum.Parse(genericOptions.Creditcard.CardIssuer)
                                            else
@@ -277,7 +277,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
             finalRemoveHyphenFromPhoneNumber,
             finalRemoveSpaceFromPhoneNumber,
             finalRemoveHyphenFromSSN,
-            finalRemoveHyphenFromPAN
+            finalRemoveSpacesFromPAN
         )
 
     randomPersonOptions.Creditcard <- CreditcardOptions(finalCardIssuer, finalPinLength)

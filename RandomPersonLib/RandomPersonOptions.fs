@@ -35,7 +35,7 @@ type RandomPersonOptions (
                           removeHyphenFromPhoneNumber: bool,
                           removeSpaceFromPhoneNumber: bool,
                           removeHyphenFromSSN: bool,
-                          removeHyphenFromPAN: bool
+                          removeSpacesFromPAN: bool
                          ) =
 
     let birthDate  = BirthDateOptions()
@@ -56,7 +56,7 @@ type RandomPersonOptions (
     member val RemoveHyphenFromPhoneNumber = removeHyphenFromPhoneNumber with get, set
     member val RemoveSpaceFromPhoneNumber = removeSpaceFromPhoneNumber with get, set
     member val RemoveHyphenFromSSN = removeHyphenFromSSN with get, set
-    member val RemoveHyphenFromPAN = removeHyphenFromPAN with get, set
+    member val RemoveSpacesFromPAN = removeSpacesFromPAN with get, set
     member val Creditcard = creditcard with get, set
     member val BirthDate = birthDate with get, set
     member val Randomness = randomness with get, set

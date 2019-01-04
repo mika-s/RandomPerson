@@ -7,7 +7,7 @@
       "RemoveHyphenFromPhoneNumber": false,
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": false,
-	  "RemoveHyphenFromPAN": false,
+	  "RemoveSpacesFromPAN": false,
 	  "Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4
@@ -62,7 +62,7 @@
       "RemoveHyphenFromPhoneNumber": false,
       "RemoveSpaceFromPhoneNumber": true,
       "RemoveHyphenFromSSN": false,
-	  "RemoveHyphenFromPAN": false,
+	  "RemoveSpacesFromPAN": false,
 	  "Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4
@@ -156,7 +156,7 @@
       "RemoveHyphenFromPhoneNumber": false,
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": true,
-	  "RemoveHyphenFromPAN": false,
+	  "RemoveSpacesFromPAN": false,
 	  "Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4

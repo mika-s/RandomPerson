@@ -52,7 +52,7 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
                             options.RemoveHyphenFromPhoneNumber
                             options.RemoveSpaceFromPhoneNumber
     let pin = generatePIN random options.Creditcard.PinLength
-    let pan = generatePAN random options.Creditcard.CardIssuer options.RemoveHyphenFromPAN
+    let pan = generatePAN random options.Creditcard.CardIssuer options.RemoveSpacesFromPAN
     let expiry = generateExpiry random 3
     let cvv = generateCVV random
     let countryNameEnglish = countryFiles.generalData.Misc.CountryNameEnglish
