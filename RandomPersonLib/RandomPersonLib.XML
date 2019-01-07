@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>RandomPersonLib</name></assembly>
+<members>
+<member name="T:PostalCodeCityState.PostalCodeCityState">
+<summary>
+ A class representing postal code, city and state of a person&apos;s address.
+</summary>
+</member>
+<member name="T:RandomPersonLib.CardIssuer">
+<summary>
+ Enum representing a person&apos;s creditcard issuer.
+</summary>
+</member>
+<member name="T:RandomPersonLib.Country">
+<summary>
+ Enum representing a person&apos;s country.
+</summary>
+</member>
+<member name="T:RandomPersonLib.Gender">
+<summary>
+ Enum representing a person&apos;s gender.
+</summary>
+</member>
+<member name="T:RandomPersonLib.RandomPersonOptions">
+<summary>
+ The options class for the RandomPerson library.
+</summary>
+</member>
+<member name="T:RandomPersonLib.CreditcardOptions">
+<summary>
+ A subclass used by RandomPersonOptions, containing creditcard options.
+</summary>
+</member>
+<member name="T:RandomPersonLib.RandomnessOptions">
+<summary>
+ A subclass used by RandomPersonOptions, containing randomness options.
+</summary>
+</member>
+<member name="T:RandomPersonLib.BirthDateOptions">
+<summary>
+ A subclass used by RandomPersonOptions, containing birthdate options.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.TLD">
+<summary>
+ The TLD belonging to the country of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.State">
+<summary>
+ The state of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.SSN">
+<summary>
+ The SSN of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.PostalCode">
+<summary>
+ The postal code of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Password">
+<summary>
+ The password of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.PIN">
+<summary>
+ The PIN code of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.PAN">
+<summary>
+ The personal account number (creditcard number) of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.MobilePhone">
+<summary>
+ The mobile hpone number of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.LastName">
+<summary>
+ The lastname of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.HomePhone">
+<summary>
+ The home phone number of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Gender">
+<summary>
+ The gender of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.FirstName">
+<summary>
+ The firstname of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Expiry">
+<summary>
+ The expiry date of the creditcard belonging to the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Email">
+<summary>
+ The email address of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryNumber">
+<summary>
+ The country number of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryNameNativeAlternative2">
+<summary>
+ The country name (alternative 2) of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryNameNativeAlternative1">
+<summary>
+ The country name (alternative 1) of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryNameNative">
+<summary>
+ The country name in the country&apos;s native language of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryNameEnglish">
+<summary>
+ The country name in English of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryCode3">
+<summary>
+ The country code (3 digits) of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CountryCode2">
+<summary>
+ The country code (2 digits) of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Country">
+<summary>
+ The country of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.City">
+<summary>
+ The city of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.CVV">
+<summary>
+ The CVV of the creditcard belonging to the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.BirthDate">
+<summary>
+ The birthdate of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Address2">
+<summary>
+ The second address line of the randomly generated person.
+</summary>
+</member>
+<member name="P:RandomPersonLib.Person.Address1">
+<summary>
+ The first address line of the randomly generated person.
+</summary>
+</member>
+<member name="T:RandomPersonLib.Person">
+<summary>
+ A class representing a randomly generated person.
+</summary>
+</member>
+<member name="M:RandomPersonLib.ValidatePerson.ValidateSSN(RandomPersonLib.Country,System.String)">
+ <summary>Validate an SSN for a given country.</summary>
+ <param name="country">The country of the person to validate SSN for.</param>
+ <param name="ssn">The SSN to validate.</param>
+ <returns>true if valid SSN, false otherwise.</returns>
+</member>
+<member name="M:RandomPersonLib.ValidatePerson.ValidatePAN(System.String)">
+ <summary>Validate a primary account number (PAN) for a credit card.</summary>
+ <param name="pan">The PAN to validate.</param>
+ <returns>true if valid PAN, false otherwise.</returns>
+</member>
+<member name="T:RandomPersonLib.ValidatePerson">
+ <summary>A service class for validating PANs and SSNs.</summary>
+</member>
+<member name="M:RandomPersonLib.RandomPerson.CreatePerson(RandomPersonLib.Country,RandomPersonLib.RandomPersonOptions)">
+ <summary>Create a Person object given a country and an options object.</summary>
+ <param name="country">The country of the people to generate data for.</param>
+ <param name="options">An object with options.</param>
+ <returns>A Person object with random data.</returns>
+</member>
+<member name="M:RandomPersonLib.RandomPerson.CreatePerson(RandomPersonLib.Country)">
+ <summary>Create a Person object given a country.</summary>
+ <param name="country">The country of the people to generate data for.</param>
+ <returns>A Person object with random data.</returns>
+</member>
+<member name="M:RandomPersonLib.RandomPerson.CreatePeopleTemplated(System.Int32,RandomPersonLib.Country,System.String,RandomPersonLib.RandomPersonOptions)">
+ <summary>Create a list of strings given a template string where certain values will be replaced.</summary>
+ <param name="amount">Number of people to create data for.</param>
+ <param name="country">The country of the person to generate data for.</param>
+ <param name="outputString">The string to use as template for generated data.</param>
+ <param name="options">An object with options.</param>
+ <returns>A list of strings containing random data.</returns>
+</member>
+<member name="M:RandomPersonLib.RandomPerson.CreatePeopleTemplated(System.Int32,RandomPersonLib.Country,System.String)">
+<summary>
+ Create a list of strings given a template string where certain values will be replaced.&lt;/summary&gt;
+ &lt;param name=&quot;amount&quot;&gt;Number of people to create data for.&lt;/param&gt;
+ &lt;param name=&quot;country&quot;&gt;The country of the people to generate data for.&lt;/param&gt;
+ &lt;param name=&quot;outputString&quot;&gt;The string to use as template for generated data.&lt;/param&gt;
+ &lt;returns&gt;A list of strings containing random data.&lt;/returns&gt;
+</summary>
+</member>
+<member name="M:RandomPersonLib.RandomPerson.CreatePeople(System.Int32,RandomPersonLib.Country,RandomPersonLib.RandomPersonOptions)">
+ <summary>Create a list of Person objects given a country and an options object.</summary>
+ <param name="amount">Number of people to create data for.</param>
+ <param name="country">The country of the people to generate data for.</param>
+ <param name="options">An object with options.</param>
+ <returns>A list of Person object with random data.</returns>
+</member>
+<member name="M:RandomPersonLib.RandomPerson.CreatePeople(System.Int32,RandomPersonLib.Country)">
+ <summary>Create a list of Person objects given a country.</summary>
+ <param name="amount">Number of people to create data for.</param>
+ <param name="country">The country of the people to generate data for.</param>
+ <returns>A list of Person object with random data.</returns>
+</member>
+<member name="T:RandomPersonLib.RandomPerson">
+ <summary>A service class for generating random persons or validating SSNs.</summary>
+</member>
+<member name="T:RandomPersonLib.IValidatePerson">
+ <summary>Interface for ValidatePerson for use with C#.</summary>
+</member>
+<member name="T:RandomPersonLib.IRandomPerson">
+ <summary>Interface for RandomPerson for use with C#.</summary>
+</member>
+</members>
+</doc>

@@ -8,7 +8,7 @@ open DenmarkSSNGeneration
 open DenmarkSSNParameters
 open Util
 
-let (|SSNForDenmark|_|) (potentialSSN: string) =
+let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
 
     match regexMatch.Success with
@@ -30,7 +30,7 @@ let validateSSNForDenmark (ssn: string) =
     let random = getRandom false 100
 
     match ssn with
-    | HasCorrectLength SsnLength ssn potentialSSN ->
+    | HasCorrectShape ssn potentialSSN ->
         match potentialSSN with
         | HasDate DateStart DateLength IndividualNumberStart "ddMMyy"  ssn rest ->
             match rest with

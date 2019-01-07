@@ -47,21 +47,19 @@ let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (p: ssnParams) (_
     | Equals cs -> Some(cs)
     | _         -> None
 
-let validateSwedishSSN2 (ssn: string) (p: ssnParams) =
-    match ssn.Length with
-    | Equals p.SsnLength ->
-        match ssn with
-        | HasDate ssn p rest ->
-            match rest with
-            | HasIndividualNumber rest p newRest ->
-                match newRest with
-                | HasCorrectChecksum newRest ssn p _ -> true
-                | _ -> false
+let performSwedishSSNValidation (ssn: string) (p: ssnParams) =
+    match ssn with
+    | HasDate ssn p rest ->
+        match rest with
+        | HasIndividualNumber rest p newRest ->
+            match newRest with
+            | HasCorrectChecksum newRest ssn p _ -> true
             | _ -> false
         | _ -> false
-    | _  -> false
+    | _ -> false
 
-let validateSSNForSweden (ssn: string) (isNew: bool) = 
-    match isNew with
-    | false -> validateSwedishSSN2 ssn oldSsnParams
-    | true  -> validateSwedishSSN2 ssn newSsnParams
+let validateSSNForSweden (ssn: string) = 
+    match ssn with
+    | OldSSNForSweden -> performSwedishSSNValidation ssn oldSsnParams
+    | NewSSNForSweden -> performSwedishSSNValidation ssn newSsnParams
+    | NotSSN          -> false

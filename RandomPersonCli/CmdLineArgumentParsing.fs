@@ -29,7 +29,7 @@ let defaultOptions = {
     pan = String.Empty
 }
 
-let printVersion () = printfn "Version: 1.9.0.0"
+let printVersion () = printfn "Version: 1.10.0.0"
 
 let printUsage () =
     printfn "NAME"

@@ -8,7 +8,7 @@ open NorwaySSNGeneration
 open NorwaySSNParameters
 open Util
 
-let (|SSNForNorway|_|) (potentialSSN: string) =
+let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{11}$")
 
     match regexMatch.Success with
@@ -28,7 +28,7 @@ let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
 
 let validateSSNForNorway (ssn: string) = 
     match ssn with
-    | HasCorrectLength SsnLength ssn potentialSSN ->
+    | HasCorrectShape ssn potentialSSN ->
         match potentialSSN with
         | HasDate DateStart DateLength IndividualNumberStart "ddMMyy" potentialSSN rest ->
             match rest with

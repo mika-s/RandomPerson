@@ -31,3 +31,13 @@ type ``validateSSNForDenmark should`` () =
     member __.``return false for "220999-1486"`` () =
         let isReal = validateSSNForDenmark "220999-1486"
         Assert.IsFalse(isReal)
+
+    [<TestMethod>]
+    member __.``return false for "151163-02111" (too long)`` () =
+        let isReal = validateSSNForDenmark "151163-02111"
+        Assert.IsFalse(isReal)
+
+    [<TestMethod>]
+    member __.``return false for "151163-021" (too short)`` () =
+        let isReal = validateSSNForDenmark "151163-021"
+        Assert.IsFalse(isReal)

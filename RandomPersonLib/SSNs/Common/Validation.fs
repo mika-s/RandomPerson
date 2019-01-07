@@ -2,12 +2,6 @@
 
 open System
 open System.Globalization
-open Util
-
-let (|HasCorrectLength|_|) (ssnLength: int) (potentialSSN: string) (_: string) =
-    match potentialSSN.Length with
-    | Equals ssnLength -> Some(potentialSSN)
-    | _                -> None
 
 let (|HasDate|_|) (dateStart: int) (dateLength: int) (individualNumberStart: int) (datePattern: string) (potentialSSN: string) (_: string) =
     let datePart = potentialSSN.Substring(dateStart, dateLength)

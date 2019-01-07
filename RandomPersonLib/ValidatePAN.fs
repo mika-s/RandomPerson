@@ -1,8 +1,8 @@
 ﻿module internal ValidatePAN
 
+open System.Text.RegularExpressions
 open StringUtil
 open Creditcard
-open System.Text.RegularExpressions
 
 let validatePAN (rawPan: string) =
     let pan = rawPan |> trim |> removeChar "-" |> removeChar " "

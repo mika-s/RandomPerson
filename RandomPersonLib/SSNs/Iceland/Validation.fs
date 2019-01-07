@@ -8,7 +8,7 @@ open IcelandSSNGeneration
 open IcelandSSNParameters
 open Util
 
-let (|SSNForIceland|_|) (potentialSSN: string) =
+let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
 
     match regexMatch.Success with
@@ -34,7 +34,7 @@ let (|HasProperCenturyNumber|_|) (centuryNumber: string) =
 
 let validateSSNForIceland (ssn: string) = 
     match ssn with
-    | HasCorrectLength SsnLength ssn potentialSSN ->
+    | HasCorrectShape ssn potentialSSN ->
         match potentialSSN with
         | HasDate DateStart DateLength IndividualNumberStart "ddMMyy" potentialSSN rest ->
             match rest with

@@ -4,7 +4,7 @@ open System.Text.RegularExpressions
 open UsaSSNParameters
 open StringUtil
 
-let (|SSNForUSA|_|) (potentialSSN: string) =
+let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
     let regexMatch = Regex.Match(potentialSSN, "^\d{3}-\d{2}-\d{4}$")
 
     match regexMatch.Success with
@@ -44,11 +44,14 @@ let (|HasCorrectSerialNumber|_|) (rest: string) (_: string) =
 
 let validateSSNForUSA (ssn: string) = 
     match ssn with
-    | HasCorrectAreaNumber ssn rest ->
-        match rest with
-        | HasCorrectGroupNumber rest newRest ->
-            match newRest with 
-            | HasCorrectSerialNumber newRest _ -> true
+    | HasCorrectShape ssn potentialSSN ->
+        match potentialSSN with
+        | HasCorrectAreaNumber ssn rest ->
+            match rest with
+            | HasCorrectGroupNumber rest newRest ->
+                match newRest with 
+                | HasCorrectSerialNumber newRest _ -> true
+                | _ -> false
             | _ -> false
-        | _ -> false
-    | _  -> false
+        | _  -> false
+    | _ -> false

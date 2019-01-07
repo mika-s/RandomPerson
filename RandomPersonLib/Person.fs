@@ -66,30 +66,83 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     let countryNumber = countryFiles.generalData.Misc.CountryNumber
     let tld = countryFiles.generalData.Misc.TLD
 
+    /// The gender of the randomly generated person.
     member __.Gender = gender
+
+    /// The firstname of the randomly generated person.
     member __.FirstName = firstName
+
+    /// The lastname of the randomly generated person.
     member __.LastName = lastName
+
+    /// The first address line of the randomly generated person.
     member __.Address1 = address1
+
+    /// The second address line of the randomly generated person.
     member __.Address2 = address2
+
+    /// The postal code of the randomly generated person.
     member __.PostalCode = postalCode
+
+    /// The city of the randomly generated person.
     member __.City = city
+
+    /// The state of the randomly generated person.
     member __.State = state
+
+    /// The country of the randomly generated person.
     member __.Country = country
+
+    /// The birthdate of the randomly generated person.
     member __.BirthDate = birthDate
+
+    /// The SSN of the randomly generated person.
     member __.SSN = ssn
+
+    /// The email address of the randomly generated person.
     member __.Email = email
+
+    /// The password of the randomly generated person.
     member __.Password = password
+
+    /// The mobile hpone number of the randomly generated person.
     member __.MobilePhone = mobilePhone
+
+    /// The home phone number of the randomly generated person.
     member __.HomePhone = homePhone
+
+    /// The PIN code of the randomly generated person.
     member __.PIN = pin
+
+    /// The personal account number (creditcard number) of the randomly generated person.
     member __.PAN = pan
+
+    /// The expiry date of the creditcard belonging to the randomly generated person.
     member __.Expiry = expiry
+
+    /// The CVV of the creditcard belonging to the randomly generated person.
     member __.CVV = cvv
+
+    /// The country name in English of the randomly generated person.
     member __.CountryNameEnglish = countryNameEnglish
+
+    /// The country name in the country's native language of the randomly generated person.
     member __.CountryNameNative = countryNameNative
+
+    /// The country name (alternative 1) of the randomly generated person.
     member __.CountryNameNativeAlternative1 = countryNameNativeAlternative1
+
+    /// The country name (alternative 2) of the randomly generated person.
     member __.CountryNameNativeAlternative2 = countryNameNativeAlternative2
+
+    /// The country code (2 digits) of the randomly generated person.
     member __.CountryCode2  = countryCode2
+
+    /// The country code (3 digits) of the randomly generated person.
     member __.CountryCode3  = countryCode3
+
+    /// The country number of the randomly generated person.
     member __.CountryNumber = countryNumber
+
+    /// The TLD belonging to the country of the randomly generated person.
     member __.TLD = tld
