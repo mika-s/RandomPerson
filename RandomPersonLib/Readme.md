@@ -175,6 +175,10 @@ variables with generated values:
 `#{Gender}` <br />
 `#{MobilePhone}` <br />
 `#{HomePhone}` <br />
+`#{PIN}` <br />
+`#{PAN}` <br />
+`#{Expiry}` <br />
+`#{CVV}` <br />
 `#{CountryNameEnglish}` <br />
 `#{CountryNameNative}` <br />
 `#{CountryNameNativeAlternative1}` <br />
@@ -183,6 +187,8 @@ variables with generated values:
 `#{CountryCode3}` <br />
 `#{CountryNumber}` <br />
 `#{TLD}`
+
+PIN, PAN, Expiry and CVV are related to creditcards. PAN is the "creditcard number".
 
 ##### Special rules for Gender
 
@@ -360,6 +366,12 @@ the phone numbers can contain space.
 If this is et to true, the SSNs that are generated will not include hyphens (for SSNs that
 usually include them). E.g. XXXXXX-YYYY becomes XXXXXXYYYY. If this is set to false, the
 SSNs can contain hyphens.
+
+#### "RemoveSpacesFromPAN": boolean
+
+If this is et to true, the PANs that are generated will not include spaces. E.g.
+XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain
+spaces.
 
 #### "BirthDateOptions.SetYearRangeManually": boolean
 

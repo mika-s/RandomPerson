@@ -12,50 +12,50 @@ let generateChecksum (numbers: string) =
 
     luhn numbers weights
 
+let addSpacesToPAN (issuer: CardIssuer) (panWithoutHyphens: string) =
+    match issuer with
+    | CardIssuer.AmericanExpress -> panWithoutHyphens |> insert 4 " " |> insert 11 " "
+    | CardIssuer.DinersClub      -> panWithoutHyphens |> insert 4 " " |> insert 11 " "
+    | CardIssuer.Discover        -> panWithoutHyphens |> insert 4 " " |> insert 9 " " |> insert 14 " "
+    | CardIssuer.Visa            -> panWithoutHyphens |> insert 4 " " |> insert 9 " " |> insert 14 " "
+    | CardIssuer.MasterCard      -> panWithoutHyphens |> insert 4 " " |> insert 9 " " |> insert 14 " "
+    | _ -> invalidArg "issuer" "Illegal card issuer."
+
+let generateBIN (random: Random) (issuer: CardIssuer) =
+    match issuer with
+    | CardIssuer.AmericanExpress ->
+        match random.Next(0, 2) with
+        | 0 -> "34" + generateRandomNumberString random 4 0 10
+        | _ -> "37" + generateRandomNumberString random 4 0 10
+    | CardIssuer.DinersClub -> "36" + generateRandomNumberString random 4 0 10
+    | CardIssuer.Discover ->
+        match random.Next(0, 3) with
+        | 0 -> "6011" + generateRandomNumberString random 2 0 10
+        | 1 ->   "64" + generateRandomNumberString random 4 0 10
+        | _ ->   "65" + generateRandomNumberString random 4 0 10
+    | CardIssuer.Visa       -> "4" + generateRandomNumberString random 5 0 10
+    | CardIssuer.MasterCard -> generateRandomNumberString random 1 51 55 + generateRandomNumberString random 4 0 10
+    | _ -> invalidArg "issuer" "Illegal card issuer."
+
+let generateIndividualNumbers (random: Random) (issuer: CardIssuer) =
+    match issuer with
+    | CardIssuer.AmericanExpress -> generateRandomNumberString random 8 0 10
+    | CardIssuer.DinersClub      -> generateRandomNumberString random 9 0 10
+    | CardIssuer.Discover        -> generateRandomNumberString random 8 0 10
+    | CardIssuer.Visa            -> generateRandomNumberString random 9 0 10
+    | CardIssuer.MasterCard      -> generateRandomNumberString random 9 0 10
+    | _ -> invalidArg "issuer" "Illegal card issuer."
+
 let generatePAN (random: Random) (issuer: CardIssuer) (removeSpacesFromPAN: bool) =
-    let addSpacesToPAN (issuer: CardIssuer) (panWithoutHyphens: string) =
-        match issuer with
-        | CardIssuer.AmericanExpress -> panWithoutHyphens |> insert 4 " " |> insert 11 " "
-        | CardIssuer.DinersClub      -> panWithoutHyphens |> insert 4 " " |> insert 11 " "
-        | CardIssuer.Discover        -> panWithoutHyphens |> insert 4 " " |> insert 9 " " |> insert 14 " "
-        | CardIssuer.Visa            -> panWithoutHyphens |> insert 4 " " |> insert 9 " " |> insert 14 " "
-        | CardIssuer.MasterCard      -> panWithoutHyphens |> insert 4 " " |> insert 9 " " |> insert 14 " "
-        | _ -> invalidArg "issuer" "Illegal card issuer."
-
-    let generateBIN (random: Random) (issuer: CardIssuer) =
-        match issuer with
-        | CardIssuer.AmericanExpress ->
-            match random.Next(0, 2) with
-            | 0 -> "34" + generateRandomNumberString random 4 0 10
-            | _ -> "37" + generateRandomNumberString random 4 0 10
-        | CardIssuer.DinersClub -> "36" + generateRandomNumberString random 4 0 10
-        | CardIssuer.Discover ->
-            match random.Next(0, 3) with
-            | 0 -> "6011" + generateRandomNumberString random 2 0 10
-            | 1 ->   "64" + generateRandomNumberString random 4 0 10
-            | _ ->   "65" + generateRandomNumberString random 4 0 10
-        | CardIssuer.Visa       -> "4" + generateRandomNumberString random 5 0 10
-        | CardIssuer.MasterCard -> generateRandomNumberString random 1 51 55 + generateRandomNumberString random 4 0 10
-        | _ -> invalidArg "issuer" "Illegal card issuer."
-
-    let generateIndividualNumbers (issuer: CardIssuer) =
-        match issuer with
-        | CardIssuer.AmericanExpress -> generateRandomNumberString random 8 0 10
-        | CardIssuer.DinersClub      -> generateRandomNumberString random 9 0 10
-        | CardIssuer.Discover        -> generateRandomNumberString random 8 0 10
-        | CardIssuer.Visa            -> generateRandomNumberString random 9 0 10
-        | CardIssuer.MasterCard      -> generateRandomNumberString random 9 0 10
-        | _ -> invalidArg "issuer" "Illegal card issuer."
-    
     let bin = generateBIN random issuer
-    let individualNumbers = generateIndividualNumbers issuer
+    let individualNumbers = generateIndividualNumbers random issuer
     let checksum = generateChecksum (bin + individualNumbers)
 
     let panWithoutHyphens = sprintf "%s%s%s" bin individualNumbers checksum
 
     match removeSpacesFromPAN with
     | true  -> panWithoutHyphens
-    | false -> panWithoutHyphens |> addSpacesToPAN  issuer
+    | false -> panWithoutHyphens |> addSpacesToPAN issuer
 
 let generatePIN (random: Random) (length: int) = generateRandomNumberString random length 0 10
 
