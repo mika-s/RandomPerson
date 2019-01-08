@@ -5,7 +5,9 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
 open MathUtil
+open StringUtil
 open SwedenSSNGeneration
+open SwedenSSNParameters
 
 [<TestClass>]
 type ``getIndividualNumber for Swedish SSNs should`` () =
@@ -76,9 +78,8 @@ type ``generateSwedishIndividualNumber for Swedish SSNs should`` () =
 
     [<TestMethod>]
     member __.``return an odd number when male`` () =
-        let individualNumber = generateIndividualNumber random Gender.Male
-        let individualNumberAsInt = int (individualNumber)
-        Assert.IsTrue(isOdd individualNumberAsInt)
+        let individualNumber = generateIndividualNumber random Gender.Male |> int
+        Assert.IsTrue(isOdd individualNumber)
 
 [<TestClass>]
 type ``generateChecksum for Swedish SSNs should`` () =
@@ -130,13 +131,13 @@ type ``generateSwedishSSN should`` () =
         let gender = Gender.Male
         let ssn = generateSwedishSSN random birthdate gender false
 
-        let y = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let d = ssn.Substring(4, 2)
-        let individualNumber = int (ssn.Substring(7, 3))
-        let checksum = int (ssn.Substring(10, 1))
+        let y = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let d = ssn |> substring 4 2
+        let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
+        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("04", d)
         Assert.AreEqual("12", m)
         Assert.AreEqual("85", y)
@@ -150,13 +151,13 @@ type ``generateSwedishSSN should`` () =
         let gender = Gender.Male
         let ssn = generateSwedishSSN random birthdate gender false
 
-        let y = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let d = ssn.Substring(4, 2)
-        let individualNumber = int (ssn.Substring(7, 3))
-        let checksum = int (ssn.Substring(10, 1))
+        let y = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let d = ssn |> substring 4 2
+        let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
+        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("06", d)
         Assert.AreEqual("02", m)
         Assert.AreEqual("52", y)
@@ -170,13 +171,13 @@ type ``generateSwedishSSN should`` () =
         let gender = Gender.Female
         let ssn = generateSwedishSSN random birthdate gender false
 
-        let y = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let d = ssn.Substring(4, 2)
-        let individualNumber = int (ssn.Substring(7, 3))
-        let checksum = int (ssn.Substring(10, 1))
+        let y = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let d = ssn |> substring 4 2
+        let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
+        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("15", d)
         Assert.AreEqual("09", m)
         Assert.AreEqual("00", y)
@@ -190,13 +191,13 @@ type ``generateSwedishSSN should`` () =
         let gender = Gender.Female
         let ssn = generateSwedishSSN random birthdate gender false
 
-        let y = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let d = ssn.Substring(4, 2)
-        let individualNumber = int (ssn.Substring(7, 3))
-        let checksum = int (ssn.Substring(10, 1))
+        let y = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let d = ssn |> substring 4 2
+        let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
+        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
 
-        Assert.AreEqual(11, ssn.Length)
+        Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("01", d)
         Assert.AreEqual("01", m)
         Assert.AreEqual("99", y)
@@ -212,19 +213,19 @@ type ``generateSwedishSSN should`` () =
         let ssnFake = generateSwedishSSN random birthdate gender true
 
         let validatePerson = ValidatePerson()
-        let isRealValidating = validatePerson.ValidateSSN(Country.Sweden, ssnReal)
-        let isFakeValidating = validatePerson.ValidateSSN(Country.Sweden, ssnFake)
+        let isRealValidating, _ = validatePerson.ValidateSSN(Country.Sweden, ssnReal)
+        let isFakeValidating, _ = validatePerson.ValidateSSN(Country.Sweden, ssnFake)
 
-        let y = ssnFake.Substring(0, 2)
-        let m = ssnFake.Substring(2, 2)
-        let d = ssnFake.Substring(4, 2)
-        let individualNumber = int (ssnFake.Substring(7, 3))
-        let checksum = int (ssnFake.Substring(10, 1))
+        let y = ssnFake |> substring 0 2
+        let m = ssnFake |> substring 2 2
+        let d = ssnFake |> substring 4 2
+        let individualNumber = ssnFake |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
+        let checksum = ssnFake |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)
         Assert.AreNotEqual(ssnReal, ssnFake)
-        Assert.AreEqual(11, ssnFake.Length)
+        Assert.AreEqual(oldSsnParams.SsnLength, ssnFake.Length)
         Assert.AreEqual("01", d)
         Assert.AreEqual("01", m)
         Assert.AreEqual("99", y)

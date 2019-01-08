@@ -3,6 +3,7 @@
 open System
 open System.Globalization
 open System.Text.RegularExpressions
+open Util
 open StringUtil
 open Types.SSNTypes
 
@@ -29,7 +30,24 @@ let hasIndividualNumber (individualNumberStart: int) (individualNumberLength: in
     | true  -> Success ssn
     | false -> Failure WrongIndividualNumber
 
-let toBool (result: SSNValidationResult<string>) =
+let hasCorrectChecksum (getCalculatedCs: string -> string) (checksumStart: int) (checksumLength: int) (ssn: string) =
+    let cs = getCalculatedCs ssn
+    let csFromSSN = ssn |> substring checksumStart checksumLength
+
+    match csFromSSN with
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
+
+let toOutputResult (result: SSNValidationResult<string>) =
     match result with
-    | Success _ -> true
-    | Failure _ -> false
+    | Success _ -> (true, String.Empty)
+    | Failure f ->
+        match f with
+        | WrongShape            -> (false, "The shape is wrong.")
+        | WrongDate             -> (false, "The date is wrong.")
+        | WrongIndividualNumber -> (false, "The individual number is wrong.")
+        | WrongChecksum         -> (false, "The checksum is wrong.")
+        | WrongCenturyNumber    -> (false, "The century number is wrong.")
+        | WrongAreaNumber       -> (false, "The area number is wrong.")
+        | WrongGroupNumber      -> (false, "The group number is wrong.")
+        | WrongSerialNumber     -> (false, "The serial number is wrong.")

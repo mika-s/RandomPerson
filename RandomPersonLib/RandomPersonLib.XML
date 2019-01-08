@@ -186,12 +186,12 @@
  <summary>Validate an SSN for a given country.</summary>
  <param name="country">The country of the person to validate SSN for.</param>
  <param name="ssn">The SSN to validate.</param>
- <returns>true if valid SSN, false otherwise.</returns>
+ <returns>Tuple, with first value true if valid SSN, false otherwise; second value is the error message if false.</returns>
 </member>
 <member name="M:RandomPersonLib.ValidatePerson.ValidatePAN(System.String)">
  <summary>Validate a primary account number (PAN) for a credit card.</summary>
  <param name="pan">The PAN to validate.</param>
- <returns>true if valid PAN, false otherwise.</returns>
+ <returns>Tuple, with first value true if valid PAN, false otherwise; second value is the error message if false.</returns>
 </member>
 <member name="T:RandomPersonLib.ValidatePerson">
  <summary>A service class for validating PANs and SSNs.</summary>

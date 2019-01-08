@@ -1,14 +1,11 @@
 ﻿module internal SwedenSSNValidation
 
-open System
-open System.Globalization
 open System.Text.RegularExpressions
 open CommonValidation
 open SwedenSSNGeneration
 open SwedenSSNParameters
 open Util
 open StringUtil
-open Types.SSNTypes
 
 let (|OldSSNForSweden|NewSSNForSweden|NotSSN|) (ssn: string) =
     let regexMatchOld = Regex.Match(ssn, "^\d{6}-\d{4}$")
@@ -19,23 +16,7 @@ let (|OldSSNForSweden|NewSSNForSweden|NotSSN|) (ssn: string) =
     | (true, _) -> OldSSNForSweden
     | _         -> NotSSN
 
-let hasDate (p: SSNParams) (ssn: string) =
-    let datePart = ssn |> substring p.DateStart p.DateLength
-    let isDate, _ = DateTime.TryParseExact(datePart, p.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None)
-
-    match isDate with
-    | true  -> Success ssn
-    | false -> Failure WrongDate
-
-let hasIndividualNumber (p: SSNParams) (ssn: string) =
-    let individualNumberPart = ssn |> substring p.IndividualNumberStart p.IndividualNumberLength
-    let isInt, _ = Int32.TryParse(individualNumberPart)
-
-    match isInt with
-    | true  -> Success ssn
-    | false -> Failure WrongIndividualNumber
-
-let hasCorrectChecksum (p: SSNParams) (ssn: string) =
+let getCalculatedCs (p: SSNParams) (ssn: string) =
     let birthDate = match p.SsnLength with
                     | Equals oldSsnParams.SsnLength -> ssn |> substring p.DateStart p.DateLength
                     | Equals newSsnParams.SsnLength -> ssn |> substring (p.DateStart + 2) (p.DateLength - 2)   // omit two first digits in the date
@@ -43,21 +24,16 @@ let hasCorrectChecksum (p: SSNParams) (ssn: string) =
 
     let individualNumber = ssn |> substring p.IndividualNumberStart p.IndividualNumberLength
 
-    let cs = generateChecksum (birthDate + individualNumber)
-    let csFromSSN = ssn |> substring p.ChecksumStart p.ChecksumLength
-
-    match csFromSSN with
-    | Equals cs -> Success ssn
-    | _         -> Failure WrongChecksum
+    generateChecksum (birthDate + individualNumber)
 
 let validateSSNForSwedenGivenParams (p: SSNParams) =
-    hasDate p
-    >> bind (hasIndividualNumber p)
-    >> bind (hasCorrectChecksum p)
-    >> toBool
+    hasDate p.DateFormat p.DateStart p.DateLength
+    >> bind (hasIndividualNumber p.IndividualNumberStart p.IndividualNumberLength)
+    >> bind (hasCorrectChecksum (getCalculatedCs p) p.ChecksumStart p.ChecksumLength)
+    >> toOutputResult
 
 let validateSSNForSweden (ssn: string) =
     match ssn with 
     | OldSSNForSweden -> validateSSNForSwedenGivenParams oldSsnParams ssn
     | NewSSNForSweden -> validateSSNForSwedenGivenParams newSsnParams ssn
-    | NotSSN          -> false
+    | NotSSN          -> (false, "The shape is wrong.")

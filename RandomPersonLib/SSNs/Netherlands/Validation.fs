@@ -5,20 +5,14 @@ open NetherlandsSSNGeneration
 open NetherlandsSSNParameters
 open Util
 open StringUtil
-open Types.SSNTypes
 
-let hasCorrectChecksum (ssn: string) =
+let getCalculatedCs (ssn: string) =
     let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength
-
-    let cs = generateChecksum individualNumber
-    let csFromSSN = ssn |> substring ChecksumStart ChecksumLength
-
-    match csFromSSN with
-    | Equals cs -> Success ssn
-    | _         -> Failure WrongChecksum
+    
+    generateChecksum individualNumber
 
 let validateSSNForNetherlands =
     hasCorrectShape "^\d{9}$"
     >> bind (hasIndividualNumber IndividualNumberStart IndividualNumberLength)
-    >> bind hasCorrectChecksum
-    >> toBool
+    >> bind (hasCorrectChecksum getCalculatedCs ChecksumStart ChecksumLength)
+    >> toOutputResult

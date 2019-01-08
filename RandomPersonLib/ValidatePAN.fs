@@ -1,7 +1,7 @@
 ﻿module internal ValidatePAN
 
+open System
 open System.Text.RegularExpressions
-open Util
 open StringUtil
 open Types.PANTypes
 open Creditcard
@@ -29,13 +29,16 @@ let hasCorrectChecksum (pan: string) =
     | true  -> Success pan
     | false -> Failure WrongChecksum
 
-let toBool (result: PANValidationResult<string>) =
+let toOutputResult (result: PANValidationResult<string>) =
     match result with
-    | Success _ -> true
-    | Failure _ -> false
+    | Success _ -> (true, String.Empty)
+    | Failure f ->
+        match f with
+        | WrongShape    -> (false, "The shape of the PAN is wrong.")
+        | WrongChecksum -> (false, "The checksum is wrong.")
 
 let validatePAN =
     cleanRawPan
     >> hasCorrectShape
     >> bind hasCorrectChecksum
-    >> toBool
+    >> toOutputResult

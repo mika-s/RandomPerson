@@ -20,7 +20,7 @@ let validatePANMode (pan: string) =
 
             match readPAN with
             | "q" | "Q" -> Environment.Exit 1
-            | _         -> lib.ValidatePAN(readPAN) |> printfn "%b" |> mainloop
+            | _         -> lib.ValidatePAN(readPAN) ||> printfn "%b: %s" |> mainloop
 
         mainloop ()
-    | _ -> lib.ValidatePAN(pan) |> printfn "%b"
+    | _ -> lib.ValidatePAN(pan) ||> printfn "%b: %s"

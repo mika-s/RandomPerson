@@ -12,7 +12,7 @@ let validate (lib: ValidatePerson) (country: Country) =
         match readSSN with
         | "q" | "Q" -> Environment.Exit 1
         | "b" | "B" -> false |> ignore
-        | _         -> lib.ValidateSSN(country, readSSN) |> printfn "%b" |> loop
+        | _         -> lib.ValidateSSN(country, readSSN) ||> printfn "%b: %s" |> loop
 
     loop ()
 
@@ -39,4 +39,4 @@ let validateSSNMode (ssn: string) (country: Country) =
                 mainloop ()
 
         mainloop()
-    | _ -> lib.ValidateSSN(country, ssn) |> printfn "%b"
+    | _ -> lib.ValidateSSN(country, ssn) ||> printfn "%b: %s"

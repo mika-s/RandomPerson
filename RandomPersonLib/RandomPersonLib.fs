@@ -21,8 +21,8 @@ type IRandomPerson =
     abstract member CreatePeopleTemplated: int * Country * string * RandomPersonOptions -> string seq
 
 type IValidatePerson =
-    abstract member ValidatePAN: string -> bool
-    abstract member ValidateSSN: Country * string -> bool
+    abstract member ValidatePAN: string -> bool * string
+    abstract member ValidateSSN: Country * string -> bool * string
 
 type RandomPerson() =
     let i = readInputFiles ()

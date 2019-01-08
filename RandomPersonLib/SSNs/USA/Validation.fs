@@ -34,4 +34,4 @@ let validateSSNForUSA =
     >> bind hasCorrectAreaNumber
     >> bind hasCorrectGroupNumber
     >> bind hasCorrectSerialNumber
-    >> toBool
+    >> toOutputResult

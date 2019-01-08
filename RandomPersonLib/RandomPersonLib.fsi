@@ -13,8 +13,8 @@ type IRandomPerson =
 /// <summary>Interface for ValidatePerson for use with C#.</summary>
 [<Interface>]
 type IValidatePerson =
-    abstract member ValidatePAN: string -> bool
-    abstract member ValidateSSN: Country * string -> bool
+    abstract member ValidatePAN: string -> bool * string
+    abstract member ValidateSSN: Country * string -> bool * string
 
 /// <summary>A service class for generating random persons or validating SSNs.</summary>
 type RandomPerson =
@@ -68,13 +68,13 @@ type ValidatePerson =
 
     /// <summary>Validate a primary account number (PAN) for a credit card.</summary>
     /// <param name="pan">The PAN to validate.</param>
-    /// <returns>true if valid PAN, false otherwise.</returns>
-    member ValidatePAN: string -> bool
+    /// <returns>Tuple, with first value true if valid PAN, false otherwise; second value is the error message if false.</returns>
+    member ValidatePAN: string -> bool * string
 
     /// <summary>Validate an SSN for a given country.</summary>
     /// <param name="country">The country of the person to validate SSN for.</param>
     /// <param name="ssn">The SSN to validate.</param>
-    /// <returns>true if valid SSN, false otherwise.</returns>
-    member ValidateSSN: Country * string -> bool
+    /// <returns>Tuple, with first value true if valid SSN, false otherwise; second value is the error message if false.</returns>
+    member ValidateSSN: Country * string -> bool * string
 
     interface IValidatePerson
