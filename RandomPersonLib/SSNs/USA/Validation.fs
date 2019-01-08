@@ -1,17 +1,10 @@
 ﻿module internal UsaSSNValidation
 
-open System.Text.RegularExpressions
+open CommonValidation
 open UsaSSNParameters
 open Util
 open StringUtil
 open Types.SSNTypes
-
-let hasCorrectShape (ssn: string) =
-    let regexMatch = Regex.Match(ssn, "^\d{3}-\d{2}-\d{4}$")
-
-    match regexMatch.Success with
-    | true  -> Success ssn
-    | false -> Failure WrongShape
 
 let hasCorrectAreaNumber (ssn: string) = 
     let areaNumber = ssn |> substring AreaNumberStart AreaNumberLength |> int
@@ -36,14 +29,9 @@ let hasCorrectSerialNumber (ssn: string) =
     | x when x = 0  -> Failure WrongSerialNumber
     | _             -> Success ssn
 
-let toString (result: SSNValidationResult<string>) =
-    match result with
-    | Success _ -> true
-    | Failure _ -> false
-
 let validateSSNForUSA =
-    hasCorrectShape
+    hasCorrectShape "^\d{3}-\d{2}-\d{4}$"
     >> bind hasCorrectAreaNumber
     >> bind hasCorrectGroupNumber
     >> bind hasCorrectSerialNumber
-    >> toString
+    >> toBool

@@ -3,42 +3,85 @@
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
 open CommonValidation
+open Types.SSNTypes
 
-//[<TestClass>]
-//type ``HasDate should`` () =
+[<TestClass>]
+type ``hasCorrectShape should`` () =
 
-//    [<TestMethod>]
-//    member __.``return the remaining SSN after the date when the potential SSN has a proper date`` () =
-//        let ssn = "2109881234"
-//        let dateStart = 0
-//        let dateLength = 6
-//        let individualNumberStart = 6
-//        let datePattern = "ddMMyy"
+    [<TestMethod>]
+    member __.``return Success when the shape is proper`` () =
+        let ssn = "41098812346"
+        let shape = "^\d{11}$"
+
+        let result = hasCorrectShape shape ssn
+
+        match result with
+        | Success _ -> Assert.IsTrue(true)
+        | Failure _ -> Assert.IsTrue(false)
+
+    [<TestMethod>]
+    member __.``return Success when the shape is improper`` () =
+        let ssn = "4109881234"
+        let shape = "^\d{11}$"
+
+        let result = hasCorrectShape shape ssn
+
+        match result with
+        | Success _ -> Assert.IsTrue(false)
+        | Failure f -> Assert.AreEqual(f, WrongShape)
+
+[<TestClass>]
+type ``hasDate should`` () =
+
+    [<TestMethod>]
+    member __.``return Success when the date when the potential SSN has a proper date`` () =
+        let ssn = "2109881234"
+        let dateStart = 0
+        let dateLength = 6
+        let datePattern = "ddMMyy"
         
-//        match ssn with
-//        | HasDate dateStart dateLength individualNumberStart datePattern ssn rest -> Assert.AreEqual("1234", rest)
-//        | _                                                                       -> Assert.IsTrue(false)
+        let result = hasDate datePattern dateStart dateLength ssn
 
-//    [<TestMethod>]
-//    member __.``return None when the potential SSN doesn't have a proper date`` () =
-//        let ssn = "4109881234"
-//        let dateStart = 0
-//        let dateLength = 6
-//        let individualNumberStart = 6
-//        let datePattern = "ddMMyy"
+        match result with
+        | Success _ -> Assert.IsTrue(true)
+        | Failure _ -> Assert.IsTrue(false)
+
+    [<TestMethod>]
+    member __.``return Failure when the potential SSN doesn't have a proper date`` () =
+        let ssn = "4109881234"
+        let dateStart = 0
+        let dateLength = 6
+        let datePattern = "ddMMyy"
         
-//        match ssn with
-//        | HasDate dateStart dateLength individualNumberStart datePattern ssn _ -> Assert.IsTrue(false)
-//        | _                                                                    -> Assert.IsTrue(true)
+        let result = hasDate datePattern dateStart dateLength ssn
 
-//[<TestClass>]
-//type ``HasIndividualNumber should`` () =
+        match result with
+        | Success _ -> Assert.IsTrue(false)
+        | Failure f -> Assert.AreEqual(f, WrongDate)
 
-//    [<TestMethod>]
-//    member __.``return the remaining part after the individual number when the individual number is proper`` () =
-//        let rest = "123456"
-//        let individualNumberLength = 4
+[<TestClass>]
+type ``hasIndividualNumber should`` () =
 
-//        match rest with
-//        | HasIndividualNumber individualNumberLength rest newRest -> Assert.AreEqual("56", newRest)
-//        | _                                                       -> Assert.IsTrue(false)
+    [<TestMethod>]
+    member __.``return Success when the individual number is proper`` () =
+        let ssn = "4109881234"
+        let individualNumberStart = 0
+        let individualNumberLength = 6
+
+        let result = hasIndividualNumber individualNumberStart individualNumberLength ssn
+
+        match result with
+        | Success _ -> Assert.IsTrue(true)
+        | Failure _ -> Assert.IsTrue(false)
+
+    [<TestMethod>]
+    member __.``return Failure when the individual number is improper`` () =
+        let ssn = "4109881+34"
+        let individualNumberStart = 6
+        let individualNumberLength = 3
+
+        let result = hasIndividualNumber individualNumberStart individualNumberLength ssn
+
+        match result with
+        | Success _ -> Assert.IsTrue(false)
+        | Failure f -> Assert.AreEqual(f, WrongIndividualNumber)

@@ -3,6 +3,7 @@
 open System
 open System.Globalization
 open System.Text.RegularExpressions
+open CommonValidation
 open SwedenSSNGeneration
 open SwedenSSNParameters
 open Util
@@ -49,20 +50,11 @@ let hasCorrectChecksum (p: SSNParams) (ssn: string) =
     | Equals cs -> Success ssn
     | _         -> Failure WrongChecksum
 
-let toString (result: SSNValidationResult<string>) =
-    match result with
-    | Success _ -> true
-    | Failure _ -> false
-
 let validateSSNForSwedenGivenParams (p: SSNParams) =
-    let hasIndividualNumberForParams = hasIndividualNumber p
-    let hasCorrectChecksumForParams = hasCorrectChecksum p
-    let hasDateForParams = hasDate p
-
-    hasDateForParams
-    >> bind hasIndividualNumberForParams
-    >> bind hasCorrectChecksumForParams
-    >> toString
+    hasDate p
+    >> bind (hasIndividualNumber p)
+    >> bind (hasCorrectChecksum p)
+    >> toBool
 
 let validateSSNForSweden (ssn: string) =
     match ssn with 
