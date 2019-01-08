@@ -1,20 +1,23 @@
-﻿module CommonValidation
+﻿module internal CommonValidation
 
 open System
 open System.Globalization
+open StringUtil
+open Types.SSNTypes
 
-let (|HasDate|_|) (dateStart: int) (dateLength: int) (individualNumberStart: int) (datePattern: string) (potentialSSN: string) (_: string) =
-    let datePart = potentialSSN.Substring(dateStart, dateLength)
+let hasDate (dateStart: int) (dateLength: int) (ssn: string) =
+    let datePart = ssn |> substring dateStart dateLength
+    let datePattern = "ddMMyy"
     let isDate, _ = DateTime.TryParseExact(datePart, datePattern, CultureInfo.InvariantCulture, DateTimeStyles.None)
 
     match isDate with
-    | true  -> Some(potentialSSN.Substring(individualNumberStart, potentialSSN.Length - individualNumberStart))
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongDate
 
-let (|HasIndividualNumber|_|) (individualNumberLength: int) (rest: string) (_: string) =
-    let individualNumberPart = rest.Substring(0, individualNumberLength)
+let hasIndividualNumber (individualNumberStart: int) (individualNumberLength: int) (ssn: string) =
+    let individualNumberPart = ssn |> substring individualNumberStart individualNumberLength
     let isInt, _ = Int32.TryParse(individualNumberPart)
 
     match isInt with
-    | true  -> Some(rest.Substring(individualNumberLength, rest.Length - individualNumberLength))
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongIndividualNumber

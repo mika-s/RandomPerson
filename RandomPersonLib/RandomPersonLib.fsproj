@@ -19,6 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Util\Types.fs" />
     <Compile Include="Util\Enums.fs" />
     <Compile Include="Util\Util.fs" />
     <Compile Include="Util\MathUtil.fs" />

@@ -7,35 +7,41 @@ open CommonValidation
 open FinlandSSNGeneration
 open FinlandSSNParameters
 open Util
+open StringUtil
+open Types.SSNTypes
 
-let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
-    let regexMatch = Regex.Match(potentialSSN, "^\d{6}(-|\+|A)\d{3}[\dA-Y]$")
+let hasCorrectShape (ssn: string) =
+    let regexMatch = Regex.Match(ssn, "^\d{6}(-|\+|A)\d{3}[\dA-Y]$")
 
     match regexMatch.Success with
-    | true  -> Some(potentialSSN)
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongShape
 
-let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
-    let birthDateString = ssn.Substring(DateStart, DateLength)
-    let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
-    let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
+let hasCorrectChecksum (ssn: string) =
+    let datePart = ssn |> substring DateStart DateLength
+    let datePattern = "ddMMyy"
+
+    let _, birthDate = DateTime.TryParseExact(datePart, datePattern, CultureInfo.InvariantCulture, DateTimeStyles.None)
+    let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength
 
     let cs = generateChecksum birthDate individualNumber
+    let csFromSSN = ssn |> substring ChecksumStart ChecksumLength
 
     match csFromSSN with
-    | Equals cs -> Some(cs)
-    | _         -> None
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
 
-let validateSSNForFinland (ssn: string) = 
-    match ssn with
-    | HasCorrectShape ssn potentialSSN ->
-        match potentialSSN with
-        | HasDate DateStart DateLength IndividualNumberStart "ddMMyy" potentialSSN rest ->
-            match rest with
-            | HasIndividualNumber IndividualNumberLength rest newRest ->
-                match newRest with 
-                | HasCorrectChecksum newRest ssn _ -> true
-                | _ -> false
-            | _ -> false
-        | _ -> false
-    | _  -> false
+let toString (result: SSNValidationResult<string>) =
+    match result with
+    | Success _ -> true
+    | Failure _ -> false
+
+let validateSSNForFinland = 
+    let hasDateForFinland = hasDate DateStart DateLength
+    let hasIndividualNumberForFinland = hasIndividualNumber IndividualNumberStart IndividualNumberLength
+
+    hasCorrectShape
+    >> bind hasDateForFinland
+    >> bind hasIndividualNumberForFinland
+    >> bind hasCorrectChecksum
+    >> toString

@@ -3,39 +3,57 @@
 open System
 open System.Globalization
 open System.Text.RegularExpressions
-open CommonValidation
 open NorwaySSNGeneration
 open NorwaySSNParameters
 open Util
+open StringUtil
+open Types.SSNTypes
 
-let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
-    let regexMatch = Regex.Match(potentialSSN, "^\d{11}$")
+let hasCorrectShape (ssn: string) =
+    let regexMatch = Regex.Match(ssn, "^\d{11}$")
 
     match regexMatch.Success with
-    | true  -> Some(potentialSSN)
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongShape
 
-let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
-    let birthDateString = ssn.Substring(DateStart, DateLength)
-    let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
-    let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
+let hasDate (ssn: string) =
+    let datePart = ssn |> substring DateStart DateLength
+    let datePattern = "ddMMyy"
+    let isDate, _ = DateTime.TryParseExact(datePart, datePattern, CultureInfo.InvariantCulture, DateTimeStyles.None)
 
-    let cs = generateChecksum birthDate individualNumber
+    match isDate with
+    | true  -> Success ssn
+    | false -> Failure WrongDate
+
+let hasIndividualNumber (ssn: string) =
+    let individualNumberPart = ssn |> substring IndividualNumberStart IndividualNumberLength
+    let isInt, _ = Int32.TryParse(individualNumberPart)
+
+    match isInt with
+    | true  -> Success ssn
+    | false -> Failure WrongIndividualNumber
+
+let hasCorrectChecksum (ssn: string) =
+    let datePart = ssn |> substring DateStart DateLength
+    let datePattern = "ddMMyy"
+    let _, birthDate = DateTime.TryParseExact(datePart, datePattern, CultureInfo.InvariantCulture, DateTimeStyles.None)
+    let individualNumberPart = ssn |> substring IndividualNumberStart IndividualNumberLength
+
+    let cs = generateChecksum birthDate individualNumberPart
+    let csFromSSN = ssn |> substring ChecksumStart ChecksumLength
 
     match csFromSSN with
-    | Equals cs -> Some(cs)
-    | _         -> None
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
 
-let validateSSNForNorway (ssn: string) = 
-    match ssn with
-    | HasCorrectShape ssn potentialSSN ->
-        match potentialSSN with
-        | HasDate DateStart DateLength IndividualNumberStart "ddMMyy" potentialSSN rest ->
-            match rest with
-            | HasIndividualNumber IndividualNumberLength rest newRest ->
-                match newRest with 
-                | HasCorrectChecksum newRest ssn _ -> true
-                | _ -> false
-            | _ -> false
-        | _ -> false
-    | _  -> false
+let toString (result: SSNValidationResult<string>) =
+    match result with
+    | Success _ -> true
+    | Failure _ -> false
+    
+let validateSSNForNorway = 
+    hasCorrectShape
+    >> bind hasDate
+    >> bind hasIndividualNumber
+    >> bind hasCorrectChecksum
+    >> toString

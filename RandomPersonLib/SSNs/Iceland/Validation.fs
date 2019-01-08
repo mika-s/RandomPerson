@@ -1,4 +1,4 @@
-﻿module IcelandSSNValidation
+﻿module internal IcelandSSNValidation
 
 open System
 open System.Globalization
@@ -7,44 +7,49 @@ open CommonValidation
 open IcelandSSNGeneration
 open IcelandSSNParameters
 open Util
+open StringUtil
+open Types.SSNTypes
 
-let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
-    let regexMatch = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
+let hasCorrectShape (ssn: string) = 
+    let regexMatch = Regex.Match(ssn, "^\d{6}-\d{4}$")
 
     match regexMatch.Success with
-    | true  -> Some(potentialSSN)
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongShape
 
-let (|HasCorrectChecksum|_|) (ssn: string) (rest: string) (_: string) =
-    let csFromSSN = ssn.Substring(ChecksumStart, ChecksumLength)
-    let birthDateString = ssn.Substring(DateStart, DateLength)
-    let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
+let hasCorrectChecksum (ssn: string) =
+    let datePart = ssn |> substring DateStart DateLength
+    let datePattern = "ddMMyy"
+
+    let _, birthDate = DateTime.TryParseExact(datePart, datePattern, CultureInfo.InvariantCulture, DateTimeStyles.None)
     let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
 
     let cs = generateChecksum birthDate individualNumber
+    let csFromSSN = ssn |> substring ChecksumStart ChecksumLength
 
     match csFromSSN with
-    | Equals cs -> Some(rest.[1].ToString())
-    | _         -> None
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
 
-let (|HasProperCenturyNumber|_|) (centuryNumber: string) =
+let hasProperCenturyNumber (ssn: string) =
+    let centuryNumber = ssn |> substring CenturySignStart CenturySignLength
+
     match centuryNumber with
-    | "8" | "9" | "0" -> Some(centuryNumber)
-    | _               -> None
+    | "8" | "9" | "0" -> Success ssn
+    | _               -> Failure WrongCenturyNumber
 
-let validateSSNForIceland (ssn: string) = 
-    match ssn with
-    | HasCorrectShape ssn potentialSSN ->
-        match potentialSSN with
-        | HasDate DateStart DateLength IndividualNumberStart "ddMMyy" potentialSSN rest ->
-            match rest with
-            | HasIndividualNumber IndividualNumberLength rest newRest -> 
-                match newRest with
-                | HasCorrectChecksum ssn newRest newNewRest ->
-                    match newNewRest with
-                    | HasProperCenturyNumber _ -> true
-                    | _ -> false
-                | _ -> false
-            | _ -> false
-        | _ -> false
-    | _  -> false
+let toString (result: SSNValidationResult<string>) =
+    match result with
+    | Success _ -> true
+    | Failure _ -> false
+
+let validateSSNForIceland = 
+    let hasDateForIceland = hasDate DateStart DateLength
+    let hasIndividualNumberForIceland = hasIndividualNumber IndividualNumberStart IndividualNumberLength
+
+    hasCorrectShape
+    >> bind hasDateForIceland
+    >> bind hasIndividualNumberForIceland
+    >> bind hasCorrectChecksum
+    >> bind hasProperCenturyNumber
+    >> toString

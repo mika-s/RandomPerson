@@ -1,6 +1,6 @@
 ﻿module internal SwedenSSNParameters
 
-type ssnParams = {
+type SSNParams = {
     SsnLength: int
     DateStart: int
     DateLength: int

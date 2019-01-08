@@ -3,41 +3,46 @@
 open System
 open System.Globalization
 open System.Text.RegularExpressions
-open CommonValidation
 open DenmarkSSNGeneration
 open DenmarkSSNParameters
 open Util
+open StringUtil
+open Types.SSNTypes
+open CommonValidation
 
-let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
-    let regexMatch = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
+let hasCorrectShape (ssn: string) =
+    let regexMatch = Regex.Match(ssn, "^\d{6}-\d{4}$")
 
     match regexMatch.Success with
-    | true  -> Some(potentialSSN)
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongShape
 
-let (|HasCorrectChecksum|_|) (random: Random) (csFromSSN: string) (ssn: string) (_: string) =
-    let birthDateString = ssn.Substring(DateStart, DateLength)
-    let _, birthDate = DateTime.TryParseExact(birthDateString, "ddMMyy", CultureInfo.InvariantCulture, DateTimeStyles.None)
-    let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
-
-    let cs = generateChecksum random birthDate individualNumber
-
-    match csFromSSN with
-    | Equals cs -> Some(cs)
-    | _         -> None
-
-let validateSSNForDenmark (ssn: string) =
+let hasCorrectChecksum (ssn: string) =
     let random = getRandom false 100
 
-    match ssn with
-    | HasCorrectShape ssn potentialSSN ->
-        match potentialSSN with
-        | HasDate DateStart DateLength IndividualNumberStart "ddMMyy"  ssn rest ->
-            match rest with
-            | HasIndividualNumber IndividualNumberLength rest newRest -> 
-                match newRest with
-                | HasCorrectChecksum random newRest ssn _ -> true
-                | _ -> false 
-            | _ -> false
-        | _ -> false
-    | _  -> false
+    let datePart = ssn |> substring DateStart DateLength
+    let datePattern = "ddMMyy"
+    let _, birthDate = DateTime.TryParseExact(datePart, datePattern, CultureInfo.InvariantCulture, DateTimeStyles.None)
+    let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength
+
+    let cs = generateChecksum random birthDate individualNumber
+    let csFromSSN = ssn |> substring ChecksumStart ChecksumLength
+
+    match csFromSSN with
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
+
+let toString (result: SSNValidationResult<string>) =
+    match result with
+    | Success _ -> true
+    | Failure _ -> false
+
+let validateSSNForDenmark =
+    let hasDateForDenmark = hasDate DateStart DateLength
+    let hasIndividualNumberForDenmark = hasIndividualNumber IndividualNumberStart IndividualNumberLength
+
+    hasCorrectShape
+    >> bind hasDateForDenmark
+    >> bind hasIndividualNumberForDenmark
+    >> bind hasCorrectChecksum
+    >> toString

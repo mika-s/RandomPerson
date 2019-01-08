@@ -5,30 +5,35 @@ open CommonValidation
 open NetherlandsSSNGeneration
 open NetherlandsSSNParameters
 open Util
+open StringUtil
+open Types.SSNTypes
 
-let (|HasCorrectShape|_|) (potentialSSN: string) (_: string) =
-    let regexMatch = Regex.Match(potentialSSN, "^\d{9}$")
+let hasCorrectShape (ssn: string) = 
+    let regexMatch = Regex.Match(ssn, "^\d{9}$")
 
     match regexMatch.Success with
-    | true  -> Some(potentialSSN)
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongShape
 
-let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (_: string) =
-    let individualNumber = ssn.Substring(IndividualNumberStart, IndividualNumberLength)
+let hasCorrectChecksum (ssn: string) =
+    let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength
 
     let cs = generateChecksum individualNumber
+    let csFromSSN = ssn |> substring ChecksumStart ChecksumLength
 
     match csFromSSN with
-    | Equals cs -> Some(cs)
-    | _         -> None
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
 
-let validateSSNForNetherlands (ssn: string) =
-    match ssn with
-    | HasCorrectShape ssn potentialSSN ->
-        match potentialSSN with
-        | HasIndividualNumber IndividualNumberLength potentialSSN newRest -> 
-            match newRest with
-            | HasCorrectChecksum newRest ssn _ -> true
-            | _ -> false 
-        | _ -> false
-    | _  -> false
+let toString (result: SSNValidationResult<string>) =
+    match result with
+    | Success _ -> true
+    | Failure _ -> false
+
+let validateSSNForNetherlands =
+    let hasIndividualNumberForNetherlands = hasIndividualNumber IndividualNumberStart IndividualNumberLength
+
+    hasCorrectShape
+    >> bind hasIndividualNumberForNetherlands
+    >> bind hasCorrectChecksum
+    >> toString

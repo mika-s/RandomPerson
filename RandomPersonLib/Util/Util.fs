@@ -4,6 +4,7 @@ open System
 open System.IO
 open System.Runtime.Serialization.Json
 open System.Text
+open Types.SSNTypes
 
 let intFromChar (x: char) = x |> Char.GetNumericValue |> int
 let intArrayFromString (numbersStr: string) = numbersStr |> Seq.toArray |> Array.map intFromChar
@@ -31,3 +32,8 @@ let getRandom (isUsingManualSeed: bool) (seed: int) =
     match isUsingManualSeed with
     | true  -> Random(seed)
     | false -> Random()
+
+let bind switchFunction twoTrackInput =
+    match twoTrackInput with
+    | Success s -> switchFunction s
+    | Failure f -> Failure f

@@ -7,33 +7,34 @@ open SwedenSSNGeneration
 open SwedenSSNParameters
 open Util
 open StringUtil
+open Types.SSNTypes
 
-let (|OldSSNForSweden|NewSSNForSweden|NotSSN|) (potentialSSN: string) =
-    let regexMatchOld = Regex.Match(potentialSSN, "^\d{6}-\d{4}$")
-    let regexMatchNew = Regex.Match(potentialSSN, "^\d{8}-\d{4}$")
+let (|OldSSNForSweden|NewSSNForSweden|NotSSN|) (ssn: string) =
+    let regexMatchOld = Regex.Match(ssn, "^\d{6}-\d{4}$")
+    let regexMatchNew = Regex.Match(ssn, "^\d{8}-\d{4}$")
 
     match (regexMatchOld.Success, regexMatchNew.Success) with
     | (_, true) -> NewSSNForSweden
     | (true, _) -> OldSSNForSweden
     | _         -> NotSSN
 
-let (|HasDate|_|) (_: string) (p: ssnParams) (ssn: string)  =
+let hasDate (p: SSNParams) (ssn: string) =
     let datePart = ssn |> substring p.DateStart p.DateLength
     let isDate, _ = DateTime.TryParseExact(datePart, p.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None)
 
     match isDate with
-    | true  -> Some(ssn.Substring(p.IndividualNumberStart, ssn.Length - p.IndividualNumberStart))
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongDate
 
-let (|HasIndividualNumber|_|) (_: string) (p: ssnParams) (s: string) =
-    let individualNumberPart = s |> substring 0 p.IndividualNumberLength
+let hasIndividualNumber (p: SSNParams) (ssn: string) =
+    let individualNumberPart = ssn |> substring p.IndividualNumberStart p.IndividualNumberLength
     let isInt, _ = Int32.TryParse(individualNumberPart)
 
     match isInt with
-    | true  -> Some(s.Substring(p.IndividualNumberLength, s.Length - p.IndividualNumberLength))
-    | false -> None
+    | true  -> Success ssn
+    | false -> Failure WrongIndividualNumber
 
-let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (p: ssnParams) (_: string)  =
+let hasCorrectChecksum (p: SSNParams) (ssn: string) =
     let birthDate = match p.SsnLength with
                     | Equals oldSsnParams.SsnLength -> ssn |> substring p.DateStart p.DateLength
                     | Equals newSsnParams.SsnLength -> ssn |> substring (p.DateStart + 2) (p.DateLength - 2)   // omit two first digits in the date
@@ -42,24 +43,29 @@ let (|HasCorrectChecksum|_|) (csFromSSN: string) (ssn: string) (p: ssnParams) (_
     let individualNumber = ssn |> substring p.IndividualNumberStart p.IndividualNumberLength
 
     let cs = generateChecksum (birthDate + individualNumber)
+    let csFromSSN = ssn |> substring p.ChecksumStart p.ChecksumLength
 
     match csFromSSN with
-    | Equals cs -> Some(cs)
-    | _         -> None
+    | Equals cs -> Success ssn
+    | _         -> Failure WrongChecksum
 
-let performSwedishSSNValidation (ssn: string) (p: ssnParams) =
-    match ssn with
-    | HasDate ssn p rest ->
-        match rest with
-        | HasIndividualNumber rest p newRest ->
-            match newRest with
-            | HasCorrectChecksum newRest ssn p _ -> true
-            | _ -> false
-        | _ -> false
-    | _ -> false
+let toString (result: SSNValidationResult<string>) =
+    match result with
+    | Success _ -> true
+    | Failure _ -> false
 
-let validateSSNForSweden (ssn: string) = 
-    match ssn with
-    | OldSSNForSweden -> performSwedishSSNValidation ssn oldSsnParams
-    | NewSSNForSweden -> performSwedishSSNValidation ssn newSsnParams
+let validateSSNForSwedenGivenParams (p: SSNParams) =
+    let hasIndividualNumberForParams = hasIndividualNumber p
+    let hasCorrectChecksumForParams = hasCorrectChecksum p
+    let hasDateForParams = hasDate p
+
+    hasDateForParams
+    >> bind hasIndividualNumberForParams
+    >> bind hasCorrectChecksumForParams
+    >> toString
+
+let validateSSNForSweden (ssn: string) =
+    match ssn with 
+    | OldSSNForSweden -> validateSSNForSwedenGivenParams oldSsnParams ssn
+    | NewSSNForSweden -> validateSSNForSwedenGivenParams newSsnParams ssn
     | NotSSN          -> false
