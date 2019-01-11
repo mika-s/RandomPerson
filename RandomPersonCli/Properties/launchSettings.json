@@ -2,7 +2,7 @@
   "profiles": {
     "RandomPerson": {
       "commandName": "Project",
-      "commandLineArgs": "-m L"
+      "commandLineArgs": "-m L -f JSON -a 150"
     }
   }
 }

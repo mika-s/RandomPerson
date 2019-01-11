@@ -122,8 +122,8 @@ let createPersonSerializable (person: Person) =
         TLD = person.TLD;
     }
 
-let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
-    match jsonPrintType, isFormatted with
+let createJsonSerializerSettings (jsonDateTimeType: string) (isFormatted: bool) =
+    match jsonDateTimeType, isFormatted with
     | "Microsoft", true  ->
        JsonSerializerSettings (Formatting = Formatting.Indented,
                                DateFormatHandling = DateFormatHandling.MicrosoftDateFormat)
@@ -138,7 +138,7 @@ let createJsonSerializerSettings (jsonPrintType: string) (isFormatted: bool) =
 
 let printToJson (people: Person[]) (outputFilePath: string) (settings: ListModeSettings)  =
     let filenameWithFixedFileEnding = outputFilePath.Replace("?", "json")
-    let jsonPrintSettings = createJsonSerializerSettings settings.PrintOptions.JsonDateType settings.PrintOptions.JsonPrettyPrint
+    let jsonPrintSettings = createJsonSerializerSettings settings.PrintOptions.JsonDateTimeType settings.PrintOptions.JsonPrettyPrint
     
     people
     |> Array.map(createPersonSerializable)

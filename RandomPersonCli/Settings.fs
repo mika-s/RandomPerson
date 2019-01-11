@@ -106,8 +106,8 @@ type PrintOptionsSettings = {
     [<field : DataMember(Name="CsvGenderFemale")>]
     CsvGenderFemale : string
 
-    [<field : DataMember(Name="JsonDateType")>]
-    JsonDateType : string
+    [<field : DataMember(Name="JsonDateTimeType")>]
+    JsonDateTimeType : string
 
     [<field : DataMember(Name="JsonPrettyPrint")>]
     JsonPrettyPrint : bool

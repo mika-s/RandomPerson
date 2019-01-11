@@ -2,10 +2,9 @@
 
 ## Introduction
 
-This is a .NET library that creates random personal data. It is originally
-written in F# but can also be used with C# and other .NET languages. The
-library uses .NET Standard and can, therefore, be used with .NET Framework
-and .NET Core.
+This is a .NET library that creates random personal data. It is originally written in F# but can also
+be used with C# and other .NET languages. The library uses .NET Standard and can, therefore, be used
+with .NET Framework and .NET Core.
 
 It can create people with the following generated data:
 
@@ -37,15 +36,17 @@ for the following countries:
 The data is generated using real-life data from the mentioned countries.
 The SSNs that are generated are also real, unless specified to be false.
 
-The library can validate SSNs for the countries listed above and credit
-card numbers.
+The library can validate SSNs for the countries listed above and PANs (credit
+card numbers).
 
 ## How to use RandomPersonLib
 
 ### In C#
 
 Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.4 to the references
-using NuGet. Make sure the *data* folder is in the same folder as the dll when running the program.
+using NuGet. Make sure the *data* folder is in the same folder as the referenced RandomPersonLib.dll
+when running the program. If you want IntelliSense to contain XML documentation you have to have
+RandomPersonLib.XML in the same folder as well.
 
 #### Example 1
 
@@ -325,61 +326,71 @@ There is a 50/50 chance of generating either true or false.
 
 ### ValidateSSN ()
 
-*ValidateSSN (country: Country, ssn: string) -> bool*
+*ValidateSSN (country: Country, ssn: string) -> bool * string*
 
-Validates an SSN given a country and an SSN.
+Validates an SSN given a country and an SSN. The return value is a tuple with
+the bool representing whether the SSN is valid or not, and the string is the
+error message if the SSN is invalid. Given a valid SSN the string will be empty.
+
+### ValidatePAN ()
+
+*ValidatePAN (pan: string) -> bool * string*
+
+Validates an PAN. The return value is a tuple with the bool representing whether
+the PAN is valid or not, and the string is the error message if the PAN is invalid.
+Given a valid PAN the string will be empty.
 
 ### Options
 
 All default values are false if the options object is not provided.
 
-#### "AnonymizeSSN": boolean
+#### "AnonymizeSSN": bool
 
 If this is set to true, the SSNs that are generated will be fake.
 If this is set to false, the SSNs that are generated will be real and the checksum correct.
 
-#### "Under18": boolean
+#### "Under18": bool
 
 If this is set to true, the birthdate (and therefore SSN) that are generated can include
 people under 18. If this is set to false, the person that is generated will always be
 older than 18 years.
 
-#### "AddCountryCodeToPhoneNumber": boolean
+#### "AddCountryCodeToPhoneNumber": bool
 
 If this is set to true, the phone numbers generated will include the country code. E.g.
 +4790000000. If this is set to false, the phone number will not include country code. E.g. 90000000.
 
-#### "RemoveHyphenFromPhoneNumber": boolean
+#### "RemoveHyphenFromPhoneNumber": bool
 
 If this is set to true, the phone numbers generated will not include hyphens (for phone
 numbers that usually include them). E.g. 555-1234 becomes 5551234. If this is set to false,
 the phone numbers can contain hyphens.
 
-#### "RemoveSpaceFromPhoneNumber": boolean
+#### "RemoveSpaceFromPhoneNumber": bool
 
 If this is set to true, the phone numbers generated will not include space (for phone
 numbers that usually include them). E.g. 12 34 56 78 becomes 12345678. If this is set to false,
 the phone numbers can contain space.
 
-#### "RemoveHyphenFromSSN": boolean
+#### "RemoveHyphenFromSSN": bool
 
 If this is et to true, the SSNs that are generated will not include hyphens (for SSNs that
 usually include them). E.g. XXXXXX-YYYY becomes XXXXXXYYYY. If this is set to false, the
 SSNs can contain hyphens.
 
-#### "RemoveSpacesFromPAN": boolean
+#### "RemoveSpacesFromPAN": bool
 
 If this is et to true, the PANs that are generated will not include spaces. E.g.
 XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain
 spaces.
 
-#### "BirthDateOptions.SetYearRangeManually": boolean
+#### "BirthDateOptions.SetYearRangeManually": bool
 
 `SetYearRangeManually` is set to true if the birthdate should be between two different years than
 the default values (which is between 1920 and now minus 18 years ago (or now if Under18 is true)).
 The two different years are set in `Low` and `High`. This setting overrides `Under18`.
 
-#### "BirthDateOptions.SetUsingAge": boolean
+#### "BirthDateOptions.SetUsingAge": bool
 
 `SetUsingAge` is set to true if the `Low` and `High` values should be years of age instead of
 years in general.
@@ -398,7 +409,7 @@ and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the l
 the randomly generated person. E.g. `High = 2000` means the random person can only be born before
 1900, when `SetUsingAge = true`.
 
-#### "RandomnessOptions.ManualSeed": boolean
+#### "RandomnessOptions.ManualSeed": bool
 
 `ManualSeed`: is set to true if the random function should use a manual seed. The manual seed is
 set in the `Seed` field. When using a manual seed, the generated values will be deterministic per
