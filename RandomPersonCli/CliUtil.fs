@@ -7,27 +7,27 @@ open System.Text
 open System.Xml
 open Newtonsoft.Json
 
-let b2i (b: bool) = if b = true then 1 else 0
+let b2i (b: bool) = if b then 1 else 0
 
 let readDataFromJsonFile<'T> (filename: string) =
     filename |> File.ReadAllText |> JsonConvert.DeserializeObject<'T>
 
-let writeToJsonFile<'T> (filename: string) (jsonSerializerSettings: JsonSerializerSettings) (objToWrite: obj) = 
+let writeToJsonFile<'T> (filename: string) (jsonSerializerSettings: JsonSerializerSettings) (objToWrite: obj) =
     let output = JsonConvert.SerializeObject(objToWrite, jsonSerializerSettings)
                  |> Encoding.UTF8.GetBytes
 
     use fs = new FileStream(filename, FileMode.Create, FileAccess.Write)
     fs.Write(output, 0, output.Length)
 
-let writeToXmlFile<'T> (filename: string) (xmlSerializerSettings: XmlWriterSettings) (objToWrite: obj) = 
+let writeToXmlFile<'T> (filename: string) (xmlSerializerSettings: XmlWriterSettings) (objToWrite: obj) =
     let serializer = DataContractSerializer(typedefof<'T>)
-    
+
     use xw = XmlWriter.Create(filename, xmlSerializerSettings)
     serializer.WriteObject(xw, objToWrite)
 
 let nullCoalesce (value: Nullable<'T>) (otherValue: 'T) = if value.HasValue then value.Value else otherValue
 
-let (|Int|_|) str =
+let (|Int|_|) (str: string) =
     match Int32.TryParse(str) with
     | (true, int) -> Some(int)
     | _           -> None
