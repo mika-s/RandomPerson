@@ -384,30 +384,28 @@ If this is et to true, the PANs that are generated will not include spaces. E.g.
 XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain
 spaces.
 
-#### "BirthDateOptions.SetYearRangeManually": bool
+#### "BirthDateOptions.BirthDateMode": enum
 
-`SetYearRangeManually` is set to true if the birthdate should be between two different years than
-the default values (which is between 1920 and now minus 18 years ago (or now if Under18 is true)).
-The two different years are set in `Low` and `High`. This setting overrides `Under18`.
+`BirthDateMode` decides how the birthdate should be calculated. It can be one of these:
 
-#### "BirthDateOptions.SetUsingAge": bool
-
-`SetUsingAge` is set to true if the `Low` and `High` values should be years of age instead of
-years in general.
+- DefaultCalendarYearRange: will randomly generate a birthdate between 1920 and 2000.
+- ManualCalendarYearRange: will randomly generate a birthdate between Low and High (see below).
+- ManualAgeRange: will randomly generate the birthdate using Low and High as age of the person.
+- Manual: will use the birthdate given in ManualBirthDate (see below).
 
 #### "BirthDateOptions.Low": int
 
-`Low`: Smallest year that the random person can be born in, if `SetYearRangeManually` is set to true
-and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the lowest age of
-the randomly generated person. E.g. `Low = 1900` means the random person can only be born after
-1900, when `SetUsingAge = true`.
+`Low` is the lowest year that is used when generating a random birthdate and BirthDateMode is
+DefaultCalendarYearRange. If BirthDateMode, then it's the lowest age of the generated person.
 
 #### "BirthDateOptions.High": int
 
-`High`: largest year that the random person can be born in, if `SetYearRangeManually` is set to true
-and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the largest age of
-the randomly generated person. E.g. `High = 2000` means the random person can only be born before
-1900, when `SetUsingAge = true`.
+`High` is the highest year that is used when generating a random birthdate and BirthDateMode is
+DefaultCalendarYearRange. If BirthDateMode, then it's the highest age of the generated person.
+
+#### "BirthDateOptions.ManualBirthDate": DateTime
+
+`ManualBirthDate` is the birthdate of the generated person if BirthDateMode is Manual.
 
 #### "RandomnessOptions.ManualSeed": bool
 

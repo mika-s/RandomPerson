@@ -1,14 +1,19 @@
 ﻿namespace RandomPersonLib
 
+open System
+
 /// A subclass used by RandomPersonOptions, containing birthdate options.
 [<NoEquality;NoComparison>]
-type BirthDateOptions (setYearRangeManually: bool, setUsingAge: bool, low: int, high: int) = 
-    new () = BirthDateOptions(false, false, 1920, 2000)
+type BirthDateOptions (birthDateMode: BirthDateMode, low: int, high: int, manualBirthDate: DateTime) =
+    new (birthDateMode: BirthDateMode, low: int, high: int) =
+        BirthDateOptions(birthDateMode, low, high, DateTime.MinValue)
 
-    member val SetYearRangeManually = setYearRangeManually with get, set
-    member val SetUsingAge = setUsingAge with get, set
+    new () = BirthDateOptions(BirthDateMode.DefaultCalendarYearRange, 1920, 2000, DateTime.MinValue)
+
+    member val BirthDateMode = birthDateMode with get, set
     member val Low = low with get, set
     member val High = high with get, set
+    member val ManualBirthDate = manualBirthDate with get, set
 
 /// A subclass used by RandomPersonOptions, containing randomness options.
 [<NoEquality;NoComparison>]

@@ -7,6 +7,11 @@
  A class representing postal code, city and state of a person&apos;s address.
 </summary>
 </member>
+<member name="T:RandomPersonLib.BirthDateMode">
+<summary>
+ Enum representing how the birthdate should be generated.
+</summary>
+</member>
 <member name="T:RandomPersonLib.CardIssuer">
 <summary>
  Enum representing a person&apos;s creditcard issuer.

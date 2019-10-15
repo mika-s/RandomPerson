@@ -96,11 +96,16 @@ Generate 200 Norwegian persons in Template mode (template string read from Setti
     "RemoveHyphenFromPhoneNumber": false,
     "RemoveSpaceFromPhoneNumber": true,
     "RemoveHyphenFromSSN": false,
+	"RemoveSpacesFromPAN": false,
+	"Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
     "BirthDate": {
-        "SetYearRangeManually": false,
-        "SetUsingAge": false,
-        "Low": 1900,
-        "High": 2000
+      "BirthDateMode": "DefaultCalendarYearRange",
+      "Low": 1900,
+      "High": 1950,
+      "ManualBirthDate": "2018-05-03""
     },
     "Randomness": {
         "ManualSeed": false,
@@ -120,43 +125,72 @@ Set it to false to generate over-18s only. This setting is only active if `SetYe
 false.
 
 #### AddCountryCodeToPhoneNumber
-Is set to true if country code should be added to the
-telephone numbers.
+Is set to true if country code should be added to the telephone numbers.
 
 #### RemoveHyphenFromPhoneNumber
-Is set to true if hyphens should be excluded from telephone
-numbers, for telephone numbers that usually include this.
+Is set to true if hyphens should be excluded from telephone numbers, for telephone numbers that usually
+include this.
 
 #### RemoveSpaceFromPhoneNumber
-Is set to true if space should be excluded from telephone
-numbers, for telephone numbers that usually include this.
+Is set to true if space should be excluded from telephone numbers, for telephone numbers that usually
+include this.
 
 #### RemoveHyphenFromSSN
-Is set to true if hyphens should be excluded from SSNs, for SSNs
-that usually include this (e.g. Swedish and Danish).
+Is set to true if hyphens should be excluded from SSNs, for SSNs that usually include this (e.g.
+Swedish and Danish).
+
+#### RemoveSpacesFromPAN
+If this is et to true, the PANs that are generated will not include spaces. E.g.
+XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain spaces.
+
+### In Creditcard
+
+#### CreditCard.CardIssuer
+
+`CardIssuer` decides what type of credit card PAN that will be generated. It's an enum of one of these values:
+
+- "AmericanExpress"
+- "DinersClub"
+- "Discover"
+- "MasterCard"
+- "Visa"
+
+It's written as a string.
+
+#### CreditCard.PinLength
+Length of the generated PIN code, as an integer.
 
 ### In BirthDate
 
-#### SetYearRangeManually
-Is set to true if the birthdate should be between two different years than
-the default values (which is between 1920 and now minus 18 years ago (or now if Under18 is true)).
-The two different years are set in `Low` and `High`. This setting overrides `Under18`.
+#### BirthDateMode
 
-#### SetUsingAge
-Is set to true if the `Low` and `High` values should be years of age instead of
-years in general.
+`BirthDateMode` decides how the birthdate should be calculated. It can be one of these:
+
+- "DefaultCalendarYearRange": will randomly generate a birthdate between 1920 and 2000.
+- "ManualCalendarYearRange": will randomly generate a birthdate between Low and High (see below).
+- "ManualAgeRange": will randomly generate the birthdate using Low and High as age of the person.
+- "Manual": will use the birthdate given in ManualBirthDate (see below).
 
 #### Low
-Smallest year that the random person can be born in, if `SetYearRangeManually` is set to true
-and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the lowest age of
-the randomly generated person. E.g. `Low = 1900` means the random person can only be born after
-1900, when `SetUsingAge = true`.
+
+`Low` is the lowest year that is used when generating a random birthdate and BirthDateMode is
+DefaultCalendarYearRange. If BirthDateMode, then it's the lowest age of the generated person.
 
 #### High
-Largest year that the random person can be born in, if `SetYearRangeManually` is set to true
-and `SetUsingAge` is set to false. If `SetUsingAge` is true, this value is the largest age of
-the randomly generated person. E.g. `High = 2000` means the random person can only be born before
-1900, when `SetUsingAge = true`.
+
+`High` is the highest year that is used when generating a random birthdate and BirthDateMode is
+DefaultCalendarYearRange. If BirthDateMode, then it's the highest age of the generated person.
+
+#### ManualBirthDate
+
+`ManualBirthDate` is the birthdate of the generated person if BirthDateMode is Manual. The format
+is "yyyy-MM-dd".
+
+#### "RandomnessOptions.ManualSeed": bool
+
+`ManualSeed`: is set to true if the random function should use a manual seed. The manual seed is
+set in the `Seed` field. When using a manual seed, the generated values will be deterministic per
+seed. I.e. RandomPerson will always generate the same values every time it's called.
 
 ### In Randomness:
 

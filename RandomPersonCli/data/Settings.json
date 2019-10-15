@@ -13,10 +13,10 @@
         "PinLength": 4
       },
       "BirthDate": {
-        "SetYearRangeManually": false,
-        "SetUsingAge": false,
+        "BirthDateMode": "DefaultCalendarYearRange",
         "Low": 1900,
-        "High": 2000
+        "High": 2000,
+        "ManualBirthDate": null
       },
       "Randomness": {
         "ManualSeed": false,
@@ -68,10 +68,10 @@
         "PinLength": 4
       },
       "BirthDate": {
-        "SetYearRangeManually": false,
-        "SetUsingAge": false,
+        "BirthDateMode": "DefaultCalendarYearRange",
         "Low": 1900,
-        "High": 2000
+        "High": 2000,
+        "ManualBirthDate": null
       },
       "Randomness": {
         "ManualSeed": false,
@@ -162,10 +162,10 @@
         "PinLength": 4
       },
       "BirthDate": {
-        "SetYearRangeManually": false,
-        "SetUsingAge": false,
+        "BirthDateMode": "DefaultCalendarYearRange",
         "Low": 1900,
-        "High": 2000
+        "High": 2000,
+        "ManualBirthDate": null
       },
       "Randomness": {
         "ManualSeed": false,

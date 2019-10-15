@@ -133,17 +133,17 @@ type CreditcardOptionsSettings = {
 
 [<DataContract;NoEquality;NoComparison>]
 type BirthDateOptionsSettings = {
-    [<field : DataMember(Name="SetYearRangeManually")>]
-    SetYearRangeManually : Nullable<bool>
-
-    [<field : DataMember(Name="SetUsingAge")>]
-    SetUsingAge : Nullable<bool>
+    [<field : DataMember(Name="BirthDateMode")>]
+    BirthDateMode : string
 
     [<field : DataMember(Name="Low")>]
     Low : Nullable<int>
 
     [<field : DataMember(Name="High")>]
     High : Nullable<int>
+
+    [<field : DataMember(Name="ManualBirthDate")>]
+    ManualBirthDate : string
 }
 
 [<DataContract;NoEquality;NoComparison>]
@@ -241,10 +241,10 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultRemoveSpaceFromPhoneNumber  = false
     let defaultRemoveHyphenFromSSN = false
     let defaultRemoveSpacesFromPAN = false
-    let defaultCardIssuer = "Visa"
+    let defaultCardIssuer = CardIssuer.Visa
     let defaultPinLength = 4
-    let defaultSetYearRangeManually = false
-    let defaultSetUsingAge = false
+    let defaultBirthDateMode = BirthDateMode.DefaultCalendarYearRange
+    let defaultManualBirthDate = DateTime.MinValue
     let defaultBirthDateLow = 1920
     let defaultBirthDateHigh = 2000
     let defaultManualSeed = false
@@ -260,12 +260,18 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalCardIssuer                  = if not (String.IsNullOrEmpty genericOptions.Creditcard.CardIssuer) then
                                                Enum.Parse(genericOptions.Creditcard.CardIssuer)
                                            else
-                                               Enum.Parse(defaultCardIssuer)
+                                               defaultCardIssuer
     let finalPinLength                   = nullCoalesce genericOptions.Creditcard.PinLength           defaultPinLength
-    let finalSetYearRangeManually        = nullCoalesce genericOptions.BirthDate.SetYearRangeManually defaultSetYearRangeManually
-    let finalSetUsingAge                 = nullCoalesce genericOptions.BirthDate.SetUsingAge          defaultSetUsingAge
+    let finalBirthDateMode               = if not (String.IsNullOrEmpty genericOptions.BirthDate.BirthDateMode) then
+                                               Enum.Parse(genericOptions.BirthDate.BirthDateMode)
+                                           else
+                                               defaultBirthDateMode
     let finalBirthDateLow                = nullCoalesce genericOptions.BirthDate.Low                  defaultBirthDateLow
     let finalBirthDateHigh               = nullCoalesce genericOptions.BirthDate.High                 defaultBirthDateHigh
+    let finalManualBirthDate             = if not (String.IsNullOrEmpty genericOptions.BirthDate.ManualBirthDate) then
+                                               DateTime.Parse(genericOptions.BirthDate.ManualBirthDate)
+                                           else
+                                               defaultManualBirthDate
     let finalManualSeed                  = nullCoalesce genericOptions.Randomness.ManualSeed          defaultManualSeed
     let finalSeed                        = nullCoalesce genericOptions.Randomness.Seed                defaultSeed
 
@@ -281,7 +287,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
         )
 
     randomPersonOptions.Creditcard <- CreditcardOptions(finalCardIssuer, finalPinLength)
-    randomPersonOptions.BirthDate  <- BirthDateOptions(finalSetYearRangeManually, finalSetUsingAge, finalBirthDateLow, finalBirthDateHigh)
+    randomPersonOptions.BirthDate  <- BirthDateOptions(finalBirthDateMode, finalBirthDateLow, finalBirthDateHigh, finalManualBirthDate)
     randomPersonOptions.Randomness <- RandomnessOptions(finalManualSeed, finalSeed)
     
     randomPersonOptions
