@@ -7,13 +7,13 @@
     <Authors>Mika Sundland</Authors>
     <AssemblyName>RandomPersonCli</AssemblyName>
     <RunPostBuildEvent>1</RunPostBuildEvent>
-    <Version>1.11.0</Version>
+    <Version>1.12.0</Version>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/mika-s/RandomPerson/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>1.11.0.0</AssemblyVersion>
-    <FileVersion>1.11.0.0</FileVersion>
+    <AssemblyVersion>1.12.0.0</AssemblyVersion>
+    <FileVersion>1.12.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,7 +54,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.5.4" />
+    <PackageReference Update="FSharp.Core" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>

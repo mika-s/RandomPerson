@@ -374,13 +374,13 @@ the phone numbers can contain space.
 
 #### "RemoveHyphenFromSSN": bool
 
-If this is et to true, the SSNs that are generated will not include hyphens (for SSNs that
+If this is set to true, the SSNs that are generated will not include hyphens (for SSNs that
 usually include them). E.g. XXXXXX-YYYY becomes XXXXXXYYYY. If this is set to false, the
 SSNs can contain hyphens.
 
 #### "RemoveSpacesFromPAN": bool
 
-If this is et to true, the PANs that are generated will not include spaces. E.g.
+If this is set to true, the PANs that are generated will not include spaces. E.g.
 XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain
 spaces.
 
