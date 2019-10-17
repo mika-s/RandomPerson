@@ -40,7 +40,8 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 * TLD
 
 The data is based on real values from the mentioned countries. I.e. the SSN, telephone numbers, etc.
-will be valid. SSN can be chosen to be fake.
+will be valid. SSN can be chosen to be fake. Birth date can be completely random, within an age range,
+within a calendar year range or fixed.
 
 ![List mode for Norwegian](./Assets/Images/list%20mode%20-%20usa.png)
 
@@ -75,10 +76,10 @@ RandomPerson has options for:
 
 - Deterministic randomization can be enabled if wanted, meaning you can get the same set of people for every
   generated list of people.
-- Setting a range for birth dates in either absolute values (birth year) or relative values (age). This will also affect
-  the generated SSN.
+- Setting a range for birth dates in either absolute values (birth year) or relative values (age). It can also be fixed.
+  This will also affect the generated SSN.
 - Anonymization of SSNs.
-- Output format for phone numbers (e.g. with country code or not) and SSNs.
+- Output format for phone numbers (e.g. with country code or not), SSNs and PANs.
 
 ### Validate PANs and SSNs
 
