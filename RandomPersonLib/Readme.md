@@ -43,7 +43,13 @@ card numbers).
 
 ### In C#
 
-Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.5.4 to the references
+**Automatically:**
+Install with NuGet. Everything should work out of the box. To create a NuGet package, use `dotnet pack`.
+Import *RandomPersonLib.X.Y.Z.nupkg* into the project that's going to use RandomPersonLib. It can be
+found in either *RandomPersonLib\bin\Debug* or *RandomPersonLib\bin\Release*.
+
+**Manually:**
+Add RandomPersonLib.dll to the project's references. Add FSharp.Core.dll version 4.7.0 to the references
 using NuGet. Make sure the *data* folder is in the same folder as the referenced RandomPersonLib.dll
 when running the program. If you want IntelliSense to contain XML documentation you have to have
 RandomPersonLib.XML in the same folder as well.
@@ -165,6 +171,7 @@ variables with generated values:
 `#{SSN}` <br />
 `#{Email}` <br />
 `#{Password}` <br />
+`#{MacAddress}` <br />
 `#{FirstName}` <br />
 `#{LastName}` <br />
 `#{Address1}` <br />
@@ -383,6 +390,16 @@ SSNs can contain hyphens.
 If this is set to true, the PANs that are generated will not include spaces. E.g.
 XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain
 spaces.
+
+#### "UseColonsInMacAddress": bool
+
+If this is set to true, the MAC addresses that are generated will use colons rather than hyphens.
+If this is set to false, the MAC addresses will use hyphens.
+
+#### "UseUppercaseInMacAddress": bool
+
+If this is set to true, the MAC addresses that are generated will use uppercase letters for the
+A to F hexadecimal letters. If this is set to false, the MAC addresses will use lowercase letters.
 
 #### "BirthDateOptions.BirthDateMode": enum
 

@@ -1,179 +1,188 @@
 ﻿{
-    "InteractiveMode": {
-      "Options": {
-        "AnonymizeSSN": true,
-        "Under18": true,
-        "AddCountryCodeToPhoneNumber": true,
-        "RemoveHyphenFromPhoneNumber": true,
-        "RemoveSpaceFromPhoneNumber": true,
-        "RemoveHyphenFromSSN": true,
-		"RemoveSpacesFromPAN": true,
-	    "Creditcard": {
-          "CardIssuer": "Visa",
-          "PinLength": 4
-        },
-        "BirthDate": {
-          "BirthDateMode": "DefaultCalendarYearRange",
-          "Low": 1900,
-          "High": 2000,
-          "ManualBirthDate": null
-        },
-        "Randomness": {
-          "ManualSeed": false,
-          "Seed": 1234
-        }
+  "InteractiveMode": {
+    "Options": {
+      "AnonymizeSSN": true,
+      "Under18": true,
+      "AddCountryCodeToPhoneNumber": true,
+      "RemoveHyphenFromPhoneNumber": true,
+      "RemoveSpaceFromPhoneNumber": true,
+      "RemoveHyphenFromSSN": true,
+      "RemoveSpacesFromPAN": true,
+      "UseColonsInMacAddress": true,
+      "UseUppercaseInMacAddress": true,
+      "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
       },
-      "ConsolePrint": {
-        "Label": true,
-        "FirstName": true,
-        "LastName": true,
-        "SSN": true,
-        "Country": true,
-        "Address1": true,
-        "Address2": false,
-        "PostalCode": true,
-        "City": true,
-        "State": true,
-        "BirthDate": true,
-        "Gender": true,
-        "Email": true,
-        "Password": true,
-        "MobilePhone": true,
-        "HomePhone": true,
-        "PIN": true,
-        "PAN": true,
-        "Expiry": true,
-        "CVV": true,
-        "CountryNameEnglish": true,
-        "CountryNameNative": true,
-        "CountryNameNativeAlternative1": true,
-        "CountryNameNativeAlternative2": true,
-        "CountryCode2": true,
-        "CountryCode3": true,
-        "CountryNumber": true,
-        "TLD": true
+      "BirthDate": {
+        "BirthDateMode": "DefaultCalendarYearRange",
+        "Low": 1900,
+        "High": 2000,
+        "ManualBirthDate": null
+      },
+      "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
       }
     },
-    "ListMode": {
-      "Options": {
-        "AnonymizeSSN": true,
-        "Under18": true,
-        "AddCountryCodeToPhoneNumber": true,
-        "RemoveHyphenFromPhoneNumber": true,
-        "RemoveSpaceFromPhoneNumber": true,
-        "RemoveHyphenFromSSN": true,
-		"RemoveSpacesFromPAN": true,
-	    "Creditcard": {
-          "CardIssuer": "Visa",
-          "PinLength": 4
-        },
-        "BirthDate": {
-          "BirthDateMode": "DefaultCalendarYearRange",
-          "Low": 1900,
-          "High": 2000,
-          "ManualBirthDate": null
-        },
-        "Randomness": {
-          "ManualSeed": false,
-          "Seed": 1234
-        }
+    "ConsolePrint": {
+      "Label": true,
+      "FirstName": true,
+      "LastName": true,
+      "SSN": true,
+      "Country": true,
+      "Address1": true,
+      "Address2": false,
+      "PostalCode": true,
+      "City": true,
+      "State": true,
+      "BirthDate": true,
+      "Gender": true,
+      "Email": true,
+      "Password": true,
+      "MacAddress": true,
+      "MobilePhone": true,
+      "HomePhone": true,
+      "PIN": true,
+      "PAN": true,
+      "Expiry": true,
+      "CVV": true,
+      "CountryNameEnglish": true,
+      "CountryNameNative": true,
+      "CountryNameNativeAlternative1": true,
+      "CountryNameNativeAlternative2": true,
+      "CountryCode2": true,
+      "CountryCode3": true,
+      "CountryNumber": true,
+      "TLD": true
+    }
+  },
+  "ListMode": {
+    "Options": {
+      "AnonymizeSSN": true,
+      "Under18": true,
+      "AddCountryCodeToPhoneNumber": true,
+      "RemoveHyphenFromPhoneNumber": true,
+      "RemoveSpaceFromPhoneNumber": true,
+      "RemoveHyphenFromSSN": true,
+      "RemoveSpacesFromPAN": true,
+      "UseColonsInMacAddress": true,
+      "UseUppercaseInMacAddress": true,
+      "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
       },
-      "PrintOptions": {
-        "CsvDateFormat": "dd-MM-yyyy",
-        "CsvSetGenderManually": true,
-        "CsvGenderMale": "Man",
-        "CsvGenderFemale": "Woman",
-        "JsonDateType": "ISO",
-        "JsonPrettyPrint": true,
-        "XmlPrettyPrint": true
+      "BirthDate": {
+        "BirthDateMode": "DefaultCalendarYearRange",
+        "Low": 1900,
+        "High": 2000,
+        "ManualBirthDate": null
       },
-      "ConsolePrint": {
-        "Label": true,
-        "FirstName": true,
-        "LastName": true,
-        "SSN": true,
-        "Country": false,
-        "Address1": true,
-        "Address2": false,
-        "PostalCode": true,
-        "City": true,
-        "State": true,
-        "BirthDate": false,
-        "Gender": true,
-        "Email": true,
-        "Password": true,
-        "MobilePhone": true,
-        "HomePhone": true,
-        "PIN": true,
-        "PAN": true,
-        "Expiry": true,
-        "CVV": true,
-        "CountryNameEnglish": true,
-        "CountryNameNative": true,
-        "CountryNameNativeAlternative1": true,
-        "CountryNameNativeAlternative2": true,
-        "CountryCode2": true,
-        "CountryCode3": true,
-        "CountryNumber": true,
-        "TLD": true
-      },
-      "FilePrint": {
-        "Label": true,
-        "FirstName": true,
-        "LastName": true,
-        "SSN": true,
-        "Country": true,
-        "Address1": true,
-        "Address2": true,
-        "PostalCode": true,
-        "City": true,
-        "State": true,
-        "BirthDate": true,
-        "Gender": true,
-        "Email": true,
-        "Password": true,
-        "MobilePhone": true,
-        "HomePhone": true,
-        "PIN": true,
-        "PAN": true,
-        "Expiry": true,
-        "CVV": true,
-        "CountryNameEnglish": true,
-        "CountryNameNative": true,
-        "CountryNameNativeAlternative1": true,
-        "CountryNameNativeAlternative2": true,
-        "CountryCode2": true,
-        "CountryCode3": true,
-        "CountryNumber": true,
-        "TLD": true
+      "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
       }
     },
-    "TemplateMode": {
-      "Options": {
-        "AnonymizeSSN": true,
-        "Under18": false,
-        "AddCountryCodeToPhoneNumber": true,
-        "RemoveHyphenFromPhoneNumber": false,
-        "RemoveSpaceFromPhoneNumber": false,
-        "RemoveHyphenFromSSN": true,
-		"RemoveSpacesFromPAN": true,
-	    "Creditcard": {
-          "CardIssuer": "Visa",
-          "PinLength": 4
-        },
-        "BirthDate": {
-          "BirthDateMode": "DefaultCalendarYearRange",
-          "Low": 1900,
-          "High": 2000,
-          "ManualBirthDate": null
-        },
-        "Randomness": {
-          "ManualSeed": false,
-          "Seed": 1234
-        }
+    "PrintOptions": {
+      "CsvDateFormat": "dd-MM-yyyy",
+      "CsvSetGenderManually": true,
+      "CsvGenderMale": "Man",
+      "CsvGenderFemale": "Woman",
+      "JsonDateType": "ISO",
+      "JsonPrettyPrint": true,
+      "XmlPrettyPrint": true
+    },
+    "ConsolePrint": {
+      "Label": true,
+      "FirstName": true,
+      "LastName": true,
+      "SSN": true,
+      "Country": true,
+      "Address1": true,
+      "Address2": true,
+      "PostalCode": true,
+      "City": true,
+      "State": true,
+      "BirthDate": true,
+      "Gender": true,
+      "Email": true,
+      "Password": true,
+      "MacAddress": true,
+      "MobilePhone": true,
+      "HomePhone": true,
+      "PIN": true,
+      "PAN": true,
+      "Expiry": true,
+      "CVV": true,
+      "CountryNameEnglish": true,
+      "CountryNameNative": true,
+      "CountryNameNativeAlternative1": true,
+      "CountryNameNativeAlternative2": true,
+      "CountryCode2": true,
+      "CountryCode3": true,
+      "CountryNumber": true,
+      "TLD": true
+    },
+    "FilePrint": {
+      "Label": true,
+      "FirstName": true,
+      "LastName": true,
+      "SSN": true,
+      "Country": true,
+      "Address1": true,
+      "Address2": true,
+      "PostalCode": true,
+      "City": true,
+      "State": true,
+      "BirthDate": true,
+      "Gender": true,
+      "Email": true,
+      "Password": true,
+      "MacAddress": true,
+      "MobilePhone": true,
+      "HomePhone": true,
+      "PIN": true,
+      "PAN": true,
+      "Expiry": true,
+      "CVV": true,
+      "CountryNameEnglish": true,
+      "CountryNameNative": true,
+      "CountryNameNativeAlternative1": true,
+      "CountryNameNativeAlternative2": true,
+      "CountryCode2": true,
+      "CountryCode3": true,
+      "CountryNumber": true,
+      "TLD": true
+    }
+  },
+  "TemplateMode": {
+    "Options": {
+      "AnonymizeSSN": true,
+      "Under18": false,
+      "AddCountryCodeToPhoneNumber": true,
+      "RemoveHyphenFromPhoneNumber": false,
+      "RemoveSpaceFromPhoneNumber": false,
+      "RemoveHyphenFromSSN": true,
+      "RemoveSpacesFromPAN": true,
+      "UseColonsInMacAddress": true,
+      "UseUppercaseInMacAddress": true,
+      "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
       },
-        "Print": {
-          "Output": "
+      "BirthDate": {
+        "BirthDateMode": "DefaultCalendarYearRange",
+        "Low": 1900,
+        "High": 2000,
+        "ManualBirthDate": null
+      },
+      "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
+      }
+    },
+    "Print": {
+      "Output": "
 ---------------------
 Personal information:          
 ---------------------
@@ -193,6 +202,7 @@ Gender default values:     #{Gender}
 Gender given values:       #{Gender('Man', 'Woman')}
 Email:                     #{Email}
 Password:                  #{Password}
+MAC address:               #{MacAddress}
 MobilePhone:               #{MobilePhone}
 HomePhone:                 #{HomePhone}
 PIN:                       #{PIN}
@@ -258,6 +268,6 @@ Random normal distributed float: #{Random(nd_float, 100.0, 10.0)}
 Random normal distributed float with step: #{Random(nd_float, 100.0, 10.0, 1.0)}
 Random normal distributed float with 1 digit: #{Random(nd_float:1, 100.0, 10.0)}
 Random normal distributed float with 1 digit with step: #{Random(nd_float:1, 100.0, 10.0, 5.0)}"
-        }
     }
+  }
 }

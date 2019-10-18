@@ -31,6 +31,7 @@ let personToString (printSettings: GenericPrintSettings) (printOptions: PrintOpt
     if printSettings.Country                       then bprintf sb "%s" (person.Country.ToString() + ",")            |> ignore
     if printSettings.Email                         then bprintf sb "%s" (person.Email + ",")                         |> ignore
     if printSettings.Password                      then bprintf sb "%s" (person.Password + ",")                      |> ignore
+    if printSettings.MacAddress                    then bprintf sb "%s" (person.MacAddress + ",")                    |> ignore
     if printSettings.MobilePhone                   then bprintf sb "%s" (person.MobilePhone + ",")                   |> ignore
     if printSettings.HomePhone                     then bprintf sb "%s" (person.HomePhone + ",")                     |> ignore
     if printSettings.PIN                           then bprintf sb "%s" (person.PIN + ",")                           |> ignore
@@ -65,6 +66,7 @@ let createHeader (printSettings: GenericPrintSettings) =
     if printSettings.Country                       then bprintf sb "%s" ("Country,")                       |> ignore
     if printSettings.Email                         then bprintf sb "%s" ("Email,")                         |> ignore
     if printSettings.Password                      then bprintf sb "%s" ("Password,")                      |> ignore
+    if printSettings.MacAddress                    then bprintf sb "%s" ("MacAddress,")                    |> ignore
     if printSettings.MobilePhone                   then bprintf sb "%s" ("MobilePhone,")                   |> ignore
     if printSettings.HomePhone                     then bprintf sb "%s" ("HomePhone,")                     |> ignore
     if printSettings.PIN                           then bprintf sb "%s" ("PIN,")                           |> ignore

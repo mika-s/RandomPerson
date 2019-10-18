@@ -97,6 +97,8 @@ Generate 200 Norwegian persons in Template mode (template string read from Setti
     "RemoveSpaceFromPhoneNumber": true,
     "RemoveHyphenFromSSN": false,
 	"RemoveSpacesFromPAN": false,
+	"UseColonsInMacAddress": false,
+    "UseUppercaseInMacAddress": false,
 	"Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4
@@ -140,8 +142,14 @@ Is set to true if hyphens should be excluded from SSNs, for SSNs that usually in
 Swedish and Danish).
 
 #### RemoveSpacesFromPAN
-If this is et to true, the PANs that are generated will not include spaces. E.g.
+If this is set to true, the PANs that are generated will not include spaces. E.g.
 XXXX YYYY ZZZZ QQQQ becomes XXXXYYYYZZZZQQQQ. If this is set to false, the PANs will contain spaces.
+
+#### UseColonsInMacAddress
+Set to true if the MAC addresses that are generated will use colons rather than hyphens.
+
+#### UseUppercaseInMacAddress
+Set to true if the MAC addresses that are generated will use uppercase letters for the A to F hexadecimal letters.
 
 ### In Creditcard
 

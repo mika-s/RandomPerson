@@ -34,6 +34,7 @@ let performOrdinaryReplaces (person: Person) (originalOutput: string) =
             "SSN", box person.SSN;
             "Email", box person.Email;
             "Password", box person.Password;
+            "MacAddress", box person.MacAddress;
             "FirstName", box person.FirstName;
             "LastName", box person.LastName;
             "Address1", box person.Address1;

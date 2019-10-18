@@ -7,8 +7,10 @@
       "RemoveHyphenFromPhoneNumber": false,
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": false,
-	  "RemoveSpacesFromPAN": false,
-	  "Creditcard": {
+      "RemoveSpacesFromPAN": false,
+      "UseColonsInMacAddress": false,
+      "UseUppercaseInMacAddress": false,
+      "Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4
       },
@@ -38,6 +40,7 @@
       "Gender": true,
       "Email": true,
       "Password": true,
+      "MacAddress": true,
       "MobilePhone": true,
       "HomePhone": true,
       "PIN": true,
@@ -62,8 +65,10 @@
       "RemoveHyphenFromPhoneNumber": false,
       "RemoveSpaceFromPhoneNumber": true,
       "RemoveHyphenFromSSN": false,
-	  "RemoveSpacesFromPAN": false,
-	  "Creditcard": {
+      "RemoveSpacesFromPAN": false,
+      "UseColonsInMacAddress": false,
+      "UseUppercaseInMacAddress": false,
+      "Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4
       },
@@ -102,6 +107,7 @@
       "Gender": false,
       "Email": true,
       "Password": true,
+      "MacAddress": true,
       "MobilePhone": true,
       "HomePhone": true,
       "PIN": true,
@@ -132,6 +138,7 @@
       "Gender": false,
       "Email": false,
       "Password": true,
+      "MacAddress": true,
       "MobilePhone": true,
       "HomePhone": true,
       "PIN": true,
@@ -156,8 +163,10 @@
       "RemoveHyphenFromPhoneNumber": false,
       "RemoveSpaceFromPhoneNumber": false,
       "RemoveHyphenFromSSN": true,
-	  "RemoveSpacesFromPAN": false,
-	  "Creditcard": {
+      "RemoveSpacesFromPAN": false,
+      "UseColonsInMacAddress": false,
+      "UseUppercaseInMacAddress": false,
+      "Creditcard": {
         "CardIssuer": "Visa",
         "PinLength": 4
       },

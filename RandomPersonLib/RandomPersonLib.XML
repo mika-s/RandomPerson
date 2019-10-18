@@ -87,6 +87,11 @@
  The mobile hpone number of the randomly generated person.
 </summary>
 </member>
+<member name="P:RandomPersonLib.Person.MacAddress">
+<summary>
+ The MAC address of the randomly generated person.
+</summary>
+</member>
 <member name="P:RandomPersonLib.Person.LastName">
 <summary>
  The lastname of the randomly generated person.

@@ -10,6 +10,7 @@ open Email
 open Gender
 open Birthdate
 open Password
+open MacAddress
 open Phone
 open CountryFiles
 open GenericFiles
@@ -35,6 +36,7 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     let ssn = generateSSN random country birthDate gender isAnonymizingSSN isRemovingHypensFromSSN
     let email = generateEmailAddress random countryFiles.generalData.EmailEndings firstName lastName birthDate
     let password = generatePassword random genericFiles.passwords firstName lastName birthDate
+    let macAddress = generateMacAddress random options.UseColonsInMacAddress options.UseUppercaseInMacAddress
     let mobilePhone = generatePhone
                             random
                             countryFiles.generalData.Phone.CountryCode
@@ -104,6 +106,9 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
 
     /// The password of the randomly generated person.
     member __.Password = password
+
+    /// The MAC address of the randomly generated person.
+    member __.MacAddress = macAddress
 
     /// The mobile hpone number of the randomly generated person.
     member __.MobilePhone = mobilePhone

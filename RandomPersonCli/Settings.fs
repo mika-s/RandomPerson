@@ -49,6 +49,9 @@ type GenericPrintSettings = {
     [<field : DataMember(Name="Password")>]
     Password : bool
 
+    [<field : DataMember(Name="MacAddress")>]
+    MacAddress : bool
+
     [<field : DataMember(Name="MobilePhone")>]
     MobilePhone : bool
 
@@ -178,6 +181,12 @@ type GenericOptionsSettings = {
     [<field : DataMember(Name="RemoveSpacesFromPAN")>]
     RemoveSpacesFromPAN : Nullable<bool>
 
+    [<field : DataMember(Name="UseColonsInMacAddress")>]
+    UseColonsInMacAddress : Nullable<bool>
+
+    [<field : DataMember(Name="UseUppercaseInMacAddress")>]
+    UseUppercaseInMacAddress : Nullable<bool>
+
     [<field : DataMember(Name="Creditcard")>]
     Creditcard : CreditcardOptionsSettings
 
@@ -241,6 +250,8 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultRemoveSpaceFromPhoneNumber  = false
     let defaultRemoveHyphenFromSSN = false
     let defaultRemoveSpacesFromPAN = false
+    let defaultUseColonsInMacAddress    = false
+    let defaultUseUppercaseInMacAddress = false
     let defaultCardIssuer = CardIssuer.Visa
     let defaultPinLength = 4
     let defaultBirthDateMode = BirthDateMode.DefaultCalendarYearRange
@@ -257,6 +268,8 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalRemoveSpaceFromPhoneNumber  = nullCoalesce genericOptions.RemoveSpaceFromPhoneNumber     defaultRemoveSpaceFromPhoneNumber
     let finalRemoveHyphenFromSSN         = nullCoalesce genericOptions.RemoveHyphenFromSSN            defaultRemoveHyphenFromSSN
     let finalRemoveSpacesFromPAN         = nullCoalesce genericOptions.RemoveSpacesFromPAN            defaultRemoveSpacesFromPAN
+    let finalUseColonsInMacAddress       = nullCoalesce genericOptions.UseColonsInMacAddress          defaultUseColonsInMacAddress
+    let finalUseUppercaseInMacAddress    = nullCoalesce genericOptions.UseUppercaseInMacAddress       defaultUseUppercaseInMacAddress
     let finalCardIssuer                  = if not (String.IsNullOrEmpty genericOptions.Creditcard.CardIssuer) then
                                                Enum.Parse(genericOptions.Creditcard.CardIssuer)
                                            else
@@ -275,19 +288,18 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalManualSeed                  = nullCoalesce genericOptions.Randomness.ManualSeed          defaultManualSeed
     let finalSeed                        = nullCoalesce genericOptions.Randomness.Seed                defaultSeed
 
-    let randomPersonOptions =
-        RandomPersonOptions(
-            finalAnonymizeSSN,
-            finalUnder18,
-            finalAddCountryCodeToPhoneNumber,
-            finalRemoveHyphenFromPhoneNumber,
-            finalRemoveSpaceFromPhoneNumber,
-            finalRemoveHyphenFromSSN,
-            finalRemoveSpacesFromPAN
-        )
 
-    randomPersonOptions.Creditcard <- CreditcardOptions(finalCardIssuer, finalPinLength)
-    randomPersonOptions.BirthDate  <- BirthDateOptions(finalBirthDateMode, finalBirthDateLow, finalBirthDateHigh, finalManualBirthDate)
-    randomPersonOptions.Randomness <- RandomnessOptions(finalManualSeed, finalSeed)
-    
-    randomPersonOptions
+    RandomPersonOptions(
+        finalAnonymizeSSN,
+        finalUnder18,
+        finalAddCountryCodeToPhoneNumber,
+        finalRemoveHyphenFromPhoneNumber,
+        finalRemoveSpaceFromPhoneNumber,
+        finalRemoveHyphenFromSSN,
+        finalRemoveSpacesFromPAN,
+        finalUseColonsInMacAddress,
+        finalUseUppercaseInMacAddress,
+        Creditcard = CreditcardOptions(finalCardIssuer, finalPinLength),
+        BirthDate  = BirthDateOptions(finalBirthDateMode, finalBirthDateLow, finalBirthDateHigh, finalManualBirthDate),
+        Randomness = RandomnessOptions(finalManualSeed, finalSeed)
+    )

@@ -19,6 +19,7 @@ let isPrintingMoreThanOneLine (print: GenericPrintSettings) =
     + b2i print.State
     + b2i print.Email
     + b2i print.Password
+    + b2i print.MacAddress
     + b2i print.MobilePhone
     + b2i print.HomePhone
     + b2i print.PIN
@@ -58,6 +59,7 @@ let printPerson (print: GenericPrintSettings) (person: Person) =
     printToScreen print.State                          print.Label "State"         person.State
     printToScreen print.Email                          print.Label "Email"         person.Email
     printToScreen print.Password                       print.Label "Password"      person.Password
+    printToScreen print.MacAddress                     print.Label "MAC address"   person.MacAddress
     printToScreen print.MobilePhone                    print.Label "Mobile phone"  person.MobilePhone
     printToScreen print.HomePhone                      print.Label "Home phone"    person.HomePhone
     printToScreen print.PIN                            print.Label "PIN"           person.PIN
