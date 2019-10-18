@@ -1,22 +1,71 @@
 ﻿namespace RandomPersonLib
 
 open System
+open RandomUtil
+
+/// <summary>Interface to enable polymorphism for birth date options.</summary>
+type IBirthDateOptions =
+    abstract member GetBirthDate: Random -> DateTime
 
 /// A subclass used by RandomPersonOptions, containing birthdate options.
 [<NoEquality;NoComparison>]
-type BirthDateOptions (birthDateMode: BirthDateMode, low: int, high: int, manualBirthDate: DateTime) =
-    new (birthDateMode: BirthDateMode, low: int, high: int) =
-        BirthDateOptions(birthDateMode, low, high, DateTime.MinValue)
+type ManualBirthDateOptions (manualBirthDate: DateTime) =
 
-    new (birthDateMode: BirthDateMode, manualBirthDate: DateTime) =
-        BirthDateOptions(birthDateMode, 1920, 2000, manualBirthDate)
+    member val ManualBirthDate = manualBirthDate with get, set
+    
+    interface IBirthDateOptions with
 
-    new () = BirthDateOptions(BirthDateMode.DefaultCalendarYearRange, 1920, 2000, DateTime.MinValue)
+        member this.GetBirthDate (_: Random) = this.ManualBirthDate
 
-    member val BirthDateMode = birthDateMode with get, set
+/// A subclass used by RandomPersonOptions, containing birthdate options.
+[<NoEquality;NoComparison>]
+type DefaultYearRangeBirthDateOptions (isAllowingUnder18: bool) =
+
+    let low  = 1920
+
+    member val Low = low with get, set
+    member val IsAllowingUnder18 = isAllowingUnder18 with get, set
+
+    interface IBirthDateOptions with
+
+        member this.GetBirthDate (random: Random) =
+
+            let minLegalBirthDate = if isAllowingUnder18      then DateTime.Today else DateTime(this.Low, 1, 1)
+            let maxLegalBirthDate = if this.IsAllowingUnder18 then DateTime.Today else DateTime.Today.Subtract(TimeSpan.FromDays(365.0*18.5))
+
+            generateRandomDateBetween random minLegalBirthDate.Year maxLegalBirthDate.Year
+
+/// A subclass used by RandomPersonOptions, containing birthdate options.
+[<NoEquality;NoComparison>]
+type CalendarYearRangeBirthDateOptions (low: int, high: int) =
+
     member val Low = low with get, set
     member val High = high with get, set
-    member val ManualBirthDate = manualBirthDate with get, set
+
+    interface IBirthDateOptions with
+
+        member this.GetBirthDate (random: Random) =
+
+            let minLegalBirthDate = DateTime(this.Low,  1, 1)
+            let maxLegalBirthDate = DateTime(this.High, 1, 1)
+
+            generateRandomDateBetween random minLegalBirthDate.Year maxLegalBirthDate.Year
+
+/// A subclass used by RandomPersonOptions, containing birthdate options.
+[<NoEquality;NoComparison>]
+type AgeRangeBirthDateOptions (low: int, high: int) =
+
+    member val Low = low with get, set
+    member val High = high with get, set
+
+    interface IBirthDateOptions with
+
+        member this.GetBirthDate (random: Random) =
+
+            let minLegalBirthDate = DateTime.Now.Subtract(TimeSpan(365 * this.High, 0, 0, 0))
+            let maxLegalBirthDate = DateTime.Now.Subtract(TimeSpan(365 * this.Low, 0, 0, 0))
+
+            generateRandomDateBetween random minLegalBirthDate.Year maxLegalBirthDate.Year
 
 /// A subclass used by RandomPersonOptions, containing randomness options.
 [<NoEquality;NoComparison>]
@@ -45,20 +94,22 @@ type RandomPersonOptions (
                           removeHyphenFromSSN: bool,
                           removeSpacesFromPAN: bool,
                           useColonsInMacAddress: bool,
-                          useUppercaseInMacAddress: bool
+                          useUppercaseInMacAddress: bool,
+                          birthDate: IBirthDateOptions
                          ) =
 
-    let birthDate  = BirthDateOptions()
+    //let birthDate  = DefaultYearRangeBirthDateOptions(under18)
     let randomness = RandomnessOptions()
     let creditcard = CreditcardOptions()
 
-    new () = RandomPersonOptions(false, false, false, false, false, false, false, false, false)
+    new () = RandomPersonOptions(false, false, false, false, false, false, false, false, false,
+                                 DefaultYearRangeBirthDateOptions(false))
 
     new (anonymizeSSN: bool)
-        = RandomPersonOptions(anonymizeSSN, false, false, false, false, false, false, false, false)
+        = RandomPersonOptions(anonymizeSSN, false, false, false, false, false, false, false, false, DefaultYearRangeBirthDateOptions(false))
 
     new (anonymizeSSN: bool, under18: bool)
-        = RandomPersonOptions(anonymizeSSN, under18, false, false, false, false, false, false, false)
+        = RandomPersonOptions(anonymizeSSN, under18, false, false, false, false, false, false, false, DefaultYearRangeBirthDateOptions(false))
 
     member val AnonymizeSSN = anonymizeSSN with get, set
     member val Under18 = under18 with get, set

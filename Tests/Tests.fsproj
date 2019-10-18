@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.13.0</Version>
+    <Version>1.13.1</Version>
     <Authors>Mika Sundland</Authors>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>

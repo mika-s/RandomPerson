@@ -19,7 +19,6 @@ open GenericFiles
 [<NoEquality;NoComparison>]
 type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryFiles, options: RandomPersonOptions, random: Random) =
     let isAnonymizingSSN = options.AnonymizeSSN
-    let isAllowingUnder18 = options.Under18
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN
     
     let postalCodeCityState = generatePostalCodeCityState random countryFiles.postalCodeCityStates country
@@ -32,7 +31,7 @@ type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryF
     let postalCode = postalCodeCityState.PostalCode
     let city = postalCodeCityState.City
     let state = postalCodeCityState.State
-    let birthDate = generateBirthDate random isAllowingUnder18 options.BirthDate
+    let birthDate = generateBirthDate random options.BirthDate
     let ssn = generateSSN random country birthDate gender isAnonymizingSSN isRemovingHypensFromSSN
     let email = generateEmailAddress random countryFiles.generalData.EmailEndings firstName lastName birthDate
     let password = generatePassword random genericFiles.passwords firstName lastName birthDate

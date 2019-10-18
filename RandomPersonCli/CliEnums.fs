@@ -16,3 +16,9 @@ type FileFormat =
 | CSV
 | JSON
 | XML
+
+type BirthDateMode =
+| DefaultCalendarYearRange
+| ManualCalendarYearRange
+| ManualAgeRange
+| Manual

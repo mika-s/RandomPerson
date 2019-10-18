@@ -26,7 +26,7 @@ type IValidatePerson =
 
 type RandomPerson() =
     let i = readInputFiles ()
-    let defaultOptions = RandomPersonOptions(false, false, false, false, false, false, false, false, false)
+    let defaultOptions = RandomPersonOptions(false, false, false, false, false, false, false, false, false, DefaultYearRangeBirthDateOptions(false))
 
     let createPerson (country: Country, options: RandomPersonOptions, random: Random) =
         match country with

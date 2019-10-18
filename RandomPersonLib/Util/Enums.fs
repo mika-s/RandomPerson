@@ -22,10 +22,3 @@ type CardIssuer =
 | Discover        = 3
 | MasterCard      = 4
 | Visa            = 5
-
-/// Enum representing how the birthdate should be generated.
-type BirthDateMode =
-| DefaultCalendarYearRange = 1
-| ManualCalendarYearRange  = 2
-| ManualAgeRange           = 3
-| Manual                   = 4

@@ -4,6 +4,18 @@ open System
 
 let randomForUtil = Random()
 
+let generateRandomDateBetween (random: Random) (minYear: int) (maxYear: int) =
+    let year = random.Next(minYear, maxYear)
+    let month = random.Next(1, 12)
+    let day = match () with
+              | () when month = 1 || month = 3 || month = 5 || month = 7 || month = 8 || month = 10 || month = 12 -> random.Next(1, 31)
+              | () when month = 4 || month = 6 || month = 9 || month = 11 -> random.Next(1, 30)
+              | () when month = 2 && year % 4 = 0 && year <> 1900 -> 29
+              | () when month = 2 -> random.Next(1, 28)
+              | _ -> invalidArg "month" "Illegal month."
+
+    sprintf "%i-%0i-%0i" year month day |> DateTime.Parse
+
 let randomIntBetween (min: int) (max: int) = randomForUtil.Next(min, max + 1)
 let randomIntBetweenWithStep (min: int) (step: int) (max: int) = (randomIntBetween 0 ((max - min) / step)) * step + min
 

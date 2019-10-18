@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PreserveCompilationContext>false</PreserveCompilationContext>
-    <AssemblyVersion>1.13.0.0</AssemblyVersion>
-    <FileVersion>1.13.0.0</FileVersion>
+    <AssemblyVersion>1.13.1.0</AssemblyVersion>
+    <FileVersion>1.13.1.0</FileVersion>
     <PackageDescription>A .NET library that creates random personal data.</PackageDescription>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
@@ -13,7 +13,7 @@
     <PackageId>RandomPersonLib</PackageId>
     <Authors>Mika Sundland</Authors>
     <Company>Mika Sundland</Company>
-    <Version>1.13.0</Version>
+    <Version>1.13.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

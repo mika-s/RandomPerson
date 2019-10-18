@@ -3,6 +3,7 @@
 open System
 open System.Runtime.Serialization
 open RandomPersonLib
+open CliEnums
 open CliUtil
 
 [<DataContract;NoEquality;NoComparison>]
@@ -254,7 +255,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let defaultUseUppercaseInMacAddress = false
     let defaultCardIssuer = CardIssuer.Visa
     let defaultPinLength = 4
-    let defaultBirthDateMode = BirthDateMode.DefaultCalendarYearRange
+    let defaultBirthDateMode = DefaultCalendarYearRange
     let defaultManualBirthDate = DateTime.MinValue
     let defaultBirthDateLow = 1920
     let defaultBirthDateHigh = 2000
@@ -276,7 +277,12 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
                                                defaultCardIssuer
     let finalPinLength                   = nullCoalesce genericOptions.Creditcard.PinLength           defaultPinLength
     let finalBirthDateMode               = if not (String.IsNullOrEmpty genericOptions.BirthDate.BirthDateMode) then
-                                               Enum.Parse(genericOptions.BirthDate.BirthDateMode)
+                                               match genericOptions.BirthDate.BirthDateMode with
+                                               | "DefaultCalendarYearRange" -> DefaultCalendarYearRange
+                                               | "ManualCalendarYearRange"  -> ManualCalendarYearRange
+                                               | "ManualAgeRange"           -> ManualAgeRange
+                                               | "Manual"                   -> Manual
+                                               | _                          -> invalidArg "BirthDateMode" "Illegal BirthDateMode."
                                            else
                                                defaultBirthDateMode
     let finalBirthDateLow                = nullCoalesce genericOptions.BirthDate.Low                  defaultBirthDateLow
@@ -288,6 +294,12 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
     let finalManualSeed                  = nullCoalesce genericOptions.Randomness.ManualSeed          defaultManualSeed
     let finalSeed                        = nullCoalesce genericOptions.Randomness.Seed                defaultSeed
 
+    let finalBirthDateOptions =
+        match finalBirthDateMode with
+        | DefaultCalendarYearRange -> DefaultYearRangeBirthDateOptions(finalUnder18)                           :> IBirthDateOptions
+        | ManualCalendarYearRange  -> CalendarYearRangeBirthDateOptions(finalBirthDateLow, finalBirthDateHigh) :> IBirthDateOptions
+        | ManualAgeRange           -> AgeRangeBirthDateOptions(finalBirthDateLow, finalBirthDateHigh)          :> IBirthDateOptions
+        | Manual                   -> ManualBirthDateOptions(finalManualBirthDate)                             :> IBirthDateOptions
 
     RandomPersonOptions(
         finalAnonymizeSSN,
@@ -299,7 +311,7 @@ let genericOptionsToRandomPersonOptions (genericOptions: GenericOptionsSettings)
         finalRemoveSpacesFromPAN,
         finalUseColonsInMacAddress,
         finalUseUppercaseInMacAddress,
+        finalBirthDateOptions,
         Creditcard = CreditcardOptions(finalCardIssuer, finalPinLength),
-        BirthDate  = BirthDateOptions(finalBirthDateMode, finalBirthDateLow, finalBirthDateHigh, finalManualBirthDate),
         Randomness = RandomnessOptions(finalManualSeed, finalSeed)
     )

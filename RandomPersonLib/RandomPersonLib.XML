@@ -7,11 +7,6 @@
  A class representing postal code, city and state of a person&apos;s address.
 </summary>
 </member>
-<member name="T:RandomPersonLib.BirthDateMode">
-<summary>
- Enum representing how the birthdate should be generated.
-</summary>
-</member>
 <member name="T:RandomPersonLib.CardIssuer">
 <summary>
  Enum representing a person&apos;s creditcard issuer.
@@ -42,10 +37,28 @@
  A subclass used by RandomPersonOptions, containing randomness options.
 </summary>
 </member>
-<member name="T:RandomPersonLib.BirthDateOptions">
+<member name="T:RandomPersonLib.AgeRangeBirthDateOptions">
 <summary>
  A subclass used by RandomPersonOptions, containing birthdate options.
 </summary>
+</member>
+<member name="T:RandomPersonLib.CalendarYearRangeBirthDateOptions">
+<summary>
+ A subclass used by RandomPersonOptions, containing birthdate options.
+</summary>
+</member>
+<member name="T:RandomPersonLib.DefaultYearRangeBirthDateOptions">
+<summary>
+ A subclass used by RandomPersonOptions, containing birthdate options.
+</summary>
+</member>
+<member name="T:RandomPersonLib.ManualBirthDateOptions">
+<summary>
+ A subclass used by RandomPersonOptions, containing birthdate options.
+</summary>
+</member>
+<member name="T:RandomPersonLib.IBirthDateOptions">
+ <summary>Interface to enable polymorphism for birth date options.</summary>
 </member>
 <member name="P:RandomPersonLib.Person.TLD">
 <summary>
