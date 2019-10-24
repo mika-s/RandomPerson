@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PreserveCompilationContext>false</PreserveCompilationContext>
-    <AssemblyVersion>1.14.0.0</AssemblyVersion>
-    <FileVersion>1.14.0.0</FileVersion>
+    <AssemblyVersion>1.14.6.0</AssemblyVersion>
+    <FileVersion>1.14.6.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <PackageDescription>A library that creates random personal data.</PackageDescription>
@@ -13,14 +13,14 @@
     <PackageId>RandomPersonLib</PackageId>
     <Authors>Mika Sundland</Authors>
     <Company>Mika Sundland</Company>
-    <Version>1.14.0</Version>
+    <Version>1.14.6</Version>
     <PackageTags>random generator test-data test-data-generator ssn ssn-validator</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>RandomPersonLib is a library that creates random personal data. It supports creating personal data for the following countries: Denmark, Finland, Iceland, Netherlands, Norway, Sweden and USA. It can generate first name, last name, address (address 1, 2, postal code and city), nationality, gender, birth date, SSN, email, password, MAC address, mobile phone, home phone, credit card details (PAN, PIN, expiry and CVV), country names, codes, number, TLD. The library can also validate SSNs and credit card numbers (PAN).</Description>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>RandomPersonLib.XML</DocumentationFile>
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

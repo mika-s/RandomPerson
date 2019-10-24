@@ -98,7 +98,6 @@ type RandomPersonOptions (
                           birthDate: IBirthDateOptions
                          ) =
 
-    //let birthDate  = DefaultYearRangeBirthDateOptions(under18)
     let randomness = RandomnessOptions()
     let creditcard = CreditcardOptions()
 

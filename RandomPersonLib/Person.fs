@@ -17,7 +17,7 @@ open GenericFiles
 
 /// A class representing a randomly generated person.
 [<NoEquality;NoComparison>]
-type Person(country: Country, genericFiles: GenericFiles, countryFiles: CountryFiles, options: RandomPersonOptions, random: Random) =
+type Person internal (country: Country, genericFiles: GenericFiles, countryFiles: CountryFiles, options: RandomPersonOptions, random: Random) =
     let isAnonymizingSSN = options.AnonymizeSSN
     let isRemovingHypensFromSSN = options.RemoveHyphenFromSSN
     
