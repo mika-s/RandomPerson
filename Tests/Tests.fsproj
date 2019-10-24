@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.13.1</Version>
+    <Version>1.14.0</Version>
     <Authors>Mika Sundland</Authors>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <GenerateProgramFile>false</GenerateProgramFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -66,10 +67,6 @@
 
   <ItemGroup>
     <PackageReference Update="FSharp.Core" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

@@ -33,6 +33,7 @@ Check the RandomPersonCli folder for more information regarding the CLI tool.
 * SSN
 * Email
 * Password
+* MAC address
 * Mobile phone
 * Home phone
 * Credit card details (PAN, PIN, expiry and CVV)

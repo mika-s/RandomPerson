@@ -54,6 +54,10 @@ using NuGet. Make sure the *data* folder is in the same folder as the referenced
 when running the program. If you want IntelliSense to contain XML documentation you have to have
 RandomPersonLib.XML in the same folder as well.
 
+**Use IRandomPerson**:
+You should use the `IRandomPerson` interface with C#. Using `RandomPerson` directly will generate F# types,
+which is probably not what you want.
+
 #### Example 1
 
 Generate an IEnumerable of people and print to the console.
