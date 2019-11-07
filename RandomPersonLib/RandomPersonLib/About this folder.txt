@@ -1,0 +1,2 @@
+﻿This folder contains the data that is used by RandomPersonLib to generate random people.
+It was added automatically when RandomPersonLib was installed with NuGet.

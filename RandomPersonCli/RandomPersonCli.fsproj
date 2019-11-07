@@ -18,10 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="data\Max_Settings.json">
+    <Content Include="RandomPersonCli-data\Max_Settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\Settings.json">
+    <Content Include="RandomPersonCli-data\Settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="CliEnums.fs" />

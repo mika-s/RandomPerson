@@ -24,12 +24,12 @@ let defaultOptions = {
     outputType = Console
     fileFormat = CSV
     outputFilePath = "output.?"
-    settingsFilePath = "data/Settings.json"
+    settingsFilePath = "RandomPersonCli-data/Settings.json"
     ssn = String.Empty
     pan = String.Empty
 }
 
-let printVersion () = printfn "Version: 1.13.0.0"
+let printVersion () = printfn "Version: 1.15.0.0"
 
 let printUsage () =
     printfn "NAME"

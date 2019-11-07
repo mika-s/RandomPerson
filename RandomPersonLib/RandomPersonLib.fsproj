@@ -7,7 +7,7 @@
     <FileVersion>1.15.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
-    <PackageDescription>A library that creates random personal data.</PackageDescription>
+    <PackageDescription>A library that creates random personal data. It supports creating personal data for the following countries: Denmark, Finland, Iceland, Netherlands, Norway, Sweden and USA.</PackageDescription>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageId>RandomPersonLib</PackageId>
@@ -34,97 +34,103 @@
     <Compile Include="Util\StringUtil.fs" />
     <Compile Include="Util\ChecksumAlgorithms.fs" />
 
-    <Content Include="data\Generic\passwords.txt">
+    <Content Include="RandomPersonLib\Generic\passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Denmark\denmark.json">
+    <Content Include="RandomPersonLib\Denmark\denmark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Denmark\DK.txt">
+    <Content Include="RandomPersonLib\Denmark\DK.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Denmark\Gader i København.txt">
+    <Content Include="RandomPersonLib\Denmark\Gader i København.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Finland\Streets in Finland.txt">
+    <Content Include="RandomPersonLib\Finland\Streets in Finland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Finland\FI.txt">
+    <Content Include="RandomPersonLib\Finland\FI.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Finland\finland.json">
+    <Content Include="RandomPersonLib\Finland\finland.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Iceland\postnumer.txt">
+    <Content Include="RandomPersonLib\Iceland\postnumer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Iceland\Streets in Iceland.txt">
+    <Content Include="RandomPersonLib\Iceland\Streets in Iceland.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Iceland\iceland.json">
+    <Content Include="RandomPersonLib\Iceland\iceland.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Netherlands\Addresses in NL.txt">
+    <Content Include="RandomPersonLib\Netherlands\Addresses in NL.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Netherlands\NL.txt">
+    <Content Include="RandomPersonLib\Netherlands\NL.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Netherlands\License for last names.txt">
+    <Content Include="RandomPersonLib\Netherlands\License for last names.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Netherlands\netherlands.json">
+    <Content Include="RandomPersonLib\Netherlands\netherlands.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Norway\norway.json">
+    <Content Include="RandomPersonLib\Norway\norway.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Norway\Postnummerregister-ansi.txt">
+    <Content Include="RandomPersonLib\Norway\Postnummerregister-ansi.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Norway\Gater i Oslo.txt">
+    <Content Include="RandomPersonLib\Norway\Gater i Oslo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Sweden\sweden.json">
+    <Content Include="RandomPersonLib\Sweden\sweden.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Sweden\SE.txt">
+    <Content Include="RandomPersonLib\Sweden\SE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\Sweden\Gator i Stockholm.txt">
+    <Content Include="RandomPersonLib\Sweden\Gator i Stockholm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\USA\Streets in Sullivan.txt">
+    <Content Include="RandomPersonLib\USA\Streets in Sullivan.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\USA\US.txt">
+    <Content Include="RandomPersonLib\USA\US.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="data\USA\usa.json">
+    <Content Include="RandomPersonLib\USA\usa.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="RandomPersonLib\About this folder.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="RandomPersonLib\Readme.md">
     </Content>
     <Compile Include="Datacontracts\PersonData.fs" />
     <Compile Include="SSNs\Common\Validation.fs" />
@@ -177,22 +183,23 @@
     <Compile Include="Templateprint\TemplatePrint.fs" />
     <Compile Include="RandomPersonLib.fsi" />
     <Compile Include="RandomPersonLib.fs" />
+
+    <Content Include="Readme.md">
+      <Pack>false</Pack>
+    </Content>
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Copy SourceFiles="Readme.md" DestinationFolder="RandomPersonLib/" />
+  </Target>
 
   <ItemGroup>
     <PackageReference Update="FSharp.Core" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="data\Readme.md">
+    <Content Include="RandomPersonLib\Source information.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="readme.txt">
-      <Pack>true</Pack>
-      <PackagePath>\</PackagePath>
     </Content>
   </ItemGroup>
 

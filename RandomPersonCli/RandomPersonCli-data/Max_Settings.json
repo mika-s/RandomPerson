@@ -1,0 +1,273 @@
+﻿{
+  "InteractiveMode": {
+    "Options": {
+      "AnonymizeSSN": true,
+      "Under18": true,
+      "AddCountryCodeToPhoneNumber": true,
+      "RemoveHyphenFromPhoneNumber": true,
+      "RemoveSpaceFromPhoneNumber": true,
+      "RemoveHyphenFromSSN": true,
+      "RemoveSpacesFromPAN": true,
+      "UseColonsInMacAddress": true,
+      "UseUppercaseInMacAddress": true,
+      "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
+      "BirthDate": {
+        "BirthDateMode": "DefaultCalendarYearRange",
+        "Low": 1900,
+        "High": 2000,
+        "ManualBirthDate": null
+      },
+      "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
+      }
+    },
+    "ConsolePrint": {
+      "Label": true,
+      "FirstName": true,
+      "LastName": true,
+      "SSN": true,
+      "Country": true,
+      "Address1": true,
+      "Address2": false,
+      "PostalCode": true,
+      "City": true,
+      "State": true,
+      "BirthDate": true,
+      "Gender": true,
+      "Email": true,
+      "Password": true,
+      "MacAddress": true,
+      "MobilePhone": true,
+      "HomePhone": true,
+      "PIN": true,
+      "PAN": true,
+      "Expiry": true,
+      "CVV": true,
+      "CountryNameEnglish": true,
+      "CountryNameNative": true,
+      "CountryNameNativeAlternative1": true,
+      "CountryNameNativeAlternative2": true,
+      "CountryCode2": true,
+      "CountryCode3": true,
+      "CountryNumber": true,
+      "TLD": true
+    }
+  },
+  "ListMode": {
+    "Options": {
+      "AnonymizeSSN": true,
+      "Under18": true,
+      "AddCountryCodeToPhoneNumber": true,
+      "RemoveHyphenFromPhoneNumber": true,
+      "RemoveSpaceFromPhoneNumber": true,
+      "RemoveHyphenFromSSN": true,
+      "RemoveSpacesFromPAN": true,
+      "UseColonsInMacAddress": true,
+      "UseUppercaseInMacAddress": true,
+      "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
+      "BirthDate": {
+        "BirthDateMode": "DefaultCalendarYearRange",
+        "Low": 1900,
+        "High": 2000,
+        "ManualBirthDate": null
+      },
+      "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
+      }
+    },
+    "PrintOptions": {
+      "CsvDateFormat": "dd-MM-yyyy",
+      "CsvSetGenderManually": true,
+      "CsvGenderMale": "Man",
+      "CsvGenderFemale": "Woman",
+      "JsonDateType": "ISO",
+      "JsonPrettyPrint": true,
+      "XmlPrettyPrint": true
+    },
+    "ConsolePrint": {
+      "Label": true,
+      "FirstName": true,
+      "LastName": true,
+      "SSN": true,
+      "Country": true,
+      "Address1": true,
+      "Address2": true,
+      "PostalCode": true,
+      "City": true,
+      "State": true,
+      "BirthDate": true,
+      "Gender": true,
+      "Email": true,
+      "Password": true,
+      "MacAddress": true,
+      "MobilePhone": true,
+      "HomePhone": true,
+      "PIN": true,
+      "PAN": true,
+      "Expiry": true,
+      "CVV": true,
+      "CountryNameEnglish": true,
+      "CountryNameNative": true,
+      "CountryNameNativeAlternative1": true,
+      "CountryNameNativeAlternative2": true,
+      "CountryCode2": true,
+      "CountryCode3": true,
+      "CountryNumber": true,
+      "TLD": true
+    },
+    "FilePrint": {
+      "Label": true,
+      "FirstName": true,
+      "LastName": true,
+      "SSN": true,
+      "Country": true,
+      "Address1": true,
+      "Address2": true,
+      "PostalCode": true,
+      "City": true,
+      "State": true,
+      "BirthDate": true,
+      "Gender": true,
+      "Email": true,
+      "Password": true,
+      "MacAddress": true,
+      "MobilePhone": true,
+      "HomePhone": true,
+      "PIN": true,
+      "PAN": true,
+      "Expiry": true,
+      "CVV": true,
+      "CountryNameEnglish": true,
+      "CountryNameNative": true,
+      "CountryNameNativeAlternative1": true,
+      "CountryNameNativeAlternative2": true,
+      "CountryCode2": true,
+      "CountryCode3": true,
+      "CountryNumber": true,
+      "TLD": true
+    }
+  },
+  "TemplateMode": {
+    "Options": {
+      "AnonymizeSSN": true,
+      "Under18": false,
+      "AddCountryCodeToPhoneNumber": true,
+      "RemoveHyphenFromPhoneNumber": false,
+      "RemoveSpaceFromPhoneNumber": false,
+      "RemoveHyphenFromSSN": true,
+      "RemoveSpacesFromPAN": true,
+      "UseColonsInMacAddress": true,
+      "UseUppercaseInMacAddress": true,
+      "Creditcard": {
+        "CardIssuer": "Visa",
+        "PinLength": 4
+      },
+      "BirthDate": {
+        "BirthDateMode": "DefaultCalendarYearRange",
+        "Low": 1900,
+        "High": 2000,
+        "ManualBirthDate": null
+      },
+      "Randomness": {
+        "ManualSeed": false,
+        "Seed": 1234
+      }
+    },
+    "Print": {
+      "Output": "
+---------------------
+Personal information:          
+---------------------
+
+SSN:                       #{SSN}
+Firstname:                 #{FirstName}
+Lastname:                  #{LastName}
+Country:                   #{Country}
+Address1:                  #{Address1}
+Address2:                  #{Address2}
+PostalCode:                #{PostalCode}
+City:                      #{City}
+BirthDate default format:  #{BirthDate}
+BirthDate Euro format:     #{BirthDate('dd/MM/yyyy')}
+BirthDate US format:       #{BirthDate('MM/dd/yyyy')}
+Gender default values:     #{Gender}
+Gender given values:       #{Gender('Man', 'Woman')}
+Email:                     #{Email}
+Password:                  #{Password}
+MAC address:               #{MacAddress}
+MobilePhone:               #{MobilePhone}
+HomePhone:                 #{HomePhone}
+PIN:                       #{PIN}
+PAN:                       #{PAN}
+Expiry:                    #{Expiry}
+CVV:                       #{CVV}
+Country (English):         #{CountryNameEnglish}
+Country (native language): #{CountryNameNative}
+Country (native language, alternative 1): #{CountryNameNativeAlt1}
+Country (native language, alternative 2): #{CountryNameNativeAlt2}
+CountryCode2:              #{CountryCode2}
+CountryCode3:              #{CountryCode3}
+CountryNumber:             #{CountryNumber}
+TLD:                       #{TLD}
+
+---------------------
+Formatting functions:
+---------------------
+
+ToLower:                #{FirstName.ToLower()}
+ToUpper:                #{FirstName.ToUpper()}
+FirstToUpperRestLower:  #{City.FirstToUpperRestLower()}
+Capitalize:             #{Email.Capitalize()}
+Uncapitalize:           #{Country.Uncapitalize()}
+
+---------------
+Misc functions:
+---------------
+
+Date now:                           #{Date('now')}
+Date now with format:               #{Date('now', 'dd MMM yyyy')}
+Date now with format and culture:   #{Date('now', 'dd/MM/yy', 'se-SE')}
+Date 10 days ago:                   #{Date(-10)}
+Date 10 days ago with format:       #{Date(-10, 'MM/dd/yyyy')}
+Date 10 days into future with       #{Date(10,'MM/dd/yyyy','en-US')}
+    format and culture:      
+
+GUID:       #{GUID()}
+GUID (N):   #{GUID('N')}
+GUID (D):   #{GUID('D')}
+GUID (B):   #{GUID('B')}
+GUID (P):   #{GUID('P')}
+GUID (X):   #{GUID('X')}
+
+--------------
+Random values:
+--------------
+
+Random int between 0 and 1: #{Random(int, 0, 1)}
+Random int between 0 and 100 with 10 step: #{Random(int, 0, 10, 100)}
+
+Random float with 2 digits: #{Random(float:2, 18.0, 60.0)}
+Random float with default digits: #{Random(float, 18.0, 60.0)}
+Random float with default digits with step: #{Random(float, 10.0, 10.0, 48.0)}
+Random float with 2 digits with step: #{Random(float:2, 10.0, 10.0, 60.0)}
+
+Random switch, yes, no or maybe: #{Random(switch, 'yes', 'no', 'maybe')}
+
+Random normal distributed int: #{Random(nd_int, 200, 20)}
+Random normal distributed int with rounding: #{Random(nd_int, 200, 20, 5)}
+
+Random normal distributed float: #{Random(nd_float, 100.0, 10.0)}
+Random normal distributed float with step: #{Random(nd_float, 100.0, 10.0, 1.0)}
+Random normal distributed float with 1 digit: #{Random(nd_float:1, 100.0, 10.0)}
+Random normal distributed float with 1 digit with step: #{Random(nd_float:1, 100.0, 10.0, 5.0)}"
+    }
+  }
+}

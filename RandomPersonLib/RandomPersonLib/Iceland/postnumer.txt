@@ -1,0 +1,181 @@
+101	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Pósthússtræti 5	
+103	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Síðumúla 3-5	
+104	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Síðumúla 3-5	
+105	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Síðumúla 3-5	
+107	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Eiðistorg 15	
+108	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Síðumúla 3-5	
+109	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Þönglabakka 4	
+110	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Höfðabakki 9	
+111	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Þönglabakka 4	
+112	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Höfðabakki 9	
+113	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Höfðabakki 9	
+116	Reykjavík	Þéttbýli	Höfuðborgarsvæðið	Háholti 14	
+121	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Pósthússtræti 5 (pósthólf)	
+123	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Síðumúla 3-5 (pósthólf)	
+124	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Síðumúla 3-5 (pósthólf)	
+125	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Síðumúla 3-5 (pósthólf)	
+127	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Eiðistorg 15 (pósthólf)	
+128	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Síðumúli 3-5 (pósthólf)	
+129	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Þönglabakka 4 (pósthólf)	
+130	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Hraunbæ 119 (pósthólf)	
+132	Reykjavík	Pósthólf	Höfuðborgarsvæðið	Hverafold 1-3 (pósthólf)	
+162	Reykjavík - Dreifbýli	Dreifbýli	Höfuðborgarsvæðið	*Háholt 14, Mosfellsbær	116
+170	Seltjarnarnesi	Þéttbýli	Höfuðborgarsvæðið	Eiðistorg 15	
+172	Seltjarnarnesi	Pósthólf	Höfuðborgarsvæðið	Eiðistorg 15 (pósthólf)	
+190	Vogum	Þéttbýli	Suðurland og Reykjanes	Iðndal 2	
+191	Vogum	Dreifbýli	Suðurland og Reykjanes	*Reykjanesbær Hafnargötu 89	190
+200	Kópavogi	Þéttbýli	Höfuðborgarsvæðið	Dalvegi 18	
+201	Kópavogi	Þéttbýli	Höfuðborgarsvæðið	Dalvegi 18	
+202	Kópavogi	Pósthólf	Höfuðborgarsvæðið	Dalvegi 18 (pósthólf)	
+203	Kópavogi	Þéttbýli	Höfuðborgarsvæðið	Dalvegi 18	
+210	Garðabæ	Þéttbýli	Höfuðborgarsvæðið	Litlatúni 3	
+212	Garðabæ	Pósthólf	Höfuðborgarsvæðið	Litlatúni 3 (pósthólf)	
+220	Hafnarfirði	Þéttbýli	Höfuðborgarsvæðið	Fjarðargötu 13-15	
+221	Hafnarfirði	Þéttbýli	Höfuðborgarsvæðið	Fjarðargötu 13-15	
+222	Hafnarfirði	Pósthólf	Höfuðborgarsvæðið	Firði (pósthólf)	
+225	Garðabær	Þéttbýli	Höfuðborgarsvæðið	Garðatorgi 5 (Garðabæ)	
+230	Reykjanesbæ	Þéttbýli	Suðurland og Reykjanes	Hafnargötu 89	
+232	Reykjanesbæ	Pósthólf	Suðurland og Reykjanes	Hafnargötu 89 (pósthólf)	
+233	Reykjanesbæ	Dreifbýli	Suðurland og Reykjanes	Hafnargötu 89 (Keflavík)	
+235	Keflavíkurflugvöllur	Þéttbýli	Suðurland og Reykjanes	Hafnargötu 89 (Keflavík)	
+240	Grindavík	Þéttbýli	Suðurland og Reykjanes	Víkurbraut 25	
+241	Grindavík	Dreifbýli	Suðurland og Reykjanes	*Póstbílll fá Reykjanesbæ	240
+245	Sandgerði	Þéttbýli	Suðurland og Reykjanes	Suðurgötu 2 - 4	
+246	Sandgerði	Dreifbýli	Suðurland og Reykjanes	*Póstbílll fá Reykjanesbæ	245
+250	Garði	Þéttbýli	Suðurland og Reykjanes	Garðbraut 69	
+251	Garði	Dreifbýli	Suðurland og Reykjanes	*Póstbílll fá Reykjanesbæ	250
+260	Reykjanesbæ	Þéttbýli	Suðurland og Reykjanes	Hafnargötu 89 (Keflavík)	
+262	Reykjanesbæ	Þéttbýli	Suðurland og Reykjanes	*Hafnargötu 89 Reykjanesbær 	235
+270	Mosfellsbæ	Þéttbýli	Höfuðborgarsvæðið	Háholt 14 (Mosfellsbæ)	
+271	Mosfellsbæ	Dreifbýli	Höfuðborgarsvæðið	Háholt 14 (Mosfellsbæ)	
+276	Mosfellsbæ	Dreifbýli	Höfuðborgarsvæðið	Háholt 14 (Mosfellsbæ)	
+300	Akranesi	Þéttbýli	Vesturland og Vestfirðir	Smiðjuvöllum 30	
+301	Akranesi	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+302	Akranesi	Pósthólf	Vesturland og Vestfirðir	Smiðjuvöllum 30 (pósthólf)	
+310	Borgarnesi	Þéttbýli	Vesturland og Vestfirðir	Borgarbraut 12	
+311	Borgarnesi	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+320	Reykholt í Borgarfirði	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+340	Stykkishólmi	Þéttbýli	Vesturland og Vestfirðir	Aðalgötu 31	
+341	Stykkishólmi	Dreifbýli	Vesturland og Vestfirðir	*Aðalgötu 31	340
+345	Flatey á Breiðafirði	Dreifbýli	Vesturland og Vestfirðir	Flatey	
+350	Grundarfirði	Þéttbýli	Vesturland og Vestfirðir	Grundargötu 50	
+351	Grundarfirði	Dreifbýli	Vesturland og Vestfirðir	*Bæjartúni 5 Ólafsvík	350
+355	Ólafsvík	Þéttbýli	Vesturland og Vestfirðir	Bæjartúni 5	
+356	Snæfellsbæ	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+360	Hellissandi	Þéttbýli	Vesturland og Vestfirðir	Klettsbúð 7	
+370	Búðardal	Þéttbýli	Vesturland og Vestfirðir	Miðbraut 13	
+371	Búðardal	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+380	Reykhólahreppi	Þéttbýli	Vesturland og Vestfirðir	Landpóstur	
+381	Reykhólahreppi	Dreifbýli	Vesturland og Vestfirðir	*Miðbraut 13	380
+400	Ísafirði	Þéttbýli	Vesturland og Vestfirðir	Aðalstræti 18	
+401	Ísafirði	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+410	Hnífsdal	Þéttbýli	Vesturland og Vestfirðir	Landpóstur	
+415	Bolungarvík	Þéttbýli	Vesturland og Vestfirðir	Aðalstræti 14	
+416	Bolungarvík	Dreifbýli	Vesturland og Vestfirðir	*Hafnarstræti 9-11 Ísafirði	415
+420	Súðavík	Þéttbýli	Vesturland og Vestfirðir	Grundarstræti 3-5	
+421	Súðavík	Dreifbýli	Vesturland og Vestfirðir	*Hafnarstræti 9-11 Ísafirði	420
+425	Flateyri	Þéttbýli	Vesturland og Vestfirðir	Ránargötu 1	
+426	Flateyri	Dreifbýli	Vesturland og Vestfirðir	*Hafnarstræti 9-11 Ísafirði	425
+430	Suðureyri	Þéttbýli	Vesturland og Vestfirðir	Aðalgötu 8	
+431	Suðureyri	Dreifbýli	Vesturland og Vestfirðir	*Hafnarstræti 9-11 Ísafirði	430
+450	Patreksfirði	Þéttbýli	Vesturland og Vestfirðir	Bjarkargötu 4	
+451	Patreksfirði	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+460	Tálknafirði	Þéttbýli	Vesturland og Vestfirðir	Strandgötu 38	
+461	Tálknafirði	Dreifbýli	Vesturland og Vestfirðir	*Bjarkargötu 4 Patreksfirði	460
+465	Bíldudal	Þéttbýli	Vesturland og Vestfirðir	Lönguhlíð 1	
+466	Bíldudal	Dreifbýli	Vesturland og Vestfirðir	*Bjarkargötu 4 Patreksfirði	465
+470	Þingeyri	Þéttbýli	Vesturland og Vestfirðir	Fjarðargata 2	
+471	Þingeyri	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+500	Stað	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+510	Hólmavík	Þéttbýli	Vesturland og Vestfirðir	Hafnarbraut 19	
+511	Hólmavík	Dreifbýli	Vesturland og Vestfirðir	*Hafnarbraut 19 Hólmavík	510
+512	Hólmavík	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+520	Drangsnesi	Þéttbýli	Vesturland og Vestfirðir	Borgargötu 2	
+524	Árneshreppi	Dreifbýli	Vesturland og Vestfirðir	Landpóstur	
+530	Hvammstanga	Þéttbýli	Norðurland	Lækjargötu 2	
+531	Hvammstanga	Dreifbýli	Norðurland	Landpóstur	
+540	Blönduósi	Þéttbýli	Norðurland	Hnjúkabyggð 32	
+541	Blönduósi	Dreifbýli	Norðurland	Landpóstur	
+545	Skagaströnd	Þéttbýli	Norðurland	Höfða	
+546	Skagaströnd	Dreifbýli	Norðurland	*Hnjúkabyggð 32 Blönduósi	545
+550	Sauðárkróki	Þéttbýli	Norðurland	Kirkjutorgi 5	
+551	Sauðárkróki	Dreifbýli	Norðurland	Landpóstur	
+560	Varmahlíð	Þéttbýli	Norðurland	Varmahlíð	
+561	Varmahlíð	Dreifbýli	Norðurland	*Ártorgi 6 Sauðarkróki	560
+565	Hofsós	Þéttbýli	Norðurland	Landpóstur	
+566	Hofsós	Dreifbýli	Norðurland	Landpóstur	
+570	Fljótum	Dreifbýli	Norðurland	Aðalgötu 24 (Siglufirði)	
+580	Siglufirði	Þéttbýli	Norðurland	Aðalgötu 24	
+581	Siglufirði	Dreifbýli	Norðurland	*Aðalgötu 24 Siglufirði	580
+600	Akureyri	Þéttbýli	Norðurland	Strandgötu 3	
+601	Akureyri	Dreifbýli	Norðurland	Landpóstur	
+602	Akureyri	Pósthólf	Norðurland	Strandgötu 3	
+603	Akureyri	Þéttbýli	Norðurland	Norðurtanga 3	
+610	Grenivík	Þéttbýli	Norðurland	Túngötu 3	
+611	Grímsey	Þéttbýli	Norðurland	Flugstöð	
+616	Grenivík	Dreifbýli	Norðurland	Norðurtanga 3	610
+620	Dalvík	Þéttbýli	Norðurland	Hafnarbraut 26	
+621	Dalvík	Dreifbýli	Norðurland	Landpóstur	
+625	Ólafsfirði	Þéttbýli	Norðurland	Aðalgötu 14	
+626	Ólafsfirði	Dreifbýli	Norðurland	*Aðalgötu 2-4 Ólafsfirði	625
+630	Hrísey	Þéttbýli	Norðurland	Norðurvegi 6 - 8	
+640	Húsavík	Þéttbýli	Norðurland	Garðarsbraut 70	
+641	Húsavík	Dreifbýli	Norðurland	Landpóstur	
+645	Fosshólli	Dreifbýli	Norðurland	Landpóstur	
+650	Laugum	Þéttbýli	Norðurland	Kjarna	
+660	Mývatni	Dreifbýli	Norðurland	Helluhrauni 3	
+670	Kópaskeri	Þéttbýli	Norðurland	Bakkagötu 8-10	
+671	Kópaskeri	Dreifbýli	Norðurland	Landpóstur	
+675	Raufarhöfn	Þéttbýli	Norðurland	Aðalbraut 19	
+676	Raufarhöfn	Dreifbýli	Norðurland	*Landpóstur	675
+680	Þórshöfn	Þéttbýli	Norðurland	Fjarðarvegi 5	
+681	Þórshöfn	Dreifbýli	Norðurland	Landpóstur	
+685	Bakkafirði	Þéttbýli	Norðurland	Landpóstur	
+686	Bakkafirði	Dreifbýli	Norðurland	*Landpóstur	
+690	Vopnafirði	Þéttbýli	Norðurland	Kolbeinsgötu 10	
+691	Vopnafirði	Dreifbýli	Norðurland	*Landpóstur	690
+700	Egilsstöðum	Þéttbýli	Austurland	Fagradalsbraut 9	
+701	Egilsstöðum	Dreifbýli	Austurland	Landpóstur	
+710	Seyðisfirði	Þéttbýli	Austurland	Hafnargötu 4	
+711	Seyðisfirði	Dreifbýli	Austurland	*Landpóstur	710
+715	Mjóafirði	Dreifbýli	Austurland	Landpóstur	
+720	Borgarfirði (eystri)	Dreifbýli	Austurland	Landpóstur	
+721	Borgarfirði (eystri)	Dreifbýli	Austurland	Landpóstur	720
+730	Reyðarfirði	Þéttbýli	Austurland	Búðareyri 35	
+731	Reyðarfirði	Dreifbýli	Austurland	*Landpóstur	730
+735	Eskifirði	Þéttbýli	Austurland	Strandgötu 55	
+736	Eskifirði	Dreifbýli	Austurland	*Landpóstur	735
+740	Neskaupstað	Þéttbýli	Austurland	Miðstræti 26	
+741	Neskaupsstað	Dreifbýli	Austurland	*Landpóstur	740
+750	Fáskrúðsfirði	Þéttbýli	Austurland	Skólavegi 57	
+751	Fáskrúðsfirði	Dreifbýli	Austurland	*Landpóstur	750
+755	Stöðvarfirði	Þéttbýli	Austurland	Fjarðarbraut 54	
+756	Stöðvarfirði	Dreifbýli	Austurland	*Landpóstur	755
+760	Breiðdalsvík	Þéttbýli	Austurland	Selnesi 38	
+761	Breiðdalsvík	Dreifbýli	Austurland	*Landpóstur	760
+765	Djúpavogi	Þéttbýli	Austurland	Markarlandi 1	
+766	Djúpavogi	Dreifbýli	Austurland	*Landpóstur	765
+780	Höfn í Hornafirði	Þéttbýli	Austurland	Hafnarbraut 21	
+781	Höfn í Hornafirði	Dreifbýli	Austurland	Landpóstur	
+785	Öræfum	Dreifbýli	Austurland	Landpóstur	
+800	Selfossi	Þéttbýli	Suðurland og Reykjanes	Austurvegi 26	
+801	Selfossi	Dreifbýli	Suðurland og Reykjanes	Landpóstur	
+802	Selfossi	Pósthólf	Suðurland og Reykjanes	Austurvegi 26 (pósthólf)	
+810	Hveragerði	Þéttbýli	Suðurland og Reykjanes	Sunnumörk 2-4	
+815	Þorlákshöfn	Þéttbýli	Suðurland og Reykjanes	Reykjabraut 2	
+816	Ölfus	Dreifbýli	Suðurland og Reykjanes	Landpóstur	
+820	Eyrarbakka	Þéttbýli	Suðurland og Reykjanes	Landpóstur	
+825	Stokkseyri	Þéttbýli	Suðurland og Reykjanes	Landpóstur	
+840	Laugarvatni	Þéttbýli	Suðurland og Reykjanes	Landpóstur	
+845	Flúðum	Þéttbýli	Suðurland og Reykjanes	Landpóstur	
+846	Flúðum	Dreifbýli	Suðurland og Reykjanes	*Landpóstur	845
+850	Hellu	Þéttbýli	Suðurland og Reykjanes	Þrúðvangi 10	
+851	Hellu	Dreifbýli	Suðurland og Reykjanes	Þrúðvangi 10	
+860	Hvolsvelli	Þéttbýli	Suðurland og Reykjanes	Austurvegi 2	
+861	Hvolsvelli	Dreifbýli	Suðurland og Reykjanes	Austurvegi 2	
+870	Vík	Þéttbýli	Suðurland og Reykjanes	Landpóstur	
+871	Vík	Dreifbýli	Suðurland og Reykjanes	Landpóstur	
+880	Kirkjubæjarklaustri	Þéttbýli	Suðurland og Reykjanes	Landpóstur	
+881	Kirkjubæjarklaustri	Dreifbýli	Suðurland og Reykjanes	*Landpóstur	880
+900	Vestmannaeyjum	Þéttbýli	Suðurland og Reykjanes	Strandvegi 52	
+902	Vestmannaeyjum	Pósthólf	Suðurland og Reykjanes	Strandvegi 52 (pósthólf)	
