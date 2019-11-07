@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PreserveCompilationContext>false</PreserveCompilationContext>
-    <AssemblyVersion>1.14.6.0</AssemblyVersion>
-    <FileVersion>1.14.6.0</FileVersion>
+    <AssemblyVersion>1.15.0.0</AssemblyVersion>
+    <FileVersion>1.15.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <PackageDescription>A library that creates random personal data.</PackageDescription>
@@ -13,7 +13,9 @@
     <PackageId>RandomPersonLib</PackageId>
     <Authors>Mika Sundland</Authors>
     <Company>Mika Sundland</Company>
-    <Version>1.14.6</Version>
+    <Version>1.15.0</Version>
+    <!--<PackageIcon>Logo.png</PackageIcon>-->
+    <PackageIconUrl>https://raw.githubusercontent.com/mika-s/RandomPerson/development/Assets/Images/Logo.png</PackageIconUrl>
     <PackageTags>random generator test-data test-data-generator ssn ssn-validator</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>RandomPersonLib is a library that creates random personal data. It supports creating personal data for the following countries: Denmark, Finland, Iceland, Netherlands, Norway, Sweden and USA. It can generate first name, last name, address (address 1, 2, postal code and city), nationality, gender, birth date, SSN, email, password, MAC address, mobile phone, home phone, credit card details (PAN, PIN, expiry and CVV), country names, codes, number, TLD. The library can also validate SSNs and credit card numbers (PAN).</Description>
@@ -175,10 +177,6 @@
     <Compile Include="Templateprint\TemplatePrint.fs" />
     <Compile Include="RandomPersonLib.fsi" />
     <Compile Include="RandomPersonLib.fs" />
-    <None Include="Readme.md">
-      <Link>ReadmeLib.md</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -189,6 +187,20 @@
     <Content Include="data\Readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <Pack>true</Pack>
+      <PackagePath>\</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Assets\Images\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

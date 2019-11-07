@@ -7,13 +7,13 @@
     <Authors>Mika Sundland</Authors>
     <AssemblyName>RandomPersonCli</AssemblyName>
     <RunPostBuildEvent>1</RunPostBuildEvent>
-    <Version>1.14.6</Version>
+    <Version>1.15.0</Version>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <AssemblyVersion>1.14.6.0</AssemblyVersion>
-    <FileVersion>1.14.6.0</FileVersion>
+    <AssemblyVersion>1.15.0.0</AssemblyVersion>
+    <FileVersion>1.15.0.0</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
@@ -40,11 +40,10 @@
     <Compile Include="ValidatePANMode.fs" />
     <Compile Include="ValidateSSNMode.fs" />
     <Compile Include="Program.fs" />
-    <None Include="Readme.md">
-      <Link>ReadmeCli.md</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Readme.md" />
   </ItemGroup>
+
+  <ItemGroup />
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
