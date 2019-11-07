@@ -3,6 +3,7 @@ namespace RandomPersonLib
 open System
 open System.Runtime.CompilerServices
 open RandomPersonLib
+open RandomUtil
 open ReadInputFiles
 open ValidatePAN
 open ValidateSSN
@@ -93,3 +94,24 @@ type ValidatePerson() =
 
         member this.ValidateSSN (country: Country, ssn: string) =
             this.ValidateSSN (country, ssn)
+
+[<AbstractClass; Sealed>]
+type RandomPersonUtil =
+
+    static member RandomIntBetween (min: int, max: int) =
+        randomIntBetween min max
+
+    static member RandomIntBetween (min: int, step: int, max: int) =
+        randomIntBetweenWithStep min step max
+
+    static member RandomFloatBetween (min: float, max: float) =
+        randomFloatBetween min max
+
+    static member RandomFloatBetween (min: float, step: float, max: float) =
+        randomFloatBetweenWithStep min step max
+
+    static member GenerateNormallyDistributedInt (mean: int, std: int) =
+        normallyDistributedInt mean std
+
+    static member GenerateNormallyDistributedFloat (mean: float, std: float) =
+        normallyDistributedFloat mean std

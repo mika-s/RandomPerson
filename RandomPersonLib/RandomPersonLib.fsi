@@ -102,7 +102,6 @@ type RandomPerson =
 
     interface IRandomPerson
 
-
 /// <summary>A service class for validating PANs and SSNs.</summary>
 type ValidatePerson =
     new : unit -> ValidatePerson
@@ -119,3 +118,45 @@ type ValidatePerson =
     member ValidateSSN: Country * string -> bool * string
 
     interface IValidatePerson
+
+/// <summary>An utility class for generating random data.</summary>
+[<AbstractClass; Sealed>]
+type RandomPersonUtil =
+
+    /// <summary>Generate a random integer between two integers. Inclusive on min, exlusive on max.</summary>
+    /// <param name="min">Minimum integer that can be generated.</param>
+    /// <param name="max">Maximum integer that can be generated + 1.</param>
+    /// <returns>An integer between min and max.</returns>
+    static member RandomIntBetween: int * int -> int
+
+    /// <summary>Generate a random integer between two integers, with steps. Inclusive on min, exlusive on max.</summary>
+    /// <param name="min">Minimum integer that can be generated.</param>
+    /// <param name="step">The step size</param>
+    /// <param name="max">Maximum integer that can be generated + 1.</param>
+    /// <returns>An integer between min and max, rounded to a step.</returns>
+    static member RandomIntBetween: int * int * int -> int
+
+    /// <summary>Generate a random float between two float. Inclusive on min, exlusive on max.</summary>
+    /// <param name="min">Minimum float that can be generated.</param>
+    /// <param name="max">Maximum float that can be generated + 1.</param>
+    /// <returns>A float between min and max.</returns>
+    static member RandomFloatBetween: float * float -> float
+
+    /// <summary>Generate a random float between two float, with steps. Inclusive on min, exlusive on max.</summary>
+    /// <param name="min">Minimum float that can be generated.</param>
+    /// <param name="step">The step size</param>
+    /// <param name="max">Maximum integer that can be generated + 1.</param>
+    /// <returns>A float between min and max, rounded to a step.</returns>
+    static member RandomFloatBetween: float * float * float -> float
+
+    /// <summary>Generate a random integer using a normal distribution.</summary>
+    /// <param name="mean">The mean of the normal distribution.</param>
+    /// <param name="std">The standard deviation of the normal distribution.</param>
+    /// <returns>A random integer from a normal distribution.</returns>
+    static member GenerateNormallyDistributedInt: int * int -> int
+
+    /// <summary>Generate a random float using a normal distribution.</summary>
+    /// <param name="mean">The mean of the normal distribution.</param>
+    /// <param name="std">The standard deviation of the normal distribution.</param>
+    /// <returns>A random float from a normal distribution.</returns>
+    static member GenerateNormallyDistributedFloat: float * float -> float
