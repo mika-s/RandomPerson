@@ -1,6 +1,7 @@
 ﻿module internal ReadInputFiles
 
 open System.IO
+open System.Reflection
 open System.Text
 open RandomPersonLib
 open CountryFiles
@@ -22,8 +23,14 @@ type InputFiles = {
 }
 
 let readInputFiles () =
+    (*
+       Make sure we are in the correct working folder. Using "dotnet run" will use the folder it's executing in
+       as the working folder, and we don't want that.
+    *)
+    Assembly.GetExecutingAssembly().Location |> Path.GetDirectoryName |> Directory.SetCurrentDirectory
+
     let generic = {
-        passwords             = File.ReadAllLines("RandomPersonLib/Generic/passwords.txt", Encoding.UTF8);
+        passwords            = File.ReadAllLines("RandomPersonLib/Generic/passwords.txt", Encoding.UTF8);
     }
 
     let denmark = {

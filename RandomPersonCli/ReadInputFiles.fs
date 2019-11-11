@@ -1,5 +1,8 @@
 ﻿module internal ReadInputFiles
 
+open System
+open System.IO
+open System.Reflection
 open System.Text.RegularExpressions
 open Settings
 open CliUtil
@@ -17,25 +20,30 @@ let assertCreditcard (ccos: CreditcardOptionsSettings) =
 let assertDates (bdo: BirthDateOptionsSettings) =
     let dateRegex = Regex "(\d{4}-\d{2}-\d{2}|)"
 
+    let lowestCalendarYear  = 1800
+    let highestCalendarYear = 2050
+    let lowestAge  = 1
+    let highestAge = 150
+
     match bdo.BirthDateMode with
     | "DefaultCalendarYearRange" -> 1 |> ignore
     | "ManualCalendarYearRange"  ->
         match bdo.Low.Value, bdo.High.Value with
-        | (l, _) when l < 1800
-            -> invalidArg "Low" "The variable 'Low' is too low. 1800 is minimum."
+        | (l, _) when l < lowestCalendarYear
+            -> invalidArg "Low" (String.Format("The variable 'Low' is too low. {0} is minimum.", lowestCalendarYear))
         | (l, h) when h <= l
             -> invalidArg "Low" "The variable 'Low' cannot be equal or higher than 'High'"
-        | (_, h) when 2050 < h
-            -> invalidArg "High" "The variable 'High' is too high. 2050 is maximum."
+        | (_, h) when highestCalendarYear < h
+            -> invalidArg "High" (String.Format("The variable 'High' is too high. {0} is maximum.", highestCalendarYear))
         | _ -> 1 |> ignore
     | "ManualAgeRange"           ->
         match bdo.Low.Value, bdo.High.Value with
-        | (l, _) when l < 1
-            -> invalidArg "Low" "The variable 'Low' is too low. 1 is minimum."
+        | (l, _) when l < lowestAge
+            -> invalidArg "Low" (String.Format("The variable 'Low' is too low. {0} is minimum.", lowestAge))
         | (l, h) when h <= l
             -> invalidArg "Low" "The variable 'Low' cannot be equal or higher than 'High'"
-        | (_, h) when 150 < h
-            -> invalidArg "High" "The variable 'High' is too high. 150 is maximum."
+        | (_, h) when highestAge < h
+            -> invalidArg "High" (String.Format("The variable 'High' is too high. {0} is maximum.", highestAge))
         | _ -> 1 |> ignore
     | "Manual"                   ->
         match dateRegex.IsMatch bdo.ManualBirthDate with
@@ -59,5 +67,11 @@ let createInputFiles (settings: Settings) =
         settings = settings;
     }
 
-let readInputFiles (settingsFilePath: string) = 
+let readInputFiles (settingsFilePath: string) =
+    (*
+        Make sure we are in the correct working folder. Using "dotnet run" will use the folder it's executing in
+        as the working folder, and we don't want that.
+    *)
+    Assembly.GetExecutingAssembly().Location |> Path.GetDirectoryName |> Directory.SetCurrentDirectory
+
     settingsFilePath |> readDataFromJsonFile<Settings> |> assertSettings |> createInputFiles

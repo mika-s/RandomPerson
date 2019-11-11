@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PreserveCompilationContext>false</PreserveCompilationContext>
-    <AssemblyVersion>1.15.0.0</AssemblyVersion>
-    <FileVersion>1.15.0.0</FileVersion>
+    <AssemblyVersion>1.16.0.0</AssemblyVersion>
+    <FileVersion>1.16.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <PackageDescription>A library that creates random personal data. It supports creating personal data for the following countries: Denmark, Finland, Iceland, Netherlands, Norway, Sweden and USA.</PackageDescription>
@@ -13,7 +13,7 @@
     <PackageId>RandomPersonLib</PackageId>
     <Authors>Mika Sundland</Authors>
     <Company>Mika Sundland</Company>
-    <Version>1.15.0</Version>
+    <Version>1.16.0</Version>
     <!--<PackageIcon>Logo.png</PackageIcon>-->
     <PackageIconUrl>https://raw.githubusercontent.com/mika-s/RandomPerson/development/Assets/Images/Logo.png</PackageIconUrl>
     <PackageTags>random generator test-data test-data-generator ssn ssn-validator</PackageTags>
