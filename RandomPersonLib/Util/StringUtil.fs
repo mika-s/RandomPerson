@@ -2,10 +2,12 @@
 
 open System
 
+let substringToEnd (startIndex: int) (str: string)            = str.Substring(startIndex)
 let substring (startIndex: int) (length: int)   (str: string) = str.Substring(startIndex, length)
 let insert    (startIndex: int) (value: string) (str: string) = str.Insert(startIndex, value)
 let inline trim (str: string) = str.Trim()
 let inline removeChar (charToRemove: string) (str: string) = str.Replace(charToRemove, String.Empty)
+let inline replace (oldValue: string) (newValue: string) (str: string) = str.Replace(oldValue, newValue)
 let lastChar (str: string) = str |> substring (str.Length - 1) 1
 
 let uppercase (str: string) = str.ToUpperInvariant()

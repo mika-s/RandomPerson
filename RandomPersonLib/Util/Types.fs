@@ -2,14 +2,19 @@
 
     module SSNTypes =
         type SSNValidationErrorMessage =
-        | WrongShape
-        | WrongDate
-        | WrongIndividualNumber
-        | WrongChecksum
-        | WrongCenturyNumber
-        | WrongAreaNumber
-        | WrongGroupNumber
-        | WrongSerialNumber
+        | InvalidShape
+        | InvalidDate
+        | InvalidYear
+        | InvalidMonth
+        | InvalidIndividualNumber
+        | InvalidChecksum
+        | InvalidCenturyNumber
+        | InvalidAreaNumber
+        | InvalidGroupNumber
+        | InvalidSerialNumber
+        | InvalidGenderNumber
+        | InvalidDepartmentNumber
+        | InvalidCommuneNumber
 
         type SSNValidationResult<'T> =
         | Success of 'T
@@ -17,8 +22,8 @@
 
     module PANTypes =
         type PANValidationErrorMessage =
-        | WrongShape
-        | WrongChecksum
+        | InvalidShape
+        | InvalidChecksum
 
         type PANValidationResult<'T> =
         | Success of 'T

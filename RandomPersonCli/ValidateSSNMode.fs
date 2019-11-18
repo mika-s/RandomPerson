@@ -29,6 +29,7 @@ let validateSSNMode (ssn: string) (country: Country) =
                 | 'q' -> ()
                 | 'd' -> validate lib Country.Denmark     |> printHelp |> mainloop
                 | 'f' -> validate lib Country.Finland     |> printHelp |> mainloop
+                | 'F' -> validate lib Country.France      |> printHelp |> mainloop
                 | 'i' -> validate lib Country.Iceland     |> printHelp |> mainloop
                 | 'N' -> validate lib Country.Netherlands |> printHelp |> mainloop
                 | 'n' -> validate lib Country.Norway      |> printHelp |> mainloop

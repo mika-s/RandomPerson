@@ -28,7 +28,7 @@ type ``hasCorrectShape should`` () =
 
         match result with
         | Success _ -> Assert.IsTrue(false)
-        | Failure f -> Assert.AreEqual(f, WrongShape)
+        | Failure f -> Assert.AreEqual(f, InvalidShape)
 
 [<TestClass>]
 type ``hasDate should`` () =
@@ -57,7 +57,7 @@ type ``hasDate should`` () =
 
         match result with
         | Success _ -> Assert.IsTrue(false)
-        | Failure f -> Assert.AreEqual(f, WrongDate)
+        | Failure f -> Assert.AreEqual(f, InvalidDate)
 
 [<TestClass>]
 type ``hasIndividualNumber should`` () =
@@ -84,4 +84,4 @@ type ``hasIndividualNumber should`` () =
 
         match result with
         | Success _ -> Assert.IsTrue(false)
-        | Failure f -> Assert.AreEqual(f, WrongIndividualNumber)
+        | Failure f -> Assert.AreEqual(f, InvalidIndividualNumber)

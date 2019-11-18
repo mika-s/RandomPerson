@@ -22,7 +22,7 @@ let hasProperCenturyNumber (ssn: string) =
 
     match centuryNumber with
     | "8" | "9" | "0" -> Success ssn
-    | _               -> Failure WrongCenturyNumber
+    | _               -> Failure InvalidCenturyNumber
 
 let validateSSNForIceland = 
     hasCorrectShape "^\d{6}-\d{4}$"

@@ -15,6 +15,7 @@ type InputFiles = {
     generic:     GenericFiles
     denmark:     CountryFiles
     finland:     CountryFiles
+    france:      CountryFiles
     iceland:     CountryFiles
     netherlands: CountryFiles
     norway:      CountryFiles
@@ -45,6 +46,13 @@ let readInputFiles () =
         addresses1           = File.ReadAllLines("RandomPersonLib/Finland/Streets in Finland.txt", Encoding.UTF8);
         postalCodeCityStates = File.ReadAllLines("RandomPersonLib/Finland/FI.txt", Encoding.UTF8)
                                |> Array.map(stringToPostalCodeCityState Country.Finland);
+    }
+
+    let france = {
+        generalData          = readDataFromJsonFile<PersonData> "RandomPersonLib/France/france.json";
+        addresses1           = File.ReadAllLines("RandomPersonLib/Finland/Streets in Finland.txt", Encoding.UTF8);
+        postalCodeCityStates = File.ReadAllLines("RandomPersonLib/Finland/FI.txt", Encoding.UTF8)
+                               |> Array.map(stringToPostalCodeCityState Country.France);
     }
 
     let iceland = {
@@ -86,6 +94,7 @@ let readInputFiles () =
         generic = generic;
         denmark = denmark;
         finland = finland;
+        france = france;
         iceland = iceland;
         netherlands = netherlands;
         norway = norway;

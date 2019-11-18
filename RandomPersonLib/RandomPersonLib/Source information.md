@@ -25,6 +25,14 @@ The following sources are used for the data that is used to generate random pers
 - [Postal codes and cities in Finland](https://www.posti.fi/business/help-and-support/postal-code-services/postal-code-files.html) ([also this](http://www.posti.fi/webpcode/))
 - [Telephone numbers in Finland](https://en.wikipedia.org/wiki/Telephone_numbers_in_Finland)
 
+## France
+
+- [Telephone numbers in France](https://en.wikipedia.org/wiki/Telephone_numbers_in_France)
+- [Departments of France](https://en.wikipedia.org/wiki/Departments_of_France)
+- [French SSN rules](https://en.wikipedia.org/wiki/INSEE_code)
+- [Validate french social security number on GitHub Gist](https://gist.github.com/jauneau/1206760)
+
+
 ## Iceland
 
 - [Icelandic SSN rules](https://www.skra.is/english/individuals/me-and-my-family/my-registration/id-numbers/)
@@ -79,12 +87,17 @@ www.geonames.org
 
 # Misc
 
+## Other sites
+
+- [ID formats, Santander](https://www.santander.de/content/pdf/informationen/nationale_identifikationsmerkmale.pdf)
+
 ## Tools
 
 Various tools that have been used to clean the data:
 
 - [Convert to proper case](https://convertcase.net/)
 - [Remove duplicate lines](https://textmechanic.com/text-tools/basic-text-tools/remove-duplicate-lines/)
+- [Show address formats for countries](https://www.informatica.com/products/data-quality/data-as-a-service/address-verification/address-formats.html)
 
 ## Other things
 

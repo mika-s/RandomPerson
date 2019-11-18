@@ -9,11 +9,12 @@ type Gender =
 type Country =
 | Denmark     = 1
 | Finland     = 2
-| Iceland     = 3
-| Netherlands = 4
-| Norway      = 5
-| Sweden      = 6
-| USA         = 7
+| France      = 3
+| Iceland     = 4
+| Netherlands = 5
+| Norway      = 6
+| Sweden      = 7
+| USA         = 8
 
 /// Enum representing a person's creditcard issuer.
 type CardIssuer =

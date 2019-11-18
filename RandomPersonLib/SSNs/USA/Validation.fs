@@ -10,23 +10,23 @@ let hasCorrectAreaNumber (ssn: string) =
     let areaNumber = ssn |> substring AreaNumberStart AreaNumberLength |> int
 
     match areaNumber with
-    | x when x = 0    -> Failure WrongAreaNumber
-    | x when x = 666  -> Failure WrongAreaNumber
-    | x when 900 <= x -> Failure WrongAreaNumber
+    | x when x = 0    -> Failure InvalidAreaNumber
+    | x when x = 666  -> Failure InvalidAreaNumber
+    | x when 900 <= x -> Failure InvalidAreaNumber
     | _               -> Success ssn
 
 let hasCorrectGroupNumber (ssn: string) =
     let groupNumber = ssn |> substring GroupNumberStart GroupNumberLength |> int
 
     match groupNumber with
-    | x when x = 0  -> Failure WrongGroupNumber
+    | x when x = 0  -> Failure InvalidGroupNumber
     | _             -> Success ssn
 
 let hasCorrectSerialNumber (ssn: string) =
     let serialNumber = ssn |> substring SerialNumberStart SerialNumberLength |> int
 
     match serialNumber with
-    | x when x = 0  -> Failure WrongSerialNumber
+    | x when x = 0  -> Failure InvalidSerialNumber
     | _             -> Success ssn
 
 let validateSSNForUSA =

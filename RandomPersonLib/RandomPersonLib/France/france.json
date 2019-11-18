@@ -1,0 +1,63 @@
+﻿{
+  "Misc": {
+    "CountryNameEnglish": "France",
+    "CountryNameNative": "France",
+    "CountryNameNativeAlternative1": "French Republic",
+    "CountryNameNativeAlternative2": "République française",
+    "CountryCode2": "FR",
+    "CountryCode3": "FRA",
+    "CountryNumber": "250",
+    "TLD": "fr"
+  },
+  "Address": {
+    "NumberLocation": "Before"
+  },
+  "Phone": {
+    "CountryCode": 33,
+    "TrunkPrefix": "0",
+    "Mobile": {
+      "Patterns": [
+        "6 xx xx xx xx",
+        "7 xx xx xx xx"
+      ]
+    },
+    "Home": {
+      "Patterns": [
+        "1 xx xx xx xx",
+        "2 xx xx xx xx",
+        "3 xx xx xx xx",
+        "4 xx xx xx xx",
+        "5 xx xx xx xx"
+      ]
+    }
+  },
+  "EmailEndings": [
+    "gmail.com",
+    "hotmail.com",
+    "hotmail.fr",
+    "example.com",
+    "yahoo.com",
+    "yahoo.fr",
+    "msn.com",
+    "outlook.com",
+    "laposte.net",
+    "orange.fr",
+    "sfr.fr",
+    "free.fr",
+    "live.fr",
+    "wanadoo.fr",
+    "gmx.fr",
+    "numericable.fr",
+    "bbox.fr",
+    "neuf.fr"
+  ],
+  "MaleFirstNames": [
+    "Test"
+  ],
+  "FemaleFirstNames": [
+    "Test"
+  ],
+  "LastNames": [
+    "LastTest"
+  ]
+}

@@ -29,7 +29,7 @@ let defaultOptions = {
     pan = String.Empty
 }
 
-let printVersion () = printfn "Version: 1.15.0.0"
+let printVersion () = printfn "Version: 1.16.0.0"
 
 let printUsage () =
     printfn "NAME"
@@ -39,7 +39,7 @@ let printUsage () =
     printfn "SYNOPSIS"
     printfn ""
     printfn "dotnet RandomPersonCli.dll [-m (I|L|T|VP [<PAN>]|VS [<SSN>])]"
-    printfn "                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden|USA)]"
+    printfn "                           [-c (Denmark|Finland|France|Iceland|Netherlands|Norway|Sweden|USA)]"
     printfn "                           [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]"
     printfn "                           [-o (path)] [-s (path)]"
     printfn ""
@@ -146,6 +146,9 @@ let rec parseArgs (args: list<string>) (options: Options) =
         | "Finland"::xss ->
             let newOptions = { options with country = Country.Finland }
             parseArgs xss newOptions
+        | "France"::xss ->
+             let newOptions = { options with country = Country.France }
+             parseArgs xss newOptions
         | "Iceland"::xss ->
             let newOptions = { options with country = Country.Iceland }
             parseArgs xss newOptions
@@ -162,7 +165,7 @@ let rec parseArgs (args: list<string>) (options: Options) =
             let newOptions = { options with country = Country.USA }
             parseArgs xss newOptions
         | _ ->
-            invalidArg "-c flag" "needs either Denmark, Finland, Iceland, Netherlands, Norway, Sweden or USA after it\n"
+            invalidArg "-c flag" "needs either Denmark, Finland, France, Iceland, Netherlands, Norway, Sweden or USA after it\n"
             parseArgs xs options
     | "-a"::xs | "--amount"::xs ->
         match xs with

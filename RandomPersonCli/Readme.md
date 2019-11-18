@@ -17,7 +17,7 @@ NAME
 SYNOPSIS
 
 dotnet RandomPersonCli.dll [-m (I|L|T|VP [<PAN>]|VS [<SSN>])]
-                           [-c (Denmark|Finland|Iceland|Netherlands|Norway|Sweden|USA)]
+                           [-c (Denmark|Finland|France|Iceland|Netherlands|Norway|Sweden|USA)]
                            [-a (n)] [-f (CSV|JSON|XML)] [--caf (true|false)]
                            [-o (path)] [-s (path)]
 
@@ -37,7 +37,7 @@ OPTIONS
     as optional input, otherwise it's using interactive validation.
 
 -c, --country
-    Either Denmark, Finland, Iceland, Netherlands, Norway, Sweden or USA.
+    Either Denmark, Finland, France, Iceland, Netherlands, Norway, Sweden or USA.
     Used in List or Template mode.
 
 -a, --amount

@@ -7,7 +7,7 @@
     <FileVersion>1.16.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/mika-s/RandomPerson</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
-    <PackageDescription>A library that creates random personal data. It supports creating personal data for the following countries: Denmark, Finland, Iceland, Netherlands, Norway, Sweden and USA.</PackageDescription>
+    <PackageDescription>A library that creates random personal data. It supports creating personal data for the following countries: Denmark, Finland, France, Iceland, Netherlands, Norway, Sweden and USA. It can also validate SSNs for the same countries.</PackageDescription>
     <RepositoryUrl>https://github.com/mika-s/RandomPerson</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageId>RandomPersonLib</PackageId>
@@ -33,6 +33,9 @@
     <Compile Include="Util\RandomUtil.fs" />
     <Compile Include="Util\StringUtil.fs" />
     <Compile Include="Util\ChecksumAlgorithms.fs" />
+    <Content Include="RandomPersonLib\France\france.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
 
     <Content Include="RandomPersonLib\Generic\passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -143,6 +146,9 @@
     <Compile Include="SSNs\Finland\Parameters.fs" />
     <Compile Include="SSNs\Finland\Generation.fs" />
     <Compile Include="SSNs\Finland\Validation.fs" />
+    <Compile Include="SSNs\France\Parameters.fs" />
+    <Compile Include="SSNs\France\Generation.fs" />
+    <Compile Include="SSNs\France\Validation.fs" />
     <Compile Include="SSNs\Netherlands\Parameters.fs" />
     <Compile Include="SSNs\Netherlands\Generation.fs" />
     <Compile Include="SSNs\Netherlands\Validation.fs" />

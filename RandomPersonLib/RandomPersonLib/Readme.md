@@ -30,6 +30,7 @@ for the following countries:
 
 - Denmark
 - Finland
+- France
 - Iceland
 - Netherlands
 - Norway

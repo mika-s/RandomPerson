@@ -19,7 +19,7 @@ let hasCorrectShape (pan: string) =
 
     match regexMatch.Success with
     | true  -> Success pan
-    | false -> Failure WrongShape
+    | false -> Failure InvalidShape
 
 let hasCorrectChecksum (pan: string) =
     let csInPan = pan |> lastChar
@@ -27,15 +27,15 @@ let hasCorrectChecksum (pan: string) =
     
     match csInPan = calculatedCs with
     | true  -> Success pan
-    | false -> Failure WrongChecksum
+    | false -> Failure InvalidChecksum
 
 let toOutputResult (result: PANValidationResult<string>) =
     match result with
     | Success _ -> (true, String.Empty)
     | Failure f ->
         match f with
-        | WrongShape    -> (false, "The shape of the PAN is wrong.")
-        | WrongChecksum -> (false, "The checksum is wrong.")
+        | InvalidShape    -> (false, "The shape of the PAN is wrong.")
+        | InvalidChecksum -> (false, "The checksum is wrong.")
 
 let validatePAN =
     cleanRawPan

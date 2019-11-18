@@ -24,9 +24,9 @@ let generatePassword (random: Random) (passwords: string[]) (firstName: string) 
     | r when 60 < r && r <= 65  -> lastName.ToLower() + birthDate.Year.ToString().Substring(0, 2)
     | r when 65 < r && r <= 70  -> firstName.[0].ToString () + lastName + birthDate.Year.ToString().Substring(0, 2)
     | r when 70 < r && r <= 75  -> firstName.[0].ToString () + lastName + random.Next(0, 100).ToString()
-    | r when 75 < r && r <= 80  -> birthDate.Day.ToString()  + birthDate.Month.ToString() + birthDate.Year.ToString()
+    | r when 75 < r && r <= 80  -> birthDate.Day.ToString () + birthDate.Month.ToString() + birthDate.Year.ToString()
     | r when 80 < r && r <= 85  -> birthDate.Year.ToString() + birthDate.Month.ToString() + birthDate.Day.ToString()
-    | r when 85 < r && r <= 90  -> firstName.ToCharArray() |> Array.rev |> String
-    | r when 90 < r && r <= 95  -> lastName .ToCharArray() |> Array.rev |> String
+    | r when 85 < r && r <= 90  -> firstName.ToCharArray()  |> Array.rev |> String
+    | r when 90 < r && r <= 95  -> lastName .ToCharArray()  |> Array.rev |> String
     | r when 95 < r && r <= 100 -> (firstName.ToCharArray() |> Array.rev |> String) + birthDate.Year.ToString()
     | _ -> invalidOp "Outside legal random range."

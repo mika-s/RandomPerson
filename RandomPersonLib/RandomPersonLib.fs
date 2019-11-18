@@ -33,6 +33,7 @@ type RandomPerson() =
         match country with
         | Country.Denmark     -> Person(country, i.generic, i.denmark,     options, random)
         | Country.Finland     -> Person(country, i.generic, i.finland,     options, random)
+        | Country.France      -> Person(country, i.generic, i.france,      options, random)
         | Country.Iceland     -> Person(country, i.generic, i.iceland,     options, random)
         | Country.Netherlands -> Person(country, i.generic, i.netherlands, options, random)
         | Country.Norway      -> Person(country, i.generic, i.norway,      options, random)

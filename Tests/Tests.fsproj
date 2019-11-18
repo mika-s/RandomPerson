@@ -33,6 +33,7 @@
     <Compile Include="Lib\DenmarkSSN.fs" />
     <Compile Include="Lib\IcelandSSN.fs" />
     <Compile Include="Lib\FinlandSSN.fs" />
+    <Compile Include="Lib\FranceSSN.fs" />
     <Compile Include="Lib\NetherlandsSSN.fs" />
     <Compile Include="Lib\NorwaySSN.fs" />
     <Compile Include="Lib\SwedenSSN.fs" />
@@ -41,6 +42,7 @@
     <Compile Include="Lib\ValidatePAN.fs" />
     <Compile Include="Lib\ValidateSSNForDenmark.fs" />
     <Compile Include="Lib\ValidateSSNForFinland.fs" />
+    <Compile Include="Lib\ValidateSSNForFrance.fs" />
     <Compile Include="Lib\ValidateSSNForIceland.fs" />
     <Compile Include="Lib\ValidateSSNForNetherlands.fs" />
     <Compile Include="Lib\ValidateSSNForNorway.fs" />

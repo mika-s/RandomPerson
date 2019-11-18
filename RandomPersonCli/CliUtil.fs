@@ -46,6 +46,7 @@ let printHelp () =
     printfn "\nUsage:"
     printfn "Denmark: d"
     printfn "Finland: f"
+    printfn "France:  F"
     printfn "Iceland: i"
     printfn "Netherlands: N"
     printfn "Norway: n"

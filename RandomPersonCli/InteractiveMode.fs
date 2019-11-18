@@ -20,6 +20,7 @@ let interactiveMode (settingsFilePath: string) =
             | 'q' -> ()
             | 'd' -> lib.CreatePerson(Country.Denmark,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | 'f' -> lib.CreatePerson(Country.Finland,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
+            | 'F' -> lib.CreatePerson(Country.France,      options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | 'i' -> lib.CreatePerson(Country.Iceland,     options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | 'N' -> lib.CreatePerson(Country.Netherlands, options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
             | 'n' -> lib.CreatePerson(Country.Norway,      options) |> printPerson i.settings.InteractiveMode.ConsolePrint |> mainloop
