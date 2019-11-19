@@ -1,10 +1,11 @@
 ﻿namespace Tests
 
 open System
+open System.Globalization
 open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open SpecialBirthDateReplaces
-open System.Globalization
+open StringUtil
 
 [<TestClass>]
 type ``replaceWithoutCulture should`` () =
@@ -54,7 +55,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDate = DateTime(1997, 03, 11)
         let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 11)
+        let firstPart = returnString |> substring 0 11
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Birthdate: ", firstPart)
@@ -67,7 +68,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDate = DateTime(1987, 12, 01)
         let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 11)
+        let firstPart = returnString |> substring 0 11
         let birthDatePart = returnString.Split(',').[0].Split(':').[1].Trim()
 
         Assert.AreEqual("Birthdate: ", firstPart)
@@ -80,7 +81,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDate = DateTime(1952, 07, 23)
         let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 11)
+        let firstPart = returnString |> substring 0 11
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Birthdate: ", firstPart)
@@ -93,7 +94,7 @@ type ``performSpecialBirthDateReplaces should`` () =
         let birthDate = DateTime(1947, 1, 11)
         let returnString = performSpecialBirthDateReplaces birthDate stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 11)
+        let firstPart = returnString |> substring 0 11
         let birthDatePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Birthdate: ", firstPart)

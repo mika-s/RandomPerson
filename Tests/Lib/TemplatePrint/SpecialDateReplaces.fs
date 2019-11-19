@@ -5,6 +5,7 @@ open System.Globalization
 open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open SpecialDateReplaces
+open StringUtil
 
 [<TestClass>]
 type ``replace nowWithoutFormatAndCulture should`` () =
@@ -13,7 +14,7 @@ type ``replace nowWithoutFormatAndCulture should`` () =
 
     [<TestMethod>]
     member __.``replace #{Date('now')} in a string with the current date`` () =
-        let replacedDate = replace nowWithoutFormatAndCulture dateNowRegex "#{Date('now')}"
+        let replacedDate = SpecialDateReplaces.replace nowWithoutFormatAndCulture dateNowRegex "#{Date('now')}"
 
         Assert.AreEqual(DateTime.Now.ToString("yyyy-MM-dd"), replacedDate)
 
@@ -24,7 +25,7 @@ type ``replace nowWithFormat should`` () =
 
     [<TestMethod>]
     member __.``replace #{Date('now', 'MMM')} in a string with the current date in MMM format`` () =
-        let replacedDate = replace nowWithFormat dateNowWithFormatRegex "#{Date('now', 'MMM')}"
+        let replacedDate = SpecialDateReplaces.replace nowWithFormat dateNowWithFormatRegex "#{Date('now', 'MMM')}"
 
         Assert.AreEqual(DateTime.Now.ToString("MMM"), replacedDate)
 
@@ -35,7 +36,7 @@ type ``replace nowWithFormatAndCulture should`` () =
 
     [<TestMethod>]
     member __.``replace #{Date('now', 'ddd MMM', 'no-NO')} in a string with the current date in Norwegian ddd MMM format`` () =
-        let replacedDate = replace nowWithFormatAndCulture dateNowWithFormatAndCultureRegex "#{Date('now', 'ddd MMM', 'no-NO')}"
+        let replacedDate = SpecialDateReplaces.replace nowWithFormatAndCulture dateNowWithFormatAndCultureRegex "#{Date('now', 'ddd MMM', 'no-NO')}"
 
         Assert.AreEqual(DateTime.Now.ToString("ddd MMM", CultureInfo.CreateSpecificCulture("no-NO")), replacedDate)
 
@@ -46,7 +47,7 @@ type ``replace daysWithoutFormatAndCulture should`` () =
 
     [<TestMethod>]
     member __.``replace #{Date(100)} in a string with the current date`` () =
-        let replacedDate = replace daysWithoutFormatAndCulture dateDaysRegex "#{Date(100)}"
+        let replacedDate = SpecialDateReplaces.replace daysWithoutFormatAndCulture dateDaysRegex "#{Date(100)}"
 
         Assert.AreEqual(DateTime.Now.AddDays(100.0).ToString("yyyy-MM-dd"), replacedDate)
 
@@ -57,7 +58,7 @@ type ``replace daysWithFormat should`` () =
 
     [<TestMethod>]
     member __.``replace #{Date(-1000, 'MMM')} in a string with the current date in MMM format`` () =
-        let replacedDate = replace daysWithFormat dateDaysWithFormatRegex "#{Date(-1000, 'MMM')}"
+        let replacedDate = SpecialDateReplaces.replace daysWithFormat dateDaysWithFormatRegex "#{Date(-1000, 'MMM')}"
 
         Assert.AreEqual(DateTime.Now.AddDays(-1000.0).ToString("MMM"), replacedDate)
 
@@ -68,7 +69,7 @@ type ``replace daysWithFormatAndCulture should`` () =
 
     [<TestMethod>]
     member __.``replace #{Date(-1, 'ddd MMM', 'no-NO')} in a string with the current date in Norwegian ddd MMM format`` () =
-        let replacedDate = replace daysWithFormatAndCulture dateDaysWithFormatAndCultureRegex "#{Date(-1, 'ddd MMM', 'no-NO')}"
+        let replacedDate = SpecialDateReplaces.replace daysWithFormatAndCulture dateDaysWithFormatAndCultureRegex "#{Date(-1, 'ddd MMM', 'no-NO')}"
 
         Assert.AreEqual(DateTime.Now.AddDays(-1.0).ToString("ddd MMM", CultureInfo.CreateSpecificCulture("no-NO")), replacedDate)
 
@@ -81,7 +82,7 @@ type ``performSpecialDateReplaces should`` () =
 
         let returnString = performSpecialDateReplaces stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 6)
+        let firstPart = returnString |> substring 0 6
         let datePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Date: ", firstPart)
@@ -93,7 +94,7 @@ type ``performSpecialDateReplaces should`` () =
 
         let returnString = performSpecialDateReplaces stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 6)
+        let firstPart = returnString |> substring 0 6
         let datePart = returnString.Split(',').[0].Split(':').[1].Trim()
 
         Assert.AreEqual("Date: ", firstPart)
@@ -105,7 +106,7 @@ type ``performSpecialDateReplaces should`` () =
 
         let returnString = performSpecialDateReplaces stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 6)
+        let firstPart = returnString |> substring 0 6
         let datePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Date: ", firstPart)
@@ -117,7 +118,7 @@ type ``performSpecialDateReplaces should`` () =
 
         let returnString = performSpecialDateReplaces stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 6)
+        let firstPart = returnString |> substring 0 6
         let datePart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Date: ", firstPart)

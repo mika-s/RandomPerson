@@ -4,6 +4,7 @@ open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open SpecialGenderReplaces
+open StringUtil
 
 [<TestClass>]
 type ``replaceGender should`` () =
@@ -34,7 +35,7 @@ type ``performSpecialGenderReplaces should`` () =
         let gender = Gender.Male
         let returnString = performSpecialGenderReplaces gender stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let genderPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Gender: ", firstPart)
@@ -47,7 +48,7 @@ type ``performSpecialGenderReplaces should`` () =
         let gender = Gender.Female
         let returnString = performSpecialGenderReplaces gender stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let genderPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Gender: ", firstPart)
@@ -60,7 +61,7 @@ type ``performSpecialGenderReplaces should`` () =
         let gender = Gender.Female
         let returnString = performSpecialGenderReplaces gender stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let genderPart = returnString.Split(';').[0].Split('_').[1]
 
         Assert.AreEqual("Gender:_", firstPart)
@@ -73,7 +74,7 @@ type ``performSpecialGenderReplaces should`` () =
         let gender = Gender.Male
         let returnString = performSpecialGenderReplaces gender stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let genderPart = returnString.Split(';').[0].Split('_').[1]
 
         Assert.AreEqual("Gender:_", firstPart)

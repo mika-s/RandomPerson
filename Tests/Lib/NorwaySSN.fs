@@ -148,11 +148,11 @@ type ``generateNorwegianSSN should`` () =
         let gender = Gender.Male
         let ssn = generateNorwegianSSN random birthdate gender false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
         let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
-        let checksum = ssn |> substring ChecksumStart ChecksumLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("04", d)
@@ -172,7 +172,7 @@ type ``generateNorwegianSSN should`` () =
         let m = ssn |> substring 2 2
         let y = ssn |> substring 4 2
         let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
-        let checksum = ssn |> substring ChecksumStart ChecksumLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("06", d)
@@ -192,7 +192,7 @@ type ``generateNorwegianSSN should`` () =
         let m = ssn |> substring 2 2
         let y = ssn |> substring 4 2
         let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
-        let checksum = ssn |> substring ChecksumStart ChecksumLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("15", d)
@@ -212,7 +212,7 @@ type ``generateNorwegianSSN should`` () =
         let m = ssn |> substring 2 2
         let y = ssn |> substring 4 2
         let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
-        let checksum = ssn |> substring ChecksumStart ChecksumLength |> int
+        let checksum =         ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(11, ssn.Length)
         Assert.AreEqual("01", d)
@@ -237,7 +237,7 @@ type ``generateNorwegianSSN should`` () =
         let m = ssnFake |> substring 2 2
         let y = ssnFake |> substring 4 2
         let individualNumber = ssnFake |> substring IndividualNumberStart IndividualNumberLength |> int
-        let checksum = ssnFake |> substring ChecksumStart ChecksumLength |> int
+        let checksum =         ssnFake |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

@@ -4,6 +4,7 @@ open System
 open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open SpecialGuidReplaces
+open StringUtil
 
 [<TestClass>]
 type ``replaceGuidWithoutFormat should`` () =
@@ -66,7 +67,7 @@ type ``performSpecialGuidReplaces should`` () =
 
         let returnString = performSpecialGuidReplaces stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 6)
+        let firstPart = returnString |> substring 0 6
         let guidPart  = returnString.Split(',').[0].Split(' ').[1]
         let isGuid, _ = Guid.TryParse(guidPart)
 
@@ -79,7 +80,7 @@ type ``performSpecialGuidReplaces should`` () =
 
         let returnString = performSpecialGuidReplaces stringToDoReplaces
 
-        let firstPart = returnString.Substring(0, 6)
+        let firstPart = returnString |> substring 0 6
         let guidPart  = returnString.Split(',').[0].Split(' ').[1]
         let isGuid, _ = Guid.TryParse(guidPart)
 

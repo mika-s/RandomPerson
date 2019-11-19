@@ -63,9 +63,9 @@ type ``generateAmericanSSN for American SSNs should`` () =
     member __.``return either 4, 5, 6, 7, 8, 9`` () =
         let ssn = generateAmericanSSN random false
         let splitSsn = ssn.Split('-')
-        let areaNumber   = int splitSsn.[0]
-        let groupNumber  = int splitSsn.[1]
-        let serialNumber = int splitSsn.[2]
+        let areaNumber   = splitSsn.[0] |> int
+        let groupNumber  = splitSsn.[1] |> int
+        let serialNumber = splitSsn.[2] |> int
 
         Assert.AreEqual(3, splitSsn.Length)
         Assert.IsTrue((1 <= areaNumber   && areaNumber <= 899))

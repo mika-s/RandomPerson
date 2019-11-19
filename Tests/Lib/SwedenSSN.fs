@@ -135,7 +135,7 @@ type ``generateSwedishSSN should`` () =
         let m = ssn |> substring 2 2
         let d = ssn |> substring 4 2
         let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
-        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
+        let checksum =         ssn |> substring oldSsnParams.ChecksumStart         oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("04", d)
@@ -155,7 +155,7 @@ type ``generateSwedishSSN should`` () =
         let m = ssn |> substring 2 2
         let d = ssn |> substring 4 2
         let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
-        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
+        let checksum =         ssn |> substring oldSsnParams.ChecksumStart         oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("06", d)
@@ -175,7 +175,7 @@ type ``generateSwedishSSN should`` () =
         let m = ssn |> substring 2 2
         let d = ssn |> substring 4 2
         let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
-        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
+        let checksum =         ssn |> substring oldSsnParams.ChecksumStart         oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("15", d)
@@ -195,7 +195,7 @@ type ``generateSwedishSSN should`` () =
         let m = ssn |> substring 2 2
         let d = ssn |> substring 4 2
         let individualNumber = ssn |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
-        let checksum = ssn |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
+        let checksum =         ssn |> substring oldSsnParams.ChecksumStart         oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("01", d)
@@ -220,7 +220,7 @@ type ``generateSwedishSSN should`` () =
         let m = ssnFake |> substring 2 2
         let d = ssnFake |> substring 4 2
         let individualNumber = ssnFake |> substring oldSsnParams.IndividualNumberStart oldSsnParams.IndividualNumberLength |> int
-        let checksum = ssnFake |> substring oldSsnParams.ChecksumStart oldSsnParams.ChecksumLength |> int
+        let checksum =         ssnFake |> substring oldSsnParams.ChecksumStart         oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)

@@ -4,6 +4,7 @@ open System
 open System.Text.RegularExpressions
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomReplaces
+open StringUtil
 
 [<TestClass>]
 type ``replace randomInt should`` () =
@@ -14,9 +15,9 @@ type ``replace randomInt should`` () =
     member __.``return find and replace #{Random(int, 10, 100)} in a string with a random integer`` () =
         let remaining = "Age: #{Random(int, 10, 100)}, fortune: Random(float, 1000.0, 100000.0)"
 
-        let returnString = replace randomInt randomIntRegex remaining
+        let returnString = RandomReplaces.replace randomInt randomIntRegex remaining
 
-        let firstPart = returnString.Substring(0, 5)
+        let firstPart = returnString |> substring 0 5
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Age: ", firstPart)
@@ -26,9 +27,9 @@ type ``replace randomInt should`` () =
     member __.``return find and replace #{Random(int,-10,0)} in a string with a random integer`` () =
         let remaining = "DLA: #{Random(int,-10,0)}, fortune: Random(float, 1000.0, 100000.0)"
 
-        let returnString = replace randomInt randomIntRegex remaining
+        let returnString = RandomReplaces.replace randomInt randomIntRegex remaining
 
-        let firstPart = returnString.Substring(0, 5)
+        let firstPart = returnString |> substring 0 5
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("DLA: ", firstPart)
@@ -43,9 +44,9 @@ type ``replace randomIntWithStep should`` () =
     member __.``return find and replace #{Random(int, 10, 100)} in a string with a random integer`` () =
         let remaining = "Age: #{Random(int, 10, 20, 100)}, fortune: Random(float, 1000.0, 100000.0)"
 
-        let returnString = replace randomIntWithStep randomIntWithStepSizeRegex remaining
+        let returnString = RandomReplaces.replace randomIntWithStep randomIntWithStepSizeRegex remaining
 
-        let firstPart = returnString.Substring(0, 5)
+        let firstPart = returnString |> substring 0 5
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Age: ", firstPart)
@@ -55,9 +56,9 @@ type ``replace randomIntWithStep should`` () =
     member __.``return find and replace #{Random(int,-10,5,0)} in a string with a random integer`` () =
         let remaining = "DLA: #{Random(int,-10,5,0)}, fortune: Random(float, 1000.0, 100000.0)"
 
-        let returnString = replace randomIntWithStep randomIntWithStepSizeRegex remaining 
+        let returnString = RandomReplaces.replace randomIntWithStep randomIntWithStepSizeRegex remaining 
 
-        let firstPart = returnString.Substring(0, 5)
+        let firstPart = returnString |> substring 0 5
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("DLA: ", firstPart)
@@ -67,9 +68,9 @@ type ``replace randomIntWithStep should`` () =
     member __.``return find and replace #{Random(int, 10, 20, 100)} in a string with a random integer`` () =
         let remaining = "DLA: #{Random(int, 10, 20, 100)}, fortune: Random(float, 1000.0, 100000.0)"
 
-        let returnString = replace randomIntWithStep randomIntWithStepSizeRegex remaining 
+        let returnString = RandomReplaces.replace randomIntWithStep randomIntWithStepSizeRegex remaining 
 
-        let firstPart = returnString.Substring(0, 5)
+        let firstPart = returnString |> substring 0 5
         let randomPart = Convert.ToInt32 (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("DLA: ", firstPart)
@@ -84,9 +85,9 @@ type ``replace randomFloat should`` () =
     member __.``return find and replace #{Random(float, 1000, 100000)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float, 1000, 100000)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloat randomFloatRegex remaining
+        let returnString = RandomReplaces.replace randomFloat randomFloatRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -96,9 +97,9 @@ type ``replace randomFloat should`` () =
     member __.``return find and replace #{Random(float,-1000, 0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float,-1000, 0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloat randomFloatRegex remaining
+        let returnString = RandomReplaces.replace randomFloat randomFloatRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -108,9 +109,9 @@ type ``replace randomFloat should`` () =
     member __.``return find and replace #{Random(float,-20.0, 20.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float,-20.0, 20.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloat randomFloatRegex remaining
+        let returnString = RandomReplaces.replace randomFloat randomFloatRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -120,9 +121,9 @@ type ``replace randomFloat should`` () =
     member __.``return find and replace #{Random(float,-1.01,1)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float,-1.01,1)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloat randomFloatRegex remaining
+        let returnString = RandomReplaces.replace randomFloat randomFloatRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -137,9 +138,9 @@ type ``replace randomFloatWithStep should`` () =
     member __.``return find and replace #{Random(float, 2.0, 0.5, 3.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float, 2.0, 0.5, 3.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithStep randomFloatWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithStep randomFloatWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -149,9 +150,9 @@ type ``replace randomFloatWithStep should`` () =
     member __.``return find and replace #{Random(float, 0.0, 2.0, 10.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float, 0.0, 2.0, 10.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithStep randomFloatWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithStep randomFloatWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -161,9 +162,9 @@ type ``replace randomFloatWithStep should`` () =
     member __.``return find and replace #{Random(float,-20.0,10, 20.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float,-20.0,10, 20.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithStep randomFloatWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithStep randomFloatWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -173,9 +174,9 @@ type ``replace randomFloatWithStep should`` () =
     member __.``return find and replace #{Random(float,-1.05,0.01,-1.00)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float,-1.01,0.01,-1.00)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithStep randomFloatWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithStep randomFloatWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Income: ", firstPart)
@@ -190,9 +191,9 @@ type ``replace randomFloatWithDecimalsWithStep should`` () =
     member __.``return find and replace #{Random(float, 2.0, 0.5, 3.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float:1, 2.0, 0.5, 3.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPartAsString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float randomPartAsString
 
@@ -204,9 +205,9 @@ type ``replace randomFloatWithDecimalsWithStep should`` () =
     member __.``return find and replace #{Random(float, 0.0, 2.0, 10.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float:2, 0.0, 2.0, 10.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPartAsString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float randomPartAsString
 
@@ -219,9 +220,9 @@ type ``replace randomFloatWithDecimalsWithStep should`` () =
     member __.``return find and replace #{Random(float,-20.0,10, 20.0)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float:3,-20.0,10, 20.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPartAsString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float randomPartAsString
 
@@ -234,9 +235,9 @@ type ``replace randomFloatWithDecimalsWithStep should`` () =
     member __.``return find and replace #{Random(float,-1.05,0.01,-1.00)} in a string with a random float`` () =
         let remaining = "Income: #{Random(float:2,-1.01,0.01,-1.00)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomFloatWithDecimalsWithStep randomFloatWithDecimalsWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 8)
+        let firstPart = returnString |> substring 0 8
         let randomPartAsString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float randomPartAsString
 
@@ -254,9 +255,9 @@ type ``replace randomSwitch should`` () =
     member __.``return find and replace #{Random(switch, 'true', 'false')} in a string with either true or false`` () =
         let remaining = "Married: #{Random(switch, 'true', 'false')}, income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Married: ", firstPart)
@@ -266,9 +267,9 @@ type ``replace randomSwitch should`` () =
     member __.``return find and replace #{Random(switch, 'yes', 'no', 'maybe')} in a string with either yes, no or maybe`` () =
         let remaining = "Married: #{Random(switch, 'yes', 'no', 'maybe')}, income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Married: ", firstPart)
@@ -278,9 +279,9 @@ type ``replace randomSwitch should`` () =
     member __.``return find and replace #{Random(switch,'yes','no','maybe')} in a string with either yes, no or maybe`` () =
         let remaining = "Married: #{Random(switch,'yes','no','maybe')}, income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Married: ", firstPart)
@@ -290,9 +291,9 @@ type ``replace randomSwitch should`` () =
     member __.``return find and replace #{Random(switch,'one','two','three','four')} in a string with either one,one; two; three or four`` () =
         let remaining = "Married: #{Random(switch,'one','two','three','four')}, income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Married: ", firstPart)
@@ -305,9 +306,9 @@ type ``replace randomSwitch should`` () =
     member __.``return find and replace #{Random(switch,'one', 'two', 'three', 'four')} in a string with either one, two, three or four`` () =
         let remaining = "Married: #{Random(switch,'one', 'two', 'three', 'four')}, income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Married: ", firstPart)
@@ -320,9 +321,9 @@ type ``replace randomSwitch should`` () =
     member __.``return find and replace #{Random(switch, 'one, one', 'two, two')} in a string with either 'one, one' or 'two, two'`` () =
         let remaining = "Married: #{Random(switch, 'one, one', 'two, two')}; income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(':').[1].Split(';') |> Array.map (fun x -> x.Trim())
 
         Assert.AreEqual("Married: ", firstPart)
@@ -332,9 +333,9 @@ type ``replace randomSwitch should`` () =
     member __.``find and replace #{Random(switch, 'one/one', 'two/two')} in a string with either 'one/one' or 'two/two'`` () =
         let remaining = "Married: #{Random(switch, 'one/one', 'two/two')}, income: #{Random(float, 1000, 100000)}, "
 
-        let returnString = replace randomSwitch randomSwitchRegex remaining
+        let returnString = RandomReplaces.replace randomSwitch randomSwitchRegex remaining
 
-        let firstPart = returnString.Substring(0, 9)
+        let firstPart = returnString |> substring 0 9
         let randomPart = returnString.Split(',').[0].Split(' ').[1]
 
         Assert.AreEqual("Married: ", firstPart)
@@ -349,9 +350,9 @@ type ``replace randomNormallyDistributedInt should`` () =
     member __.``return find and replace #{Random(nd_int,20,0)} in a string with a normally distributed random int`` () =
         let remaining = "Value: #{Random(nd_int,20,0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedInt randomNdIntRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedInt randomNdIntRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -361,9 +362,9 @@ type ``replace randomNormallyDistributedInt should`` () =
     member __.``return find and replace #{Random(nd_int,100,1)} in a string with a normally distributed random int`` () =
         let remaining = "Value: #{Random(nd_int,100,1)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedInt randomNdIntRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedInt randomNdIntRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -378,9 +379,9 @@ type ``replace randomNdIntWithStepSizeRegex should`` () =
     member __.``return find and replace #{Random(nd_int,20,0,5)} in a string with a normally distributed random int`` () =
         let remaining = "Value: #{Random(nd_int,20,0,5)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedIntWithStep randomNdIntWithStepSizeRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedIntWithStep randomNdIntWithStepSizeRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -390,9 +391,9 @@ type ``replace randomNdIntWithStepSizeRegex should`` () =
     member __.``return find and replace #{Random(nd_int,100,1,5)} in a string with a normally distributed random int`` () =
         let remaining = "Value: #{Random(nd_int,100,1,5)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedIntWithStep randomNdIntWithStepSizeRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedIntWithStep randomNdIntWithStepSizeRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = int (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -408,9 +409,9 @@ type ``replace randomNormallyDistributedFloat should`` () =
     member __.``return find and replace #{Random(nd_float,20.0, 0.0)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float,20.0, 0.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloat randomNdFloatRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloat randomNdFloatRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -425,9 +426,9 @@ type ``replace randomNormallyDistributedFloatWithStep should`` () =
     member __.``return find and replace #{Random(nd_float,20.0, 0.0, 1.0)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float,20.0, 0.0, 1.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -437,9 +438,9 @@ type ``replace randomNormallyDistributedFloatWithStep should`` () =
     member __.``return find and replace #{Random(nd_float,20.0, 0.1, 1.0)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float,20.0, 0.1, 1.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloatWithStep randomNdFloatWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let randomPart = float (returnString.Split(',').[0].Split(' ').[1])
 
         Assert.AreEqual("Value: ", firstPart)
@@ -454,9 +455,9 @@ type ``replace randomNormallyDistributedFloatWithDecimals should`` () =
     member __.``return find and replace #{Random(nd_float:1,20.0, 0.0)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float:1,20.0, 0.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloatWithDecimals randomNdFloatWithDecimalsRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloatWithDecimals randomNdFloatWithDecimalsRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let asString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float asString
 
@@ -468,9 +469,9 @@ type ``replace randomNormallyDistributedFloatWithDecimals should`` () =
     member __.``return find and replace #{Random(nd_float:4,20.0, 0.1)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float:4,20.0, 0.1)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloatWithDecimals randomNdFloatWithDecimalsRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloatWithDecimals randomNdFloatWithDecimalsRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let asString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float asString
 
@@ -487,9 +488,9 @@ type ``replace randomNormallyDistributedFloatWithDecimalsWithStep should`` () =
     member __.``return find and replace #{Random(nd_float,20.0, 0.0, 1.0)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float:1,20.0, 0.0, 1.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloatWithDecimalsWithStep randomNdFloatWithDecimalsWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloatWithDecimalsWithStep randomNdFloatWithDecimalsWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let asString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float asString
 
@@ -501,9 +502,9 @@ type ``replace randomNormallyDistributedFloatWithDecimalsWithStep should`` () =
     member __.``return find and replace #{Random(nd_float,20.0, 0.1, 1.0)} in a string with a normally distributed random float`` () =
         let remaining = "Value: #{Random(nd_float:4,20.0, 0.1, 1.0)}, married: Random(switch,true,false)"
 
-        let returnString = replace randomNormallyDistributedFloatWithDecimalsWithStep randomNdFloatWithDecimalsWithStepRegex remaining
+        let returnString = RandomReplaces.replace randomNormallyDistributedFloatWithDecimalsWithStep randomNdFloatWithDecimalsWithStepRegex remaining
 
-        let firstPart = returnString.Substring(0, 7)
+        let firstPart = returnString |> substring 0 7
         let asString = returnString.Split(',').[0].Split(' ').[1]
         let randomPart = float asString
 

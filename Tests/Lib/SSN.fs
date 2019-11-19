@@ -6,6 +6,7 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
 open MathUtil
+open StringUtil
 open SSN
 
 [<TestClass>]
@@ -19,12 +20,11 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(DenmarkSSNParameters.IndividualNumberStart,
-                                                             DenmarkSSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(DenmarkSSNParameters.ChecksumStart, DenmarkSSNParameters.ChecksumLength))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring DenmarkSSNParameters.IndividualNumberStart DenmarkSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring DenmarkSSNParameters.ChecksumStart         DenmarkSSNParameters.ChecksumLength         |> int
 
         Assert.AreEqual(DenmarkSSNParameters.SsnLength, ssn.Length)
         Assert.AreEqual("31", d)
@@ -42,12 +42,11 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(DenmarkSSNParameters.IndividualNumberStart,
-                                                             DenmarkSSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(DenmarkSSNParameters.ChecksumStart, DenmarkSSNParameters.ChecksumLength))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring DenmarkSSNParameters.IndividualNumberStart DenmarkSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring DenmarkSSNParameters.ChecksumStart         DenmarkSSNParameters.ChecksumLength         |> int
 
         Assert.AreEqual(DenmarkSSNParameters.SsnLength, ssn.Length)
         Assert.AreEqual("03", d)
@@ -65,9 +64,8 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let individualNumber = Convert.ToInt32(ssn.Substring(NetherlandsSSNParameters.IndividualNumberStart,
-                                                             NetherlandsSSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(NetherlandsSSNParameters.ChecksumStart, NetherlandsSSNParameters.ChecksumLength))
+        let individualNumber = ssn |> substring NetherlandsSSNParameters.IndividualNumberStart NetherlandsSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring NetherlandsSSNParameters.ChecksumStart         NetherlandsSSNParameters.ChecksumLength         |> int
 
         Assert.AreEqual(NetherlandsSSNParameters.SsnLength, ssn.Length)
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 99999999)
@@ -81,13 +79,13 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let centurySign = ssn.Substring(FinlandSSNParameters.CenturySignStart, FinlandSSNParameters.CenturySignLength)
-        let individualNumber = Convert.ToInt32(ssn.Substring(FinlandSSNParameters.IndividualNumberStart,
-                                                             FinlandSSNParameters.IndividualNumberLength))
-        let checksum = ssn.Substring(FinlandSSNParameters.ChecksumStart, FinlandSSNParameters.ChecksumLength)
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let centurySign      = ssn |> substring FinlandSSNParameters.CenturySignStart      FinlandSSNParameters.CenturySignLength
+        let individualNumber = ssn |> substring FinlandSSNParameters.IndividualNumberStart FinlandSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring FinlandSSNParameters.ChecksumStart         FinlandSSNParameters.ChecksumLength
+
         let checksumPattern = "^(\d|[A-Y])$"
         let checksumRegex = Regex checksumPattern
 
@@ -108,13 +106,13 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let centurySign = ssn.Substring(FinlandSSNParameters.CenturySignStart, FinlandSSNParameters.CenturySignLength)
-        let individualNumber = Convert.ToInt32(ssn.Substring(FinlandSSNParameters.IndividualNumberStart,
-                                                             FinlandSSNParameters.IndividualNumberLength))
-        let checksum = ssn.Substring(FinlandSSNParameters.ChecksumStart, FinlandSSNParameters.ChecksumLength)
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let centurySign      = ssn |> substring FinlandSSNParameters.CenturySignStart      FinlandSSNParameters.CenturySignLength
+        let individualNumber = ssn |> substring FinlandSSNParameters.IndividualNumberStart FinlandSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring FinlandSSNParameters.ChecksumStart         FinlandSSNParameters.ChecksumLength
+
         let checksumPattern = "^(\d|[A-Y])$"
         let checksumRegex = Regex checksumPattern
 
@@ -135,13 +133,12 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IcelandSSNParameters.IndividualNumberStart,
-                                                             IcelandSSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(IcelandSSNParameters.ChecksumStart, IcelandSSNParameters.ChecksumLength))
-        let centurySign = ssn.Substring(IcelandSSNParameters.CenturySignStart, IcelandSSNParameters.CenturySignLength)
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring IcelandSSNParameters.IndividualNumberStart IcelandSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring IcelandSSNParameters.ChecksumStart         IcelandSSNParameters.ChecksumLength         |> int
+        let centurySign      = ssn |> substring IcelandSSNParameters.CenturySignStart      IcelandSSNParameters.CenturySignLength
 
         Assert.AreEqual(IcelandSSNParameters.SsnLength, ssn.Length)
         Assert.AreEqual("28", d)
@@ -159,13 +156,12 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(IcelandSSNParameters.IndividualNumberStart,
-                                                             IcelandSSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(IcelandSSNParameters.ChecksumStart, IcelandSSNParameters.ChecksumLength))
-        let centurySign = ssn.Substring(IcelandSSNParameters.CenturySignStart, IcelandSSNParameters.CenturySignLength)
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring IcelandSSNParameters.IndividualNumberStart IcelandSSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring IcelandSSNParameters.ChecksumStart         IcelandSSNParameters.ChecksumLength         |> int
+        let centurySign      = ssn |> substring IcelandSSNParameters.CenturySignStart      IcelandSSNParameters.CenturySignLength
 
         Assert.AreEqual(IcelandSSNParameters.SsnLength, ssn.Length)
         Assert.AreEqual("02", d)
@@ -183,12 +179,11 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(NorwaySSNParameters.IndividualNumberStart,
-                                                             NorwaySSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(NorwaySSNParameters.ChecksumStart, NorwaySSNParameters.ChecksumLength))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring NorwaySSNParameters.IndividualNumberStart NorwaySSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring NorwaySSNParameters.ChecksumStart         NorwaySSNParameters.ChecksumLength         |> int
 
         Assert.AreEqual(NorwaySSNParameters.SsnLength, ssn.Length)
         Assert.AreEqual("21", d)
@@ -206,12 +201,11 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let d = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let y = ssn.Substring(4, 2)
-        let individualNumber = Convert.ToInt32(ssn.Substring(NorwaySSNParameters.IndividualNumberStart,
-                                                             NorwaySSNParameters.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(NorwaySSNParameters.ChecksumStart, NorwaySSNParameters.ChecksumLength))
+        let d = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let y = ssn |> substring 4 2
+        let individualNumber = ssn |> substring NorwaySSNParameters.IndividualNumberStart NorwaySSNParameters.IndividualNumberLength |> int
+        let checksum         = ssn |> substring NorwaySSNParameters.ChecksumStart         NorwaySSNParameters.ChecksumLength         |> int
 
         Assert.AreEqual(NorwaySSNParameters.SsnLength, ssn.Length)
         Assert.AreEqual("14", d)
@@ -229,13 +223,12 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let y = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let d = ssn.Substring(4, 2)
+        let y = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let d = ssn |> substring 4 2
         
-        let individualNumber = Convert.ToInt32(ssn.Substring(SwedenSSNParameters.oldSsnParams.IndividualNumberStart,
-                                                             SwedenSSNParameters.oldSsnParams.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(SwedenSSNParameters.oldSsnParams.ChecksumStart, SwedenSSNParameters.oldSsnParams.ChecksumLength))
+        let individualNumber = ssn |> substring SwedenSSNParameters.oldSsnParams.IndividualNumberStart SwedenSSNParameters.oldSsnParams.IndividualNumberLength |> int
+        let checksum         = ssn |> substring SwedenSSNParameters.oldSsnParams.ChecksumStart         SwedenSSNParameters.oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(SwedenSSNParameters.oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("25", d)
@@ -253,13 +246,12 @@ type ``generateSSN should`` () =
         let random = getRandom false 100
         let ssn = generateSSN random country birthdate gender false false
 
-        let y = ssn.Substring(0, 2)
-        let m = ssn.Substring(2, 2)
-        let d = ssn.Substring(4, 2)
+        let y = ssn |> substring 0 2
+        let m = ssn |> substring 2 2
+        let d = ssn |> substring 4 2
         
-        let individualNumber = Convert.ToInt32(ssn.Substring(SwedenSSNParameters.oldSsnParams.IndividualNumberStart,
-                                                             SwedenSSNParameters.oldSsnParams.IndividualNumberLength))
-        let checksum = Convert.ToInt32(ssn.Substring(SwedenSSNParameters.oldSsnParams.ChecksumStart, SwedenSSNParameters.oldSsnParams.ChecksumLength))
+        let individualNumber = ssn |> substring SwedenSSNParameters.oldSsnParams.IndividualNumberStart SwedenSSNParameters.oldSsnParams.IndividualNumberLength |> int
+        let checksum         = ssn |> substring SwedenSSNParameters.oldSsnParams.ChecksumStart         SwedenSSNParameters.oldSsnParams.ChecksumLength         |> int
 
         Assert.AreEqual(SwedenSSNParameters.oldSsnParams.SsnLength, ssn.Length)
         Assert.AreEqual("30", d)

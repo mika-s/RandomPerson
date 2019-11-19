@@ -3,6 +3,7 @@
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open RandomPersonLib
 open Util
+open StringUtil
 open NetherlandsSSNParameters
 open NetherlandsSSNGeneration
 
@@ -14,7 +15,7 @@ type ``generateIndividualNumber for Dutch SSNs should`` () =
     [<TestMethod>]
     member __.``return a number between 000000000 and 999999999`` () =
         let individualNumber = generateIndividualNumber random
-        let individualNumberAsInt = int individualNumber
+        let individualNumberAsInt = individualNumber |> int
         Assert.IsTrue(0 <= individualNumberAsInt && individualNumberAsInt <= 99999999)
  
 [<TestClass>]
@@ -68,8 +69,8 @@ type ``generateDutchSSN should`` () =
  
         let ssn = generateDutchSSN random false
 
-        let individualNumber = int (ssn.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = int (ssn.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = ssn |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum         = ssn |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(SsnLength, ssn.Length)
         Assert.IsTrue(0 <= individualNumber && individualNumber <= 99999999)
@@ -85,8 +86,8 @@ type ``generateDutchSSN should`` () =
         let isRealValidating, _ = validatePerson.ValidateSSN(Country.Netherlands, ssnReal)
         let isFakeValidating, _ = validatePerson.ValidateSSN(Country.Netherlands, ssnFake)
 
-        let individualNumber = int (ssnFake.Substring(IndividualNumberStart, IndividualNumberLength))
-        let checksum = int (ssnFake.Substring(ChecksumStart, ChecksumLength))
+        let individualNumber = ssnFake |> substring IndividualNumberStart IndividualNumberLength |> int
+        let checksum         = ssnFake |> substring ChecksumStart         ChecksumLength         |> int
 
         Assert.AreEqual(true,  isRealValidating)
         Assert.AreEqual(false, isFakeValidating)
