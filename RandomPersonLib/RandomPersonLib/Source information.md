@@ -27,11 +27,17 @@ The following sources are used for the data that is used to generate random pers
 
 ## France
 
+- [French firstnames](https://www.behindthename.com/top/lists/france/2010)
+- [French lastnames](https://surnames.behindthename.com/top/lists/france/2005)
+- [Postal codes and cities in France](http://www.geonames.org/export/zip//FR.zip)
 - [Telephone numbers in France](https://en.wikipedia.org/wiki/Telephone_numbers_in_France)
 - [Departments of France](https://en.wikipedia.org/wiki/Departments_of_France)
 - [French SSN rules](https://en.wikipedia.org/wiki/INSEE_code)
 - [Validate french social security number on GitHub Gist](https://gist.github.com/jauneau/1206760)
 
+The list of French postal codes, cities and addresses is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
+
+www.geonames.org
 
 ## Iceland
 
@@ -84,6 +90,10 @@ www.geonames.org
 - [Streets in USA](http://results.openaddresses.io/)
 - [Postal codes and cities in USA](http://download.geonames.org/export/zip/US.zip)
 - [North American Numbering Plan](https://en.wikipedia.org/wiki/North_American_Numbering_Plan)
+
+The list of American postal codes, cities and addresses is under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
+
+www.geonames.org
 
 # Misc
 

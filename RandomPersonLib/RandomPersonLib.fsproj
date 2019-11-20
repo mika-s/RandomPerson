@@ -33,6 +33,9 @@
     <Compile Include="Util\RandomUtil.fs" />
     <Compile Include="Util\StringUtil.fs" />
     <Compile Include="Util\ChecksumAlgorithms.fs" />
+    <Content Include="RandomPersonLib\France\FR.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="RandomPersonLib\France\france.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

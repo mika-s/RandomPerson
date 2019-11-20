@@ -51,7 +51,7 @@ let readInputFiles () =
     let france = {
         generalData          = readDataFromJsonFile<PersonData> "RandomPersonLib/France/france.json";
         addresses1           = File.ReadAllLines("RandomPersonLib/Finland/Streets in Finland.txt", Encoding.UTF8);
-        postalCodeCityStates = File.ReadAllLines("RandomPersonLib/Finland/FI.txt", Encoding.UTF8)
+        postalCodeCityStates = File.ReadAllLines("RandomPersonLib/France/FR.txt", Encoding.UTF8)
                                |> Array.map(stringToPostalCodeCityState Country.France);
     }
 
