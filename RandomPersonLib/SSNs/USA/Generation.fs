@@ -1,7 +1,5 @@
 ﻿module internal UsaSSNGeneration
 
-open System
-
 (*
     AAA-GG-SSSS
      | || |  |
@@ -15,13 +13,15 @@ open System
      Area number can't be 666 or 900-999.
 *)
 
+open System
+
 let generateAreaNumber (random: Random) =
     let rec loop () =
         let randomNumber = random.Next(001, 900)
 
         match randomNumber with
-        | x when x = 666 -> loop ()
-        | _ -> randomNumber.ToString("D3")
+        | 666 -> loop ()
+        | _   -> randomNumber.ToString("D3")
 
     loop ()
 

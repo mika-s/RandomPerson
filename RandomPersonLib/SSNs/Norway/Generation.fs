@@ -18,12 +18,13 @@ open RandomPersonLib
 open NorwaySSNParameters
 open Util
 open MathUtil
+open StringUtil
 
 let getIndividualNumber (random: Random) (year: int) =
-    match () with
-    | () when 1854 <= year && year <= 1899 -> random.Next(500, 749)
-    | () when 1900 <= year && year <= 1999 -> random.Next(000, 499)
-    | () when 2000 <= year && year <= 2039 -> random.Next(500, 999)
+    match year with
+    | Between 1854 1899 -> random.Next(500, 749)
+    | Between 1900 1999 -> random.Next(000, 499)
+    | Between 2000 2039 -> random.Next(500, 999)
     | _ -> invalidArg "year" "Illegal year."
 
 let getIndividualNumberMale (random: Random) (year: int) =
@@ -53,15 +54,15 @@ let generateIndividualNumber (random: Random) (year: int) (gender: Gender) =
     | _ -> invalidArg "gender" "Illegal gender."
     
 let generateChecksum (birthdate: DateTime) (individualNumber: string) =
-    let d1 = int (birthdate.Day   .ToString("D2").Substring(0, 1))
-    let d2 = int (birthdate.Day   .ToString("D2").Substring(1, 1))
-    let m1 = int (birthdate.Month .ToString("D2").Substring(0, 1))
-    let m2 = int (birthdate.Month .ToString("D2").Substring(1, 1))
-    let y1 = int (birthdate.Year  .ToString("D2").Substring(2, 1))
-    let y2 = int (birthdate.Year  .ToString("D4").Substring(3, 1))
-    let i1 = int (individualNumber               .Substring(0, 1))
-    let i2 = int (individualNumber               .Substring(1, 1))
-    let i3 = int (individualNumber               .Substring(2, 1))
+    let d1 = birthdate.Day   .ToString("D2") |> substring 0 1 |> int
+    let d2 = birthdate.Day   .ToString("D2") |> substring 1 1 |> int
+    let m1 = birthdate.Month .ToString("D2") |> substring 0 1 |> int
+    let m2 = birthdate.Month .ToString("D2") |> substring 1 1 |> int
+    let y1 = birthdate.Year  .ToString("D2") |> substring 2 1 |> int
+    let y2 = birthdate.Year  .ToString("D4") |> substring 3 1 |> int
+    let i1 = individualNumber                |> substring 0 1 |> int
+    let i2 = individualNumber                |> substring 1 1 |> int
+    let i3 = individualNumber                |> substring 2 1 |> int
 
     let cs1 = 11 - ((3 * d1 + 7 * d2 + 6 * m1 + 1 * m2 + 8 * y1 + 9 * y2 + 4 * i1 + 5 * i2 + 2 * i3) % 11)
     let cs2 = 11 - ((5 * d1 + 4 * d2 + 3 * m1 + 2 * m2 + 7 * y1 + 6 * y2 + 5 * i1 + 4 * i2 + 3 * i3 + 2 * cs1) % 11)
@@ -78,7 +79,7 @@ let generateNorwegianSSN (random: Random) (birthdate: DateTime) (gender: Gender)
     let rec loop () = 
         let day   = birthdate.Day  .ToString("D2")
         let month = birthdate.Month.ToString("D2")
-        let year  = birthdate.Year .ToString("D4").Substring(2)
+        let year  = birthdate.Year .ToString("D4") |> substringToEnd 2
         let date = sprintf "%s%s%s" day month year
 
         let individualNumber = generateIndividualNumber random birthdate.Year gender

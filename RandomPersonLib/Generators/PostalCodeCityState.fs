@@ -11,6 +11,7 @@ let stringToPostalCodeCityState (country: Country) (line: string)   =
     match country with
     | Country.Denmark     -> PostalCodeCityState(split.[0], split.[1], "")
     | Country.Finland     -> PostalCodeCityState(split.[0], split.[1], "")
+    | Country.France      -> PostalCodeCityState(split.[0], split.[1], "")
     | Country.Iceland     -> PostalCodeCityState(split.[0], split.[1], "")
     | Country.Netherlands -> PostalCodeCityState(split.[1], split.[2], "")
     | Country.Norway      -> PostalCodeCityState(split.[0], split.[1], "")

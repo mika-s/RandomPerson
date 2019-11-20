@@ -21,46 +21,47 @@ open System
 open RandomPersonLib
 open Util
 open MathUtil
+open StringUtil
 
 let numberFor1937to1999 (random: Random) = 
-    let number = random.Next(0, 100)
+    let chance = random.Next(0, 100)
 
-    match () with
-    | () when 0  <= number && number <= 66  -> random.Next(0, 3)
-    | () when 67 <= number && number <= 84  -> 4
-    | () when 84 <= number && number <= 100 -> 9
+    match chance with
+    | Between 0  66  -> random.Next(0, 3)
+    | Between 67 84  -> 4
+    | Between 85 100 -> 9
     | _ -> invalidOp "Illegal random number."
 
 let numberFor2000to2036 (random: Random) = 
-    let number = random.Next(0, 100)
+    let chance = random.Next(0, 100)
 
-    match () with
-    | () when 0  <= number && number <= 49  -> 4
-    | () when 50 <= number && number <= 99  -> 9
+    match chance with
+    | Between 0  49 -> 4
+    | Between 50 99 -> 9
     | _ -> invalidOp "Illegal random number."
 
 let getCenturyNumber (random: Random) (year: int) =
-    match () with
-    | () when 1858 <= year && year <= 1899 -> random.Next(5, 8)
-    | () when 1900 <= year && year <= 1936 -> random.Next(0, 3)
-    | () when 1937 <= year && year <= 1999 -> numberFor1937to1999 random
-    | () when 2000 <= year && year <  2036 -> numberFor2000to2036 random
-    | () when 2037 <= year && year <  2057 -> random.Next(5, 8)
+    match year with
+    | Between 1858 1899 -> random.Next(5, 8)
+    | Between 1900 1936 -> random.Next(0, 3)
+    | Between 1937 1999 -> numberFor1937to1999 random
+    | Between 2000 2036 -> numberFor2000to2036 random
+    | Between 2037 2057 -> random.Next(5, 8)
     | _ -> invalidArg "year" "Illegal year."
 
 let generateIndividualNumber (random: Random) (century: int) =
     sprintf "%d%s" century (random.Next(0, 100).ToString("D2"))
     
 let generateChecksumWithModulusControl (birthdate: DateTime) (individualNumber: string) =
-    let d1 = int (birthdate.Day.ToString("D2").Substring(0, 1))
-    let d2 = int (birthdate.Day.ToString("D2").Substring(1, 1))
-    let m1 = int (birthdate.Month.ToString("D2").Substring(0, 1))
-    let m2 = int (birthdate.Month.ToString("D2").Substring(1, 1))
-    let y1 = int (birthdate.Year.ToString("D2").Substring(2, 1))
-    let y2 = int (birthdate.Year.ToString("D4").Substring(3, 1))
-    let i1 = int (individualNumber.Substring(0, 1))
-    let i2 = int (individualNumber.Substring(1, 1))
-    let i3 = int (individualNumber.Substring(2, 1))
+    let d1 = birthdate.Day  .ToString("D2") |> substring 0 1 |> int
+    let d2 = birthdate.Day  .ToString("D2") |> substring 1 1 |> int
+    let m1 = birthdate.Month.ToString("D2") |> substring 0 1 |> int
+    let m2 = birthdate.Month.ToString("D2") |> substring 1 1 |> int
+    let y1 = birthdate.Year .ToString("D2") |> substring 2 1 |> int
+    let y2 = birthdate.Year .ToString("D4") |> substring 3 1 |> int
+    let i1 = individualNumber               |> substring 0 1 |> int
+    let i2 = individualNumber               |> substring 1 1 |> int
+    let i3 = individualNumber               |> substring 2 1 |> int
 
     let modulus = (4 * d1 + 3 * d2 + 2 * m1 + 7 * m2 + 6 * y1 + 5 * y2 + 4 * i1 + 3 * i2 + 2 * i3) % 11
 
@@ -84,9 +85,9 @@ let isLegalChecksum (gender: Gender) (checksum: int) =
 let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
 
 let generateDanishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (isAnonymizingSSN: bool) =
-    let day = birthdate.Day.ToString("D2")
+    let day   = birthdate.Day  .ToString("D2")
     let month = birthdate.Month.ToString("D2")
-    let year = birthdate.Year.ToString("D4").Substring(2)
+    let year  = birthdate.Year .ToString("D4") |> substringToEnd 2
     let date = sprintf "%s%s%s" day month year
     
     let century = getCenturyNumber random birthdate.Year

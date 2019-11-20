@@ -14,18 +14,19 @@
 open System
 open IcelandSSNParameters
 open Util
+open StringUtil
 
 let generateIndividualNumber (random: Random) = random.Next(20, 100) |> sprintf "%d"
     
 let generateChecksum (birthdate: DateTime) (individualNumber: string) =
-    let d1 = int (birthdate.Day   .ToString("D2").Substring(0, 1))
-    let d2 = int (birthdate.Day   .ToString("D2").Substring(1, 1))
-    let m1 = int (birthdate.Month .ToString("D2").Substring(0, 1))
-    let m2 = int (birthdate.Month .ToString("D2").Substring(1, 1))
-    let y1 = int (birthdate.Year  .ToString("D2").Substring(2, 1))
-    let y2 = int (birthdate.Year  .ToString("D4").Substring(3, 1))
-    let i1 = int (individualNumber               .Substring(0, 1))
-    let i2 = int (individualNumber               .Substring(1, 1))
+    let d1 = birthdate.Day   .ToString("D2") |> substring 0 1 |> int
+    let d2 = birthdate.Day   .ToString("D2") |> substring 1 1 |> int
+    let m1 = birthdate.Month .ToString("D2") |> substring 0 1 |> int
+    let m2 = birthdate.Month .ToString("D2") |> substring 1 1 |> int
+    let y1 = birthdate.Year  .ToString("D2") |> substring 2 1 |> int
+    let y2 = birthdate.Year  .ToString("D4") |> substring 3 1 |> int
+    let i1 = individualNumber                |> substring 0 1 |> int
+    let i2 = individualNumber                |> substring 1 1 |> int
 
     let cs = 11 - ((3 * d1 + 2 * d2 + 7 * m1 + 6 * m2 + 5 * y1 + 4 * y2 + 3 * i1 + 2 * i2) % 11)
 
@@ -34,10 +35,10 @@ let generateChecksum (birthdate: DateTime) (individualNumber: string) =
     | _  -> sprintf "%d" cs
 
 let getCenturyNumber (year: int) =
-    match () with
-    | () when 1800 <= year && year <= 1899 -> "8"
-    | () when 1900 <= year && year <= 1999 -> "9"
-    | () when 2000 <= year && year <= 2099 -> "0"
+    match year with
+    | Between 1800 1899 -> "8"
+    | Between 1900 1999 -> "9"
+    | Between 2000 2099 -> "0"
     | _ -> invalidArg "year" "Illegal year."    
 
 let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
@@ -46,7 +47,7 @@ let generateIcelandicSSN (random: Random) (birthdate: DateTime) (isAnonymizingSS
     let rec loop () = 
         let day   = birthdate.Day  .ToString("D2")
         let month = birthdate.Month.ToString("D2")
-        let year  = birthdate.Year .ToString("D4").Substring(2)
+        let year  = birthdate.Year .ToString("D4") |> substringToEnd 2
         let date = sprintf "%s%s%s" day month year
 
         let individualNumber = generateIndividualNumber random

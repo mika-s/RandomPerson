@@ -25,7 +25,7 @@ let generateChecksum (individualNumber: string) =
     let coefficients = [| 9; 8; 7; 6; 5; 4; 3; 2 |]
 
     (individualNumberArray, coefficients) ||> Array.map2 (*)
-    |> Array.sum |> modulus 11 |> sprintf "%d"
+    |> Array.sum |> modulo 11 |> sprintf "%d"
 
 let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 5
 

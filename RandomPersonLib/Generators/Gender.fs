@@ -2,10 +2,11 @@
 
 open System
 open RandomPersonLib
+open Util
 
 let generateGender (random: Random) = 
-    let randomNumber = random.Next(100)
+    let chance = random.Next(0, 100)
 
-    match randomNumber with
-    | randomNumber when randomNumber < 50 -> Gender.Male
-    | _                                   -> Gender.Female
+    match chance with
+    | Between 0 50 -> Gender.Male
+    | _            -> Gender.Female

@@ -34,14 +34,14 @@ let hasCorrectDepartmentNumber (ssn: string) =
     | true  ->
         match parsedDepartmentNumber with
         | 20 | 98                     -> Failure InvalidDepartmentNumber
-        | dn when 1 <= dn && dn <= 95 -> Success ssn
+        | Between 1 95                -> Success ssn
         | 97                          ->
             let threeDigitDepartmentNumber = ssn |> substring DepartmentStart (DepartmentLength + 1)
             let isTdnInt, parsedThreeDigitDepartmentNumber = Int32.TryParse threeDigitDepartmentNumber
 
             match isTdnInt, parsedThreeDigitDepartmentNumber with
-            | true, tdn when 971 <= tdn && tdn <= 976 -> Success ssn
-            | _                                       -> Failure InvalidDepartmentNumber
+            | true, Between 971 976 -> Success ssn
+            | _                     -> Failure InvalidDepartmentNumber
         | _                           -> Failure InvalidDepartmentNumber
     | false ->
         match departmentNumber with
@@ -58,14 +58,14 @@ let hasCorrectCommuneNumber (ssn: string) =
         let isInt, parsedTwoDigitCommuneNumber = Int32.TryParse twoDigitCommuneNumber
 
         match isInt, parsedTwoDigitCommuneNumber with
-        | true, cn when 1 <= cn && cn <= 90  -> Success ssn
-        | _, _                               -> Failure InvalidCommuneNumber
+        | true, Between 1 90 -> Success ssn
+        | _, _               -> Failure InvalidCommuneNumber
     | _    ->
         let isInt, parsedCommuneNumber = Int32.TryParse communeNumber
 
         match isInt, parsedCommuneNumber with
-        | true, cn when 1 <= cn && cn <= 990 -> Success ssn 
-        | _, _                               -> Failure InvalidCommuneNumber
+        | true, Between 1 990 -> Success ssn 
+        | _, _                -> Failure InvalidCommuneNumber
 
 let monthWhitelist = [ 20 ]
 

@@ -1,25 +1,29 @@
 ﻿module internal Email
 
 open System
+open Util
+open StringUtil
 
 let generateEmailAddress (random: Random) (emailAddresses: string[]) (firstName: string) (lastName: string) (birthDate: DateTime) = 
     let randomNumber = random.Next(emailAddresses.Length)
     let domain = emailAddresses.[randomNumber]
 
-    let localpart = match random.Next(0, 100) with
-                    | r when 0 <= r && r <= 10  -> firstName
-                    | r when 10 < r && r <= 25  -> lastName
-                    | r when 25 < r && r <= 30  -> firstName + "." + lastName.ToLower()
-                    | r when 30 < r && r <= 35  -> firstName + birthDate.Year.ToString()
-                    | r when 35 < r && r <= 40  -> lastName + birthDate.Year.ToString()
-                    | r when 40 < r && r <= 45  -> firstName + lastName
-                    | r when 45 < r && r <= 50  -> firstName.[0].ToString () + lastName
-                    | r when 50 < r && r <= 55  -> firstName + lastName.[0].ToString ()
-                    | r when 55 < r && r <= 60  -> firstName.Substring(0, 2) + lastName
-                    | r when 60 < r && r <= 65  -> firstName + lastName.Substring(0, 2)
-                    | r when 65 < r && r <= 70  -> firstName + birthDate.Year.ToString().Substring(2, 2)
-                    | r when 70 < r && r <= 75  -> lastName + birthDate.Year.ToString().Substring(2, 2)
-                    | r when 75 < r && r <= 100 -> firstName + random.Next(0, 20).ToString()
+    let chance = random.Next(0, 100)
+
+    let localpart = match chance with
+                    | Between 0  10  -> firstName
+                    | Between 11 25  -> lastName
+                    | Between 26 30  -> firstName + "." + lastName.ToLower()
+                    | Between 31 35  -> firstName + birthDate.Year.ToString()
+                    | Between 36 40  -> lastName + birthDate.Year.ToString()
+                    | Between 41 45  -> firstName + lastName
+                    | Between 46 50  -> firstName.[0].ToString () + lastName
+                    | Between 51 55  -> firstName + lastName.[0].ToString ()
+                    | Between 56 60  -> firstName.Substring(0, 2) + lastName
+                    | Between 61 65  -> firstName + lastName |> substring 0 2
+                    | Between 66 70  -> firstName + birthDate.Year.ToString() |> substring 2 2
+                    | Between 71 75  -> lastName  + birthDate.Year.ToString() |> substring 2 2
+                    | Between 76 100 -> firstName + random.Next(0, 20).ToString()
                     | _ -> invalidOp "Outside legal random range."
 
     let cleanLocalpart = localpart.ToLower()

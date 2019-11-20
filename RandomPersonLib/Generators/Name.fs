@@ -3,6 +3,7 @@
 open System
 open RandomPersonLib
 open PersonData
+open Util
 
 let makeFirstName (random: Random) (gender: Gender) (data: PersonData) =
     let randomNoMaleFirstName   = random.Next(data.MaleFirstNames.Length)
@@ -23,8 +24,10 @@ let maybeAddMiddlename (random: Random) (gender: Gender) (data: PersonData) (fir
                                      | 1 -> 0
                                      | _ -> 25
 
-    match random.Next(0, 100) with
-    | x when 0 <= x && x < percentChanceForMiddleName ->
+    let chance = random.Next(0, 100)
+
+    match chance with
+    | Between 0 percentChanceForMiddleName ->
         let rec loop () =
             let middleName = makeFirstName random gender data
 
@@ -33,7 +36,7 @@ let maybeAddMiddlename (random: Random) (gender: Gender) (data: PersonData) (fir
             | _                    -> firstName + " " + middleName
 
         loop ()
-    | _ -> firstName
+    | _                                    -> firstName
 
 let generateFirstName (random: Random) (gender: Gender) (data: PersonData)  =
     makeFirstName random gender data |> maybeAddMiddlename random gender data

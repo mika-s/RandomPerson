@@ -33,26 +33,26 @@ let generateGenderNumber (random: Random) (gender: Gender) =
     match gender with
     | Gender.Male   ->
         match randomChance with
-        | c when 0 <= c && c <= 95 -> "1"
-        | _                        -> "7"
+        | Between 0 95 -> "1"
+        | _            -> "7"
     | Gender.Female ->
         match randomChance with
-        | c when 0 <= c && c <= 95 -> "2"
-        | _                        -> "8"
+        | Between 0 95 -> "2"
+        | _            -> "8"
     | _ -> invalidArg "gender" "Illegal gender"
 
 let generateDepartment (random: Random) =
     let randomChance = random.Next(1, 103)
     let rec loop () =
         match randomChance with
-        | c when 0 <= c && c <= 94 ->
+        | Between 0 94   ->
             let randomNumber = random.Next(1, 95)
             match randomNumber with
             | 20 -> loop ()
             | _  -> randomNumber.ToString("D2")
-        | c when c = 95 -> "2A"
-        | c when c = 96 -> "2B"
-        | c when c <= 97 && c <= 102 ->
+        | 95             -> "2A"
+        | 96             -> "2B"
+        | Between 97 102 ->
             random.Next(971, 977).ToString("D3")
         | _ -> "99"
 

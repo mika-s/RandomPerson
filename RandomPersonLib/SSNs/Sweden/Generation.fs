@@ -31,6 +31,7 @@ open RandomPersonLib
 open ChecksumAlgorithms
 open Util
 open MathUtil
+open StringUtil
 
 let getIndividualNumber (random: Random) = random.Next(000, 999)
 
@@ -69,7 +70,7 @@ let anonymizeSSN (ssn: string) = ssn |> incrementAtPosition 8
 let generateSwedishSSN (random: Random) (birthdate: DateTime) (gender: Gender) (isAnonymizingSSN: bool) =
     let day   = birthdate.Day  .ToString("D2")
     let month = birthdate.Month.ToString("D2")
-    let year  = birthdate.Year .ToString("D4").Substring(2)
+    let year  = birthdate.Year .ToString("D4") |> substringToEnd 2
     let date  = sprintf "%s%s%s" year month day
     
     let individualNumber = generateIndividualNumber random gender

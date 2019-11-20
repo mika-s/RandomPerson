@@ -10,6 +10,7 @@ open NetherlandsSSNGeneration
 open NorwaySSNGeneration
 open SwedenSSNGeneration
 open UsaSSNGeneration
+open StringUtil
 
 let generateSSN (random: Random) (country: Country) (birthdate : DateTime) (gender: Gender) (isAnonymizingSSN: bool) (isRemovingHypensFromSSN: bool) =
     let ssn = match country with
@@ -24,5 +25,5 @@ let generateSSN (random: Random) (country: Country) (birthdate : DateTime) (gend
               | _ -> invalidArg "country" "Illegal country."
 
     match isRemovingHypensFromSSN with
-    | true  -> ssn.Replace("-", "")
+    | true  -> ssn |> replace "-" ""
     | false -> ssn

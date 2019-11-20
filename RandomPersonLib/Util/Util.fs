@@ -23,6 +23,8 @@ let readDataFromJsonFile<'T> (filename: string) =
 
 let (|Equals|_|) arg x = if (arg = x) then Some() else None
 
+let (|Between|_|) min max arg = if min <= arg && arg <= max then Some() else None
+
 let incrementAtPosition (digit: int) (input: string) =
     let digitInInput = intFromChar input.[digit]
     let incremented = ((digitInInput + 1) % 10).ToString ()
